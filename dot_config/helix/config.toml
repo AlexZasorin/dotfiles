@@ -1,0 +1,28 @@
+theme = "solarized_dark"
+
+[editor]
+line-number = "relative"
+auto-save = true
+
+[editor.file-picker]
+hidden = false
+# git-ignore = false
+
+[keys.normal]
+X = "extend_line_above"
+
+# move lines up/down
+A-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+A-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+
+# copy lines up/down
+A-J = ["extend_to_line_bounds", "yank", "paste_after"]
+A-K = ["extend_to_line_bounds", "yank", "paste_before"]
+
+[keys.select]
+# "esc" = ["collapse_selection", "exit_select_mode"]
+
+[keys.normal.space]
+l = ":lsp-restart"
+";" = ":reload"
+

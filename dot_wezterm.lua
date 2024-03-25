@@ -1,0 +1,32 @@
+local wezterm = require 'wezterm'
+
+local config = {}
+
+-- Solarized Dark - Patched colors
+config.colors = {
+	foreground = "#839395",
+	background = "#002833",
+	cursor_bg = "#839395",
+	cursor_border = "#839395",
+	cursor_fg = "#002831",
+	selection_bg = "#003440",
+	selection_fg = "#93a0a0",
+
+	ansi = {
+		"#003440", "#db312f", "#859801", "#b48800", "#268ad1", "#d23581", "#2aa097", "#eee7d4"
+	},
+
+	brights = {
+		"#586d74", "#ca4a16", "#586d74", "#657a82", "#839395", "6c6ec6", "#93a0a0",  "fdf5e2"
+	},
+}
+config.font = wezterm.font_with_fallback {
+	'MesloLGSDZ Nerd Font Mono',
+	'JetBrains Mono',
+}
+config.hide_tab_bar_if_only_one_tab = true
+config.font_size = 14
+config.bold_brightens_ansi_colors = "No"
+config.front_end = "WebGpu"
+
+return config
