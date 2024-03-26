@@ -1,0 +1,10 @@
+github.com:
+    {{- if eq .chezmoi.os "darwin" }}
+    user: azasorin-rss
+    {{ else }}
+    user: AlexZasorin:
+    {{ end -}}
+    git_protocol: https
+    users:
+        azasorin-rss:
+        AlexZasorin:
