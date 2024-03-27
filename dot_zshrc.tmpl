@@ -1,7 +1,6 @@
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-unset $SSH_ASKPASS
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -150,6 +149,8 @@ function aws-login() {
     aws-adfs login --profile default --adfs-ca-bundle ~/.aws/sectigo.cer && aws-adfs login --profile cross-account --adfs-ca-bundle ~/.aws/sectigo.cer
   fi
 }
+
+unset $SSH_ASKPASS
 
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
