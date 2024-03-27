@@ -1,2 +1,6 @@
 **/grammars/
 **/grammars/**/*
+
+**/launcher/
+**/launcher/bash/
+**/launcher/bash/br
