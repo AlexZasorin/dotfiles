@@ -156,7 +156,7 @@ keybinds clear-defaults=true {
         bind "Alt n" { NewPane; }
         bind "Ctrl h" "Alt Left" { MoveFocusOrTab "Left"; }
         bind "Ctrl l" "Alt Right" { MoveFocusOrTab "Right"; }
-        bind "Ctrl j" "Alt Down" { MoveFocus "Down"; }
+        bind "β" "Alt Down" { MoveFocus "Down"; }
         bind "Ctrl k" "Alt Up" { MoveFocus "Up"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
