@@ -174,12 +174,12 @@ prompt_agnoster_setup() {
 prompt_agnoster_setup "$@"
 
 prompt_kubectx() {
-  CTX=$(kubectx -c)
+  CTX=$(kubectx -c) &> /dev/null
   if [[ $CTX == *"dev"* ]]; then
-        prompt_segment green black " ${CTX} "
+    prompt_segment green black " ${CTX} "
   elif [[ $CTX == *"qa"* ]]; then
-	prompt_segment yellow black " ${CTX} "
+	  prompt_segment yellow black " ${CTX} "
   elif [[ $CTX == *"prod"* || $CTX == *"hc"* ]]; then
-	prompt_segment red yellow " ${CTX} "
+	  prompt_segment red yellow " ${CTX} "
   fi
 }
