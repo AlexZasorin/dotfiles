@@ -145,7 +145,7 @@ function aws-login() {
 }
 
 {{ if eq .chezmoi.os "linux" }}
-unset $SSH_ASKPASS
+unset SSH_ASKPASS
 {{ end }}
 
 # disable sort when completing `git checkout`
