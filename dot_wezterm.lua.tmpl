@@ -19,6 +19,27 @@ config.keys = {
     mods = 'CTRL',
     action = act.SendKey { key = 'β' }
   },
+  {
+    key = 'v',
+    mods = 'CTRL',
+    action = act.PasteFrom 'Clipboard'
+  },
+  {
+    key = '-',
+    mods = 'CTRL',
+    action = act.DecreaseFontSize
+  },
+  {
+    key = '=',
+    mods = 'CTRL',
+    action = act.IncreaseFontSize
+  },
+
+  {
+    key = 'm',
+    mods = 'CMD|CTRL|ALT',
+    action = act.ToggleFullScreen
+  },
 }
 
 -- Solarized Dark - Patched colors
@@ -71,5 +92,7 @@ config.max_fps = 144
 config.window_close_confirmation = "NeverPrompt"
 
 config.audible_bell = "Disabled"
+
+config.window_background_opacity = 0.95;
 
 return config
