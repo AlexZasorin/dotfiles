@@ -4,3 +4,7 @@
 **/launcher/
 **/launcher/bash/
 **/launcher/bash/br
+
+{{- if ne .chezmoi.os "linux" }}
+**/kanata/
+**/kanata/**
