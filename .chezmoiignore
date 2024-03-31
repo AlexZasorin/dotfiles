@@ -8,4 +8,5 @@
 {{- if ne .chezmoi.os "linux" }}
 **/kanata/
 **/kanata/**
+kglobalshortcutsrc
 {{ end }}
