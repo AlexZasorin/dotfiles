@@ -23,7 +23,11 @@ config.keys = {
   },
   {
     key = 'v',
+    {{- if eq .chezmoi.os "darwin" }}
+    mods = 'CMD',
+    {{ else }}
     mods = 'CTRL',
+    {{ end -}}
     action = act.PasteFrom 'Clipboard'
   },
   {
