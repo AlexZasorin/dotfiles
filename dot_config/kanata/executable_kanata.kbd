@@ -25,4 +25,4 @@
   _		_   _           _ 						_   	_       _		_	_	_	_       _ 
 )
 
-(defalias cen (tap-hold-press 200 100 esc (layer-while-held navigation)))
+(defalias cen (tap-hold-press 100 200 esc (layer-while-held navigation)))
