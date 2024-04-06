@@ -146,6 +146,9 @@ function aws-login() {
 
 {{ if eq .chezmoi.os "linux" }}
 unset SSH_ASKPASS
+
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
 {{ end }}
 
 # disable sort when completing `git checkout`
