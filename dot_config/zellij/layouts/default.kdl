@@ -9,7 +9,7 @@ layout {
     	}
     }
     tab name="config" focus=true {
-        pane cwd="~/.config"
+        pane cwd="~"
     }
     tab name="notes" {
         pane cwd="~/Repos/notes"
