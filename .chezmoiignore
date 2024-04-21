@@ -9,6 +9,9 @@
 **/kanata/
 **/kanata/**
 kglobalshortcutsrc
+flake.nix
+flake.lock
+configuration.nix
 {{ end -}}
 
 {{- if ne .chezmoi.os "darwin" }}
