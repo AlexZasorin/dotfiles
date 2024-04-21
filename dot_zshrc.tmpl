@@ -100,6 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='nvim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -150,6 +151,9 @@ unset SSH_ASKPASS
 
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
+
+alias nix-clean='sh ~/scripts/cleanup.sh' 
+alias rebuild='sh ~/scripts/rebuild.sh'
 {{ end }}
 
 # disable sort when completing `git checkout`
