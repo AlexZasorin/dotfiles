@@ -138,6 +138,7 @@ prompt_context() {
 }
 
 export BORAT_URL="http://172.16.4.100"
+export XDG_CONFIG_HOME=$HOME/.config
 function aws-login() {
   if [ $# -gt 0 ]; then
     aws-adfs login --adfs-ca-bundle ~/.aws/sectigo.cer  $@
