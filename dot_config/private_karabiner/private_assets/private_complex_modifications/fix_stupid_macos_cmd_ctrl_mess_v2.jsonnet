@@ -21,71 +21,107 @@ local bash_shortcut_letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'k',
 
 local makeSimpleRule(key_code_from, key_code_to, except_apps=[]) = [
   {
-    'type': 'basic',
-    'from': {
-      'key_code': key_code_from,
-      'modifiers': {
-        'optional': [],
+    type: 'basic',
+    from: {
+      key_code: key_code_from,
+      modifiers: {
+        optional: [],
       },
     },
-    'to': [
+    to: [
       {
-        'key_code': key_code_to,
+        key_code: key_code_to,
       }
     ],
-    [if std.length(except_apps) > 0 then 'conditions']: [
+    conditions: if std.length(except_apps) > 0 then [
       {
-        'type': 'frontmost_application_unless',
-        'bundle_identifiers': except_apps,
+        type: 'frontmost_application_unless',
+        bundle_identifiers: except_apps,
+      },
+      {
+        type: "device_if",
+        identifiers: [
+          {
+            "vendor_id": 1452
+          },
+          {
+            "vendor_id": 12851
+          },
+          {
+            "vendor_id": 1133
+          },
+        ]
+      }
+    ] else [
+      {
+        type: "device_if",
+        identifiers: [
+          {
+            "vendor_id": 1452
+          },
+          {
+            "vendor_id": 12851
+          },
+          {
+            "vendor_id": 1133
+          },
+        ]
       }
     ],
   },
 ];
 
-local makeManipulator(from_key, to_key, variable_name) = {
-  "type": "basic",
-  "conditions": [
+local makeManipulator(from_key, to_key, variable_name, device_ids) = {
+  type: 'basic',
+  conditions: [
     {
-      "type": "variable_if",
-      "name": variable_name,
-      "value": 1
+      type: 'variable_if',
+      name: variable_name,
+      value: 1
+    },
+    {
+      type: "device_if",
+      // Iterate over the device_ids and create a vendor_id object for each
+      identifiers: [
+        { "vendor_id": id } for id in device_ids
+      ]
     }
   ],
-  "from": {
-    "key_code": from_key,
-    "modifiers": { "optional": ["any"] }
+  from: {
+    key_code: from_key,
+    modifiers: { optional: ['any'] }
   },
-  "to": [{ "key_code": to_key }]
+  to: [{ key_code: to_key }]
 };
 
 local makeDualRule(mandatory_modifiers, key='', optional_modifiers=[], except_apps=[], pointing_button='') = [
   // Rule to swap Command to Control
   {
-    'type': 'basic',
-    'from': {
+    type: 'basic',
+    from: {
       [if key != '' then 'key_code']: key,
-      'modifiers': {
-        'mandatory': mandatory_modifiers,
-        'optional': optional_modifiers,
+      modifiers: {
+        mandatory: mandatory_modifiers,
+        optional: optional_modifiers,
       },
       [if pointing_button != '' then 'pointing_button']: pointing_button,
     },
-    'to': [{
+    to: [{
       [if key != '' then 'key_code']: key,
-      'modifiers': [if m == 'command' then 'control' else m for m in mandatory_modifiers],
+      modifiers: [if m == 'command' then 'control' else m for m in mandatory_modifiers],
       [if pointing_button != '' then 'pointing_button']: pointing_button,
     }],
-    'conditions': if except_apps != [] then [
+    conditions: if except_apps != [] then [
       {
-        'type': 'frontmost_application_unless',
-        'bundle_identifiers': except_apps,
-      },
+        type: 'frontmost_application_unless',
+        bundle_identifiers: except_apps,
+      }
     ] else [],
   },
   // Rule to swap Control to Command
   {
-    'type': 'basic',
-    'from': {
+    type: 'basic',
+    from: {
       [if key != '' then 'key_code']: key,
       'modifiers': {
         'mandatory': [if m == 'command' then 'control' else m for m in mandatory_modifiers],
@@ -93,16 +129,16 @@ local makeDualRule(mandatory_modifiers, key='', optional_modifiers=[], except_ap
       },
       [if pointing_button != '' then 'pointing_button']: pointing_button,
     },
-    'to': [{
+    to: [{
       [if key != '' then 'key_code']: key,
-      'modifiers': mandatory_modifiers,
+      modifiers: mandatory_modifiers,
       [if pointing_button != '' then 'pointing_button']: pointing_button,
     }],
-    'conditions': if except_apps != [] then [
+    conditions: if except_apps != [] then [
       {
         'type': 'frontmost_application_unless',
         'bundle_identifiers': except_apps,
-      },
+      }
     ] else [],
   },
 ];
@@ -135,32 +171,44 @@ local commandShiftRules = [
         makeDualRule(['command'], 'e', [], terminal_app_exclusions + ['^com\\.microsoft\\.Outlook$']) +
         makeDualRule(['command'], '', [], [], 'button1') +
         commandShiftRules +
-        makeDualRule(['command', 'option'], 'f') +
-        makeSimpleRule('up_arrow', 'vk_none') +
-        makeSimpleRule('down_arrow', 'vk_none') +
-        makeSimpleRule('left_arrow', 'vk_none') +
-        makeSimpleRule('right_arrow', 'vk_none'),
+        makeDualRule(['command', 'option'], 'f')
     },
     {
-      "description": "Map Caps Lock + hjkl to Arrow Keys with Caps Lock State Tracking",
-      "manipulators": [
-        makeManipulator("h", "left_arrow", "caps_lock_pressed"),
-        makeManipulator("j", "down_arrow", "caps_lock_pressed"),
-        makeManipulator("k", "up_arrow", "caps_lock_pressed"),
-        makeManipulator("l", "right_arrow", "caps_lock_pressed"),
+      description: 'Map Caps Lock + hjkl to Arrow Keys with Caps Lock State Tracking',
+      manipulators: [
+        makeManipulator('h', 'left_arrow', 'caps_lock_pressed', [1452, 12851, 1133]),
+        makeManipulator('j', 'down_arrow', 'caps_lock_pressed', [1452, 12851, 1133]),
+        makeManipulator('k', 'up_arrow', 'caps_lock_pressed', [1452, 12851, 1133]),
+        makeManipulator('l', 'right_arrow', 'caps_lock_pressed', [1452, 12851, 1133]),
         {
-          "from": {
-            "key_code": "caps_lock",
-            "modifiers": { "optional": ["any"] }
+          from: {
+            key_code: 'caps_lock',
+            modifiers: { 'optional': ['any'] }
           },
-          "to": [
-            { "set_variable": { "name": "caps_lock_pressed", "value": 1 } }
+          to: [
+            { set_variable: { 'name': 'caps_lock_pressed', 'value': 1 } }
           ],
-          "to_after_key_up": [
-            { "set_variable": { "name": "caps_lock_pressed", "value": 0 } }
+          to_after_key_up: [
+            { set_variable: { 'name': 'caps_lock_pressed', 'value': 0 } }
           ],
-          "to_if_alone": [{ "key_code": "escape" }],
-          "type": "basic"
+          to_if_alone: [{ 'key_code': 'escape' }],
+          type: 'basic',
+          conditions: [
+            {
+              type: "device_if",
+              identifiers: [
+                {
+                  "vendor_id": 1452
+                },
+                {
+                  "vendor_id": 12851
+                },
+                {
+                  "vendor_id": 1133
+                },
+              ]
+            }
+          ]
         }
       ]
     },

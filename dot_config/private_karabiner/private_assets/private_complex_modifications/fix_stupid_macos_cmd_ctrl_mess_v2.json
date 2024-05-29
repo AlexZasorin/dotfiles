@@ -4778,62 +4778,6 @@
                   }
                ],
                "type": "basic"
-            },
-            {
-               "from": {
-                  "key_code": "up_arrow",
-                  "modifiers": {
-                     "optional": [ ]
-                  }
-               },
-               "to": [
-                  {
-                     "key_code": "vk_none"
-                  }
-               ],
-               "type": "basic"
-            },
-            {
-               "from": {
-                  "key_code": "down_arrow",
-                  "modifiers": {
-                     "optional": [ ]
-                  }
-               },
-               "to": [
-                  {
-                     "key_code": "vk_none"
-                  }
-               ],
-               "type": "basic"
-            },
-            {
-               "from": {
-                  "key_code": "left_arrow",
-                  "modifiers": {
-                     "optional": [ ]
-                  }
-               },
-               "to": [
-                  {
-                     "key_code": "vk_none"
-                  }
-               ],
-               "type": "basic"
-            },
-            {
-               "from": {
-                  "key_code": "right_arrow",
-                  "modifiers": {
-                     "optional": [ ]
-                  }
-               },
-               "to": [
-                  {
-                     "key_code": "vk_none"
-                  }
-               ],
-               "type": "basic"
             }
          ]
       },
@@ -4846,6 +4790,20 @@
                      "name": "caps_lock_pressed",
                      "type": "variable_if",
                      "value": 1
+                  },
+                  {
+                     "identifiers": [
+                        {
+                           "vendor_id": 1452
+                        },
+                        {
+                           "vendor_id": 12851
+                        },
+                        {
+                           "vendor_id": 1133
+                        }
+                     ],
+                     "type": "device_if"
                   }
                ],
                "from": {
@@ -4869,6 +4827,20 @@
                      "name": "caps_lock_pressed",
                      "type": "variable_if",
                      "value": 1
+                  },
+                  {
+                     "identifiers": [
+                        {
+                           "vendor_id": 1452
+                        },
+                        {
+                           "vendor_id": 12851
+                        },
+                        {
+                           "vendor_id": 1133
+                        }
+                     ],
+                     "type": "device_if"
                   }
                ],
                "from": {
@@ -4892,6 +4864,20 @@
                      "name": "caps_lock_pressed",
                      "type": "variable_if",
                      "value": 1
+                  },
+                  {
+                     "identifiers": [
+                        {
+                           "vendor_id": 1452
+                        },
+                        {
+                           "vendor_id": 12851
+                        },
+                        {
+                           "vendor_id": 1133
+                        }
+                     ],
+                     "type": "device_if"
                   }
                ],
                "from": {
@@ -4915,6 +4901,20 @@
                      "name": "caps_lock_pressed",
                      "type": "variable_if",
                      "value": 1
+                  },
+                  {
+                     "identifiers": [
+                        {
+                           "vendor_id": 1452
+                        },
+                        {
+                           "vendor_id": 12851
+                        },
+                        {
+                           "vendor_id": 1133
+                        }
+                     ],
+                     "type": "device_if"
                   }
                ],
                "from": {
@@ -4933,6 +4933,22 @@
                "type": "basic"
             },
             {
+               "conditions": [
+                  {
+                     "identifiers": [
+                        {
+                           "vendor_id": 1452
+                        },
+                        {
+                           "vendor_id": 12851
+                        },
+                        {
+                           "vendor_id": 1133
+                        }
+                     ],
+                     "type": "device_if"
+                  }
+               ],
                "from": {
                   "key_code": "caps_lock",
                   "modifiers": {
