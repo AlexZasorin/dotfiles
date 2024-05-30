@@ -19,8 +19,14 @@ layout {
     }
     tab name="core" {
         pane cwd="~/Repos/core"
-    }
-	tab name="platform" {
+    } 
+    tab name="platform" {
         pane cwd="~/Repos/platform"
+    }
+    tab name="relationship-v2" {
+        pane cwd="~/Repos/relationship-v2"
+    }
+    tab name="workflow" {
+        pane cwd="~/Repos/workflow"
     }
 }
