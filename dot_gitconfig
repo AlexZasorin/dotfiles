@@ -11,3 +11,6 @@
 
 [includeIf "hasconfig:remote.*.url:git@github.com:risk-and-safety/*"]
 	path = ~/.gitconfig_work
+
+[includeIf "hasconfig:remote.*.url:git@github.com:gepenrose/*"]
+	path = ~/.gitconfig_work
