@@ -113,7 +113,11 @@ export EDITOR='nvim'
 # Example aliases
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
-alias gpsr="git stash && git pull --rebase && git stash pop"
+
+_kill_vpn() {
+  sudo ps aux | grep -i ivanti | awk '{print $2}' | xargs sudo kill -KILL | tail -n+2
+}
+alias kill-vpn="_kill_vpn"
 
 source $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source $HOME/.oh-my-zsh/custom/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
@@ -227,3 +231,7 @@ alias lt="eza -la --sort=modified"
 # eval "$(zellij setup --generate-auto-start zsh)"
 
 PATH=~/.console-ninja/.bin:$PATH
+
+{{ if eq .chezmoi.os "darwin" }}
+export GITHUB_TOKEN=$(cat ~/.github_token)
+{{ end }}
