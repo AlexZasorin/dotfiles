@@ -152,13 +152,15 @@ function aws-login() {
 }
 
 {{ if eq .chezmoi.os "linux" }}
-unset SSH_ASKPASS
+# unset SSH_ASKPASS
 
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
-alias nix-clean='sh ~/scripts/cleanup.sh' 
+alias nix-clean='sh ~/scripts/cleanup.sh'
 alias rebuild='sh ~/scripts/rebuild.sh'
+
+export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD ')
 {{ end }}
 
 # disable sort when completing `git checkout`
