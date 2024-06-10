@@ -118,9 +118,10 @@ require('lazy').setup({
         comment_italics = true,
         background_set = false,
       })
+      vim.cmd.colorscheme 'neosolarized'
     end
   },
-
+  
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -128,7 +129,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'solarized_dark',
+        theme = 'neosolarized',
         component_separators = '|',
         section_separators = '',
       },
