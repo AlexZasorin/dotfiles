@@ -12,6 +12,8 @@ kglobalshortcutsrc
 flake.nix
 flake.lock
 configuration.nix
+nixos/
+nixos/**
 {{ end -}}
 
 {{- if ne .chezmoi.os "darwin" }}
