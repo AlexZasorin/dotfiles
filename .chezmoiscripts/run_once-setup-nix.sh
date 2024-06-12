@@ -8,4 +8,4 @@ sudo cp $HOME/.local/share/chezmoi/nixos/configuration.nix /etc/nixos/configurat
 sudo cp $HOME/.local/share/chezmoi/nixos/flake.nix /etc/nixos/flake.nix
 sudo cp $HOME/.local/share/chezmoi/nixos/flake.lock /etc/nixos/flake.lock
 
-echo "testing lol"
+echo "Successfully copied Nix configuration files"
