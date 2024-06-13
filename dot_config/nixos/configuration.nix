@@ -11,6 +11,11 @@
     ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.nixPath = [
+    "nixpkgs=flake:nixpkgs:/nix/var/nix/profiles/per-user/root/channels"
+    "nixos-config=$HOME/.config/nixos"
+    "/home/solyx/.nix-defexpr/channels"
+  ];
 
   # Bootloader
   boot = {
