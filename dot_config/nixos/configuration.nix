@@ -135,7 +135,16 @@
     wantedBy = ["multi-user.target"];
   };
   
-  services.dnscache.enable = true;
+  systemd.services.noisetorch-init = {
+    enable = true;
+    description = "Initialize NoiseTorch";
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      ExecStart = "${pkgs.noisetorch}/bin/noisetorch -i";
+      Restart = "on-failure";
+      User = "solyx";
+    };
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -207,7 +216,7 @@
     noisetorch = {
       enable = true;
     };
-  };
+  }; 
 
   users.defaultUserShell = pkgs.zsh;
 
