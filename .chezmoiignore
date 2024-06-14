@@ -1,13 +1,13 @@
-**/grammars/
-**/grammars/**/*
+grammars/
+grammars/**/*
 
-**/launcher/
-**/launcher/bash/
-**/launcher/bash/br
+launcher/
+launcher/bash/
+launcher/bash/br
 
 {{- if ne .chezmoi.os "linux" }}
-**/kanata/
-**/kanata/**
+kanata/
+kanata/**
 kglobalshortcutsrc
 flake.nix
 flake.lock
@@ -17,6 +17,6 @@ nixos/**
 {{ end -}}
 
 {{- if ne .chezmoi.os "darwin" }}
-**/karabiner/
-**/karabiner/**/*
+karabiner/
+karabiner/**/*
 {{ end -}}
