@@ -327,6 +327,11 @@ theme "solarized-dark-patched"
 // Default: "default"
 //
 // default_layout "my_layout"
+{{ if eq .chezmoi.os "darwin" }}
+default_layout "default_work"
+{{ else }}
+default_layout "default_home"
+{{ end }}
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal

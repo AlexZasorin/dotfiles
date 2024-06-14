@@ -1,0 +1,23 @@
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+    	    plugin location="zellij:tab-bar"
+        }
+        children
+   		pane size=2 borderless=true {
+        	plugin location="zellij:status-bar"
+    	}
+    }
+    tab name="scratch" focus=true {
+        pane cwd="~"
+    }
+    tab name="config" {
+        pane cwd="~"
+    }
+    tab name="notes" {
+        pane cwd="~/Repos/notes"
+    }
+    tab name="search-by-vibe" {
+        pane cwd="~/Repos/search-by-vibe"
+    } 
+}

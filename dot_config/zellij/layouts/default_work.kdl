@@ -1,0 +1,32 @@
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+    	    plugin location="zellij:tab-bar"
+        }
+        children
+   		pane size=2 borderless=true {
+        	plugin location="zellij:status-bar"
+    	}
+    }
+    tab name="config" focus=true {
+        pane cwd="~"
+    }
+    tab name="notes" {
+        pane cwd="~/Repos/notes"
+    }
+    tab name="rss-auth" {
+        pane cwd="~/Repos/rss-auth"
+    }
+    tab name="core" {
+        pane cwd="~/Repos/core"
+    } 
+    tab name="platform" {
+        pane cwd="~/Repos/platform"
+    }
+    tab name="relationship-v2" {
+        pane cwd="~/Repos/relationship-v2"
+    }
+    tab name="workflow" {
+        pane cwd="~/Repos/workflow"
+    }
+}
