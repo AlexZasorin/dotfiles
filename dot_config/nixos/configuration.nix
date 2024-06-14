@@ -143,12 +143,18 @@
   systemd.services.noisetorch-init = {
     enable = true;
     description = "Initialize NoiseTorch";
-    wantedBy = ["multi-user.target"];
+    after = ["pipewire.service"]; 
+    unitConfig = {
+      type = "simple";
+    };
     serviceConfig = {
       ExecStart = "${pkgs.noisetorch}/bin/noisetorch -i";
+      ExecStop = "${pkgs.noisetorch}/bin/noisetorch -u";
       Restart = "on-failure";
+      RestartSec = 3;
       User = "solyx";
     };
+    wantedBy = ["default.target"];
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
