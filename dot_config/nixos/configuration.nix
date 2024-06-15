@@ -258,6 +258,12 @@
     lua-language-server
   ];
 
+  environment = {
+    sessionVariables = {
+      SSH_ASKPASS_REQUIRE="prefer";
+    };
+  };
+
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Meslo" ]; })
     jetbrains-mono
