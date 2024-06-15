@@ -71,6 +71,10 @@
     domains = [ "~." ];
     fallbackDns = [ "8.8.8.8" "8.8.4.4" ];
   };
+  
+  services.ivpn = {
+    enable = true;
+  };
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -200,6 +204,9 @@
       libsForQt5.bismuth
       libsForQt5.kdeconnect-kde
       libsForQt5.kwallet
+      krita
+      ivpn
+      ivpn-service
       ksshaskpass
       docker
       todoist-electron
