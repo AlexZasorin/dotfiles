@@ -8,7 +8,10 @@ layout {
         	plugin location="zellij:status-bar"
     	}
     }
-    tab name="config" focus=true {
+    tab name="scratch" focus=true {
+        pane cwd="~"
+    }
+    tab name="config" {
         pane cwd="~"
     }
     tab name="notes" {
