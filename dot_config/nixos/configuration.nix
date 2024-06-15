@@ -200,6 +200,7 @@
       libsForQt5.bismuth
       libsForQt5.kdeconnect-kde
       libsForQt5.kwallet
+      ksshaskpass
       docker
       todoist-electron
       atuin
@@ -222,6 +223,8 @@
       enable = true;
     };
     ssh = {
+      enableAskPassword = true;
+      askPassword = "${pkgs.ksshaskpass}/libexec/ksshaskpass";
       startAgent = true;
       extraConfig = "AddressFamily inet";
     };
