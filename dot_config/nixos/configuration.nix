@@ -149,7 +149,7 @@
     };
     serviceConfig = {
       ExecStart = "${pkgs.noisetorch}/bin/noisetorch -i";
-      ExecStop = "${pkgs.noisetorch}/bin/noisetorch -u";
+      # ExecStop = "${pkgs.noisetorch}/bin/noisetorch -u";
       Restart = "on-failure";
       RestartSec = 3;
       User = "solyx";
@@ -199,6 +199,7 @@
       heroic
       libsForQt5.bismuth
       libsForQt5.kdeconnect-kde
+      libsForQt5.kwallet
       docker
       todoist-electron
       atuin
