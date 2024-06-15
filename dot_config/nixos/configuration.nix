@@ -231,7 +231,7 @@
     };
     ssh = {
       enableAskPassword = true;
-      askPassword = "${pkgs.ksshaskpass}/libexec/ksshaskpass";
+      askPassword = "${pkgs.ksshaskpass}/bin/ksshaskpass";
       startAgent = true;
       extraConfig = "AddressFamily inet";
     };
