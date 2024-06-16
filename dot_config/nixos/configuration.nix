@@ -76,6 +76,10 @@
     enable = true;
   };
 
+  services.gnome.gnome-keyring = {
+    enable = true;
+  };
+
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
   time.hardwareClockInLocalTime = true; 
@@ -115,6 +119,8 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  security.pam.services.sddm.kwallet.enable = true;
+  # security.pam.services.sddm.enableGnomeKeyring = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -216,6 +222,7 @@
       papirus-icon-theme
       dig
       traceroute
+      gnome.gnome-keyring
     ];
   };
 
@@ -262,7 +269,6 @@
     keychain
     xclip
     alejandra
-    lua-language-server
   ];
 
   environment = {
