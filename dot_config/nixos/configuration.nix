@@ -119,8 +119,7 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  security.pam.services.sddm.kwallet.enable = true;
-  # security.pam.services.sddm.enableGnomeKeyring = true;
+  security.pam.services.sddm.enableGnomeKeyring = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -209,11 +208,10 @@
       heroic
       libsForQt5.bismuth
       libsForQt5.kdeconnect-kde
-      libsForQt5.kwallet
+      gnome.gnome-keyring
       krita
       ivpn
       ivpn-service
-      ksshaskpass
       docker
       todoist-electron
       atuin
@@ -238,7 +236,6 @@
     };
     ssh = {
       enableAskPassword = true;
-      askPassword = "${pkgs.ksshaskpass}/bin/ksshaskpass";
       startAgent = true;
       extraConfig = "AddressFamily inet";
     };
@@ -270,12 +267,6 @@
     xclip
     alejandra
   ];
-
-  environment = {
-    sessionVariables = {
-      SSH_ASKPASS_REQUIRE="prefer";
-    };
-  };
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Meslo" ]; })
