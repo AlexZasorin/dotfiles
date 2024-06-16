@@ -110,6 +110,13 @@
   services.xserver = {
     xkb.layout = "us";
     xkb.variant = "";
+    # When moving to Wayland, make sure to port this configuration to run at the beginning of a Wayland session
+    displayManager = {
+      sessionCommands = ''
+	eval $(${pkgs.gnome.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+	export SSH_AUTH_SOCK };
+      '';
+    };
   };
 
   # Enable CUPS to print documents.
@@ -220,7 +227,6 @@
       papirus-icon-theme
       dig
       traceroute
-      gnome.gnome-keyring
     ];
   };
 
