@@ -238,6 +238,7 @@
       cargo
       neofetch
       pavucontrol
+      libnotify
     ];
   };
 
