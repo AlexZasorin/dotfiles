@@ -3,11 +3,17 @@
 set -e
 
 # Edit your config
-sudo $EDITOR /etc/nixos/configuration.nix
+if [[ "$#" -eq 0 ]]; then
+  configuration_file='configuration.nix'
+elif [[ "$#" -eq 1 ]]; then
+  configuration_file='$1'
+else
+  echo 'Usage: $0 [configuration_file]'
+fi 
 
-chezmoi --destination /etc/nixos add /etc/nixos/configuration.nix
-chezmoi --destination /etc/nixos add /etc/nixos/flake.nix
-chezmoi --destination /etc/nixos add /etc/nixos/flake.lock
+nixos_config_path=$(echo $NIX_PATH | sed -n 's/.*nixos-config=\([^:]*\).*/\1/p')
+
+chezmoi edit --apply "$nixos_config_path/$configuration_file"
 
 # cd to your config dir
 pushd ~/.local/share/chezmoi
@@ -30,9 +36,9 @@ echo "NixOS Rebuilding..."
 
 # Rebuild, output simplified errors, log trackebacks
 {{ if eq .chezmoi.hostname "deimos" }}
-sudo nixos-rebuild switch --flake /etc/nixos#desktop &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
+sudo nixos-rebuild switch --flake $nixos_config_path/$configuration_file#desktop &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
 {{ else }}
-sudo nixos-rebuild switch --flake /etc/nixos#default &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
+sudo nixos-rebuild switch --flake $nixos_config_path/$configuration_file#default &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
 {{ end }}
 
 # Get current generation metadata
