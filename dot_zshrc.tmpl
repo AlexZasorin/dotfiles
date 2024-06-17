@@ -158,7 +158,7 @@ eod() {
 
   log blue false "Pushing chezmoi..."
   if [[ $(git -C ~/.local/share/chezmoi status --porcelain | wc -l) -gt 0 ]]; then
-    log red true "Error: uncommited changes in dots. Please review and commit."
+    log red true "Error: Uncommited changes in chezmoi. Please review and commit."
     return 1
   else
     git -C ~/.local/share/chezmoi push
