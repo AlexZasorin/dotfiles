@@ -227,6 +227,8 @@
       papirus-icon-theme
       dig
       traceroute
+      cargo
+      pavucontrol
     ];
   };
 
