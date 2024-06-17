@@ -14,6 +14,8 @@ flake.lock
 configuration.nix
 nixos/
 nixos/**
+scripts/nix/
+scripts/nix/**
 {{ end -}}
 
 {{- if ne .chezmoi.os "darwin" }}
