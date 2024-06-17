@@ -5,6 +5,8 @@ launcher/
 launcher/bash/
 launcher/bash/br
 
+nixos-switch.log
+
 {{- if ne .chezmoi.os "linux" }}
 kanata/
 kanata/**
