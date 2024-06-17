@@ -119,6 +119,38 @@ _kill_vpn() {
 }
 alias kill-vpn="_kill_vpn"
 
+log() {
+  local color_name=$1
+  local bold=$2
+  local message=$3
+
+  if [[ $bold == true ]]; then
+    message=%B$message%b
+  fi
+
+  print -P "%F{$color_name}$message%f"
+}
+
+sod() {
+  log magenta true "Start of Day"
+
+  log blue false "Pulling notes..."
+  (
+    cd ~/Repos/notes
+    git pull --rebase --autostash
+  )
+
+  log blue false "Updating chezmoi..."
+  chezmoi update
+ 
+  {{ if eq .chezmoi.hostname "azasorin" }}
+  log blue false "Logging into aws..."
+  aws-login
+  {{ end }}
+
+  log yellow false "Have a nice day!"
+}
+
 source $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source $HOME/.oh-my-zsh/custom/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
