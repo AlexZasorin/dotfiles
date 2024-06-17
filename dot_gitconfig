@@ -5,7 +5,11 @@
 
 [core]
 	sshCommand = "ssh -i ~/.ssh/id_ed25519_personal"
-	editor = nvim
+	editor = nvim	
+
+[user]
+	name = "Aleksey Zasorin"
+	email = "zasorin.alek@gmail.com"
 
 [includeIf "hasconfig:remote.*.url:git@github.com:risk-and-safety/*"]
 	path = ~/.gitconfig_work
