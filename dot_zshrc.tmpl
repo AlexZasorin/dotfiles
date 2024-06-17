@@ -135,10 +135,7 @@ sod() {
   log magenta true "Start of Day"
 
   log blue false "Pulling notes..."
-  (
-    cd ~/Repos/notes
-    git pull --rebase --autostash
-  )
+  git -C ~/Repos/notes pull --rebase --autostash
 
   log blue false "Updating chezmoi..."
   chezmoi update
@@ -148,7 +145,26 @@ sod() {
   aws-login
   {{ end }}
 
-  log yellow false "Have a nice day!"
+  log yellow false "One must imagine Sisyphus happy."
+}
+
+eod() {
+  log magenta true "End of Day"
+
+  log blue false "Pushing notes..."
+  git -C ~/Repos/notes add .
+  git -C ~/Repos/notes commit -m 'update $(date +"%a %b %d, %Y %H:%M")'
+  git -C ~/Repos/notes push
+
+  log blue false "Pushing chezmoi..."
+  if [[ $(git -C ~/.local/share/chezmoi status --porcelain | wc -l) -gt 0 ]]; then
+    log red true "Error: uncommited changes in dots. Please review and commit."
+    return 1
+  else
+    git -C ~/.local/share/chezmoi push
+  fi
+
+  log yellow false "I'm the king of my own land\nFacing tempests of dust, I'll fight until the end\nCreatures of my dreams raise up and dance with me!\nNow and forever, I'm your king!"
 }
 
 source $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
