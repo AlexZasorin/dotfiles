@@ -1,16 +1,18 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, inputs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.nixPath = [
     "nixpkgs=flake:nixpkgs:/nix/var/nix/profiles/per-user/root/channels"
     "nixos-config=$HOME/.config/nixos"
@@ -19,7 +21,7 @@
 
   # Bootloader
   boot = {
-    supportedFilesystems = [ "ntfs" ];
+    supportedFilesystems = ["ntfs"];
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -29,19 +31,19 @@
         device = "nodev";
         useOSProber = true;
         efiSupport = true;
-	gfxmodeEfi = "2560x1440,1920x1080";
-	default = "saved";
-	theme = pkgs.stdenv.mkDerivation {
+        gfxmodeEfi = "2560x1440,1920x1080";
+        default = "saved";
+        theme = pkgs.stdenv.mkDerivation {
           pname = "grub2-solarized-dark";
-	  version = "daabc2c6d6179bd99f20bfc46d25f6433eecdd68";
-	  src = pkgs.fetchFromGitHub {
-	    owner = "bino-faata";
-	    repo = "grub2-solarized-dark";
-	    rev = "daabc2c6d6179bd99f20bfc46d25f6433eecdd68";
-	    sha256 = "1awbi6z8016l7vmlkwvhfaw0b5a5chjjqb26vl0swarfpb0d73ky";
-	  };
-	  installPhase = "cp -r . $out";
-	};
+          version = "daabc2c6d6179bd99f20bfc46d25f6433eecdd68";
+          src = pkgs.fetchFromGitHub {
+            owner = "bino-faata";
+            repo = "grub2-solarized-dark";
+            rev = "daabc2c6d6179bd99f20bfc46d25f6433eecdd68";
+            sha256 = "1awbi6z8016l7vmlkwvhfaw0b5a5chjjqb26vl0swarfpb0d73ky";
+          };
+          installPhase = "cp -r . $out";
+        };
       };
     };
   };
@@ -54,24 +56,30 @@
   networking.networkmanager.enable = true;
   networking.hostName = "deimos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.firewall = { 
+  networking.firewall = {
     enable = true;
-    allowedTCPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];  
-    allowedUDPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];  
-  };  
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      } # KDE Connect
+    ];
+    allowedUDPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      } # KDE Connect
+    ];
+  };
 
-  networking.nameservers = [ "8.8.8.8" "8.8.4.4" ];
+  networking.nameservers = ["8.8.8.8" "8.8.4.4"];
 
   services.resolved = {
     enable = true;
-    domains = [ "~." ];
-    fallbackDns = [ "8.8.8.8" "8.8.4.4" ];
+    domains = ["~."];
+    fallbackDns = ["8.8.8.8" "8.8.4.4"];
   };
-  
+
   services.ivpn = {
     enable = true;
   };
@@ -82,7 +90,7 @@
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
-  time.hardwareClockInLocalTime = true; 
+  time.hardwareClockInLocalTime = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -113,8 +121,8 @@
     # When moving to Wayland, make sure to port this configuration to run at the beginning of a Wayland session
     displayManager = {
       sessionCommands = ''
-	eval $(${pkgs.gnome.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-	export SSH_AUTH_SOCK };
+        eval $(${pkgs.gnome.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+        export SSH_AUTH_SOCK };
       '';
     };
   };
@@ -139,7 +147,7 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-  
+
   systemd.services.kanata = {
     enable = true;
     description = "run kanata";
@@ -155,11 +163,11 @@
     };
     wantedBy = ["multi-user.target"];
   };
-  
+
   systemd.services.noisetorch-init = {
     enable = true;
     description = "Initialize NoiseTorch";
-    after = ["pipewire.service"]; 
+    after = ["pipewire.service"];
     unitConfig = {
       type = "simple";
     };
@@ -180,7 +188,7 @@
   users.users.solyx = {
     isNormalUser = true;
     description = "solyx";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
       chezmoi
@@ -193,7 +201,7 @@
       kubectx
       zoxide
       zellij
-      discord	
+      discord
       vesktop
       spotify
       jetbrains-toolbox
@@ -229,6 +237,7 @@
       traceroute
       cargo
       pavucontrol
+      neofetch
     ];
   };
 
@@ -250,7 +259,7 @@
     noisetorch = {
       enable = true;
     };
-  }; 
+  };
 
   users.defaultUserShell = pkgs.zsh;
 
@@ -277,7 +286,7 @@
   ];
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "Meslo" ]; })
+    (nerdfonts.override {fonts = ["Meslo"];})
     jetbrains-mono
     noto-fonts-cjk-sans
   ];
@@ -288,7 +297,7 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-  
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -306,11 +315,11 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?  
+  system.stateVersion = "23.11"; # Did you read the comment?
 
   system.autoUpgrade = {
     enable = true;
-    flake = inputs.self.outPath; 
+    flake = inputs.self.outPath;
     flags = [
       "--update-input"
       "nixpkgs"
@@ -319,5 +328,4 @@
     dates = "02:00";
     randomizedDelaySec = "45min";
   };
-
 }
