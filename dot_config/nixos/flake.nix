@@ -11,6 +11,14 @@
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
+    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./configuration.nix
+        ./graphics/nvidia.nix
+        # inputs.home-manager.nixosModules.default
+      ];
+    };
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
