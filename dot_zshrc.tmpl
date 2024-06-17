@@ -140,7 +140,7 @@ sod() {
   log blue false "Updating chezmoi..."
   chezmoi update
  
-  {{ if eq .chezmoi.hostname "azasorin" }}
+{{ if eq .chezmoi.hostname "R19GQMPKX0" }}
   log blue false "Logging into aws..."
   aws-login
   {{ end }}
@@ -282,7 +282,7 @@ alias lt="eza -la --sort=modified"
 
 PATH=~/.console-ninja/.bin:$PATH
 
-{{ if eq .chezmoi.hostname "azasorin" }}
+{{ if eq .chezmoi.hostname "R19GQMPKX0" }}
 export GITHUB_TOKEN=$(cat ~/.github_token)
 {{ end }}
 
