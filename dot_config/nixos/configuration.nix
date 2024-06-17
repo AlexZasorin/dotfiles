@@ -236,8 +236,8 @@
       dig
       traceroute
       cargo
-      pavucontrol
       neofetch
+      pavucontrol
     ];
   };
 
