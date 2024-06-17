@@ -1,5 +1,5 @@
 grammars/
-grammars/**/*
+grammars/**
 
 launcher/
 launcher/bash/
@@ -14,13 +14,13 @@ kglobalshortcutsrc
 flake.nix
 flake.lock
 configuration.nix
-nixos/
-nixos/**
+/nixos/
+/nixos/**
 scripts/nix/
 scripts/nix/**
 {{ end -}}
 
 {{- if ne .chezmoi.os "darwin" }}
 karabiner/
-karabiner/**/*
+karabiner/**
 {{ end -}}
