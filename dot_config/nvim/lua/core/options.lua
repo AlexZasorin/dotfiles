@@ -3,15 +3,11 @@ local opt = vim.opt
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- [[ Setting options ]]
--- See `:help vim.o`
--- NOTE: You can change these options as you wish!
+-- Added based on nvim-tree recommended configuration
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
--- Tabs & Indentation
-opt.tabstop = 2       -- 2 spaces for tabs (prettier default)
-opt.shiftwidth = 2    -- 2 spaces for indent width
-opt.expandtab = true  -- expand tab to spaces
-opt.autoindent = true -- copy indent from current line when starting new one
+vim.g.have_nerd_font = true
 
 -- Set highlight on search
 opt.hlsearch = true
@@ -22,6 +18,9 @@ opt.number = true
 
 -- Enable mouse mode
 opt.mouse = 'a'
+
+-- Don't show the mode, since it's already in the status line
+vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
@@ -37,7 +36,6 @@ opt.undofile = true
 -- Case-insensitive searching UNLESS \C or capital in search
 opt.ignorecase = true
 opt.smartcase = true
-opt.incsearch = true
 
 -- Keep signcolumn on by default
 opt.signcolumn = 'yes'
@@ -46,8 +44,27 @@ opt.signcolumn = 'yes'
 opt.updatetime = 250
 opt.timeoutlen = 300
 
--- Set completeopt to have a better completion experience
-opt.completeopt = 'menuone,noselect'
+-- Configure how new splits should be opened
+opt.splitright = true
+opt.splitbelow = true
+
+-- Sets how neovim will display certain whitespace characters in the editor.
+--  See `:help 'list'`
+--  and `:help 'listchars'`
+opt.list = true
+opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+
+-- Preview substitutions live, as you type!
+opt.inccommand = 'split'
+
+-- Show which line your cursor is on
+opt.cursorline = true
+
+-- Minimal number of screen lines to keep above and below the cursor.
+opt.scrolloff = 10
+
+-- Set highlight on search, but clear on pressing <Esc> in normal mode
+opt.hlsearch = true
 
 -- NOTE: You should make sure your terminal supports this
 opt.termguicolors = true
