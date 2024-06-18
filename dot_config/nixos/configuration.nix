@@ -239,7 +239,7 @@
       neofetch
       pavucontrol
       libnotify
-      icu
+      marksman
     ];
   };
 
