@@ -239,6 +239,7 @@
       neofetch
       pavucontrol
       libnotify
+      icu
     ];
   };
 
