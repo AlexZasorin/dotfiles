@@ -189,7 +189,6 @@ prompt_context() {
   fi
 }
 
-export BORAT_URL="http://172.16.4.100"
 export XDG_CONFIG_HOME=$HOME/.config
 function aws-login() {
   if [ $# -gt 0 ]; then
@@ -284,6 +283,7 @@ PATH=~/.console-ninja/.bin:$PATH
 
 {{ if eq .chezmoi.hostname "R19GQMPKX0" }}
 export GITHUB_TOKEN=$(cat ~/.github_token)
+export BORAT_URL="http://172.16.4.100"
 {{ end }}
 
 {{ if eq .chezmoi.os "darwin" }}
