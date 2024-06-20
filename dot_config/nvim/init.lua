@@ -48,6 +48,23 @@ require('lazy').setup({
       'folke/neodev.nvim',
     },
   },
+  {
+    'mfussenegger/nvim-lint',
+    config = function()
+      require('lint').linters_by_ft = {
+        javascript = { 'eslint' },
+        typescript = { 'eslint' },
+        javascriptreact = { 'eslint' },
+        typescriptreact = { 'eslint' },
+        markdown = { 'markdownlint' },
+      }
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+        callback = function()
+          require('lint').try_lint()
+        end,
+      })
+    end,
+  },
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim', opts = {} },
   {
