@@ -155,7 +155,7 @@ keybinds clear-defaults=true {
         bind "Ctrl q" { Quit; }
         bind "Alt n" { NewPane; }
         bind "Ctrl h" "Alt Left" { 
-            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.2.1/vim-zellij-navigator.wasm" {
+            MessagePlugin "file:$HOME/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "move_focus_or_tab";
                 payload "left";
 
@@ -165,7 +165,7 @@ keybinds clear-defaults=true {
             };
         }
         bind "Ctrl l" "Alt Right" {
-            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.2.1/vim-zellij-navigator.wasm" {
+            MessagePlugin "file:$HOME/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "move_focus_or_tab";
                 payload "right";
 
@@ -174,7 +174,7 @@ keybinds clear-defaults=true {
             };
         }
         bind "Ctrl j" "Alt Down" {
-            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.2.1/vim-zellij-navigator.wasm" {
+            MessagePlugin "file:$HOME/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "move_focus";
                 payload "down";
 
@@ -183,7 +183,7 @@ keybinds clear-defaults=true {
             };
         }
         bind "Ctrl k" "Alt Up" {
-            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.2.1/vim-zellij-navigator.wasm" {
+            MessagePlugin "file:$HOME/.config/zellij/plugins/vim-zellij-navigator.wasm" {
                 name "move_focus";
                 payload "up";
 

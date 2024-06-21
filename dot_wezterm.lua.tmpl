@@ -16,11 +16,6 @@ config.disable_default_key_bindings = true
 
 local act = wezterm.action
 config.keys = {
---{
---     key = 'j',
---   mods = 'CTRL',
---   action = act.SendKey { key = 'β' }
---},
   {
     key = 'v',
     {{- if eq .chezmoi.os "darwin" }}
