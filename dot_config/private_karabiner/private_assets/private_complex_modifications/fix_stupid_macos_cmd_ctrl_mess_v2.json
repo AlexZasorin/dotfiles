@@ -920,7 +920,17 @@
                "type": "basic"
             },
             {
-               "conditions": [ ],
+               "conditions": [
+                  {
+                     "bundle_identifiers": [
+                        "^com\\.apple\\.Terminal$",
+                        "^com\\.googlecode\\.iterm2$",
+                        "^com\\.microsoft\\.VSCode$",
+                        "^com\\.github\\.wez\\.wezterm$"
+                     ],
+                     "type": "frontmost_application_unless"
+                  }
+               ],
                "from": {
                   "key_code": "j",
                   "modifiers": {
@@ -941,7 +951,17 @@
                "type": "basic"
             },
             {
-               "conditions": [ ],
+               "conditions": [
+                  {
+                     "bundle_identifiers": [
+                        "^com\\.apple\\.Terminal$",
+                        "^com\\.googlecode\\.iterm2$",
+                        "^com\\.microsoft\\.VSCode$",
+                        "^com\\.github\\.wez\\.wezterm$"
+                     ],
+                     "type": "frontmost_application_unless"
+                  }
+               ],
                "from": {
                   "key_code": "j",
                   "modifiers": {
@@ -3324,7 +3344,17 @@
                "type": "basic"
             },
             {
-               "conditions": [ ],
+               "conditions": [
+                  {
+                     "bundle_identifiers": [
+                        "^com\\.apple\\.Terminal$",
+                        "^com\\.googlecode\\.iterm2$",
+                        "^com\\.microsoft\\.VSCode$",
+                        "^com\\.github\\.wez\\.wezterm$"
+                     ],
+                     "type": "frontmost_application_unless"
+                  }
+               ],
                "from": {
                   "key_code": "j",
                   "modifiers": {
@@ -3347,7 +3377,17 @@
                "type": "basic"
             },
             {
-               "conditions": [ ],
+               "conditions": [
+                  {
+                     "bundle_identifiers": [
+                        "^com\\.apple\\.Terminal$",
+                        "^com\\.googlecode\\.iterm2$",
+                        "^com\\.microsoft\\.VSCode$",
+                        "^com\\.github\\.wez\\.wezterm$"
+                     ],
+                     "type": "frontmost_application_unless"
+                  }
+               ],
                "from": {
                   "key_code": "j",
                   "modifiers": {
