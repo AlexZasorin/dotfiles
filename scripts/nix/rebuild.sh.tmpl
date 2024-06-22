@@ -36,9 +36,9 @@ echo "NixOS Rebuilding..."
 
 # Rebuild, output simplified errors, log trackebacks
 {{ if eq .chezmoi.hostname "deimos" }}
-sudo nixos-rebuild switch --flake $nixos_config_path/$configuration_file#desktop &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
+sudo nixos-rebuild switch --flake ~/.config/nixos#default &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
 {{ else }}
-sudo nixos-rebuild switch --flake $nixos_config_path/$configuration_file#default &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
+sudo nixos-rebuild switch --flake ~/.config/nixos#desktop &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
 {{ end }}
 
 # Get current generation metadata
