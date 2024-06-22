@@ -238,6 +238,8 @@
       cargo
       neofetch
       pavucontrol
+      unzip
+      ripgrep
       libnotify
       nodejs_22
     ];
