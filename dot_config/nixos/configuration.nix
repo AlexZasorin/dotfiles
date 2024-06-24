@@ -207,6 +207,7 @@
       jetbrains-toolbox
       vscode
       git
+      gnumake
       eza
       tmux
       bottom
@@ -236,6 +237,7 @@
       dig
       traceroute
       cargo
+      go
       neofetch
       pavucontrol
       unzip
