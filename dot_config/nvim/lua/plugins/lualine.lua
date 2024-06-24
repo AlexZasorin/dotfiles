@@ -4,7 +4,6 @@ return {
     'nvim-tree/nvim-web-devicons',
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
-    'folke/noice.nvim',
   },
   config = function()
     require('lualine').setup {
