@@ -6,7 +6,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
   },
   config = function()
-    require('lualine').setup {
+    require('lualine').setup({
       options = {
         icons_enabled = true,
         theme = 'solarized',
@@ -45,6 +45,6 @@ return {
       winbar = {},
       inactive_winbar = {},
       extensions = {},
-    }
+    })
   end,
 }
