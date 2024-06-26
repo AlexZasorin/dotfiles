@@ -57,7 +57,7 @@ return {
     local colors = require('neosolarized').setup({}).colors
     local to_vim = require('neosolarized').Color.to_vim
 
-    local popupmenu_renderer = wilder.popupmenu_renderer({
+    local popupmenu_renderer = wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
       max_height = '25%',
       empty_message = wilder.popupmenu_empty_message_with_spinner(),
       highlighter = highlighters,
@@ -76,7 +76,7 @@ return {
         ' ',
         wilder.popupmenu_scrollbar({ thumb_hl = 'ScrollbarHandle' }),
       },
-    })
+    }))
 
     local wildmenu_renderer = wilder.wildmenu_renderer({
       highlighter = highlighters,
