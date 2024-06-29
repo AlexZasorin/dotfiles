@@ -22,6 +22,7 @@
   # Bootloader
   boot = {
     supportedFilesystems = ["ntfs"];
+    kernelParams = ["mem_sleep_default=deep"];
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -147,6 +148,11 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=30s
+    SuspendState=mem
+  '';
 
   systemd.services.kanata = {
     enable = true;
