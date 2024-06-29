@@ -796,19 +796,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "h",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "command"
@@ -818,7 +808,7 @@
                },
                "to": [
                   {
-                     "key_code": "h",
+                     "key_code": null,
                      "modifiers": [
                         "control"
                      ]
@@ -827,19 +817,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "h",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "control"
@@ -849,7 +829,7 @@
                },
                "to": [
                   {
-                     "key_code": "h",
+                     "key_code": null,
                      "modifiers": [
                         "command"
                      ]
@@ -858,19 +838,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "i",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "command"
@@ -880,7 +850,7 @@
                },
                "to": [
                   {
-                     "key_code": "i",
+                     "key_code": null,
                      "modifiers": [
                         "control"
                      ]
@@ -889,19 +859,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "i",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "control"
@@ -911,7 +871,7 @@
                },
                "to": [
                   {
-                     "key_code": "i",
+                     "key_code": null,
                      "modifiers": [
                         "command"
                      ]
@@ -1044,19 +1004,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "l",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "command"
@@ -1066,7 +1016,7 @@
                },
                "to": [
                   {
-                     "key_code": "l",
+                     "key_code": null,
                      "modifiers": [
                         "control"
                      ]
@@ -1075,19 +1025,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "l",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "control"
@@ -1097,7 +1037,7 @@
                },
                "to": [
                   {
-                     "key_code": "l",
+                     "key_code": null,
                      "modifiers": [
                         "command"
                      ]
@@ -1210,19 +1150,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "o",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "command"
@@ -1232,7 +1162,7 @@
                },
                "to": [
                   {
-                     "key_code": "o",
+                     "key_code": null,
                      "modifiers": [
                         "control"
                      ]
@@ -1241,19 +1171,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "o",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "control"
@@ -1263,7 +1183,7 @@
                },
                "to": [
                   {
-                     "key_code": "o",
+                     "key_code": null,
                      "modifiers": [
                         "command"
                      ]
@@ -2314,6 +2234,262 @@
                "type": "basic"
             },
             {
+               "conditions": [
+                  {
+                     "bundle_identifiers": [
+                        "^com\\.apple\\.Terminal$",
+                        "^com\\.googlecode\\.iterm2$",
+                        "^com\\.microsoft\\.VSCode$",
+                        "^com\\.github\\.wez\\.wezterm$",
+                        "^org\\.mozilla\\.firefox"
+                     ],
+                     "type": "frontmost_application_unless"
+                  }
+               ],
+               "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                     "mandatory": [
+                        "command"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "h",
+                     "modifiers": [
+                        "control"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
+               "conditions": [
+                  {
+                     "bundle_identifiers": [
+                        "^com\\.apple\\.Terminal$",
+                        "^com\\.googlecode\\.iterm2$",
+                        "^com\\.microsoft\\.VSCode$",
+                        "^com\\.github\\.wez\\.wezterm$",
+                        "^org\\.mozilla\\.firefox"
+                     ],
+                     "type": "frontmost_application_unless"
+                  }
+               ],
+               "from": {
+                  "key_code": "h",
+                  "modifiers": {
+                     "mandatory": [
+                        "control"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "h",
+                     "modifiers": [
+                        "command"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
+               "conditions": [
+                  {
+                     "bundle_identifiers": [
+                        "^com\\.apple\\.Terminal$",
+                        "^com\\.googlecode\\.iterm2$",
+                        "^com\\.microsoft\\.VSCode$",
+                        "^com\\.github\\.wez\\.wezterm$",
+                        "^org\\.mozilla\\.firefox"
+                     ],
+                     "type": "frontmost_application_unless"
+                  }
+               ],
+               "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                     "mandatory": [
+                        "command"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "l",
+                     "modifiers": [
+                        "control"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
+               "conditions": [
+                  {
+                     "bundle_identifiers": [
+                        "^com\\.apple\\.Terminal$",
+                        "^com\\.googlecode\\.iterm2$",
+                        "^com\\.microsoft\\.VSCode$",
+                        "^com\\.github\\.wez\\.wezterm$",
+                        "^org\\.mozilla\\.firefox"
+                     ],
+                     "type": "frontmost_application_unless"
+                  }
+               ],
+               "from": {
+                  "key_code": "l",
+                  "modifiers": {
+                     "mandatory": [
+                        "control"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "l",
+                     "modifiers": [
+                        "command"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
+               "conditions": [
+                  {
+                     "bundle_identifiers": [
+                        "^com\\.apple\\.Terminal$",
+                        "^com\\.googlecode\\.iterm2$",
+                        "^com\\.microsoft\\.VSCode$",
+                        "^com\\.github\\.wez\\.wezterm$",
+                        "^org\\.mozilla\\.firefox"
+                     ],
+                     "type": "frontmost_application_unless"
+                  }
+               ],
+               "from": {
+                  "key_code": "i",
+                  "modifiers": {
+                     "mandatory": [
+                        "command"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "i",
+                     "modifiers": [
+                        "control"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
+               "conditions": [
+                  {
+                     "bundle_identifiers": [
+                        "^com\\.apple\\.Terminal$",
+                        "^com\\.googlecode\\.iterm2$",
+                        "^com\\.microsoft\\.VSCode$",
+                        "^com\\.github\\.wez\\.wezterm$",
+                        "^org\\.mozilla\\.firefox"
+                     ],
+                     "type": "frontmost_application_unless"
+                  }
+               ],
+               "from": {
+                  "key_code": "i",
+                  "modifiers": {
+                     "mandatory": [
+                        "control"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "i",
+                     "modifiers": [
+                        "command"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
+               "conditions": [
+                  {
+                     "bundle_identifiers": [
+                        "^com\\.apple\\.Terminal$",
+                        "^com\\.googlecode\\.iterm2$",
+                        "^com\\.microsoft\\.VSCode$",
+                        "^com\\.github\\.wez\\.wezterm$",
+                        "^org\\.mozilla\\.firefox"
+                     ],
+                     "type": "frontmost_application_unless"
+                  }
+               ],
+               "from": {
+                  "key_code": "o",
+                  "modifiers": {
+                     "mandatory": [
+                        "command"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "o",
+                     "modifiers": [
+                        "control"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
+               "conditions": [
+                  {
+                     "bundle_identifiers": [
+                        "^com\\.apple\\.Terminal$",
+                        "^com\\.googlecode\\.iterm2$",
+                        "^com\\.microsoft\\.VSCode$",
+                        "^com\\.github\\.wez\\.wezterm$",
+                        "^org\\.mozilla\\.firefox"
+                     ],
+                     "type": "frontmost_application_unless"
+                  }
+               ],
+               "from": {
+                  "key_code": "o",
+                  "modifiers": {
+                     "mandatory": [
+                        "control"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "o",
+                     "modifiers": [
+                        "command"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
                "conditions": [ ],
                "from": {
                   "modifiers": {
@@ -3212,19 +3388,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "h",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "command",
@@ -3235,7 +3401,7 @@
                },
                "to": [
                   {
-                     "key_code": "h",
+                     "key_code": null,
                      "modifiers": [
                         "control",
                         "shift"
@@ -3245,19 +3411,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "h",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "control",
@@ -3268,7 +3424,7 @@
                },
                "to": [
                   {
-                     "key_code": "h",
+                     "key_code": null,
                      "modifiers": [
                         "command",
                         "shift"
@@ -3278,19 +3434,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "i",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "command",
@@ -3301,7 +3447,7 @@
                },
                "to": [
                   {
-                     "key_code": "i",
+                     "key_code": null,
                      "modifiers": [
                         "control",
                         "shift"
@@ -3311,19 +3457,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "i",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "control",
@@ -3334,7 +3470,7 @@
                },
                "to": [
                   {
-                     "key_code": "i",
+                     "key_code": null,
                      "modifiers": [
                         "command",
                         "shift"
@@ -3476,19 +3612,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "l",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "command",
@@ -3499,7 +3625,7 @@
                },
                "to": [
                   {
-                     "key_code": "l",
+                     "key_code": null,
                      "modifiers": [
                         "control",
                         "shift"
@@ -3509,19 +3635,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "l",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "control",
@@ -3532,7 +3648,7 @@
                },
                "to": [
                   {
-                     "key_code": "l",
+                     "key_code": null,
                      "modifiers": [
                         "command",
                         "shift"
@@ -3654,19 +3770,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "o",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "command",
@@ -3677,7 +3783,7 @@
                },
                "to": [
                   {
-                     "key_code": "o",
+                     "key_code": null,
                      "modifiers": [
                         "control",
                         "shift"
@@ -3687,19 +3793,9 @@
                "type": "basic"
             },
             {
-               "conditions": [
-                  {
-                     "bundle_identifiers": [
-                        "^com\\.apple\\.Terminal$",
-                        "^com\\.googlecode\\.iterm2$",
-                        "^com\\.microsoft\\.VSCode$",
-                        "^com\\.github\\.wez\\.wezterm$"
-                     ],
-                     "type": "frontmost_application_unless"
-                  }
-               ],
+               "conditions": [ ],
                "from": {
-                  "key_code": "o",
+                  "key_code": null,
                   "modifiers": {
                      "mandatory": [
                         "control",
@@ -3710,7 +3806,7 @@
                },
                "to": [
                   {
-                     "key_code": "o",
+                     "key_code": null,
                      "modifiers": [
                         "command",
                         "shift"
