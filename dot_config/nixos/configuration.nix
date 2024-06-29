@@ -22,7 +22,10 @@
   # Bootloader
   boot = {
     supportedFilesystems = ["ntfs"];
-    kernelParams = ["mem_sleep_default=deep"];
+    kernelParams = [
+      "mem_sleep_default=deep"
+      "resume=/dev/nvme0n1p7"
+    ];
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -45,6 +48,9 @@
           };
           installPhase = "cp -r . $out";
         };
+        extraConfig = ''
+          resume=/dev/nvme0n1p7
+        '';
       };
     };
   };
@@ -250,6 +256,7 @@
       ripgrep
       libnotify
       nodejs_22
+      yazi
     ];
   };
 
