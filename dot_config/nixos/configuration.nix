@@ -260,7 +260,7 @@
       cmake
       yazi
       python3
-      boost
+      boost.dev
     ];
   };
 
@@ -311,7 +311,7 @@
   ];
 
   environment.variables = {
-    Boost_INCLUDE_DIR = "${pkgs.boost}/lib";
+    Boost_INCLUDE_DIR = "${pkgs.boost.dev}/lib";
     GOOGOO = "GAGA";
   };
 
