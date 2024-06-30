@@ -46,8 +46,8 @@
 
   systemd.services.ath11k-resume = {
     description = "Resume";
-    after = ["hibernate.target" "suspend-then-hibernate.target"];
-    wantedBy = ["hibernate.target" "suspend-then-hibernate.target"];
+    after = ["suspend.target"];
+    wantedBy = ["suspend.target"];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = [
