@@ -254,6 +254,10 @@
       ripgrep
       libnotify
       nodejs_22
+      boost
+      fd
+      luarocks
+      cmake
     ];
   };
 
