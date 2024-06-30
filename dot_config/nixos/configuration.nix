@@ -260,7 +260,7 @@
       cmake
       yazi
       python3
-      boost.dev
+      boost
     ];
   };
 
