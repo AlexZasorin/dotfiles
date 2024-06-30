@@ -22,10 +22,6 @@
   # Bootloader
   boot = {
     supportedFilesystems = ["ntfs"];
-    # kernelParams = [
-    #   "resume=/dev/nvme0n1p7"
-    # ];
-    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -48,9 +44,6 @@
           };
           installPhase = "cp -r . $out";
         };
-        # extraConfig = ''
-        #   resume=/dev/nvme0n1p7
-        # '';
       };
     };
   };
