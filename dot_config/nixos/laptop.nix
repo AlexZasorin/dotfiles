@@ -34,7 +34,7 @@
   networking.networkmanager.wifi.powersave = false;
 
   systemd.services.ath11k-suspend = {
-    description = "Suspend: rmmod ath11k_pci";
+    description = "Suspend";
     before = ["suspend-then-hibernate.target" "hibernate.target"];
     wantedBy = ["suspend-then-hibernate.target" "hibernate.target"];
     serviceConfig = {
@@ -44,7 +44,7 @@
   };
 
   systemd.services.ath11k-resume = {
-    description = "Resume: modprobe ath11k_pci";
+    description = "Resume";
     after = ["suspend.target" "hibernate.target" "hybrid-sleep.target"];
     wantedBy = ["suspend.target" "hibernate.target" "hybrid-sleep.target"];
     serviceConfig = {
