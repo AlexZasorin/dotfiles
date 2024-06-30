@@ -22,9 +22,9 @@
   # Bootloader
   boot = {
     supportedFilesystems = ["ntfs"];
-    kernelParams = [
-      "resume=/dev/nvme0n1p7"
-    ];
+    # kernelParams = [
+    #   "resume=/dev/nvme0n1p7"
+    # ];
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       efi = {
@@ -48,9 +48,9 @@
           };
           installPhase = "cp -r . $out";
         };
-        extraConfig = ''
-          resume=/dev/nvme0n1p7
-        '';
+        # extraConfig = ''
+        #   resume=/dev/nvme0n1p7
+        # '';
       };
     };
   };
@@ -155,9 +155,9 @@
     #media-session.enable = true;
   };
 
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=30s
-  '';
+  # systemd.sleep.extraConfig = ''
+  #   HibernateDelaySec=30s
+  # '';
 
   systemd.services.kanata = {
     enable = true;
