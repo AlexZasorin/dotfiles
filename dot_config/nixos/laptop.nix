@@ -35,8 +35,8 @@
 
   systemd.services.ath11k-suspend = {
     description = "Suspend";
-    before = ["sleep.target"];
-    wantedBy = ["sleep.target"];
+    before = ["sleep.target" "suspend-then-hibernate.target"];
+    wantedBy = ["sleep.target" "suspend-then-hibernate.target"];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${pkgs.kmod}/bin/modprobe -rv ath11k_pci";
