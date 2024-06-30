@@ -51,7 +51,7 @@
       Type = "oneshot";
       ExecStart = [
         "${pkgs.kmod}/bin/modprobe -rv ath11k_pci"
-        "sleep 3"
+        "${pkgs.coreutils}/bin/sleep 3"
         "${pkgs.kmod}/bin/modprobe -v ath11k_pci"
       ];
     };
