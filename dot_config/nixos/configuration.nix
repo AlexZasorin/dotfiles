@@ -259,6 +259,8 @@
       fd
       luarocks
       cmake
+      yazi
+      python3
     ];
   };
 
