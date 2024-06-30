@@ -312,6 +312,7 @@
 
   environment.sessionVariables = {
     BOOST_INCLUDE_DIR = "${pkgs.boost}";
+    GOOGOO = "test";
   };
 
   fonts.packages = with pkgs; [
