@@ -1,12 +1,12 @@
 {config, ...}: {
   swapDevices = [
-    {device = "/dev/disk/by-uuid/bfe6cd91-9b4e-48eb-b76c-641df97f4286";}
+    { device = "/dev/disk/by-uuid/00be8230-2406-4495-b77c-f14ca0ebae89"; }
   ];
-  boot.resumeDevice = "/dev/disk/by-uuid/bfe6cd91-9b4e-48eb-b76c-641df97f4286";
-  boot.kernelParams = ["mem_sleep_default=deep"];
-
+  boot.resumeDevice = "/dev/disk/by-uuid/00be8230-2406-4495-b77c-f14ca0ebae89";
+  boot.kernelParams = [ "mem_sleep_default=deep" ];
+  
   services.power-profiles-daemon.enable = false;
-
+  
   services.tlp = {
     enable = true;
     settings = {
