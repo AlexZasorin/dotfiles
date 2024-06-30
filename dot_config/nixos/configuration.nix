@@ -23,7 +23,6 @@
   boot = {
     supportedFilesystems = ["ntfs"];
     kernelParams = [
-      "mem_sleep_default=deep"
       "resume=/dev/nvme0n1p7"
     ];
     loader = {
@@ -157,7 +156,6 @@
 
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=30s
-    SuspendState=mem
   '';
 
   systemd.services.kanata = {
