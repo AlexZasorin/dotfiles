@@ -312,7 +312,7 @@
 
   environment.variables = {
     BOOST_INCLUDE_DIR = "${pkgs.boost}";
-    GOOGOO = "test";
+    GOOGOO = "GAGA";
   };
 
   fonts.packages = with pkgs; [
