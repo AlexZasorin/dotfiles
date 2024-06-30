@@ -33,15 +33,15 @@
   systemd.sleep.extraConfig = "HibernateDelaySec=30s";
   networking.networkmanager.wifi.powersave = false;
 
-  systemd.services.ath11k-suspend = {
-    description = "Suspend";
-    before = ["suspend-then-hibernate.target"];
-    wantedBy = ["suspend-then-hibernate.target"];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.kmod}/bin/rmmod ath11k_pci";
-    };
-  };
+  # systemd.services.ath11k-suspend = {
+  #   description = "Suspend";
+  #   before = ["suspend-then-hibernate.target"];
+  #   wantedBy = ["suspend-then-hibernate.target"];
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     ExecStart = "${pkgs.kmod}/bin/rmmod ath11k_pci";
+  #   };
+  # };
 
   systemd.services.ath11k-resume = {
     description = "Resume";
@@ -49,7 +49,7 @@
     wantedBy = ["suspend-then-hibernate.target"];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.kmod}/bin/modprobe ath11k_pci";
+      ExecStart = "${pkgs.kmod}/bin/modprobe -rv ath11k_pci && sleep 3 && ${pkgs.kmod}/bin/modprobe -v ath11k_pci";
     };
   };
 }
