@@ -252,6 +252,12 @@
       luarocks
       yazi
       python3
+      gh-dash
+      gh-notify
+      gh-screensaver
+      gh-eco
+      gh-markdown-preview
+      gh-poi
     ];
   };
 
