@@ -273,7 +273,7 @@
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
-        boost
+        boost.dev
       ];
     };
     ssh = {
