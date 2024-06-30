@@ -19,13 +19,6 @@
     "/home/solyx/.nix-defexpr/channels"
   ];
 
-  # nixpkgs.config.packageOverrides = pkgs: {
-  #   boost = pkgs.boost.override {
-  #     enableShared = false;
-  #     enableStatic = true;
-  #   };
-  # };
-
   # Bootloader
   boot = {
     supportedFilesystems = ["ntfs"];
