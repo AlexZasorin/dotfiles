@@ -299,6 +299,7 @@
     keychain
     xclip
     alejandra
+    pciutils
   ];
 
   fonts.packages = with pkgs; [
