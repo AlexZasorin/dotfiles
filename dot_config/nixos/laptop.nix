@@ -49,7 +49,11 @@
     wantedBy = ["suspend-then-hibernate.target"];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.kmod}/bin/modprobe -rv ath11k_pci && sleep 3 && ${pkgs.kmod}/bin/modprobe -v ath11k_pci";
+      ExecStart = [
+        "${pkgs.kmod}/bin/modprobe -rv ath11k_pci"
+        "sleep 3"
+        "${pkgs.kmod}/bin/modprobe -v ath11k_pci"
+      ];
     };
   };
 }
