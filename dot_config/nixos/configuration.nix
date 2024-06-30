@@ -255,7 +255,6 @@
       ripgrep
       libnotify
       nodejs_22
-      boost
       fd
       luarocks
       cmake
@@ -273,6 +272,9 @@
     };
     nix-ld = {
       enable = true;
+      libraries = with pkgs; [
+        boost
+      ];
     };
     ssh = {
       enableAskPassword = true;
