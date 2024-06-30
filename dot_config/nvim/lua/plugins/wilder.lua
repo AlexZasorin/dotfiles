@@ -3,7 +3,7 @@ return {
   build = false,
   dependencies = {
     { 'romgrk/fzy-lua-native', build = 'make' },
-    { 'nixprime/cpsm', build = 'sh -c "PY3=ON ./install.sh"' },
+    { 'nixprime/cpsm', build = '~/.config/nvim/lua/plugins/install_cpsm.sh' },
     'lambdalisue/nerdfont.vim',
     'nvim-scrollbar',
   },

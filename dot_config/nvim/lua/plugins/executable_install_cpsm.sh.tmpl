@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# nix-shell ~/.config/nixos/cpsm-shell.nix --command 'sed -i "1s|#!/bin/bash|#!/usr/bin/env bash|" install.sh && sh -c "PY3=ON ./install.sh" && git restore .'
+
+{{ if eq .chezmoi.os "linux" }}
+nix-shell ~/.config/nixos/cpsm-shell.nix --command 'sed -i "1s|#!/bin/bash|#!/usr/bin/env bash|" ~/.local/share/nvim/lazy/cpsm/install.sh && sh -c "PY3=ON ~/.local/share/nvim/lazy/cpsm/install.sh" && git restore .'
+{{ else }}
+sed -i "1s|#!/bin/bash|#!/usr/bin/env bash|" ~/.local/share/nvim/lazy/cpsm/install.sh && sh -c "PY3=ON ~/.local/share/nvim/lazy/cpsm/install.sh" && git restore .
+{{ end }}
