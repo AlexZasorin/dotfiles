@@ -19,6 +19,10 @@
     "/home/solyx/.nix-defexpr/channels"
   ];
 
+  environment.variables = {
+    NIXOS_CONFIG = "$HOME/.config/nixos";
+  };
+
   # Bootloader
   boot = {
     supportedFilesystems = ["ntfs"];
