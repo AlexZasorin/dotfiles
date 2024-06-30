@@ -49,10 +49,8 @@
     description = "Resume";
     after = ["suspend-then-hibernate.target"];
     wantedBy = ["suspend-then-hibernate.target"];
-    unitConfig = {
-      type = "oneshot";
-    };
     serviceConfig = {
+      Type = "oneshot";
       ExecStart = [
         "${pkgs.kmod}/bin/modprobe -rv ath11k_pci"
         "${pkgs.kmod}/bin/modprobe -v ath11k_pci"
