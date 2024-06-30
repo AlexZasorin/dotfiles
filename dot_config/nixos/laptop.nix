@@ -49,7 +49,7 @@
     wantedBy = ["suspend.target" "hibernate.target" "hybrid-sleep.target"];
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.kmod}/bin/modprobe ath11k_pci";
+      ExecStart = "${pkgs.kmod}/bin/modprobe -v ath11k_pci";
     };
   };
 }
