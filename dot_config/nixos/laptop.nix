@@ -27,4 +27,5 @@
     '';
   };
   systemd.sleep.extraConfig = "HibernateDelaySec=30s";
+  networking.networkmanager.wifi.powersave = false;
 }
