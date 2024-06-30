@@ -30,6 +30,7 @@
       IdleActionSec=10m
     '';
   };
+
   systemd.sleep.extraConfig = "HibernateDelaySec=30s";
   networking.networkmanager.wifi.powersave = false;
 
@@ -45,8 +46,8 @@
 
   systemd.services.ath11k-resume = {
     description = "Resume";
-    after = ["suspend-then-hibernate.target"];
-    wantedBy = ["suspend-then-hibernate.target"];
+    after = ["hibernate.target" "suspend-then-hibernate.target"];
+    wantedBy = ["hibernate.target" "suspend-then-hibernate.target"];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = [
