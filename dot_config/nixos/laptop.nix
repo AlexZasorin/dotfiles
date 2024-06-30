@@ -35,20 +35,20 @@
 
   systemd.services.ath11k-suspend = {
     description = "Suspend";
-    before = ["suspend-then-hibernate.target" "hibernate.target"];
-    wantedBy = ["suspend-then-hibernate.target" "hibernate.target"];
+    before = ["sleep.target"];
+    wantedBy = ["sleep.target"];
     serviceConfig = {
-      Type = "simple";
+      Type = "oneshot";
       ExecStart = "${pkgs.kmod}/bin/modprobe -rv ath11k_pci";
     };
   };
 
   systemd.services.ath11k-resume = {
     description = "Resume";
-    after = ["suspend.target" "hibernate.target" "hybrid-sleep.target"];
-    wantedBy = ["suspend.target" "hibernate.target" "hybrid-sleep.target"];
+    after = ["suspend.target"];
+    wantedBy = ["suspend.target"];
     serviceConfig = {
-      Type = "simple";
+      Type = "oneshot";
       ExecStart = "${pkgs.kmod}/bin/modprobe -v ath11k_pci";
     };
   };
