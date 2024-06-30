@@ -31,7 +31,7 @@
     '';
   };
 
-  systemd.sleep.extraConfig = "HibernateDelaySec=30s";
+  systemd.sleep.extraConfig = "HibernateDelaySec=10m";
   networking.networkmanager.wifi.powersave = false;
 
   # systemd.services.ath11k-suspend = {
