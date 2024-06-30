@@ -260,6 +260,7 @@
       cmake
       yazi
       python3
+      boost.dev
     ];
   };
 
@@ -273,7 +274,6 @@
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
-        boost.dev
       ];
     };
     ssh = {
