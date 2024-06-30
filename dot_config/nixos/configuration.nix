@@ -260,7 +260,6 @@
       cmake
       yazi
       python3
-      vimPlugins.cpsm
     ];
   };
 
