@@ -272,6 +272,9 @@
     };
     nix-ld = {
       enable = true;
+      libraries = with pkgs; [
+        boost
+      ];
     };
     ssh = {
       enableAskPassword = true;
@@ -305,7 +308,6 @@
     keychain
     xclip
     alejandra
-    boost
   ];
 
   fonts.packages = with pkgs; [
