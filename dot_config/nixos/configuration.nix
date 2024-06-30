@@ -254,7 +254,6 @@
       ripgrep
       libnotify
       nodejs_22
-      yazi
     ];
   };
 
