@@ -310,7 +310,7 @@
     alejandra
   ];
 
-  environment.sessionVariables = {
+  environment.variables = {
     BOOST_INCLUDE_DIR = "${pkgs.boost}";
     GOOGOO = "test";
   };
