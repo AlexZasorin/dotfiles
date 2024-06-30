@@ -311,7 +311,7 @@
   ];
 
   environment.variables = {
-    BOOST_INCLUDE_DIR = "${pkgs.boost}";
+    Boost_INCLUDE_DIR = "${pkgs.boost}";
     GOOGOO = "GAGA";
   };
 
