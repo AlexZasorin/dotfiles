@@ -310,6 +310,10 @@
     alejandra
   ];
 
+  environment.sessionVariables = {
+    BOOST_INCLUDE_DIR = "${pkgs.boost}";
+  };
+
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = ["Meslo"];})
     jetbrains-mono
