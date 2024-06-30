@@ -272,9 +272,6 @@
     };
     nix-ld = {
       enable = true;
-      libraries = with pkgs; [
-        boost.dev
-      ];
     };
     ssh = {
       enableAskPassword = true;
