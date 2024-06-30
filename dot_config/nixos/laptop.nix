@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   swapDevices = [
     {device = "/dev/disk/by-uuid/00be8230-2406-4495-b77c-f14ca0ebae89";}
   ];
@@ -28,4 +32,24 @@
   };
   systemd.sleep.extraConfig = "HibernateDelaySec=30s";
   networking.networkmanager.wifi.powersave = false;
+
+  systemd.services.ath11k-suspend = {
+    description = "Suspend: rmmod ath11k_pci";
+    before = ["sleep.target"];
+    wantedBy = ["sleep.target"];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.kmod}/bin/rmmod ath11k_pci";
+    };
+  };
+
+  systemd.services.ath11k-resume = {
+    description = "Resume: modprobe ath11k_pci";
+    after = ["suspend.target"];
+    wantedBy = ["suspend.target"];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.kmod}/bin/modprobe ath11k_pci";
+    };
+  };
 }
