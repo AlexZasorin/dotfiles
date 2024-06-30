@@ -257,10 +257,8 @@
       nodejs_22
       fd
       luarocks
-      cmake
       yazi
       python3
-      boost.dev
     ];
   };
 
@@ -309,11 +307,6 @@
     xclip
     alejandra
   ];
-
-  environment.variables = {
-    Boost_INCLUDE_DIR = "${pkgs.boost.dev}/lib";
-    GOOGOO = "GAGA";
-  };
 
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = ["Meslo"];})
