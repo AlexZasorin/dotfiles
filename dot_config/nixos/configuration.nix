@@ -148,10 +148,6 @@
     #media-session.enable = true;
   };
 
-  # systemd.sleep.extraConfig = ''
-  #   HibernateDelaySec=30s
-  # '';
-
   systemd.services.kanata = {
     enable = true;
     description = "run kanata";
