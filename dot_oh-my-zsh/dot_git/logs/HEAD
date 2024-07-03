@@ -3,24 +3,14 @@
 1d09c6bb0a950756a65b02457842933e3aa493eb 1d09c6bb0a950756a65b02457842933e3aa493eb Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1712858446 -0700	checkout: moving from master to master
 1d09c6bb0a950756a65b02457842933e3aa493eb 6e9d57d5abdb33b0c22f8979dc529c1a046d7aa3 Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1712858447 -0700	pull --quiet --rebase origin master: Fast-forward
 6e9d57d5abdb33b0c22f8979dc529c1a046d7aa3 6e9d57d5abdb33b0c22f8979dc529c1a046d7aa3 Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1712858447 -0700	checkout: moving from master to master
-6e9d57d5abdb33b0c22f8979dc529c1a046d7aa3 6e9d57d5abdb33b0c22f8979dc529c1a046d7aa3 Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1713971755 -0700	checkout: moving from master to master
-6e9d57d5abdb33b0c22f8979dc529c1a046d7aa3 5d2d35cd1741af19553007fe0cc5324744fc58fa Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1713971756 -0700	pull --quiet --rebase origin master: Fast-forward
-5d2d35cd1741af19553007fe0cc5324744fc58fa 5d2d35cd1741af19553007fe0cc5324744fc58fa Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1714500207 -0700	checkout: moving from master to master
-5d2d35cd1741af19553007fe0cc5324744fc58fa 21963f4f678e69fb3154a1d43a33d531a5b3566d Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1714500208 -0700	pull --quiet --rebase origin master: Fast-forward
-21963f4f678e69fb3154a1d43a33d531a5b3566d 21963f4f678e69fb3154a1d43a33d531a5b3566d Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1714500208 -0700	checkout: moving from master to master
-21963f4f678e69fb3154a1d43a33d531a5b3566d 21963f4f678e69fb3154a1d43a33d531a5b3566d AlexZasorin <zasorin.alek@gmail.com> 1715093552 -0700	checkout: moving from master to master
-21963f4f678e69fb3154a1d43a33d531a5b3566d 668ca3a32dae5ff5d164fc3be565f1e2ece248db AlexZasorin <zasorin.alek@gmail.com> 1715093553 -0700	pull --quiet --rebase origin master: Fast-forward
-668ca3a32dae5ff5d164fc3be565f1e2ece248db 668ca3a32dae5ff5d164fc3be565f1e2ece248db AlexZasorin <zasorin.alek@gmail.com> 1715093553 -0700	checkout: moving from master to master
-668ca3a32dae5ff5d164fc3be565f1e2ece248db 668ca3a32dae5ff5d164fc3be565f1e2ece248db Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1716221466 -0700	checkout: moving from master to master
-668ca3a32dae5ff5d164fc3be565f1e2ece248db a779d6563ffb2f0093b4b74c8d5ff0982fa3e930 Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1716221467 -0700	pull --quiet --rebase origin master: Fast-forward
-a779d6563ffb2f0093b4b74c8d5ff0982fa3e930 a779d6563ffb2f0093b4b74c8d5ff0982fa3e930 Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1716221467 -0700	checkout: moving from master to master
-a779d6563ffb2f0093b4b74c8d5ff0982fa3e930 a779d6563ffb2f0093b4b74c8d5ff0982fa3e930 Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1717601646 -0700	checkout: moving from master to master
-a779d6563ffb2f0093b4b74c8d5ff0982fa3e930 efdfe2f29ac57a9de76391b4e5548edab6a43241 Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1717601646 -0700	pull --quiet --rebase origin master: Fast-forward
-efdfe2f29ac57a9de76391b4e5548edab6a43241 efdfe2f29ac57a9de76391b4e5548edab6a43241 Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1717601647 -0700	checkout: moving from master to master
-efdfe2f29ac57a9de76391b4e5548edab6a43241 efdfe2f29ac57a9de76391b4e5548edab6a43241 Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1717604784 -0700	checkout: moving from master to master
-efdfe2f29ac57a9de76391b4e5548edab6a43241 efdfe2f29ac57a9de76391b4e5548edab6a43241 Aleksey Zasorin <azasorin@R19GQMPKX0.(none)> 1717604785 -0700	checkout: moving from master to master
-efdfe2f29ac57a9de76391b4e5548edab6a43241 efdfe2f29ac57a9de76391b4e5548edab6a43241 Aleksey Zasorin <zasorin.alek@gmail.com> 1718742054 -0700	checkout: moving from master to master
-efdfe2f29ac57a9de76391b4e5548edab6a43241 c432ca09932bb0c2f2f7f8862b949b0875615724 Aleksey Zasorin <zasorin.alek@gmail.com> 1718742054 -0700	pull --quiet --rebase origin master: Fast-forward
-c432ca09932bb0c2f2f7f8862b949b0875615724 c432ca09932bb0c2f2f7f8862b949b0875615724 Aleksey Zasorin <zasorin.alek@gmail.com> 1719852865 -0700	checkout: moving from master to master
-c432ca09932bb0c2f2f7f8862b949b0875615724 dd4be1b6fb9973d63eba334d8bd92b3da30b3e72 Aleksey Zasorin <zasorin.alek@gmail.com> 1719852865 -0700	pull --quiet --rebase origin master: Fast-forward
-dd4be1b6fb9973d63eba334d8bd92b3da30b3e72 dd4be1b6fb9973d63eba334d8bd92b3da30b3e72 Aleksey Zasorin <zasorin.alek@gmail.com> 1719852865 -0700	checkout: moving from master to master
+6e9d57d5abdb33b0c22f8979dc529c1a046d7aa3 6e9d57d5abdb33b0c22f8979dc529c1a046d7aa3 solyx <solyx@nixos.(none)> 1713733349 -0700	checkout: moving from master to master
+6e9d57d5abdb33b0c22f8979dc529c1a046d7aa3 1b5503a3eefeb3e248bbc07a2f4e4b7591924307 solyx <solyx@nixos.(none)> 1713733354 -0700	pull --quiet --rebase origin master: Fast-forward
+1b5503a3eefeb3e248bbc07a2f4e4b7591924307 1b5503a3eefeb3e248bbc07a2f4e4b7591924307 solyx <solyx@nixos.(none)> 1713733354 -0700	checkout: moving from master to master
+1b5503a3eefeb3e248bbc07a2f4e4b7591924307 1b5503a3eefeb3e248bbc07a2f4e4b7591924307 Aleksey Zasorin <zasorin.alek@gmail.com> 1720035928 -0700	checkout: moving from master to master
+1b5503a3eefeb3e248bbc07a2f4e4b7591924307 1b5503a3eefeb3e248bbc07a2f4e4b7591924307 Aleksey Zasorin <zasorin.alek@gmail.com> 1720035929 -0700	checkout: moving from master to master
+1b5503a3eefeb3e248bbc07a2f4e4b7591924307 1b5503a3eefeb3e248bbc07a2f4e4b7591924307 Aleksey Zasorin <zasorin.alek@gmail.com> 1720035929 -0700	checkout: moving from master to master
+1b5503a3eefeb3e248bbc07a2f4e4b7591924307 1b5503a3eefeb3e248bbc07a2f4e4b7591924307 Aleksey Zasorin <zasorin.alek@gmail.com> 1720035929 -0700	checkout: moving from master to master
+1b5503a3eefeb3e248bbc07a2f4e4b7591924307 1b5503a3eefeb3e248bbc07a2f4e4b7591924307 Aleksey Zasorin <zasorin.alek@gmail.com> 1720035943 -0700	reset: moving to HEAD
+1b5503a3eefeb3e248bbc07a2f4e4b7591924307 1b5503a3eefeb3e248bbc07a2f4e4b7591924307 Aleksey Zasorin <zasorin.alek@gmail.com> 1720035977 -0700	checkout: moving from master to master
+1b5503a3eefeb3e248bbc07a2f4e4b7591924307 057f3ec67e65661d3c01b757ec5cad0a3718453e Aleksey Zasorin <zasorin.alek@gmail.com> 1720035977 -0700	pull --quiet --rebase origin master: Fast-forward
+057f3ec67e65661d3c01b757ec5cad0a3718453e 057f3ec67e65661d3c01b757ec5cad0a3718453e Aleksey Zasorin <zasorin.alek@gmail.com> 1720035978 -0700	checkout: moving from master to master
