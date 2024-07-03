@@ -706,11 +706,11 @@ require('lazy').setup({
       },
       'saadparwaiz1/cmp_luasnip',
       {
-        'David-Kunz/cmp-npm',
+        'AlexZasorin/cmp-npm',
         dependencies = { 'nvim-lua/plenary.nvim' },
         ft = 'json',
         config = function()
-          require('cmp-npm').setup({})
+          require('cmp-npm').setup({ only_latest_version = true })
         end,
       },
       -- Adds other completion capabilities.
