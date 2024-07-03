@@ -299,7 +299,7 @@
   ];
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override {fonts = ["Meslo"];})
+    nerdfonts
     jetbrains-mono
     noto-fonts-cjk-sans
   ];
