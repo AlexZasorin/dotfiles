@@ -110,24 +110,26 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
+  services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
-    xkb.layout = "us";
-    xkb.variant = "";
-    # When moving to Wayland, make sure to port this configuration to run at the beginning of a Wayland session
-    displayManager = {
-      sessionCommands = ''
-        eval $(${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-        export SSH_AUTH_SOCK };
-      '';
-    };
-  };
+  # services.xserver = {
+  #   xkb.layout = "us";
+  #   xkb.variant = "";
+  #   # When moving to Wayland, make sure to port this configuration to run at the beginning of a Wayland session
+  #   displayManager = {
+  #     sessionCommands = ''
+  #       eval $(${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+  #       export SSH_AUTH_SOCK };
+  #     '';
+  #   };
+  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -224,7 +226,7 @@
       jsonnet
       filelight
       heroic
-      libsForQt5.kdeconnect-kde
+      kdePackages.kdeconnect-kde
       gnome-keyring
       krita
       ivpn
