@@ -15,10 +15,10 @@ in {
 
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
-    access-tokens =
-      if builtins.pathExists ../../github-token
-      then builtins.readFile ../../github-token
-      else "";
+    access-tokens = builtins.trace "Current directory: ${builtins.toString ./.}" builtins.toString ./.;
+    # if builtins.pathExists ../../github-token
+    # then builtins.readFile ../../github-token
+    # else "";
   };
 
   nix.nixPath = [
