@@ -262,6 +262,7 @@
       python3
       vlc
       hydrus
+      steam
     ];
   };
 
@@ -284,6 +285,12 @@
     };
     noisetorch = {
       enable = true;
+    };
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      localNetworkGameTransfers.openFirewall = true;
     };
   };
 
