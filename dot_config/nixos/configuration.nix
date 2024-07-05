@@ -8,7 +8,7 @@
   ...
 }: let
   homeDir = builtins.getEnv "HOME";
-  githubToken = homeDir + "/.github-token";
+  githubToken = "${homeDir}/.github-token";
 in {
   imports = [
     # Include the results of the hardware scan.
