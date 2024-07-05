@@ -37,9 +37,12 @@ echo "NixOS Rebuilding..."
 # Rebuild, output simplified errors, log trackebacks
 {{ if eq .chezmoi.hostname "deimos" }}
 sudo nixos-rebuild switch --flake ~/.config/nixos#laptop &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
-{{ else }}
+{{ else if eq .chezmoi.hostname "phobos" }}
 sudo nixos-rebuild switch --flake ~/.config/nixos#desktop &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
+{{ else }}
+sudo nixos-rebuild switch --flake ~/.config/nixos#default &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
 {{ end }}
+
 
 # Get current generation metadata
 current=$(nixos-rebuild list-generations | grep current)
