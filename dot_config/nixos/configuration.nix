@@ -261,6 +261,7 @@
       yazi
       python3
       vlc
+      hydrus
     ];
   };
 
