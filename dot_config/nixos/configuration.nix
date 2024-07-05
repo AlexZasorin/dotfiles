@@ -260,6 +260,7 @@
       luarocks
       yazi
       python3
+      vlc
     ];
   };
 
