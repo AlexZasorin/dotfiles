@@ -20,6 +20,7 @@
       modules = [
         ./configuration.nix
         ./graphics/nvidia.nix
+        ./desktop.nix
         # inputs.home-manager.nixosModules.default
       ];
     };
