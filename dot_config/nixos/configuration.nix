@@ -182,7 +182,7 @@
     description = "Initialize NoiseTorch";
     after = ["pipewire.service"];
     unitConfig = {
-      type = "simple";
+      type = "oneshot";
     };
     serviceConfig = {
       ExecStart = "${pkgs.noisetorch}/bin/noisetorch -i";
@@ -200,8 +200,11 @@
     wants = ["graphical-session.target"];
     after = ["graphical-session.target"];
     serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --foreground --components=pkcs11,secrets,ssh";
+      Type = "oneshot";
+      ExecStart = [
+        "eval $(${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
+        "export SSH_AUTH_SOCK"
+      ];
     };
   };
 
