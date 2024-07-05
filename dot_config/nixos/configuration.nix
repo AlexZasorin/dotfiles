@@ -51,6 +51,14 @@
     };
   };
 
+  fileSystems."/mnt/share" = {
+    device = "//192.168.1.160/smb_alex";
+    fsType = "cifs";
+    options = let
+      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+    in ["${automount_opts},credentials=/etc/nixos/smb-secrets,uid=1000,gid=100"];
+  };
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -72,6 +80,7 @@
         to = 1764;
       } # KDE Connect
     ];
+    extraCommands = ''iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns'';
   };
 
   networking.nameservers = ["8.8.8.8" "8.8.4.4"];
@@ -299,6 +308,7 @@
     xclip
     alejandra
     pciutils
+    cifs-utils
   ];
 
   fonts.packages = with pkgs; [
