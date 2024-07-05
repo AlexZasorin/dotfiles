@@ -6,8 +6,7 @@
   pkgs,
   inputs,
   ...
-}: let
-in {
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -15,10 +14,6 @@ in {
 
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
-    access-tokens =
-      if builtins.pathExists /home/solyx/.github-token
-      then builtins.readFile /home/solyx/.github-token
-      else "";
   };
 
   nix.nixPath = [
