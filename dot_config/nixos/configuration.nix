@@ -311,6 +311,7 @@
     alejandra
     pciutils
     cifs-utils
+    ffmpeg
   ];
 
   fonts.packages = with pkgs; [
