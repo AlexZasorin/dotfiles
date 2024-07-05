@@ -222,7 +222,6 @@
       jsonnet
       filelight
       heroic
-      libsForQt5.bismuth
       libsForQt5.kdeconnect-kde
       gnome-keyring
       krita
