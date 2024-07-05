@@ -153,8 +153,10 @@
   systemd.services.kanata = {
     enable = true;
     description = "run kanata";
+    unitConfig = {
+      type = "simple";
+    };
     serviceConfig = {
-      Type = "simple";
       ExecStart = "${pkgs.kanata}/bin/kanata -c /home/solyx/.config/kanata/kanata.kbd";
       Restart = "always";
       RestartSec = 10;
