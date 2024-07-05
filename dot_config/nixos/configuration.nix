@@ -6,13 +6,20 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  homeDir = builtins.getEnv "HOME";
+  githubToken = homeDir + "/.github-token";
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings = {
+    experimental-features = ["nix-command" "flakes"];
+    access-tokens = "github.com=${githubToken}";
+  };
+
   nix.nixPath = [
     "nixpkgs=flake:nixpkgs:/nix/var/nix/profiles/per-user/root/channels"
     "nixos-config=$HOME/.config/nixos"
