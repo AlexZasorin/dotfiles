@@ -259,10 +259,11 @@
       fd
       luarocks
       yazi
-      python3
+      python312
       vlc
       hydrus
       steam
+      python312Packages.pip
     ];
   };
 
