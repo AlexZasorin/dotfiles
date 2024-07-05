@@ -16,8 +16,8 @@ in {
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     access-tokens =
-      if builtins.pathExists ../github-token
-      then builtins.readFile ../github-token
+      if builtins.pathExists ./github-token
+      then builtins.readFile ./github-token
       else "";
   };
 
