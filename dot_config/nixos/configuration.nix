@@ -201,7 +201,7 @@
     serviceConfig = {
       Type = "oneshot";
       ExecStart = [
-        "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh"
+        "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh && export SSH_AUTH_SOCK"
         # "export SSH_AUTH_SOCK"
       ];
       Environment = "DISPLAY=:0";
