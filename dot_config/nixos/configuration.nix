@@ -127,6 +127,13 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
 
+  environment = {
+    loginShellInit = ''
+      dbus-update-activation-environment --systemd DISPLAY
+      eval $(gnome-keyring-daemon --start --components=ssh,secrets)
+      eval $(ssh-agent)
+    '';
+  };
   # Configure keymap in X11
   # services.xserver = {
   #   xkb.layout = "us";
@@ -192,20 +199,6 @@
       User = "solyx";
     };
     wantedBy = ["default.target"];
-  };
-
-  systemd.services.gnome-start = {
-    description = "Start GNOME Keyring";
-    after = ["graphical-session.target"];
-    wantedBy = ["default.target"];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = [
-        "${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh && export SSH_AUTH_SOCK"
-        # "export SSH_AUTH_SOCK"
-      ];
-      Environment = "DISPLAY=:0";
-    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
