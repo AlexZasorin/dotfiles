@@ -26,3 +26,9 @@
 )
 
 (defalias cen (tap-hold-press 100 200 esc (layer-while-held navigation)))
+
+{{ if eq .chezmoi.hostname "phobos" }}
+(defcfg
+  linux-dev /dev/input/by-id/usb-Ducky_Ducky_One_3_RGB_DK-V1.11-220819-if01-event-kbd
+)
+{{ end }}
