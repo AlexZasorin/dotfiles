@@ -35,7 +35,6 @@ config.keys = {
     mods = 'CTRL',
     action = act.IncreaseFontSize
   },
-
   {
     key = 'm',
     mods = 'CMD|CTRL|ALT',
@@ -45,20 +44,20 @@ config.keys = {
 
 -- Solarized Dark - Patched colors
 config.colors = {
-  foreground = "#839395",
-  background = "#002833",
-  cursor_bg = "#839395",
-  cursor_border = "#839395",
-  cursor_fg = "#002831",
-  selection_bg = "#003440",
-  selection_fg = "#93a0a0",
+  foreground = "#839496",
+  background = "#002b36",
+  cursor_bg = "#839496",
+  cursor_border = "#839496",
+  cursor_fg = "#002b36",
+  selection_bg = "#073642",
+  selection_fg = "#93a1a1",
 
   ansi = {
-    "#003440", "#db312f", "#859801", "#b48800", "#268ad1", "#d23581", "#2aa097", "#eee7d4"
+    "#073642", "#dc322f", "#719e07", "#b58900", "#268bd2", "#d33682", "#2aa198", "#eee8d5"
   },
 
   brights = {
-    "#586d74", "#ca4a16", "#586d74", "#657a82", "#839395", "6c6ec6", "#93a0a0",  "fdf5e2"
+    "#586e75", "#cb4b16", "#586e75", "#657b83", "#839496", "#6c71c4", "#93a1a1", "#fdf6e3"
   },
 }
 
@@ -89,6 +88,6 @@ config.window_close_confirmation = "NeverPrompt"
 config.audible_bell = "Disabled"
 
 config.macos_window_background_blur = 15
-config.window_background_opacity = 0.95;
+config.window_background_opacity = 1;
 
 return config
