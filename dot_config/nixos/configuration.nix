@@ -209,67 +209,59 @@
     description = "solyx";
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
-      firefox
-      chezmoi
-      zsh
-      gitui
-      htop
-      gh
-      helix
-      kubectl
-      kubectx
-      zoxide
-      zellij
-      discord
-      vesktop
-      spotify
-      jetbrains-toolbox
-      vscode
-      git
-      gnumake
-      eza
-      tmux
-      bottom
-      lazydocker
-      lazygit
       asciiquarium
+      atuin
+      bottom
       broot
-      kubectl
-      kubectx
-      fzf
-      kanata
-      jsonnet
+      chezmoi
+      google-chrome
+      discord
+      docker
+      eza
+      fd
       filelight
-      heroic
-      kdePackages.kdeconnect-kde
+      firefox
+      fzf
+      gh
+      git
+      gitui
       gnome-keyring
-      krita
+      gsmartcontrol
+      helix
+      heroic
+      htop
+      hydrus
       ivpn
       ivpn-service
-      docker
-      todoist-electron
-      atuin
-      gsmartcontrol
-      btop
-      papirus-icon-theme
-      dig
-      traceroute
-      cargo
-      go
-      neofetch
-      pavucontrol
-      unzip
-      ripgrep
+      jetbrains-toolbox
+      jsonnet
+      kanata
+      kdePackages.kdeconnect-kde
+      krita
+      kubectl
+      kubectx
+      lazydocker
+      lazygit
       libnotify
-      nodejs_22
-      fd
       luarocks
-      yazi
+      neofetch
+      nodejs_22
+      papirus-icon-theme
+      pavucontrol
       python312
-      vlc
-      hydrus
-      steam
       python312Packages.pip
+      ripgrep
+      spotify
+      steam
+      tmux
+      todoist-electron
+      unzip
+      vesktop
+      vscode
+      yazi
+      zellij
+      zoxide
+      zsh
     ];
   };
 
@@ -309,23 +301,30 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    neovim
-    wezterm
-    gcc
+    alejandra
+    btop
+    cargo
+    cifs-utils
     clang
-    zig
-    wget
     curl
-    os-prober
-    which
+    dig
+    ffmpeg
+    gcc
+    gnumake
+    go
     inxi
     keychain
-    xclip
-    alejandra
+    neovim
+    os-prober
     pciutils
-    cifs-utils
-    ffmpeg
+    traceroute
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vlc
+    wezterm
+    wget
+    which
+    xclip
+    zig
   ];
 
   fonts.packages = with pkgs; [
