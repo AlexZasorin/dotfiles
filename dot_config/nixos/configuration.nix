@@ -174,7 +174,7 @@
       type = "simple";
     };
     serviceConfig = {
-      ExecStart = "${pkgs.kanata}/bin/kanata -c /home/solyx/.config/kanata/kanata.kbd";
+      ExecStart = "${pkgs.kanata}/bin/kanata -d -c /home/solyx/.config/kanata/kanata.kbd";
       Restart = "always";
       RestartSec = 10;
       User = "root";
