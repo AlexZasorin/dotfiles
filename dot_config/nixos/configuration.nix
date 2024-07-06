@@ -130,8 +130,8 @@
   environment = {
     loginShellInit = ''
       dbus-update-activation-environment --systemd DISPLAY
-      eval $(gnome-keyring-daemon --start --components=ssh,secrets)
-      eval $(ssh-agent)
+      eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+      export $SSH_AUTH_SOCK
     '';
   };
   # Configure keymap in X11
