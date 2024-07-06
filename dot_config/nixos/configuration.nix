@@ -196,7 +196,6 @@
 
   systemd.services.gnome-start = {
     description = "Start GNOME Keyring";
-    wantedBy = ["graphical-session.target"];
     after = ["graphical-session.target"];
     serviceConfig = {
       Type = "oneshot";
