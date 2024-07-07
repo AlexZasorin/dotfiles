@@ -267,6 +267,7 @@
       libsForQt5.qt5.qtwayland
       dolphin
       gtk3
+      wofi
     ];
   };
 
