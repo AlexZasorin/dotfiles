@@ -83,9 +83,7 @@
     fallbackDns = ["8.8.8.8" "8.8.4.4"];
   };
 
-  services.ivpn = {
-    enable = true;
-  };
+  services.ivpn.enable = true;
 
   services.gnome.gnome-keyring.enable = true;
 
