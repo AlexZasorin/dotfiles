@@ -3,7 +3,7 @@ tab_template name="ui" {
        plugin location="zellij:tab-bar"
    }
    children
-   pane size=2 borderless=true {
+   pane size=1 borderless=true {
        plugin location="zellij:status-bar"
    }
 }
