@@ -265,6 +265,7 @@
       xdg-desktop-portal-hyprland
       polkit-kde-agent
       libsForQt5.qt5.qtwayland
+      dolphin
     ];
   };
 
