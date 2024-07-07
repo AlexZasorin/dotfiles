@@ -258,6 +258,12 @@
       zellij
       zoxide
       zsh
+      # hyprland stuff
+      kitty
+      dunst
+      wireplumber
+      xdg-desktop-portal-hyprland
+      polkit-kde-agent
     ];
   };
 
