@@ -281,6 +281,7 @@
       rofi-wayland
       nwg-bar
       waybar
+      nvidia-vaapi-driver
     ];
   };
 
