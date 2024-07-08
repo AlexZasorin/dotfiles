@@ -3,6 +3,7 @@
   pkgs,
   ...
 }: {
+  boot.initrd.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm"];
   # Graphics
   hardware.graphics = {
     enable = true;
