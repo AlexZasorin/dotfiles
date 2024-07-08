@@ -269,7 +269,7 @@
       zoxide
       zsh
       # hyprland stuff
-      kdePackages.spectacle
+      hyprshot
       kitty
       dunst
       wireplumber
