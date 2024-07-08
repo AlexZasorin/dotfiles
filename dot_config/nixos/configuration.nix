@@ -123,11 +123,19 @@
   services.displayManager.sddm.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
 
+  # Enable XDG Portal?
+  xdg.portal.enable = true;
+
   environment = {
     loginShellInit = ''
       dbus-update-activation-environment --systemd DISPLAY
       eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh) 1> /dev/null
     '';
+    variables.EDITOR = "nvim";
+    sessionVariables = {
+      # hyprland
+      NIXOS_OZONE_WL = "1";
+    };
   };
   # Configure keymap in X11
   # services.xserver = {
@@ -268,8 +276,10 @@
       polkit-kde-agent
       libsForQt5.qt5.qtwayland
       dolphin
-      gtk3
       wofi
+      rofi-wayland
+      nwg-bar
+      waybar
     ];
   };
 
