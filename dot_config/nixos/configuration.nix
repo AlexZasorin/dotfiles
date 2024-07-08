@@ -282,6 +282,7 @@
       nwg-bar
       waybar
       nvidia-vaapi-driver
+      kdePackages.qt6ct
     ];
   };
 
