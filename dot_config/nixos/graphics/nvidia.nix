@@ -24,8 +24,4 @@
 
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
-
-  environment.systemPackages = with pkgs; [
-    egl-wayland
-  ];
 }
