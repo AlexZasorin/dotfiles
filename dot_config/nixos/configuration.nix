@@ -344,8 +344,6 @@
     which
     xclip
     zig
-    # hyprland
-    egl-wayland
   ];
 
   fonts.packages = with pkgs; [
