@@ -48,10 +48,19 @@ keybinds clear-defaults=true {
     }
     tab {
         bind "Ctrl t" { SwitchToMode "Normal"; }
+        bind "c" {
+            Run "sh" "-c" "~/scripts/zellij-new-tab.sh" {
+                floating true
+                height "3"
+                width "20%"
+                close_on_exit true
+            };
+            SwitchToMode "Normal";
+        }
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "h" "Left" "Up" "k" { GoToPreviousTab; }
         bind "l" "Right" "Down" "j" { GoToNextTab; }
-        bind "n" { NewTab; SwitchToMode "Normal"; }
+        bind "n" { NewTab; SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "x" { CloseTab; SwitchToMode "Normal"; }
         bind "s" { ToggleActiveSyncTab; SwitchToMode "Normal"; }
         bind "b" { BreakPane; SwitchToMode "Normal"; }
