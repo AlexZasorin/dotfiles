@@ -620,7 +620,25 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
+        'bash-language-server',
+        'css-lsp',
+        'delve',
+        'dockerfile-language-server',
+        'eslint-lsp',
+        'eslint_d',
+        'graphql-language-service-cli',
+        'html-lsp',
+        'json-lsp',
+        'jsonnet-language-server',
+        'jsonnetfmt',
+        'lua-language-server',
+        'markdownlint',
+        'marksman',
+        'prettier',
         'stylua', -- Used to format Lua code
+        'tailwindcss-language-server',
+        'typescript-language-server',
+        'yaml-language-server',
       })
       require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
@@ -667,6 +685,9 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         jsonnet = { 'jsonnetfmt' },
+        yaml = { 'prettier' },
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
