@@ -31,4 +31,8 @@
 (defcfg
   linux-dev /dev/input/by-id/usb-Ducky_Ducky_One_3_RGB_DK-V1.11-220819-if01-event-kbd
 )
+{{ else if eq .chezmoi.hostname "deimos" }}
+(defcfg
+  linux-dev /dev/input/by-id/usb-Ducky_Ducky_One_3_RGB_DK-V1.11-220819-if01-event-kbd:/dev/input/by-path/platform-i8042-serio-0-event-kbd
+)
 {{ end }}
