@@ -28,6 +28,7 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./configuration.nix
+        ./graphics/radeon.nix
         ./laptop.nix
         # inputs.home-manager.nixosModules.default
       ];
