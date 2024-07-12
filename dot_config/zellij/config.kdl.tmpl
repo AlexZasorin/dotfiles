@@ -50,9 +50,12 @@ keybinds clear-defaults=true {
         bind "Ctrl t" { SwitchToMode "Normal"; }
         bind "N" {
             Run "sh" "-c" "~/scripts/zellij-new-tab.sh" {
+                name "New Tab"
                 floating true
                 height "3"
                 width "20%"
+                x "40%"
+                y "50%"
                 close_on_exit true
             };
             SwitchToMode "Normal";
