@@ -12,7 +12,7 @@ layout {
         pane cwd="~"
     }
     tab name="config" {
-        pane cwd="~"
+        pane cwd="~/.config"
     }
     tab name="notes" {
         pane cwd="~/Repos/notes"
