@@ -581,8 +581,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
-        --
+        tsserver = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -637,7 +636,7 @@ require('lazy').setup({
         'prettier',
         'stylua', -- Used to format Lua code
         'tailwindcss-language-server',
-        'typescript-language-server',
+        'tsserver',
         'yaml-language-server',
       })
       require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
@@ -651,6 +650,26 @@ require('lazy').setup({
             -- certain features of an LSP (for example, turning off formatting for tsserver)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
+          end,
+          ['tsserver'] = function()
+            require('typescript-tools').setup({
+              settings = {
+                tsserver_file_preferences = {
+                  includeInlayParameterNameHints = 'all',
+                  includeCompletionsForModuleExports = true,
+                  quotePreference = 'auto',
+                },
+                tsserver_format_options = {
+                  allowIncompleteCompletions = false,
+                  allowRenameOfImportPath = false,
+                },
+              },
+            })
+            local opts = { noremap = true, silent = true }
+            vim.keymap.set('n', '<leader>rf', ':TSToolsRenameFile<CR>', opts) -- rename file and update imports
+            vim.keymap.set('n', '<leader>oi', ':TSToolsSortImports<CR>', opts) -- organize imports
+            vim.keymap.set('n', '<leader>ru', ':TSToolsRemoveUnusedImports<CR>', opts) -- remove unused variables
+            vim.keymap.set('n', 'gd', ':TSToolsGoToSourceDefinition<CR>', opts) -- go to definition
           end,
         },
       })
