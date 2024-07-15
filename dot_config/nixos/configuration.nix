@@ -207,6 +207,8 @@
     packages = with pkgs; [
       asciiquarium
       atuin
+      awscli2
+      aws-sam-cli
       bottom
       broot
       chezmoi
