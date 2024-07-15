@@ -705,8 +705,8 @@ require('lazy').setup({
         lua = { 'stylua' },
         jsonnet = { 'jsonnetfmt' },
         yaml = { 'prettier' },
-        javascript = { 'prettier' },
-        typescript = { 'prettier' },
+        javascript = { 'prettierd', 'prettier' },
+        typescript = { 'prettierd', 'prettier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
