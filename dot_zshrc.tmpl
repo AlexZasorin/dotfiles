@@ -86,6 +86,10 @@ plugins=(git kubectl sudo docker docker-compose colored-man-pages copyfile copyp
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 source $ZSH/oh-my-zsh.sh
+source "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
+
 
 # User configuration
 
