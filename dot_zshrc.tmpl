@@ -86,10 +86,6 @@ plugins=(git kubectl sudo docker docker-compose colored-man-pages copyfile copyp
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
 source $ZSH/oh-my-zsh.sh
-source "$HOME/.atuin/bin/env"
-
-eval "$(atuin init zsh)"
-
 
 # User configuration
 
@@ -213,6 +209,9 @@ alias rebuild='sh ~/scripts//nix/rebuild.sh '
 
 export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD ')
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+
+source "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh)"
 {{ end }}
 
 # disable sort when completing `git checkout`
