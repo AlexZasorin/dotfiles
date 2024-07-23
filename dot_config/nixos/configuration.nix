@@ -257,6 +257,7 @@
       python312
       python312Packages.pip
       ripgrep
+      slides
       spotify
       steam
       tmux
@@ -283,7 +284,6 @@
       waybar
       nvidia-vaapi-driver
       kdePackages.qt6ct
-      slides
     ];
   };
 
