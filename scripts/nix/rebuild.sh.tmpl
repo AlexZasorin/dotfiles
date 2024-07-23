@@ -43,13 +43,16 @@ sudo nixos-rebuild switch --flake ~/.config/nixos#desktop &>nixos-switch.log || 
 sudo nixos-rebuild switch --flake ~/.config/nixos#default &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
 {{ end }}
 
-
 # Get current generation metadata
 current=$(nixos-rebuild list-generations | grep current)
 
 # Commit all changes witih the generation metadata
 git add '*.nix'
 git commit -m "$current"
+
+# Clean up old configs
+echo "Cleaning up configs older than 15 days"
+(sh ~/scripts/nix/cleanup.sh 2>~/cleanup.log | sed -n '$p') || echo "Clean up encountered an error. Please see ~/cleanup.log."
 
 # Back to where you were
 popd
