@@ -256,8 +256,8 @@
       pnpm
       python312
       python312Packages.pip
-      slides
       ripgrep
+      slides
       spotify
       steam
       tmux
