@@ -270,20 +270,19 @@
       zoxide
       zsh
       # hyprland stuff
-      hyprshot
-      kitty
-      dunst
-      wireplumber
-      xdg-desktop-portal-hyprland
-      polkit-kde-agent
-      libsForQt5.qt5.qtwayland
       dolphin
-      wofi
-      rofi-wayland
-      nwg-bar
-      waybar
-      nvidia-vaapi-driver
+      dunst
+      hyprshot
       kdePackages.qt6ct
+      kitty
+      libsForQt5.qt5.qtwayland
+      nwg-bar
+      polkit-kde-agent
+      rofi-wayland
+      waybar
+      wireplumber
+      wofi
+      xdg-desktop-portal-hyprland
     ];
   };
 
