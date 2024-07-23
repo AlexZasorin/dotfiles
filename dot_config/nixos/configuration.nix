@@ -283,6 +283,7 @@
       waybar
       nvidia-vaapi-driver
       kdePackages.qt6ct
+      slides
     ];
   };
 
