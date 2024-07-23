@@ -257,8 +257,8 @@
       python312
       python312Packages.pip
       ripgrep
-      slides
       spotify
+      slides
       steam
       tmux
       todoist-electron
