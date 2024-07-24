@@ -21,6 +21,7 @@
         ./configuration.nix
         ./graphics/nvidia.nix
         ./desktop.nix
+        ./secrets.nix
         # inputs.home-manager.nixosModules.default
       ];
     };
@@ -30,6 +31,7 @@
         ./configuration.nix
         ./graphics/radeon.nix
         ./laptop.nix
+        ./secrets.nix
         # inputs.home-manager.nixosModules.default
       ];
     };
