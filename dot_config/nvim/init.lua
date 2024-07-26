@@ -647,8 +647,10 @@ require('lazy').setup({
         'eslint-lsp',
         'eslint_d',
         'graphql-language-service-cli',
+        'hadolint',
         'html-lsp',
         'json-lsp',
+        'jsonlint',
         'jsonnet-language-server',
         'jsonnetfmt',
         'lua-language-server',
@@ -657,6 +659,7 @@ require('lazy').setup({
         'prettier',
         'stylua', -- Used to format Lua code
         'tailwindcss-language-server',
+        'tflint',
         'tsserver',
         'yaml-language-server',
       })
