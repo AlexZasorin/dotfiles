@@ -352,7 +352,8 @@ require('lazy').setup({
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
-      require('telescope').setup({
+      local telescope = require('telescope')
+      telescope.setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
         --
@@ -370,8 +371,8 @@ require('lazy').setup({
       })
 
       -- Enable Telescope extensions if they are installed
-      pcall(require('telescope').load_extension, 'fzf')
-      pcall(require('telescope').load_extension, 'ui-select')
+      pcall(telescope.load_extension, 'fzf')
+      pcall(telescope.load_extension, 'ui-select')
 
       -- See `:help telescope.builtin`
       local builtin = require('telescope.builtin')
@@ -385,6 +386,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>sc', telescope.extensions.chezmoi.find_files, { desc = '[S]earch [C]hezmoi Files' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
