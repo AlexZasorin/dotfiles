@@ -16,30 +16,11 @@ config.disable_default_key_bindings = true
 
 local act = wezterm.action
 config.keys = {
-  {
-    key = 'v',
-    {{- if eq .chezmoi.os "darwin" }}
-    mods = 'CMD',
-    {{ else }}
-    mods = 'CTRL',
-    {{ end -}}
-    action = act.PasteFrom 'Clipboard'
-  },
-  {
-    key = '-',
-    mods = 'CTRL',
-    action = act.DecreaseFontSize
-  },
-  {
-    key = '=',
-    mods = 'CTRL',
-    action = act.IncreaseFontSize
-  },
-  {
-    key = 'm',
-    mods = 'CMD|CTRL|ALT',
-    action = act.ToggleFullScreen
-  },
+  -- paste from the clipboard
+  { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
+  { key = '-', mods = 'CTRL', action = act.DecreaseFontSize },
+  { key = '=', mods = 'CTRL', action = act.IncreaseFontSize },
+  { key = 'm', mods = 'CMD|CTRL|ALT', action = act.ToggleFullScreen },
 }
 
 -- Solarized Dark - Patched colors
