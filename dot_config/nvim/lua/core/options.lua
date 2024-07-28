@@ -7,10 +7,13 @@ vim.g.maplocalleader = ' '
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
+-- Set highlight on search, but clear on pressing <Esc> in normal mode (in keymaps.lua)
+opt.hlsearch = true
+
 -- Tabs & Indentation
-opt.tabstop = 2       -- 2 spaces for tabs (prettier default)
-opt.shiftwidth = 2    -- 2 spaces for indent width
-opt.expandtab = true  -- expand tab to spaces
+opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
+opt.shiftwidth = 2 -- 2 spaces for indent width
+opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
 -- Set highlight on search
