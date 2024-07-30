@@ -156,11 +156,16 @@ eod() {
   git -C ~/Repos/notes commit -m "update $(date +"%a %b %d, %Y %H:%M")"
   git -C ~/Repos/notes push
 
-  log blue false "Pushing chezmoi..."
   if [[ $(git -C ~/.local/share/chezmoi status --porcelain | wc -l) -gt 0 ]]; then
     log red true "Error: Uncommited changes in chezmoi. Please review and commit."
     return 1
   else
+    log blue false "Saving nvim lazy.lock..."
+    chezmoi add "~/.config/nvim/lazy-lock.json"
+    git add "**/lazy-lock.json"
+    git commit -m "update nvim lazy-lock.json"
+
+    log blue false "Pushing chezmoi..."
     git -C ~/.local/share/chezmoi push
   fi
 
