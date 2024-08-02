@@ -5,16 +5,16 @@ return {
     -- Better Around/Inside textobjects
     --
     -- Examples:
-    --  - va)  - [V]isually select [A]round [)]paren
-    --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
-    --  - ci'  - [C]hange [I]nside [']quote
+    --  - va)  - [v]isually select [a]round [)]paren
+    --  - yinq - [y]ank [i]nside [n]ext [q]uote
+    --  - ci'  - [c]hange [i]nside [']quote
     require('mini.ai').setup({ n_lines = 500 })
 
     -- Add/delete/replace surroundings (brackets, quotes, etc.)
     --
-    -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-    -- - sd'   - [S]urround [D]elete [']quotes
-    -- - sr)'  - [S]urround [R]eplace [)] [']
+    -- - saiw) - [s]urround [a]dd [i]nner [w]ord [)]Paren
+    -- - sd'   - [s]urround [d]elete [']quotes
+    -- - sr)'  - [s]urround [r]eplace [)] [']
     require('mini.surround').setup()
 
     -- require('mini.pairs').setup()
