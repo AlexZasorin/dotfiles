@@ -3,7 +3,8 @@ local keymap = vim.keymap
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Set highlight on search, but clear on pressing <Esc> in normal mode
+-- Clear highlights ons earch when pressing <Esc> in normal mode
+-- See `:help hlsearch`
 keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps

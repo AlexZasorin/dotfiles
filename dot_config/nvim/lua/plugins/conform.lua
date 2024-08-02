@@ -29,14 +29,14 @@ return {
       lua = { 'stylua' },
       jsonnet = { 'jsonnetfmt' },
       yaml = { 'prettier' },
-      javascript = { 'prettierd', 'prettier' },
-      typescript = { 'prettierd', 'prettier' },
+      javascript = { 'prettierd', 'prettier', stop_after_first = true },
+      typescript = { 'prettierd', 'prettier', stop_after_first = true },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
-      -- You can use a sub-list to tell conform to run *until* a formatter
+      -- You can use 'stop_after_first' to run the firs tavailable formatter from the list
       -- is found.
-      -- javascript = { { "prettierd", "prettier" } },
+      -- javascript = { "prettierd", "prettier", stop_after_first = true },
     },
   },
 }
