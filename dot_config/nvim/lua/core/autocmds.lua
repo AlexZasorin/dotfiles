@@ -1,3 +1,7 @@
+local function augroup(name)
+  return vim.api.nvim_create_augroup('az_' .. name, { clear = true })
+end
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -6,7 +10,7 @@
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  group = augroup('kickstart-highlight-yank'),
   callback = function()
     vim.highlight.on_yank()
   end,
@@ -17,5 +21,65 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   pattern = { os.getenv('HOME') .. '/.local/share/chezmoi/*' },
   callback = function()
     vim.schedule(require('chezmoi.commands.__edit').watch)
+  end,
+})
+
+-- Check if we need to reload the file when it changed
+vim.api.nvim_create_autocmd({ 'FocusGained', 'TermClose', 'TermLeave' }, {
+  group = augroup('checktime'),
+  callback = function()
+    if vim.o.buftype ~= 'nofile' then
+      vim.cmd('checktime')
+    end
+  end,
+})
+
+-- resize splits if window got resized
+vim.api.nvim_create_autocmd({ 'VimResized' }, {
+  group = augroup('resize_splits'),
+  callback = function()
+    local current_tab = vim.fn.tabpagenr()
+    vim.cmd('tabdo wincmd =')
+    vim.cmd('tabnext ' .. current_tab)
+  end,
+})
+
+-- go to last loc when opening a buffer
+vim.api.nvim_create_autocmd('BufReadPost', {
+  group = augroup('last_loc'),
+  callback = function(event)
+    local exclude = { 'gitcommit' }
+    local buf = event.buf
+    if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].lazyvim_last_loc then
+      return
+    end
+    vim.b[buf].lazyvim_last_loc = true
+    local mark = vim.api.nvim_buf_get_mark(buf, '"')
+    local lcount = vim.api.nvim_buf_line_count(buf)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
+})
+
+-- close some filetypes with <q>
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup('close_with_q'),
+  pattern = {
+    'grug-far',
+    'help',
+    'lspinfo',
+    'notify',
+    'qf',
+    'startuptime',
+    'gitsigns.blame',
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set('n', 'q', '<cmd>close<cr>', {
+      buffer = event.buf,
+      silent = true,
+      desc = 'Quit buffer',
+    })
   end,
 })
