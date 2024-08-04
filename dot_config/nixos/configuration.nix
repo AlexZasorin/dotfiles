@@ -291,9 +291,6 @@
   programs = {
     zsh = {
       enable = true;
-      ohMyZsh = {
-        enable = true;
-      };
     };
     kdeconnect = {
       enable = true;
