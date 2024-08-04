@@ -1,10 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   # Path to the GitHub token file
   githubTokenPath = "/etc/nixos/.github-token";
-in
-{
+in {
   nix.settings = {
     access-tokens = lib.mkIf (builtins.pathExists githubTokenPath) [
       "github.com=${builtins.readFile githubTokenPath}"

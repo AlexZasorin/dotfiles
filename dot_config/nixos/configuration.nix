@@ -119,6 +119,8 @@
     xwayland.enable = true;
   };
 
+  services.atuin.enable = true;
+
   # Enable SDDM
   services.displayManager.sddm.enable = true;
   # services.displayManager.sddm.wayland.enable = true;
@@ -214,12 +216,11 @@
     packages = with pkgs; [
       asciiquarium
       atuin
-      awscli2
       aws-sam-cli
+      awscli2
       bottom
       broot
       chezmoi
-      google-chrome
       discord
       docker
       eza
@@ -231,6 +232,7 @@
       git
       gitui
       gnome-keyring
+      google-chrome
       gsmartcontrol
       helix
       heroic
@@ -257,8 +259,8 @@
       python312
       python312Packages.pip
       ripgrep
-      spotify
       slides
+      spotify
       steam
       tmux
       todoist-electron
@@ -289,6 +291,9 @@
   programs = {
     zsh = {
       enable = true;
+      ohMyZsh = {
+        enable = true;
+      };
     };
     kdeconnect = {
       enable = true;
