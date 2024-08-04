@@ -255,6 +255,7 @@
       nodejs_22
       papirus-icon-theme
       pavucontrol
+      prettierd
       pnpm
       python312
       python312Packages.pip
