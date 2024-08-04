@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+
+eod() {
+  log-msg magenta true "End of Day"
+
+  log-msg blue false "Pushing notes..."
+  git -C ~/Repos/notes add .
+  git -C ~/Repos/notes commit -m "update $(date +"%a %b %d, %Y %H:%M")"
+  git -C ~/Repos/notes push
+
+  if [[ $(git -C ~/.local/share/chezmoi status --porcelain | wc -l) -gt 0 ]]; then
+    log-msg red true "Error: Uncommited changes in chezmoi. Please review and commit."
+    return 1
+  else
+    log-msg blue false "Saving nvim lazy.lock..."
+    chezmoi add "~/.config/nvim/lazy-lock.json"
+    git add "**/lazy-lock.json"
+    git commit -m "update nvim lazy-lock.json"
+
+    log-msg blue false "Saving oh-my-zsh..."
+    chezmoi add "~/.oh-my-zsh"
+    git add "dot_oh-my-zsh/"
+    git commit -m "update oh-my-zsh"
+
+    log-msg blue false "Pushing chezmoi..."
+    git -C ~/.local/share/chezmoi push
+  fi
+
+  log-msg yellow false "I'm the king of my own land\nFacing tempests of dust, I'll fight until the end\nCreatures of my dreams raise up and dance with me!\nNow and forever, I'm your king!"
+}

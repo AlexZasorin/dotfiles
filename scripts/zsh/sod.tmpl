@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+sod() {
+  log-msg magenta true "Start of Day"
+
+  log-msg blue false "Pulling notes..."
+  git -C ~/Repos/notes pull --rebase --autostash
+
+  log-msg blue false "Updating chezmoi..."
+  chezmoi update
+ 
+{{ if eq .chezmoi.hostname "R19GQMPKX0" }}
+  log-msg blue false "Logging into aws..."
+  aws-login
+{{ end }}
+
+  log-msg yellow false "One must imagine Sisyphus happy."
+}
