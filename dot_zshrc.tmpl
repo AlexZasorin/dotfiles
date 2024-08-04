@@ -81,7 +81,7 @@ compinit
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git kubectl sudo docker docker-compose colored-man-pages copyfile copypath extract fzf-tab git-extras gh history kubectl kubectx npm nvm ripgrep tmux tmuxinator web-search yarn zoxide)
+plugins=(git kubectl sudo docker docker-compose colored-man-pages copyfile copypath extract fzf-tab git-extras gh history kubectl kubectx npm nvm tmux tmuxinator web-search yarn zoxide)
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
@@ -294,12 +294,12 @@ export BORAT_URL="http://172.16.4.100"
 {{ end }}
 
 {{ if eq .chezmoi.os "darwin" }}
+source "$HOME/.atuin/bin/env"
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/curl/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/curl/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/curl/lib/pkgconfig"
 {{ end }}
 
-source "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
 
