@@ -223,6 +223,7 @@
       chezmoi
       discord
       docker
+      eslint_d
       eza
       fd
       filelight
