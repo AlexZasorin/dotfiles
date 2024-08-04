@@ -253,6 +253,7 @@
       luarocks
       neofetch
       nodejs_22
+      nodePackages.prettier
       papirus-icon-theme
       pavucontrol
       prettierd
