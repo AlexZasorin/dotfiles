@@ -145,6 +145,8 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+    local util = require('lspconfig').util
+
     -- Enable the following language servers
     --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
     --
@@ -165,7 +167,20 @@ return {
       --    https://github.com/pmizio/typescript-tools.nvim
       --
       -- But for many setups, the LSP (`tsserver`) will work just fine
+      bashls = {},
+      cssls = {},
+      docker_compose_language_service = {},
+      dockerls = {},
+      eslint = {},
+      graphql = {
+        root_dir = util.root_pattern('*.graphql', '.git', '.graphqlrc*', '.graphql.config.*', 'graphql.config.*'),
+      },
+      html = {},
+      jsonnet_ls = {},
+      tailwindcss = {},
+      tflint = {},
       tsserver = {},
+      marksman = {},
 
       lua_ls = {
         -- cmd = {...},
@@ -217,9 +232,11 @@ return {
     -- for you, so that they are available from within Neovim.
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
+      'actionlint',
       'bash-language-server',
       'css-lsp',
       'delve',
+      'docker_compose_language_service',
       'dockerfile-language-server',
       'eslint-lsp',
       'eslint_d',
@@ -234,11 +251,13 @@ return {
       'markdownlint',
       'marksman',
       'prettier',
+      'prettierd',
       'stylua', -- Used to format Lua code
       'tailwindcss-language-server',
       'tflint',
       'tsserver',
       'yaml-language-server',
+      'yamllint',
     })
     require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
