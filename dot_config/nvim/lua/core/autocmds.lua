@@ -83,3 +83,16 @@ vim.api.nvim_create_autocmd('FileType', {
     })
   end,
 })
+
+-- set filetypes for files that have more than one
+local function set_filetype(pattern, filetype)
+  vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+    pattern = pattern,
+    command = 'set filetype=' .. filetype,
+  })
+end
+
+set_filetype(
+  { 'docker-compose.yml', 'docker-compose.yaml', 'compose.yml', 'compose.yaml', 'docker-compose-github.yaml', 'docker-compose-github.yml' },
+  'yaml.docker-compose'
+)
