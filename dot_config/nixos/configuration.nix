@@ -222,6 +222,7 @@
       chezmoi
       discord
       docker
+      docker-client
       eslint_d
       eza
       fd
