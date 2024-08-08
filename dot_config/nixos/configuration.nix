@@ -251,7 +251,7 @@
       libnotify
       luarocks
       neofetch
-      nodejs_22
+      nodejs_20
       papirus-icon-theme
       pavucontrol
       prettierd
