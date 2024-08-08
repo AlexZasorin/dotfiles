@@ -112,7 +112,6 @@
   programs.xwayland.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  # services.xserver.desktopManager.plasma5.enable = true;
   services.desktopManager.plasma6.enable = true;
   programs.hyprland = {
     enable = true;
@@ -206,7 +205,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.solyx = {
@@ -236,7 +235,6 @@
       google-chrome
       gsmartcontrol
       helix
-      heroic
       htop
       hydrus
       ivpn
@@ -263,7 +261,6 @@
       ripgrep
       slides
       spotify
-      steam
       tmux
       todoist-electron
       unzip
@@ -309,12 +306,6 @@
     };
     noisetorch = {
       enable = true;
-    };
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      localNetworkGameTransfers.openFirewall = true;
     };
   };
 
