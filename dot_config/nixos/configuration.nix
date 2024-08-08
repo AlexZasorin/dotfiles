@@ -211,7 +211,7 @@
   users.users.solyx = {
     isNormalUser = true;
     description = "solyx";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     packages = with pkgs; [
       asciiquarium
       atuin
