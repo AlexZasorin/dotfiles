@@ -1,12 +1,32 @@
 layout {
   default_tab_template {
-    pane size=1 borderless=true {
-      plugin location="zellij:tab-bar"
+    pane size=2 borderless=true {
+        plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
+            format_left   " {mode} {tabs}"
+            format_center "{notifications}"
+            format_right  "{command_git_run_status} "
+            format_space  ""
+
+            border_enabled  "true"
+            border_char     "─"
+            border_format   "#[fg=blue]{char}"
+            border_position "bottom"
+            
+            hide_frame_for_single_pane "false"
+
+            mode_normal  "#[bg=magenta] "
+            mode_tmux    "#[bg=blue] "
+            mode_pane    "#[bg=yellow] "
+            mode_tab     "#[bg=yellow] "
+            mode_scroll  "#[bg=cyan] "
+            mode_search  "#[bg=cyan] "
+            mode_move    "#[bg=green] "
+
+            tab_normal   "#[fg=fg] {name} "
+            tab_active   "#[fg=magenta,bold,italic] {name} "
+        }
     }
     children
-      pane size=1 borderless=true {
-      plugin location="zellij:status-bar"
-    }
   }
   tab name="config" focus=true {
     pane cwd="~/.local/share/chezmoi"

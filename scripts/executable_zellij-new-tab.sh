@@ -11,7 +11,7 @@ print -n "%f"
 zoxide_result=$(zoxide query "$tab_name")
 
 if [ $? -eq 0 ] && [ -n "$zoxide_result" ]; then
-    zellij action new-tab --layout default --name "$tab_name" --cwd "$zoxide_result"
+    zellij action new-tab --layout zjstatus --name "$tab_name" --cwd "$zoxide_result"
 else
-    zellij action new-tab --layout default --name "$tab_name"
+    zellij action new-tab --layout zjstatus --name "$tab_name"
 fi
