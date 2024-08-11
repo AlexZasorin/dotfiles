@@ -240,6 +240,30 @@ plugins {
     strider { path "strider"; }
     compact-bar { path "compact-bar"; }
     session-manager { path "session-manager"; }
+    zjstatus location="file:~/.config/zellij/plugins/zjstatus.wasm" {
+        format_left   " {mode} {tabs}"
+        format_center "{notifications}"
+        format_right  "{command_git_run_status} "
+        format_space  ""
+
+        border_enabled  "true"
+        border_char     "─"
+        border_format   "#[fg=blue]{char}"
+        border_position "bottom"
+        
+        hide_frame_for_single_pane "false"
+
+        mode_normal  "#[bg=magenta] "
+        mode_tmux    "#[bg=blue] "
+        mode_pane    "#[bg=yellow] "
+        mode_tab     "#[bg=yellow] "
+        mode_scroll  "#[bg=cyan] "
+        mode_search  "#[bg=cyan] "
+        mode_move    "#[bg=green] "
+
+        tab_normal   "#[fg=fg] {name} "
+        tab_active   "#[fg=blue,bold,italic] {name} "
+    }
 }
 
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
