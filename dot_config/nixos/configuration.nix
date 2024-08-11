@@ -259,6 +259,7 @@
       pnpm
       python312
       python312Packages.pip
+      qbittorrent
       ripgrep
       slides
       spotify
