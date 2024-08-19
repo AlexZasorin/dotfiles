@@ -1,5 +1,21 @@
 #!/usr/bin/env zsh
 
+# Array of quotes
+quotes=(
+    "I'm the king of my own land\nFacing tempests of dust, I'll fight until the end\nCreatures of my dreams raise up and dance with me!\nNow and forever, I'm your king!"
+    "Until the day when God shall deign to reveal the future to man, all human wisdom is summed up in these two words, Wait and hope."
+    "So we beat on, boats against the current, borne back ceaselessly into the past."
+    "I saw death rising from the earth, from the ground itself, in one blue field.\nA present for my friends... at Thanksgiving."
+    "In case I don't see you, good afternoon, good evening, and goodnight."
+    "Hello, Elliot."
+    "Joe, when you see Emily\nTell her to wait for me\nCause I still have work to do..."
+    "Touch, sweet touch\nYou've given me too much to feel\nSweet touch\nYou've almost convinced me I'm real\nI need something more\nI need something more"
+    "I see your star\nYou left it burning for me\nMother, I'm here"
+    "Étoile, et toi\nEt toi, et moi\nTu es mon univers"
+    "I used to be fine because you\nAlways seemed so far away\nBut now I feel our paths getting closer each day\nIt's rather strange"
+    "Correct, alchemist! You've defeated me. Take everything you want!"
+)
+
 eod() {
   log-msg magenta true "End of Day"
 
@@ -31,5 +47,8 @@ eod() {
     popd
   fi
 
-  log-msg yellow false "I'm the king of my own land\nFacing tempests of dust, I'll fight until the end\nCreatures of my dreams raise up and dance with me!\nNow and forever, I'm your king!"
+  # Select a random quote
+  random_quote=${quotes[$RANDOM % ${#quotes[@]} + 1]}
+
+  log-msg yellow false "$random_quote"
 }

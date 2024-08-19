@@ -1,5 +1,18 @@
 #!/usr/bin/env zsh
 
+quotes=(
+  "Étoile, et toi\nEt toi, et moi\nLe monde est vous, vous êtes le monde"
+  "Hello, friend."
+  "One must imagine Sisyphus happy."
+  "The struggle itself toward the heights is enough to fill a man's heart.\nOne must imagine Sisyphus happy."
+  "I close my eyes and seize it\nI clench my fists and beat it\nI light my torch and burn it\nI am the beast I worship"
+  "I make the money, man, I roll the nickels, the game is mine! I deal the cards."
+  "Wage war like no tomorrow, know well there wont we one\nFor all who deny the struggle\nThe triumphant overcome"
+  "You can't wake up if you don't fall asleep."
+  "I wake to sleep, and take my waking slow.\nI feel my fate in what I cannot fear.\nI learn by going where I have to go."
+  "Do not go gentle into that good night. Rage, rage against the dying of the light."
+)
+
 sod() {
   log-msg magenta true "Start of Day"
 
@@ -14,5 +27,8 @@ sod() {
   aws-login
 {{ end }}
 
-  log-msg yellow false "One must imagine Sisyphus happy."
+  # Select a random quote
+  random_quote=${quotes[$RANDOM % ${#quotes[@]} + 1]}
+
+  log-msg yellow false "$random_quote"
 }
