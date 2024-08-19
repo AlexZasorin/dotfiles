@@ -12,6 +12,9 @@ eod() {
     log-msg red true "Error: Uncommited changes in chezmoi. Please review and commit."
     return 1
   else
+    # cd to your config dir
+    pushd ~/.local/share/chezmoi
+
     log-msg blue false "Saving nvim lazy.lock..."
     chezmoi add "~/.config/nvim/lazy-lock.json"
     git add "**/lazy-lock.json"
@@ -24,6 +27,8 @@ eod() {
 
     log-msg blue false "Pushing chezmoi..."
     git -C ~/.local/share/chezmoi push
+
+    popd
   fi
 
   log-msg yellow false "I'm the king of my own land\nFacing tempests of dust, I'll fight until the end\nCreatures of my dreams raise up and dance with me!\nNow and forever, I'm your king!"
