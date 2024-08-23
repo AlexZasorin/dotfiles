@@ -174,6 +174,7 @@ return {
       eslint = {},
       graphql = {
         root_dir = util.root_pattern('*.graphql', '.git', '.graphqlrc*', '.graphql.config.*', 'graphql.config.*'),
+        filetypes = { 'graphql', 'typescript', 'typescriptreact' },
       },
       html = {},
       jsonnet_ls = {},
