@@ -47,8 +47,8 @@ return {
     }
   end,
   config = function()
-    local dap = require('dap')
     local dapui = require('dapui')
+    local dap = require('dap')
 
     require('mason-nvim-dap').setup({
       -- Makes a best effort to setup the various debuggers with
@@ -64,6 +64,9 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         'delve',
+        'js-debug-adapter',
+        'chrome-debug-adapter',
+        'firefox-debug-adapter',
       },
     })
 
