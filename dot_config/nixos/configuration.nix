@@ -218,7 +218,6 @@
       aws-sam-cli
       awscli2
       bottom
-      broot
       chezmoi
       discord
       docker
@@ -240,7 +239,6 @@
       hydrus
       ivpn
       ivpn-service
-      jetbrains-toolbox
       jsonnet
       kanata
       kdePackages.kdeconnect-kde
@@ -361,8 +359,11 @@
 
   # List services that you want to enable:
 
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
