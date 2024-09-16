@@ -180,7 +180,6 @@ return {
       jsonnet_ls = {},
       tailwindcss = {},
       tflint = {},
-      tsserver = {},
       marksman = {},
 
       lua_ls = {
@@ -279,7 +278,6 @@ return {
       'stylua', -- Used to format Lua code
       'tailwindcss-language-server',
       'tflint',
-      'tsserver',
       'yaml-language-server',
       'yamllint',
       'js-debug-adapter',
@@ -298,7 +296,7 @@ return {
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
           require('lspconfig')[server_name].setup(server)
         end,
-        ['tsserver'] = function()
+        ['ts_ls'] = function()
           require('typescript-tools').setup({
             settings = {
               tsserver_file_preferences = {
