@@ -315,8 +315,11 @@ return {
           })
           local opts = { noremap = true, silent = true }
           vim.keymap.set('n', '<leader>rf', ':TSToolsRenameFile<CR>', opts) -- rename file and update imports
-          vim.keymap.set('n', '<leader>oi', ':TSToolsSortImports<CR>', opts) -- organize imports
-          vim.keymap.set('n', '<leader>ru', ':TSToolsRemoveUnusedImports<CR>', opts) -- remove unused variables
+          vim.keymap.set('n', '<leader>oi', ':TSToolsOrganizeImports<CR>', opts) -- organize imports
+          vim.keymap.set('n', '<leader>ru', ':TSToolsRemoveUnused<CR>', opts) -- remove unused variables
+          vim.keymap.set('n', '<leader>ai', ':TSToolsAddMissingImports<CR>', opts)
+          vim.keymap.set('n', '<leader>cf', ':TSToolsFixAll<CR>', opts)
+          vim.keymap.set('n', '<leader>gfr', ':TSToolsFileReferences<CR>', opts)
           vim.keymap.set('n', 'gd', ':TSToolsGoToSourceDefinition<CR>', opts) -- go to definition
         end,
       },
