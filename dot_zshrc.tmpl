@@ -142,13 +142,6 @@ prompt_context() {
 }
 
 export XDG_CONFIG_HOME=$HOME/.config
-function aws-login() {
-  if [ $# -gt 0 ]; then
-    aws-adfs login --adfs-ca-bundle ~/.aws/sectigo.cer  $@
-  else
-    aws-adfs login --profile default --adfs-ca-bundle ~/.aws/sectigo.cer && aws-adfs login --profile cross-account --adfs-ca-bundle ~/.aws/sectigo.cer
-  fi
-}
 
 {{ if eq .chezmoi.os "linux" }}
 # unset SSH_ASKPASS
@@ -252,3 +245,18 @@ eval "$(atuin init zsh)"
 
 fpath+=~/scripts/zsh/
 autoload -Uz ~/scripts/zsh/*
+
+alias unsetall='unset AWS_CREDENTIAL_EXPIRATION AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN'
+alias aws-login='aws sso login'
+AWS_DEFAULT_REGION=us-west-2
+function compasslauncher() {
+    # MongoDB Compass Launcher Function
+    unset AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN && \
+	(
+	    eval "$(aws configure export-credentials --profile $1 --format env)" && \
+	    open --wait -a "MongoDB Compass"
+    )
+}
+function envexport() {
+            eval "$(aws configure export-credentials --profile $1 --format env)" 
+}
