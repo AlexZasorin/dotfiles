@@ -133,7 +133,7 @@ return {
           end, '[t]oggle Inlay [h]ints')
 
           -- Enable inlay hints by default
-          vim.lsp.inlay_hint.enable()
+          -- vim.lsp.inlay_hint.enable()
         end
       end,
     })
