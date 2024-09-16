@@ -281,7 +281,6 @@ return {
       'yaml-language-server',
       'yamllint',
       'js-debug-adapter',
-      'chrome-debug-adapter',
       'firefox-debug-adapter',
     })
     require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
