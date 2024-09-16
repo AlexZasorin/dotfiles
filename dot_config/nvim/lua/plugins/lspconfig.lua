@@ -307,6 +307,10 @@ return {
                 allowIncompleteCompletions = false,
                 allowRenameOfImportPath = false,
               },
+              jsx_close_tag = {
+                enable = true,
+                filetypes = { 'javascriptreact', 'typescriptreact' },
+              },
             },
           })
           local opts = { noremap = true, silent = true }
