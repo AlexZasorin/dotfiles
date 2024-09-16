@@ -10,7 +10,7 @@ return {
         dockerfile = { 'hadolint' },
         json = { 'jsonlint' },
         terraform = { 'tflint' },
-        typescript = { 'eslint_d' },
+        typescript = { 'eslint' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,

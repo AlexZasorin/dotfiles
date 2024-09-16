@@ -263,7 +263,7 @@ return {
       'docker_compose_language_service',
       'dockerfile-language-server',
       'eslint-lsp',
-      'eslint_d',
+      'eslint',
       'graphql-language-service-cli',
       'hadolint',
       'html-lsp',
