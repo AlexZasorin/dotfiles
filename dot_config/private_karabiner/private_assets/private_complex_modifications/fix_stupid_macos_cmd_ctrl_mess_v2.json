@@ -2106,6 +2106,90 @@
                "type": "basic"
             },
             {
+               "conditions": [ ],
+               "from": {
+                  "key_code": "equal_sign",
+                  "modifiers": {
+                     "mandatory": [
+                        "command"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "equal_sign",
+                     "modifiers": [
+                        "control"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
+               "conditions": [ ],
+               "from": {
+                  "key_code": "equal_sign",
+                  "modifiers": {
+                     "mandatory": [
+                        "control"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "equal_sign",
+                     "modifiers": [
+                        "command"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
+               "conditions": [ ],
+               "from": {
+                  "key_code": "hyphen",
+                  "modifiers": {
+                     "mandatory": [
+                        "command"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "hyphen",
+                     "modifiers": [
+                        "control"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
+               "conditions": [ ],
+               "from": {
+                  "key_code": "hyphen",
+                  "modifiers": {
+                     "mandatory": [
+                        "control"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "hyphen",
+                     "modifiers": [
+                        "command"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
                "conditions": [
                   {
                      "bundle_identifiers": [
@@ -4725,6 +4809,98 @@
                "to": [
                   {
                      "key_code": "grave_accent_and_tilde",
+                     "modifiers": [
+                        "command",
+                        "shift"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
+               "conditions": [ ],
+               "from": {
+                  "key_code": "equal_sign",
+                  "modifiers": {
+                     "mandatory": [
+                        "command",
+                        "shift"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "equal_sign",
+                     "modifiers": [
+                        "control",
+                        "shift"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
+               "conditions": [ ],
+               "from": {
+                  "key_code": "equal_sign",
+                  "modifiers": {
+                     "mandatory": [
+                        "control",
+                        "shift"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "equal_sign",
+                     "modifiers": [
+                        "command",
+                        "shift"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
+               "conditions": [ ],
+               "from": {
+                  "key_code": "hyphen",
+                  "modifiers": {
+                     "mandatory": [
+                        "command",
+                        "shift"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "hyphen",
+                     "modifiers": [
+                        "control",
+                        "shift"
+                     ]
+                  }
+               ],
+               "type": "basic"
+            },
+            {
+               "conditions": [ ],
+               "from": {
+                  "key_code": "hyphen",
+                  "modifiers": {
+                     "mandatory": [
+                        "control",
+                        "shift"
+                     ],
+                     "optional": [ ]
+                  }
+               },
+               "to": [
+                  {
+                     "key_code": "hyphen",
                      "modifiers": [
                         "command",
                         "shift"
