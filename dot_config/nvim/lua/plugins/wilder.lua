@@ -54,15 +54,14 @@ return {
       wilder.lua_fzy_highlighter(),
     }
 
-    local colors = require('neosolarized').setup({}).colors
-    local to_vim = require('neosolarized').Color.to_vim
+    local colors = require('neosolarized').colors
 
     local popupmenu_renderer = wilder.popupmenu_renderer(wilder.popupmenu_border_theme({
       max_height = '25%',
       empty_message = wilder.popupmenu_empty_message_with_spinner(),
       highlighter = highlighters,
       highlights = {
-        accent = wilder.make_hl('WilderAccent', 'Pmenu', { { a = 1 }, { a = 1 }, { foreground = to_vim(colors.magenta) } }),
+        accent = wilder.make_hl('WilderAccent', 'Pmenu', { { a = 1 }, { a = 1 }, { foreground = colors.magenta:to_vim() } }),
       },
       left = {
         ' ',

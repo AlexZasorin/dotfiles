@@ -1,11 +1,10 @@
 return {
   'petertriho/nvim-scrollbar',
   config = function()
-    local colorbuddy = require('colorbuddy')
-    local colors = require('neosolarized').setup({}).colors
+    local colors = require('neosolarized').colors
     require('scrollbar').setup({
       handle = {
-        color = colorbuddy.Color.to_vim(colors.base1),
+        color = colors.base1:to_vim(),
       },
     })
   end,
