@@ -46,6 +46,12 @@ keymap.set('n', '<A-k>', ':m .-2<CR>==', opts) -- move line down
 keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", opts) -- move line up(v)
 keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", opts) -- move line down(v)
 
+keymap.set('n', 'gh', '0', opts)
+keymap.set('n', 'gl', '$', opts)
+
+keymap.set('n', 'dh', 'd0', opts)
+keymap.set('n', 'dl', '$', opts)
+
 keymap.set('n', '<leader>lr', function()
   vim.diagnostic.reset()
   vim.cmd('LspRestart')
