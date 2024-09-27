@@ -198,6 +198,9 @@ return {
         },
       },
       jsonls = {
+        init_options = {
+          provideFormatter = false,
+        },
         settings = {
           json = {
             schemas = require('schemastore').json.schemas(),
@@ -276,6 +279,7 @@ return {
       'marksman',
       'prettier',
       'prettierd',
+      'sonarlint-language-server',
       'stylua', -- Used to format Lua code
       'tailwindcss-language-server',
       'tflint',
