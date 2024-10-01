@@ -49,8 +49,8 @@ keymap.set('v', '<M-A-k>', ":m '<-2<CR>gv=gv", opts) -- move line down(v)
 keymap.set('n', 'gh', '0', opts)
 keymap.set('n', 'gl', '$', opts)
 
-keymap.set('n', 'dh', 'd0', opts)
-keymap.set('n', 'dl', '$', opts)
+keymap.set('o', 'h', '0', opts)
+keymap.set('o', 'l', '$', opts)
 
 keymap.set('n', '<leader>lr', function()
   vim.diagnostic.reset()
