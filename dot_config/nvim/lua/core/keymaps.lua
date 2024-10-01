@@ -41,10 +41,10 @@ keymap.set('v', '>', '>gv', opts)
 keymap.set('n', '>', '>>', opts)
 keymap.set('n', '<', '<<', opts)
 
-keymap.set('n', '<A-j>', ':m .+1<CR>==', opts) -- move line up
-keymap.set('n', '<A-k>', ':m .-2<CR>==', opts) -- move line down
-keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", opts) -- move line up(v)
-keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", opts) -- move line down(v)
+keymap.set('n', '<M-A-j>', ':m .+1<CR>==', opts) -- move line up
+keymap.set('n', '<M-A-k>', ':m .-2<CR>==', opts) -- move line down
+keymap.set('v', '<M-A-j>', ":m '>+1<CR>gv=gv", opts) -- move line up(v)
+keymap.set('v', '<M-A-k>', ":m '<-2<CR>gv=gv", opts) -- move line down(v)
 
 keymap.set('n', 'gh', '0', opts)
 keymap.set('n', 'gl', '$', opts)
