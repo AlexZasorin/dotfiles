@@ -82,3 +82,7 @@ opt.foldtext = ''
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldnestmax = 4
+
+opt.spell = true
+opt.spelllang = 'en_us'
+opt.spelloptions = 'camel'
