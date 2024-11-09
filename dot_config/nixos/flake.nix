@@ -4,43 +4,63 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # home-manager = {
-    #   url = "github:nix-community/home-manager";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
+    home-manager,
     ...
-  } @ inputs: {
-    nixosConfigurations.desktop = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./configuration.nix
-        ./graphics/nvidia.nix
-        ./desktop.nix
-        ./secrets.nix
-        # inputs.home-manager.nixosModules.default
-      ];
+  } @ inputs:
+  let
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+      };
     };
-    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./configuration.nix
-        ./graphics/radeon.nix
-        ./laptop.nix
-        ./secrets.nix
-        # inputs.home-manager.nixosModules.default
-      ];
+  in
+  {
+    nixosConfigurations = {
+      desktop = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./configuration.nix
+          ./graphics/nvidia.nix
+          ./desktop.nix
+          ./secrets.nix
+          # inputs.home-manager.nixosModules.default
+        ];
+      };
+      laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./configuration.nix
+          ./graphics/radeon.nix
+          ./laptop.nix
+          ./secrets.nix
+          # inputs.home-manager.nixosModules.default
+        ];
+      };
+      default = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./configuration.nix
+          ./secrets.nix
+          # inputs.home-manager.nixosModules.default
+        ];
+      };
     };
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+    
+    homeConfigurations."solyx" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
       modules = [
-        ./configuration.nix
-        ./secrets.nix
-        # inputs.home-manager.nixosModules.default
+        ./wsl/arch/home.nix
       ];
     };
   };
