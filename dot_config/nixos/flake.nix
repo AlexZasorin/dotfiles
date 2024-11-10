@@ -30,9 +30,11 @@
       desktop = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
-          ./configuration.nix
+          ./packages/default.nix
+          ./packages/system-packages/nixos.nix
           ./graphics/nvidia.nix
-          ./desktop.nix
+          ./configurations/default.nix
+          ./configurations/desktop.nix
           ./secrets.nix
           # inputs.home-manager.nixosModules.default
         ];
@@ -40,9 +42,11 @@
       laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
-          ./configuration.nix
+          ./packages/default.nix
+          ./packages/system-packages/nixos.nix
           ./graphics/radeon.nix
-          ./laptop.nix
+          ./configurations/default.nix
+          ./configurations/laptop.nix
           ./secrets.nix
           # inputs.home-manager.nixosModules.default
         ];
@@ -50,17 +54,19 @@
       default = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
-          ./configuration.nix
+          ./packages/default.nix
+          ./packages/system-packages/nixos.nix
+          ./configurations/default.nix
           ./secrets.nix
           # inputs.home-manager.nixosModules.default
         ];
       };
     };
     
-    homeConfigurations."solyx" = home-manager.lib.homeManagerConfiguration {
+    homeConfigurations."arch" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [
-        ./wsl/arch/home.nix
+        ./configurations/wsl/arch.nix
       ];
     };
   };

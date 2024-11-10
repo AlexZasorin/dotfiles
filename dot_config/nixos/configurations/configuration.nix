@@ -138,6 +138,7 @@
       NIXOS_OZONE_WL = "1";
     };
   };
+
   # Configure keymap in X11
   # services.xserver = {
   #   xkb.layout = "us";
@@ -212,79 +213,7 @@
     isNormalUser = true;
     description = "solyx";
     extraGroups = ["networkmanager" "wheel" "docker"];
-    packages = with pkgs; [
-      asciiquarium
-      atuin
-      aws-sam-cli
-      awscli2
-      bottom
-      chezmoi
-      discord
-      docker
-      docker-client
-      eslint_d
-      eza
-      fd
-      filelight
-      firefox
-      fzf
-      gh
-      git
-      gitui
-      gnome-keyring
-      google-chrome
-      gsmartcontrol
-      helix
-      htop
-      hydrus
-      ivpn
-      ivpn-service
-      jsonnet
-      kanata
-      kdePackages.kdeconnect-kde
-      krita
-      kubectl
-      kubectx
-      lazydocker
-      lazygit
-      libnotify
-      luarocks
-      neofetch
-      nodejs_20
-      papirus-icon-theme
-      pavucontrol
-      prettierd
-      pnpm
-      python312
-      python312Packages.pip
-      qbittorrent
-      ripgrep
-      slides
-      spotify
-      tmux
-      todoist-electron
-      unzip
-      vesktop
-      vscode
-      yazi
-      zellij
-      zoxide
-      zsh
-      # hyprland stuff
-      dolphin
-      dunst
-      hyprshot
-      kdePackages.qt6ct
-      kitty
-      libsForQt5.qt5.qtwayland
-      nwg-bar
-      polkit-kde-agent
-      rofi-wayland
-      waybar
-      wireplumber
-      wofi
-      xdg-desktop-portal-hyprland
-    ];
+    packages = with pkgs; [];
   };
 
   programs = {
@@ -316,39 +245,8 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    alejandra
-    btop
-    cargo
-    cifs-utils
-    clang
-    curl
-    dig
-    ffmpeg
-    gcc
-    gnumake
-    go
-    inxi
-    keychain
-    neovim
-    os-prober
-    pciutils
-    traceroute
-    usbutils
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    vlc
-    wezterm
-    wget
-    which
-    xclip
-    zig
-  ];
+  environment.systemPackages = with pkgs; [];
 
-  fonts.packages = with pkgs; [
-    nerdfonts
-    jetbrains-mono
-    noto-fonts-cjk-sans
-  ];
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
