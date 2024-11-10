@@ -8,7 +8,7 @@
 	editor = nvim	
 
 [user]
-	name = "Aleksey Zasorin"
+	name = "Alex Zasorin"
 	email = "zasorin.alek@gmail.com"
 
 [includeIf "hasconfig:remote.*.url:git@github.com:risk-and-safety/*"]
