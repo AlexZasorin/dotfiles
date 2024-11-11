@@ -3,17 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   };
 
   outputs = {
     self,
     nixpkgs,
-    home-manager,
+    nixos-wsl,
     ...
   } @ inputs:
   let
@@ -39,6 +35,7 @@
           # inputs.home-manager.nixosModules.default
         ];
       };
+
       laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
@@ -51,6 +48,19 @@
           # inputs.home-manager.nixosModules.default
         ];
       };
+
+      wsl = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        system = "x86_64-linux";
+        modules = [
+          nixos-wsl.nixosModules.default
+          ./packages/base-packages.nix
+          ./packages/development-packages.nix
+          ./configurations/wsl.nix
+          ./secrets.nix
+        ];
+      };
+
       default = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
@@ -61,13 +71,6 @@
           # inputs.home-manager.nixosModules.default
         ];
       };
-    };
-    
-    homeConfigurations."arch" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      modules = [
-        ./configurations/wsl/arch.nix
-      ];
     };
   };
 }

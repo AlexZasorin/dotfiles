@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  graphical-packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     # Applications
     discord
     filelight

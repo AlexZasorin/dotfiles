@@ -1,12 +1,13 @@
 { pkgs, ... }: {
-  base-packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     # Development tools
     cargo
     helix
     jsonnet
     nodejs_20
     pnpm
-    python313
-    python313Packages.pip
+    python312
+    python312Packages.pip
     zig
+  ];
 }

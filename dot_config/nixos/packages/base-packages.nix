@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  base-packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     # Development tools
     alejandra
     eslint_d
@@ -44,7 +44,6 @@
 
     # Cloud & container tools
     aws-sam-cli
-    awscli2
     kubectl
     kubectx
     lazydocker
