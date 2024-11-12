@@ -56,4 +56,11 @@
     ffmpeg
     slides
   ];
+
+  # Font packages
+  fonts.packages = with pkgs; [
+    nerdfonts
+    jetbrains-mono
+    noto-fonts-cjk-sans
+  ];
 }

@@ -61,6 +61,17 @@
         ];
       };
 
+      server = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        system = "x86_64-linux";
+        modules = [
+          ./packages/base-packages.nix
+          ./packages/development-packages.nix
+          ./configurations/server.nix
+          ./secrets.nix
+        ];
+      };
+
       default = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
