@@ -7,6 +7,12 @@
 	sshCommand = "ssh -i ~/.ssh/id_ed25519_personal"
 	editor = nvim	
 
+[rebase]
+	autoStash = true
+
+[pull]
+	rebase = true
+
 [user]
 	name = "Alex Zasorin"
 	email = "zasorin.alek@gmail.com"
