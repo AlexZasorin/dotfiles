@@ -2,9 +2,11 @@
   environment.systemPackages = with pkgs; [
     # Development tools
     alejandra
+    cmake
     eslint_d
     git
     gnumake
+    gcc
     go
     luarocks
     prettierd
