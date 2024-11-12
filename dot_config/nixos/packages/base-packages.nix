@@ -24,6 +24,7 @@
     neofetch
     neovim
     ripgrep
+    smartcat
     tmux
     unzip
     vim
