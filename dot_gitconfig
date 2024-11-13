@@ -25,3 +25,5 @@
 
 [includeIf "hasconfig:remote.*.url:git@github.com:drewzemke-rss/*"]
 	path = ~/.gitconfig_work
+[init]
+	defaultBranch = main
