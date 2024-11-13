@@ -8,6 +8,7 @@
     pnpm
     python312
     python312Packages.pip
+    rustup
     zig
   ];
 }
