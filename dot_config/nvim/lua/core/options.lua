@@ -37,6 +37,27 @@ vim.schedule(function()
   opt.clipboard = 'unnamedplus'
 end)
 
+local function is_wsl2()
+  local output = vim.fn.systemlist('uname -r')
+  return output[1] and output[1]:lower():match('microsoft') and output[1]:match('WSL2') and true or false
+end
+
+-- Set clipboard configuration only if in WSL2
+if is_wsl2() then
+  vim.g.clipboard = {
+    name = 'WslClipboard',
+    copy = {
+      ['+'] = 'clip.exe',
+      ['*'] = 'clip.exe',
+    },
+    paste = {
+      ['+'] = [[powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))]],
+      ['*'] = [[powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))]],
+    },
+    cache_enabled = 0,
+  }
+end
+
 -- Enable break indent
 opt.breakindent = true
 
