@@ -8,8 +8,8 @@
     jsonnet
     nodejs_20
     pnpm
-    python312
-    python312Packages.pip
+    python313
+    python313Packages.pip
     rustup
     zig
   ];
