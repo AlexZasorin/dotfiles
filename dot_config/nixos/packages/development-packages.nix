@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     # Development tools
     cargo
+    cargo-watch
     clippy
     helix
     jsonnet
