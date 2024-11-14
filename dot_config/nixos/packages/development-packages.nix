@@ -3,7 +3,7 @@
     # Development tools
     cargo
     cargo-watch
-    clippy
+    cargo-tarpaulin
     helix
     jsonnet
     nodejs_20
