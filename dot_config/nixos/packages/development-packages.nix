@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     # Development tools
     cargo
+    cargo-audit
     cargo-watch
     cargo-tarpaulin
     helix
