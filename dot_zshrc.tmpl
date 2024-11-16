@@ -226,8 +226,8 @@ alias lf="eza -lF --color=always | grep -v /"
 alias ls="eza -la"
 alias lt="eza -la --sort=modified"
 # eval "$(zellij setup --generate-auto-start zsh)"
-
-PATH=~/.console-ninja/.bin:$PATH
+#
+export PATH=~/.console-ninja/.bin:~/.cargo/bin:$PATH
 
 {{ if eq .chezmoi.hostname "R19GQMPKX0" }}
 export GITHUB_TOKEN=$(cat ~/.github_token)
