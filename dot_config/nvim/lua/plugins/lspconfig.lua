@@ -161,18 +161,6 @@ return {
       -- clangd = {},
       -- gopls = {},
       -- pyright = {},
-      rust_analyzer = {
-        settings = {
-          ['rust-analyzer'] = {
-            checkOnSave = {
-              command = 'clippy',
-            },
-            cargo = {
-              features = 'all',
-            },
-          },
-        },
-      },
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
       -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -190,10 +178,17 @@ return {
       },
       html = {},
       jsonnet_ls = {},
-      tailwindcss = {},
-      tflint = {},
-      marksman = {},
-
+      jsonls = {
+        init_options = {
+          provideFormatter = false,
+        },
+        settings = {
+          json = {
+            schemas = require('schemastore').json.schemas(),
+            validate = { enable = true },
+          },
+        },
+      },
       lua_ls = {
         -- cmd = {...},
         -- filetypes = { ...},
@@ -208,17 +203,37 @@ return {
           },
         },
       },
-      jsonls = {
-        init_options = {
-          provideFormatter = false,
+      marksman = {},
+      pyright = {
+        disableOrganizeImports = true,
+      },
+      python = {
+        analysis = {
+          ignore = { '*' },
         },
+      },
+      ruff = {
+        on_attach = function(client, bufnr)
+          if client.name == 'ruff' then
+            -- Disable hover in favor of Pyright
+            client.server_capabilities.hoverProvider = false
+          end
+        end,
+      },
+      rust_analyzer = {
         settings = {
-          json = {
-            schemas = require('schemastore').json.schemas(),
-            validate = { enable = true },
+          ['rust-analyzer'] = {
+            checkOnSave = {
+              command = 'clippy',
+            },
+            cargo = {
+              features = 'all',
+            },
           },
         },
       },
+      tailwindcss = {},
+      tflint = {},
       yamlls = {
         settings = {
           yaml = {
@@ -290,6 +305,8 @@ return {
       'marksman',
       'prettier',
       'prettierd',
+      'pyright',
+      'ruff',
       'rust-analyzer',
       'sonarlint-language-server',
       'stylua', -- Used to format Lua code
