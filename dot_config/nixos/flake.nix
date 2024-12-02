@@ -11,8 +11,7 @@
     nixpkgs,
     nixos-wsl,
     ...
-  } @ inputs:
-  let
+  } @ inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
@@ -20,16 +19,15 @@
         allowUnfree = true;
       };
     };
-  in
-  {
+  in {
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
         modules = [
           ./packages/default.nix
           ./packages/system-packages/nixos.nix
           ./graphics/nvidia.nix
-          ./configurations/default.nix
+          ./configurations/configuration.nix
           ./configurations/desktop.nix
           ./secrets.nix
           # inputs.home-manager.nixosModules.default
@@ -42,7 +40,7 @@
           ./packages/default.nix
           ./packages/system-packages/nixos.nix
           ./graphics/radeon.nix
-          ./configurations/default.nix
+          ./configurations/configuration.nix
           ./configurations/laptop.nix
           ./secrets.nix
           # inputs.home-manager.nixosModules.default
@@ -77,7 +75,7 @@
         modules = [
           ./packages/default.nix
           ./packages/system-packages/nixos.nix
-          ./configurations/default.nix
+          ./configurations/configuration.nix
           ./secrets.nix
           # inputs.home-manager.nixosModules.default
         ];
