@@ -42,6 +42,7 @@ return {
       typescript = { 'prettierd', 'prettier', stop_after_first = true },
       typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
       javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+      nix = { 'alejandra' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
