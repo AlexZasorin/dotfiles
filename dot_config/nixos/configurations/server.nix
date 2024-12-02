@@ -60,11 +60,17 @@
     variant = "";
   };
 
+  virtualisation = {
+    docker = {
+      enable = true;
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.solyx = {
     isNormalUser = true;
     description = "solyx";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };

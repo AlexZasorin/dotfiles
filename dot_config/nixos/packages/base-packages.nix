@@ -47,6 +47,7 @@
 
     # Cloud & container tools
     aws-sam-cli
+    docker-compose
     kubectl
     kubectx
     lazydocker
