@@ -243,6 +243,7 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/curl/lib/pkgconfig"
 {{ end }}
 
 eval "$(atuin init zsh)"
+eval "$(uv generate-shell-completion zsh)"
 
 export PROMPT_EOL_MARK=""
 
