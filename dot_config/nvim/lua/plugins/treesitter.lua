@@ -25,6 +25,7 @@ return {
       'json',
       'jsonnet',
       'julia',
+      'just',
       'kconfig',
       'kdl',
       'kotlin',
