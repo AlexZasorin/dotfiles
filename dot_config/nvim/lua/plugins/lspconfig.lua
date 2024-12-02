@@ -160,13 +160,15 @@ return {
     local servers = {
       -- clangd = {},
       -- gopls = {},
-      -- pyright = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
       -- Some languages (like typescript) have entire language plugins that can be useful:
       --    https://github.com/pmizio/typescript-tools.nvim
       --
       -- But for many setups, the LSP (`ts_ls`) will work just fine
+      basedpyright = {
+        disableOrganizeImports = true,
+      },
       bashls = {},
       cssls = {},
       docker_compose_language_service = {},
@@ -204,9 +206,6 @@ return {
         },
       },
       marksman = {},
-      pyright = {
-        disableOrganizeImports = true,
-      },
       python = {
         analysis = {
           ignore = { '*' },
@@ -217,6 +216,30 @@ return {
           if client.name == 'ruff' then
             -- Disable hover in favor of Pyright
             client.server_capabilities.hoverProvider = false
+            -- Add Ruff-specific keybindings
+            local opts = { buffer = bufnr, noremap = true, silent = true }
+
+            -- Organize imports
+            vim.keymap.set('n', '<leader>oi', function()
+              vim.lsp.buf.code_action({
+                context = {
+                  only = { 'source.organizeImports' },
+                  diagnostics = {},
+                },
+                apply = true,
+              })
+            end, opts)
+
+            -- Remove unused imports
+            vim.keymap.set('n', '<leader>cf', function()
+              vim.lsp.buf.code_action({
+                context = {
+                  only = { 'source.fixAll' },
+                  diagnostics = {},
+                },
+                apply = true,
+              })
+            end, opts)
           end
         end,
       },
@@ -286,6 +309,7 @@ return {
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'actionlint',
+      'basedpyright',
       'bash-language-server',
       'css-lsp',
       'delve',
@@ -305,7 +329,6 @@ return {
       'marksman',
       'prettier',
       'prettierd',
-      'pyright',
       'ruff',
       'rust-analyzer',
       'sonarlint-language-server',
