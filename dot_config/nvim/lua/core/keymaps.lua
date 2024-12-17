@@ -56,3 +56,6 @@ keymap.set('n', '<leader>lr', function()
   vim.diagnostic.reset()
   vim.cmd('LspRestart')
 end, { noremap = true, silent = true, desc = 'Reset diagnostics and restart LSP' })
+
+keymap.set('n', '<C-x>', ':x<CR>', opts)
+keymap.set('n', '<A-w>', ':w<CR>', opts)
