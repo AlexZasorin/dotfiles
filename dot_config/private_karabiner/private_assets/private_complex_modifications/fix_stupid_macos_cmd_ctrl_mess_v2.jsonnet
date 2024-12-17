@@ -19,7 +19,7 @@ local numbers = [
 
 local punctuation = ['comma', 'slash', 'open_bracket', 'close_bracket', 'semicolon', 'grave_accent_and_tilde', 'equal_sign', 'hyphen'];
 local all_characters = numbers + lowercase_letters + punctuation;
-local bash_shortcut_letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'y', 'z'];
+local bash_shortcut_letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 local makeSimpleRule(key_code_from, key_code_to, except_apps=[]) = [
   {
