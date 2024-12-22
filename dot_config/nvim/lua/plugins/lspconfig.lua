@@ -370,14 +370,48 @@ return {
               },
             },
           })
+          local keymap_group = vim.api.nvim_create_augroup('TSToolsKeymaps', { clear = true })
           local opts = { noremap = true, silent = true }
-          vim.keymap.set('n', '<leader>rf', ':TSToolsRenameFile<CR>', opts) -- rename file and update imports
-          vim.keymap.set('n', '<leader>oi', ':TSToolsOrganizeImports<CR>', opts) -- organize imports
-          vim.keymap.set('n', '<leader>ru', ':TSToolsRemoveUnused<CR>', opts) -- remove unused variables
-          vim.keymap.set('n', '<leader>ai', ':TSToolsAddMissingImports<CR>', opts)
-          vim.keymap.set('n', '<leader>cf', ':TSToolsFixAll<CR>', opts)
-          vim.keymap.set('n', '<leader>gfr', ':TSToolsFileReferences<CR>', opts)
-          vim.keymap.set('n', 'gd', ':TSToolsGoToSourceDefinition<CR>', opts) -- go to definition
+
+          local function setup_keymaps()
+            vim.keymap.set('n', '<leader>rf', ':TSToolsRenameFile<CR>', opts)
+            vim.keymap.set('n', '<leader>oi', ':TSToolsOrganizeImports<CR>', opts)
+            vim.keymap.set('n', '<leader>ru', ':TSToolsRemoveUnused<CR>', opts)
+            vim.keymap.set('n', '<leader>ai', ':TSToolsAddMissingImports<CR>', opts)
+            vim.keymap.set('n', '<leader>cf', ':TSToolsFixAll<CR>', opts)
+            vim.keymap.set('n', '<leader>gfr', ':TSToolsFileReferences<CR>', opts)
+            vim.keymap.set('n', 'gd', ':TSToolsGoToSourceDefinition<CR>', opts)
+          end
+
+          local function clear_keymaps()
+            vim.keymap.del('n', '<leader>rf')
+            vim.keymap.del('n', '<leader>oi')
+            vim.keymap.del('n', '<leader>ru')
+            vim.keymap.del('n', '<leader>ai')
+            vim.keymap.del('n', '<leader>cf')
+            vim.keymap.del('n', '<leader>gfr')
+            vim.keymap.del('n', 'gd')
+          end
+
+          vim.api.nvim_create_autocmd('LspAttach', {
+            group = keymap_group,
+            callback = function(args)
+              local client = vim.lsp.get_client_by_id(args.data.client_id)
+              if client and client.name == 'ts_ls' then
+                setup_keymaps()
+              end
+            end,
+          })
+
+          vim.api.nvim_create_autocmd('LspDetach', {
+            group = keymap_group,
+            callback = function(args)
+              local client = vim.lsp.get_client_by_id(args.data.client_id)
+              if client and client.name == 'ts_ls' then
+                clear_keymaps()
+              end
+            end,
+          })
         end,
       },
     })
