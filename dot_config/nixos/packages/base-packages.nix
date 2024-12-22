@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     # Development tools
     alejandra
@@ -60,8 +60,7 @@
 
   # Font packages
   fonts.packages = with pkgs; [
-    nerdfonts
-    jetbrains-mono
-    noto-fonts-cjk-sans
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.noto-fonts-cjk-sans
   ];
 }
