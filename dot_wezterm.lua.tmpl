@@ -63,9 +63,7 @@ config.font_size = 14
 
 config.bold_brightens_ansi_colors = "No"
 
-{{- if ne .chezmoi.os "linux" }}
 config.front_end = "WebGpu"
-{{ end }}
 
 config.max_fps = 144
 
