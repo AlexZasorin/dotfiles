@@ -2,6 +2,7 @@ return {
   {
     -- highlighting for chezmoi files template files
     'alker0/chezmoi.vim',
+    event = { 'BufReadPre', 'BufNewFile', 'BufWritePre' },
     init = function()
       vim.g['chezmoi#use_tmp_buffer'] = 1
       vim.g['chezmoi#source_dir_path'] = os.getenv('HOME') .. '/.local/share/chezmoi'
@@ -10,6 +11,7 @@ return {
   {
     'xvzc/chezmoi.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('chezmoi').setup({
         edit = {

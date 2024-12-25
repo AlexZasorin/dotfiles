@@ -1,5 +1,6 @@
 return {
   'gelguy/wilder.nvim',
+  event = 'CmdlineEnter',
   build = false,
   dependencies = {
     { 'romgrk/fzy-lua-native', build = 'make' },

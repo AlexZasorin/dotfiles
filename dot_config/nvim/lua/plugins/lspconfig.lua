@@ -3,7 +3,7 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     -- Automatically install LSPs and related tools to stdpath for Neovim
-    { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+    { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependents
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     'b0o/schemastore.nvim',
@@ -342,6 +342,7 @@ return {
     })
     require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
+    -- FIXME: Look into moving this into typescript-tools.lua, particularly the keymap config
     require('mason-lspconfig').setup({
       handlers = {
         function(server_name)

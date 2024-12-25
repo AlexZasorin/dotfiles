@@ -1,7 +1,23 @@
 -- Fuzzy Finder (files, lsp, etc)
 return {
   'nvim-telescope/telescope.nvim',
-  event = 'VimEnter',
+  keys = {
+    '<leader>sh',
+    '<leader>sk',
+    '<leader>sf',
+    '<leader>ss',
+    '<leader>sy',
+    '<leader>sw',
+    '<leader>sg',
+    '<leader>sd',
+    '<leader>sR',
+    '<leader>s.',
+    '<leader><leader>',
+    '<leader>sc',
+    '<leader>/',
+    '<leader>s/',
+    '<leader>sn',
+  },
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
