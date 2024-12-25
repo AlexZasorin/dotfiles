@@ -84,6 +84,20 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
+-- close DiffviewFileHistory with q
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup('close_with_q_diffview'),
+  pattern = { 'DiffviewFileHistory' },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.keymap.set('n', 'q', '<cmd>DiffviewClose<cr>', {
+      buffer = event.buf,
+      silent = true,
+      desc = 'Close Diffview',
+    })
+  end,
+})
+
 -- set filetypes for files that have more than one
 local function set_filetype(pattern, filetype)
   vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
