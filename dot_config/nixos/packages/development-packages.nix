@@ -6,6 +6,7 @@
     cargo-audit
     cargo-watch
     cargo-tarpaulin
+    direnv
     helix
     jsonnet
     just

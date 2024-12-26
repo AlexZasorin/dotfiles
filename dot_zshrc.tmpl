@@ -169,6 +169,7 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
 eval "$(zoxide init zsh)"
+eval "$(direnv hook zsh)"
 
 export SOLARIZED="dark"
 export TERM="xterm-256color"
