@@ -61,6 +61,6 @@
   # Font packages
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
-    nerd-fonts.noto-fonts-cjk-sans
+    noto-fonts-cjk-sans
   ];
 }
