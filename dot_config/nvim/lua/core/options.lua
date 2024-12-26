@@ -44,7 +44,6 @@ local function is_wsl2()
   return output[1] and output[1]:lower():match('microsoft') and output[1]:match('WSL2') and true or false
 end
 
--- Set clipboard configuration only if in WSL2
 if is_wsl2() then
   vim.g.clipboard = {
     name = 'WslClipboard',
@@ -57,6 +56,23 @@ if is_wsl2() then
       ['*'] = [[powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))]],
     },
     cache_enabled = 0,
+  }
+elseif not os.getenv('DISPLAY') then
+  -- Running on headless server
+  local function paste()
+    return { vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('') }
+  end
+  vim.o.clipboard = 'unnamedplus'
+  vim.g.clipboard = {
+    name = 'OSC 52',
+    copy = {
+      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+    },
+    paste = {
+      ['+'] = paste,
+      ['*'] = paste,
+    },
   }
 end
 
