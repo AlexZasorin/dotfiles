@@ -67,7 +67,7 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = '<Leader>v',
+          init_selection = '<Leader>vv',
           node_incremental = '<TAB>',
           scope_incremental = '<Leader>vs',
           node_decremental = '<S-TAB>',
