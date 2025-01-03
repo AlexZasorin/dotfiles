@@ -7,6 +7,7 @@
     cargo-watch
     cargo-tarpaulin
     direnv
+    git-filter-repo
     helix
     jsonnet
     just
