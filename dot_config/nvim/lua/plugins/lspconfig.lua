@@ -403,7 +403,7 @@ return {
             group = keymap_group,
             callback = function(args)
               local client = vim.lsp.get_client_by_id(args.data.client_id)
-              if client and client.name == 'ts_ls' then
+              if client and client.name == 'typescript-tools' then
                 setup_keymaps()
               end
             end,
@@ -413,7 +413,7 @@ return {
             group = keymap_group,
             callback = function(args)
               local client = vim.lsp.get_client_by_id(args.data.client_id)
-              if client and client.name == 'ts_ls' then
+              if client and client.name == 'typescript-tools' then
                 clear_keymaps()
               end
             end,
