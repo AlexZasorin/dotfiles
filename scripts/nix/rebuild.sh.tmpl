@@ -4,7 +4,7 @@ set -e
 
 # Edit your config
 if [[ "$#" -eq 0 ]]; then
-  configuration_file="configuration.nix"
+  configuration_file="configurations/configuration.nix"
 elif [[ "$#" -eq 1 ]]; then
   configuration_file="$1"
 else
@@ -39,6 +39,8 @@ echo "NixOS Rebuilding..."
 sudo nixos-rebuild switch --flake ~/.config/nixos#laptop &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
 {{ else if eq .chezmoi.hostname "phobos" }}
 sudo nixos-rebuild switch --flake ~/.config/nixos#desktop &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
+{{ else if eq .chezmoi.hostname "ceres" }}
+sudo nixos-rebuild switch --flake ~/.config/nixos#server &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
 {{ else }}
 sudo nixos-rebuild switch --flake ~/.config/nixos#default &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
 {{ end }}
