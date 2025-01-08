@@ -6,7 +6,7 @@ return {
     'antoinemadec/FixCursorHold.nvim',
     'nvim-treesitter/nvim-treesitter',
     'nvim-neotest/neotest-jest',
-    'thenbe/neotest-playwright',
+    'AlexZasorin/neotest-playwright',
   },
   config = function()
     require('neotest').setup({
@@ -24,25 +24,23 @@ return {
             return vim.fn.getcwd()
           end,
         }),
-        -- doesn't fucking works
-        -- despite defining is_test_file to look for files ending in .e2e.ts, neotest seems to ignore those files
-        -- if renamed to end with .spec.ts, the test file and its tests are recognized, but give a "no tests are found" error from playwright when run :^)
-        -- require('neotest-playwright').adapter({
-        --   options = {
-        --     persist_project_selection = true,
-        --     enable_dynamic_test_discovery = true,
-        --     get_playwright_binary = function()
-        --       return vim.fn.getcwd() .. '/e2e/node_modules/.bin/playwright'
-        --     end,
-        --     get_playwright_config = function()
-        --       return vim.fn.getcwd() .. '/e2e/playwright.config.ts'
-        --     end,
-        --     is_test_file = function(file_path)
-        --       local result = file_path:find('%.e2e%.ts$') ~= nil
-        --       return result
-        --     end,
-        --   },
-        -- }),
+        require('neotest-playwright').adapter({
+          options = {
+            get_cwd = function()
+              return vim.loop.cwd() .. '/e2e'
+            end,
+            get_playwright_config = function()
+              return vim.loop.cwd() .. '/e2e/playwright.config.ts'
+            end,
+            get_playwright_binary = function()
+              return vim.loop.cwd() .. '/e2e/node_modules/.bin/playwright'
+            end,
+            is_test_file = function(file_path)
+              local result = file_path:find('%.e2e%.ts?$') ~= nil
+              return result
+            end,
+          },
+        }),
       },
       output = { open_on_run = true },
     })
