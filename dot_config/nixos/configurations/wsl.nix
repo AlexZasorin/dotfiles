@@ -14,6 +14,10 @@
 
   wsl.enable = true;
   wsl.defaultUser = "solyx";
+  users.users.solyx = {
+    isNormalUser = true;
+    extraGroups = ["wheel"];
+  };
 
   services.atuin.enable = true;
 
