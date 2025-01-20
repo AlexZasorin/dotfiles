@@ -36,11 +36,6 @@ eod() {
     git add "**/lazy-lock.json"
     git commit -m "update nvim lazy-lock.json"
 
-    log-msg blue false "Saving oh-my-zsh..."
-    chezmoi add "~/.oh-my-zsh"
-    git add "dot_oh-my-zsh/"
-    git commit -m "update oh-my-zsh"
-
     log-msg blue false "Pushing chezmoi..."
     git -C ~/.local/share/chezmoi push
 
