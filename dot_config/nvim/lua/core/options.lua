@@ -57,7 +57,7 @@ if is_wsl2() then
     },
     cache_enabled = 0,
   }
-elseif not os.getenv('DISPLAY') then
+elseif not os.getenv('DISPLAY') and not vim.fn.has('macunix') then
   -- Running on headless server
   local function paste()
     return { vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('') }
