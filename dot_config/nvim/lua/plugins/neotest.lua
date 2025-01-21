@@ -10,10 +10,6 @@ return {
   },
   config = function()
     require('neotest').setup({
-      watch = { enabled = true },
-      discovery = {
-        enabled = false,
-      },
       adapters = {
         require('neotest-jest')({
           jestCommand = 'pnpm jest --coverage',
