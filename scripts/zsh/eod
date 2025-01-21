@@ -34,7 +34,12 @@ eod() {
     log-msg blue false "Saving nvim lazy.lock..."
     chezmoi add "~/.config/nvim/lazy-lock.json"
     git add "**/lazy-lock.json"
-    git commit -m "update nvim lazy-lock.json"
+    git commit -m "chore(nvim): update lazy-lock.json"
+
+    log-msg blue false "Saving nvim spelling dictionary..."
+    chezmoi add "~/.config/nvim/spell/"
+    git add "**/en.utf8.add*"
+    git commit -m "chore(nvim): update spelling dictionary"
 
     log-msg blue false "Pushing chezmoi..."
     git -C ~/.local/share/chezmoi push
