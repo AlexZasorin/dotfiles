@@ -116,6 +116,12 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  services.cron = {
+    enable = true;
+    systemCronJobs = [
+      "*/5 * * * *  solyx  /home/solyx/Repos/that-what-must-be-done/deployment/deploy.sh >> /home/solyx/Repos/that-what-must-be-done/deployment/deploy.log 2>&1"
+    ];
+  };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
