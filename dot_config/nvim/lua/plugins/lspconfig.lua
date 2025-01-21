@@ -119,7 +119,7 @@ return {
             group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
             callback = function(event2)
               vim.lsp.buf.clear_references()
-              vim.api.nvim_clear_autocmds({ group = 'kickstart-lsp-highlight', buffer = event2.buf })
+              local ok, _ = pcall(vim.api.nvim_clear_autocmds, { group = 'kickstart-lsp-highlight', buffer = event2.buf })
             end,
           })
         end
@@ -390,13 +390,22 @@ return {
           end
 
           local function clear_keymaps()
-            vim.keymap.del('n', '<leader>rf')
-            vim.keymap.del('n', '<leader>oi')
-            vim.keymap.del('n', '<leader>ru')
-            vim.keymap.del('n', '<leader>ai')
-            vim.keymap.del('n', '<leader>cf')
-            vim.keymap.del('n', '<leader>gfr')
-            vim.keymap.del('n', 'gd')
+            local keys = {
+              '<leader>rf',
+              '<leader>oi',
+              '<leader>ru',
+              '<leader>ai',
+              '<leader>cf',
+              '<leader>gfr',
+              'gd',
+            }
+
+            for _, key in ipairs(keys) do
+              local ok = pcall(vim.keymap.del, 'n', key)
+              if not ok then
+                vim.notify(string.format('Failed to delete keymap: %s', key), vim.log.levels.WARN)
+              end
+            end
           end
 
           vim.api.nvim_create_autocmd('LspAttach', {
