@@ -14,6 +14,7 @@ return {
 
     -- Allows extra capabilities provides by nvim-cmp
     'hrsh7th/cmp-nvim-lsp',
+    -- TODO: Add typescript-tools here and remove config in separate folder
   },
   config = function()
     -- Brief aside: **What is LSP?**
@@ -176,6 +177,10 @@ return {
       },
       bashls = {},
       cssls = {},
+      denols = {
+        root_dir = util.root_pattern('deno.json', 'deno.jsonc'),
+        single_file_support = false,
+      },
       docker_compose_language_service = {},
       dockerls = {},
       eslint = {},
@@ -206,7 +211,7 @@ return {
               callSnippet = 'Replace',
             },
             -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-            -- diagnostics = { disable = { 'missing-fields' } },
+            diagnostics = { disable = { 'missing-fields' } },
           },
         },
       },
@@ -318,6 +323,7 @@ return {
       'bash-language-server',
       'css-lsp',
       'delve',
+      'deno',
       'docker_compose_language_service',
       'dockerfile-language-server',
       'eslint-lsp',
@@ -359,6 +365,11 @@ return {
           require('lspconfig')[server_name].setup(server)
         end,
         ['ts_ls'] = function()
+          local is_deno = util.root_pattern('deno.json', 'deno.jsonc')(vim.fn.getcwd()) ~= nil
+          if is_deno then
+            return -- Don't setup typescript-tools in Deno projects
+          end
+
           require('typescript-tools').setup({
             settings = {
               tsserver_file_preferences = {
@@ -375,6 +386,8 @@ return {
                 filetypes = { 'javascriptreact', 'typescriptreact' },
               },
             },
+            root_dir = util.root_pattern('package.json', 'tsconfig.json'),
+            single_file_support = false,
           })
           local keymap_group = vim.api.nvim_create_augroup('TSToolsKeymaps', { clear = true })
           local opts = { noremap = true, silent = true }
@@ -414,16 +427,6 @@ return {
               local client = vim.lsp.get_client_by_id(args.data.client_id)
               if client and client.name == 'typescript-tools' then
                 setup_keymaps()
-              end
-            end,
-          })
-
-          vim.api.nvim_create_autocmd('LspDetach', {
-            group = keymap_group,
-            callback = function(args)
-              local client = vim.lsp.get_client_by_id(args.data.client_id)
-              if client and client.name == 'typescript-tools' then
-                clear_keymaps()
               end
             end,
           })
