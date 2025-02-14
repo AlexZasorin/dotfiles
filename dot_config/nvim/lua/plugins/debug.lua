@@ -17,6 +17,7 @@ return {
     'leoluz/nvim-dap-go',
   },
   keys = {
+    -- Basic debugging keymaps, feel free to change to your liking!
     {
       '<F5>',
       function()
@@ -55,11 +56,11 @@ return {
     {
       '<leader>B',
       function()
-        local dap = require('dap')
-        dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+        require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
       end,
       desc = 'Debug: Set Breakpoint',
     },
+    -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     {
       '<F7>',
       function()
