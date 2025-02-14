@@ -14,7 +14,7 @@ return {
 
     -- Allows extra capabilities provides by nvim-cmp
     'hrsh7th/cmp-nvim-lsp',
-    -- TODO: Add typescript-tools here and remove config in separate folder
+    'pmizio/typescript-tools.nvim',
   },
   config = function()
     -- Brief aside: **What is LSP?**
