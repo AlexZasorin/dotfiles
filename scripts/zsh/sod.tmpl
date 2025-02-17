@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 sod() {
   quotes=(
     "Étoile, et toi\nEt toi, et moi\nLe monde est vous, vous êtes le monde"
@@ -26,7 +24,7 @@ sod() {
   aws sso login
 {{ end }}
 
-  random_quote=${quotes[$(( RANDOM % ${#quotes[@]} + 1 ))]}
+  random_quote=${quotes[$((RANDOM % ${#quotes[@]} + 1))]}
 
   log-msg yellow false "$random_quote"
 }
