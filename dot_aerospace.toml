@@ -15,7 +15,7 @@ after-login-command = []
 after-startup-command = []
 
 # Start AeroSpace at login
-start-at-login = false
+start-at-login = true
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -195,3 +195,43 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+
+# Assign workspace 2 to secondary monitor when available
+[workspace-to-monitor-force-assignment]
+    2 = 'secondary'  # Assign workspace 2 (Firefox) to secondary monitor
+
+# Automatically assign windows to specific workspaces
+[[on-window-detected]]
+    if.app-id = 'org.wezfurlong.wezterm'  # WezTerm application ID
+    run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+    if.app-id = 'org.mozilla.firefox'  # Firefox application ID
+    run = 'move-node-to-workspace 2'
+
+# Workspace 3: Outlook and Slack
+[[on-window-detected]]
+    if.app-id = 'com.microsoft.Outlook'  # Microsoft Outlook
+    run = 'move-node-to-workspace 3'
+
+[[on-window-detected]]
+    if.app-id = 'com.slack.Slack'  # Slack
+    run = 'move-node-to-workspace 3'
+
+# Workspace 4: Spotify and Todoist
+[[on-window-detected]]
+    if.app-id = 'com.spotify.client'  # Spotify
+    run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+    if.app-id = 'com.todoist.mac.Todoist'  # Todoist
+    run = 'move-node-to-workspace 4'
+
+# Workspace 5: Zoom and Microsoft Teams
+[[on-window-detected]]
+    if.app-id = 'us.zoom.xos'  # Zoom
+    run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+    if.app-id = 'com.microsoft.teams'  # Microsoft Teams
+    run = 'move-node-to-workspace 5'
