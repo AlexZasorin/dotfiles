@@ -215,7 +215,7 @@ alt-shift-l = ['join-with right', 'mode main']
     run = 'move-node-to-workspace 3'
 
 [[on-window-detected]]
-    if.app-id = 'com.slack.Slack'  # Slack
+    if.app-id = 'com.tinyspeck.slackmacgap'  # Slack
     run = 'move-node-to-workspace 3'
 
 # Workspace 4: Spotify and Todoist
