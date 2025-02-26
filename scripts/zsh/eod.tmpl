@@ -41,7 +41,7 @@ eod() {
     git add "**/en.utf-8.add*"
     git commit -m "chore(nvim): update spelling dictionary"
 
-{{ if eq .chezmoi.osRelease.id "nixos" }}
+{{ if (and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "nixos")) }}
     log-msg blue false "Saving flake.lock..."
     chezmoi add "~/.config/nixos/flake.lock"
     git add "**/flake.lock"
