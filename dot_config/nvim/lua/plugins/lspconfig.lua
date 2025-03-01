@@ -200,6 +200,9 @@ return {
       docker_compose_language_service = {},
       dockerls = {},
       eslint = {},
+      glint = {
+        filetypes = { 'handlebars' },
+      },
       graphql = {
         root_dir = util.root_pattern('*.graphql', '.git', '.graphqlrc*', '.graphql.config.*', 'graphql.config.*'),
         filetypes = { 'graphql', 'typescript', 'typescriptreact' },
