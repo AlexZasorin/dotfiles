@@ -14,7 +14,7 @@ return {
         'cuda',
         'diff',
         'dockerfile',
-        'gleam',
+        'glimmer',
         'go',
         'graphql',
         'html',
