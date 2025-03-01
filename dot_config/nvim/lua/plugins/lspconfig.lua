@@ -189,7 +189,12 @@ return {
       bashls = {},
       cssls = {},
       denols = {
-        root_dir = util.root_pattern('deno.json', 'deno.jsonc'),
+        root_dir = function(fname)
+          if string.find(fname, 'scaffold/src/templates') then
+            return nil
+          end
+          return util.root_pattern('deno.json', 'deno.jsonc')(fname)
+        end,
         single_file_support = false,
       },
       docker_compose_language_service = {},
@@ -380,8 +385,10 @@ return {
         end,
         ['ts_ls'] = function()
           local is_deno = util.root_pattern('deno.json', 'deno.jsonc')(vim.fn.getcwd()) ~= nil
-          if is_deno then
-            return -- Don't setup typescript-tools in Deno projects
+          local in_templates = string.match(vim.fn.expand('%:p'), '/scaffold/src/templates/') ~= nil
+
+          if is_deno or in_templates then
+            return -- Don't setup typescript-tools in Deno projects or template files
           end
 
           require('typescript-tools').setup({
