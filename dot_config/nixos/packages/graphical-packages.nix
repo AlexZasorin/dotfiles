@@ -2,7 +2,7 @@
   environment.systemPackages = with pkgs; [
     # Applications
     discord
-    filelight
+    kdePackages.filelight
     firefox
     google-chrome
     hydrus
@@ -23,14 +23,14 @@
     todoist-electron
 
     # hyprland stuff
-    dolphin
+    kdePackages.dolphin
     dunst
     hyprshot
     kdePackages.qt6ct
     kitty
     libsForQt5.qt5.qtwayland
     nwg-bar
-    polkit-kde-agent
+    kdePackages.polkit-kde-agent-1
     rofi-wayland
     waybar
     wireplumber

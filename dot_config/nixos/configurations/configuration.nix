@@ -156,7 +156,7 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
   services.pipewire = {
