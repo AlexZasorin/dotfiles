@@ -2,36 +2,28 @@ return {
   'real-erik/github-utils.nvim',
   keys = {
     {
-      'ggw',
+      'gtw',
       function()
         require('github-utils').open_web_client()
       end,
       mode = 'n',
-      desc = '[g]oto [g]ithub [w]eb',
+      desc = '[g]i[t]hub [w]eb',
     },
     {
-      'ggf',
+      'gtf',
       function()
         require('github-utils').open_web_client_file()
       end,
       mode = 'n',
-      desc = '[g]oto [g]ithub [f]ile',
+      desc = '[g]i[t]hub [f]ile',
     },
     {
-      'ggp',
+      'gtp',
       function()
         require('github-utils').create_permalink()
       end,
       mode = 'n',
-      desc = '[g]oto [g]ithub line [p]ermalink',
-    },
-    {
-      'gp',
-      function()
-        require('github-utils').create_permalink()
-      end,
-      mode = 'v',
-      desc = '[g]ithub line range [p]ermalink',
+      desc = '[g]i[t]hub line [p]ermalink',
     },
   },
 }
