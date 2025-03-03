@@ -14,6 +14,7 @@
     nodejs_20
     poetry
     pnpm
+    python312
     python313
     python313Packages.pip
     pyright
