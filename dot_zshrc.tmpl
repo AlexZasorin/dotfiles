@@ -230,6 +230,10 @@ alias lt="eza -la --sort=modified"
 #
 export PATH=~/.console-ninja/.bin:~/.cargo/bin:$PATH
 
+{{ if (and (hasKey .chezmoi.kernel "osrelease") (contains "WSL" .chezmoi.kernel.osrelease)) }}
+export BROWSER=wslview
+{{ end }}
+
 {{ if eq .chezmoi.hostname "R19GQMPKX0" }}
 export GITHUB_TOKEN=$(cat ~/.github_token)
 export BORAT_URL="http://172.16.4.100"
