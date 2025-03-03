@@ -54,6 +54,7 @@
           nixos-wsl.nixosModules.default
           ./packages/base-packages.nix
           ./packages/development-packages.nix
+          ./packages/system-packages/wsl.nix
           ./configurations/wsl.nix
           ./secrets.nix
         ];
