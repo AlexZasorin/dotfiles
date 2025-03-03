@@ -235,11 +235,11 @@ return {
         },
       },
       marksman = {},
-      python = {
-        analysis = {
-          ignore = { '*' },
-        },
-      },
+      -- python = {
+      --   analysis = {
+      --     ignore = { '*' },
+      --   },
+      -- },
       ruff = {
         on_attach = function(client, bufnr)
           if client.name == 'ruff' then
