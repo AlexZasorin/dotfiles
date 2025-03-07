@@ -1,17 +1,19 @@
 [credential "https://github.com"]
-	helper = 
+  helper = 
 [credential "https://gist.github.com"]
-	helper = 
+  helper = 
 
 [core]
-	sshCommand = "ssh -i ~/.ssh/id_ed25519_personal"
-	editor = nvim	
+  sshCommand = "ssh -i ~/.ssh/id_ed25519_personal"
+  editor = nvim	
   fsmonitor = true
   untrackedCache = true
+  excludesfile = ~/.gitignore
+
 
 [rebase]
   autoSquash = true
-	autoStash = true
+  autoStash = true
   updateRefs = true
 
 [push]
@@ -25,22 +27,14 @@
   all = true
 
 [pull]
-	rebase = true
+  rebase = true
 
 [user]
-	name = "Alex Zasorin"
-	email = "zasorin.alek@gmail.com"
+  name = "Alex Zasorin"
+  email = "zasorin.alek@gmail.com"
 
-[includeIf "hasconfig:remote.*.url:git@github.com:risk-and-safety/*"]
-	path = ~/.gitconfig_work
-
-[includeIf "hasconfig:remote.*.url:git@github.com:gepenrose/*"]
-	path = ~/.gitconfig_work
-
-[includeIf "hasconfig:remote.*.url:git@github.com:drewzemke-rss/*"]
-	path = ~/.gitconfig_work
 [init]
-	defaultBranch = trunk
+  defaultBranch = trunk
 
 [column]
   ui = auto
@@ -67,8 +61,18 @@
   enabled = true
   autoupdate = true
 
-[core]
-  excludesfile = ~/.gitignore
-
 [merge]
   conflictstyle = zdiff3
+
+[includeIf "hasconfig:remote.*.url:git@github.com:risk-and-safety/*"]
+  path = ~/.gitconfig_work
+
+[includeIf "hasconfig:remote.*.url:git@github.com:gepenrose/*"]
+  path = ~/.gitconfig_work
+
+[includeIf "hasconfig:remote.*.url:git@github.com:drewzemke-rss/*"]
+  path = ~/.gitconfig_work
+
+[includeIf "hasconfig:remote.*.url:git@github.com:azasorin-rss/*"]
+  path = ~/.gitconfig_work
+
