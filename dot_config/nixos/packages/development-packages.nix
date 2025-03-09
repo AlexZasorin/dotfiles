@@ -11,7 +11,7 @@
     helix
     jsonnet
     just
-    nodejs_20
+    nodejs_22
     poetry
     pnpm
     python312
