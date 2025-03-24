@@ -202,7 +202,7 @@ alt-shift-l = ['join-with right', 'mode main']
 
 # Automatically assign windows to specific workspaces
 [[on-window-detected]]
-    if.app-id = 'org.wezfurlong.wezterm'  # WezTerm application ID
+    if.app-id = 'com.github.wez.wezterm'  # WezTerm application ID
     run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
@@ -233,5 +233,5 @@ alt-shift-l = ['join-with right', 'mode main']
     run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
-    if.app-id = 'com.microsoft.teams'  # Microsoft Teams
+    if.app-id = 'com.microsoft.teams2'  # Microsoft Teams
     run = 'move-node-to-workspace 5'
