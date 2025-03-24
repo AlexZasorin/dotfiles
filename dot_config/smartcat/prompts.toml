@@ -8,7 +8,7 @@ char_limit = 50000
 
 [default]
 api = "anthropic"
-char_limit = 50000
+char_limit = 100000
 
 [[default.messages]]
 role = "system"
