@@ -67,19 +67,27 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = '<M-o>',
+          init_selection = '<C-m>',
           node_incremental = '<TAB>',
           scope_incremental = '<Leader>vs',
           node_decremental = '<S-TAB>',
         },
       },
       textobjects = {
+        swap = {
+          enable = true,
+          swap_next = {
+            ['<leader>an'] = '@parameter.inner',
+          },
+          swap_previous = {
+            ['<leader>ap'] = '@parameter.inner',
+          },
+        },
         select = {
           enable = true,
 
           -- Automatically jump forward to textobj, similar to targets.vim
           lookahead = true,
-
           keymaps = {
             -- You can use the capture groups defined in textobjects.scm
             ['af'] = '@function.outer',
