@@ -119,7 +119,7 @@
   services.cron = {
     enable = true;
     systemCronJobs = [
-      "*/5 * * * *  solyx  /home/solyx/Repos/that-what-must-be-done/deployment/deploy.sh >> /home/solyx/Repos/that-what-must-be-done/deployment/deploy.log 2>&1"
+      "*/5 * * * *  solyx  /home/solyx/Repos/postpwn/deployment/deploy.sh >> /home/solyx/Repos/postpwn/deployment/deploy.log 2>&1"
     ];
   };
   # Open ports in the firewall.
