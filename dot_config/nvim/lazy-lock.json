@@ -6,6 +6,7 @@
   "chezmoi.vim": { "branch": "main", "commit": "abf37336437867cbd99ce2f8849b717415391cc3" },
   "cmp-npm": { "branch": "main", "commit": "8e57bb506dcfb4387a45299db52be069f3d7c87f" },
   "cmp-nvim-lsp": { "branch": "main", "commit": "99290b3ec1322070bcfb9e846450a46f6efa50f0" },
+  "cmp-nvim-lsp-signature-help": { "branch": "main", "commit": "031e6ba70b0ad5eee49fd2120ff7a2e325b17fa7" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
   "colorbuddy.nvim": { "branch": "master", "commit": "8b968581e5c19d22a861d5f3fe5dbd83394fa681" },
