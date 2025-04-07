@@ -6,6 +6,7 @@
     cargo-audit
     cargo-watch
     cargo-tarpaulin
+    claude-code
     direnv
     git-filter-repo
     helix
