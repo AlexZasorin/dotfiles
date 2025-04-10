@@ -24,15 +24,16 @@ ZSH_THEME="agnoster-updated"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment one of the following lines to change the auto-update behavior
-# zstyle ':omz:update' mode disabled  # disable automatic updates
+# Disable automatic updates for better performance
+zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
 
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
+# Disable magic functions for better performance
+DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -70,8 +71,24 @@ ZSH_THEME="agnoster-updated"
 zstyle ':completion:*' list-colors ''
 zstyle :compinstall filename '/Users/azasorin/.zshrc'
 
+# Ultra-fast compinit optimization
 autoload -Uz compinit
-compinit
+
+# Skip all completions setup if non-interactive
+# [[ -o interactive ]] || return
+
+# Only regenerate completion cache once per day
+# Use .zcompdump.zwc (compiled) for better performance
+for dump in ~/.zcompdump(N.mh+24); do
+  # Regenerate completion cache if older than 24 hours
+  compinit
+  # Compile completion dump to speed up loading
+  { zcompile ~/.zcompdump } &!
+done
+# Skip compdump file integrity check with -C if not regenerated
+if [[ $dump != ~/.zcompdump* ]]; then
+  compinit -C
+fi
 
 # End of lines added by compinstall
 
@@ -80,7 +97,7 @@ compinit
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git kubectl sudo docker docker-compose colored-man-pages copyfile copypath extract fzf-tab git-extras gh history kubectl kubectx npm nvm tmux tmuxinator vi-mode web-search yarn zoxide)
+plugins=(evalcache git kubectl sudo docker-compose fzf-tab gh history kubectx vi-mode zoxide)
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
@@ -124,8 +141,14 @@ source $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.z
 source $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Lazy-load NVM for better performance
+nvm() {
+  unset -f nvm
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  nvm "$@"
+}
 
 # pnpm
 export PNPM_HOME="/Users/azasorin/Library/pnpm"
@@ -168,8 +191,15 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 # switch group using `,` and `.`
 zstyle ':fzf-tab:*' switch-group ',' '.'
 
-eval "$(zoxide init zsh)"
-eval "$(direnv hook zsh)"
+# Load zoxide (using evalcache for performance)
+_evalcache zoxide init zsh
+
+# Load direnv (when needed)
+function direnv() {
+  unfunction direnv
+  eval "$(command direnv hook zsh)"
+  direnv "$@"
+}
 
 export SOLARIZED="dark"
 export TERM="xterm-256color"
@@ -221,7 +251,10 @@ _gen_fzf_default_opts
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Configure autosuggestions for better performance
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_USE_ASYNC=1
 alias ld="eza -lD"
 alias lf="eza -lF --color=always | grep -v /"
 alias ls="eza -la"
@@ -247,8 +280,28 @@ export CPPFLAGS="-I/opt/homebrew/opt/curl/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/curl/lib/pkgconfig"
 {{ end }}
 
-eval "$(atuin init zsh)"
-eval "$(uv generate-shell-completion zsh)"
+# Lazy load atuin
+atuin_init_cmd() {
+  unfunction atuin_init_cmd
+  eval "$(command atuin init zsh)"
+}
+
+# Defer atuin initialization until after prompt
+atuin_delayed_init() {
+  atuin_init_cmd
+  # Remove the hook
+  add-zsh-hook -d precmd atuin_delayed_init
+}
+
+# Register the hook to run after first prompt
+add-zsh-hook precmd atuin_delayed_init
+
+# Lazy load uv completion
+function uv() {
+  unfunction uv
+  eval "$(command uv generate-shell-completion zsh)"
+  uv "$@"
+}
 
 export PROMPT_EOL_MARK=""
 
