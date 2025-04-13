@@ -30,7 +30,7 @@
   in {
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs pkgs-neovim;};
         modules = [
           ./packages/default.nix
           ./packages/system-packages/nixos.nix
@@ -43,7 +43,7 @@
       };
 
       laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs pkgs-neovim;};
         modules = [
           ./packages/default.nix
           ./packages/system-packages/nixos.nix
