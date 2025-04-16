@@ -18,7 +18,6 @@ return {
     '<leader>s/',
     '<leader>sn',
   },
-  branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
     { -- If encountering errors, see telescope-fzf-native README for installation instructions
