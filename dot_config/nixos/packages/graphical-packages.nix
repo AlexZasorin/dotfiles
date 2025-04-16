@@ -8,6 +8,7 @@
     hydrus
     krita
     pavucontrol
+    protonmail-desktop
     qbittorrent
     spotify
     vesktop
