@@ -11,9 +11,6 @@ layout {
     tab name="notes" {
         pane cwd="~/Repos/notes"
     }
-    tab name="relationship-v2" {
-        pane cwd="~/Repos/relationship-v2"
-    }
     tab name="workflow" {
         pane cwd="~/Repos/workflow"
     }
