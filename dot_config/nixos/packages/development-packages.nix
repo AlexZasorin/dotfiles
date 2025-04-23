@@ -15,6 +15,7 @@
     nodejs_22
     poetry
     pnpm
+    python311
     python312
     python313
     python313Packages.pip
