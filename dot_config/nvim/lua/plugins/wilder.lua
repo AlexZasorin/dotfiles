@@ -12,14 +12,20 @@ return {
     local wilder = require('wilder')
     wilder.setup({ modes = { ':', '/', '?' } })
 
+    -- Enable caching for better performance
+    wilder.set_option('cache', true)
+
+    -- Set debounce time to avoid unnecessary calculations
+    wilder.set_option('debounce', 30) -- milliseconds
+
     wilder.set_option('pipeline', {
       wilder.branch(
         wilder.python_file_finder_pipeline({
           file_command = function(ctx, arg)
             if string.find(arg, '.') ~= nil then
-              return { 'fd', '-tf', '-H' }
+              return { 'rg', '--files', '--hidden' }
             else
-              return { 'fd', '-tf' }
+              return { 'rg', '--files' }
             end
           end,
           dir_command = { 'fd', '-td' },
@@ -34,6 +40,7 @@ return {
           }),
         }),
         wilder.cmdline_pipeline({
+          language = 'python',
           fuzzy = 2,
           fuzzy_filter = wilder.lua_fzy_filter(),
         }),
