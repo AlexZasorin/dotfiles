@@ -11,6 +11,9 @@
   boot.resumeDevice = "/dev/disk/by-uuid/00be8230-2406-4495-b77c-f14ca0ebae89";
   boot.kernelParams = ["mem_sleep_default=deep"];
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
   services.power-profiles-daemon.enable = false;
 
   services.tlp = {
