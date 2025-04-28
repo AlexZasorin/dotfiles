@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     # Development tools
+    android-studio
     basedpyright
     cargo
     cargo-audit
@@ -10,6 +11,7 @@
     direnv
     git-filter-repo
     helix
+    zulu23
     jsonnet
     just
     nodejs_22
