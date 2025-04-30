@@ -219,6 +219,7 @@ return {
         disableOrganzeImports = true,
       },
       bashls = {},
+      -- biome = {},
       cssls = {},
       denols = {
         root_dir = function(fname)
