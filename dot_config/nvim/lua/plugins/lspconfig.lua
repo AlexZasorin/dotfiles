@@ -219,7 +219,7 @@ return {
         disableOrganzeImports = true,
       },
       bashls = {},
-      -- biome = {},
+      biome = {},
       cssls = {},
       denols = {
         root_dir = function(fname)
@@ -376,6 +376,7 @@ return {
       'actionlint',
       'basedpyright',
       'bash-language-server',
+      'biome',
       'css-lsp',
       'delve',
       'deno',

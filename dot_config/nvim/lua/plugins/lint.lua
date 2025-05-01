@@ -1,3 +1,23 @@
+local js_linters = { 'biomejs', 'eslint' }
+-- only run linters if a configuration file is found for the below linters
+local linter_root_markers = {
+  biomejs = { 'biome.json', 'biome.jsonc' },
+  eslint_d = {
+    'eslint.config.js',
+    'eslint.config.mjs',
+    'eslint.config.cjs',
+    'eslint.config.ts',
+    'eslint.config.mts',
+    'eslint.config.cts',
+    -- deprecated
+    '.eslintrc.js',
+    '.eslintrc.cjs',
+    '.eslintrc.yaml',
+    '.eslintrc.yml',
+    '.eslintrc.json',
+  },
+}
+
 return {
 
   { -- Linting
@@ -10,7 +30,10 @@ return {
         dockerfile = { 'hadolint' },
         json = { 'jsonlint' },
         terraform = { 'tflint' },
-        typescript = { 'eslint' },
+        javascript = js_linters,
+        javascriptreact = js_linters,
+        typescript = js_linters,
+        typescriptreact = js_linters,
         rust = { 'clippy' },
       }
 
@@ -56,7 +79,19 @@ return {
           -- avoid superfluous noise, notably within the handy LSP pop-ups that
           -- describe the hovered symbol using Markdown.
           if vim.opt_local.modifiable:get() then
-            lint.try_lint()
+            local names = lint.linters_by_ft[vim.bo.filetype]
+
+            if names == nil then
+              return
+            end
+
+            for _, name in pairs(names) do
+              local next = next
+
+              if linter_root_markers[name] == nil or next(vim.fs.find(linter_root_markers[name], { upward = true })) then
+                lint.try_lint(name)
+              end
+            end
           end
         end,
       })
