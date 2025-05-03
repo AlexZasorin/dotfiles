@@ -13,7 +13,6 @@
     jsonnet
     just
     nodejs_22
-    poetry
     pnpm
     python311
     python312
