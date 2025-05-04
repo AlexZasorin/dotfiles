@@ -29,6 +29,17 @@ return {
         }
       end
     end,
+    formatters = {
+      prettier = {
+        require_cwd = true,
+      },
+      prettierd = {
+        require_cwd = true,
+      },
+      biome = {
+        require_cwd = true,
+      },
+    },
     formatters_by_ft = {
       lua = { 'stylua' },
       jsonnet = { 'jsonnetfmt' },
@@ -36,10 +47,10 @@ return {
       yaml = { 'prettier' },
       json = { 'prettier' },
       jsonc = { 'prettier' },
-      javascript = { 'prettierd', 'prettier', stop_after_first = true },
-      typescript = { 'prettierd', 'prettier', stop_after_first = true },
-      typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
-      javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+      javascript = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
+      typescript = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
+      typescriptreact = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
+      javascriptreact = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
       nix = { 'alejandra' },
       python = { 'ruff_format' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
