@@ -20,7 +20,7 @@ sod() {
   log-msg blue false "Updating chezmoi..."
   chezmoi update
 
-{{ if eq .chezmoi.hostname "R19GQMPKX0" }}
+{{ if eq .chezmoi.hostname "RSS-RSS-R19GQMPKX0" }}
   log-msg blue false "Logging into aws..."
   aws sso login
 {{ end }}
