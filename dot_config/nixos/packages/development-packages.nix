@@ -15,6 +15,7 @@
     jsonnet
     just
     nodejs_22
+    playwright-driver.browsers
     pnpm
     python311
     python312
