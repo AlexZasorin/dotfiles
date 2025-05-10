@@ -226,6 +226,61 @@
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
+        alsa-lib
+        at-spi2-core
+        cairo
+        cups
+        dbus
+        expat
+        fontconfig
+        freetype
+        gdk-pixbuf
+        glib
+        gtk3
+        libdrm
+        libgbm
+        libxkbcommon
+        nspr
+        nss
+        pango
+        xorg.libX11
+        xorg.libXcomposite
+        xorg.libXcursor
+        xorg.libXdamage
+        xorg.libXext
+        xorg.libXfixes
+        xorg.libXi
+        xorg.libXrandr
+        xorg.libXrender
+        xorg.libxcb
+        harfbuzz
+        icu
+        sqlite
+        libxslt
+        lcms2
+        woff2
+        libevent
+        libopus
+        libgcrypt
+        libgpg-error
+        libwebp
+        harfbuzzFull
+        libepoxy
+        libjpeg_turbo
+        libpng
+        enchant
+        libsecret
+        libtasn1
+        hyphen
+        libpsl
+        nghttp2.lib
+        libglvnd
+        libgudev
+        libevdev
+        libffi
+        pcre2
+        json-glib
+        gnutls
       ];
     };
     ssh = {
