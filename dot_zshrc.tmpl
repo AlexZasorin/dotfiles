@@ -179,6 +179,9 @@ export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; 
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$NIX_LD_LIBRARY_PATH"
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 
+export ANTHROPIC_API_KEY=$(cat ~/.anthropic-token)
+
+export PATH="$HOME/.npm-global/bin:$PATH"
 {{ end }}
 
 # disable sort when completing `git checkout`
@@ -268,8 +271,9 @@ export PATH=~/.console-ninja/.bin:~/.cargo/bin:$PATH
 export BROWSER=wslview
 {{ end }}
 
+export GITHUB_TOKEN=$(cat ~/.github-token)
+
 {{ if eq .chezmoi.hostname "RSS-R19GQMPKX0" }}
-export GITHUB_TOKEN=$(cat ~/.github_token)
 export BORAT_URL="http://172.16.4.100"
 {{ end }}
 
