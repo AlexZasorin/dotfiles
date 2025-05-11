@@ -26,6 +26,7 @@
       fd
       fzf
       htop
+      killall
       neofetch
       ripgrep
       smartcat
