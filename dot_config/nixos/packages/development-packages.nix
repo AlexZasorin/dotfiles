@@ -27,8 +27,8 @@
     zig
   ];
 
-  environment.variables = {
-    PLAYWRIGHT_BROWSERS_PATH = ${pkgs.playwright-driver};
-    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = true;
+  environment.sessionVariables = {
+    PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
+    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "true";
   };
 }
