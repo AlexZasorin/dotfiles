@@ -1,4 +1,4 @@
-local opt = vim.opt
+local o = vim.o
 
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -6,7 +6,7 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
-opt.termguicolors = true
+o.termguicolors = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -14,29 +14,29 @@ opt.termguicolors = true
 --  For more options, you can see `:help option-list`
 
 -- Tabs & Indentation
-opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
-opt.shiftwidth = 2 -- 2 spaces for indent width
-opt.expandtab = true -- expand tab to spaces
-opt.autoindent = true -- copy indent from current line when starting new one
+o.tabstop = 2 -- 2 spaces for tabs (prettier default)
+o.shiftwidth = 2 -- 2 spaces for indent width
+o.expandtab = true -- expand tab to spaces
+o.autoindent = true -- copy indent from current line when starting new one
 
 -- Make line numbers default
-opt.number = true
+o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
-opt.relativenumber = true
+o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-opt.mouse = 'a'
+o.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
-opt.showmode = false
+o.showmode = false
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  opt.clipboard = 'unnamedplus'
+  o.clipboard = 'unnamedplus'
 end)
 
 local function is_wsl2()
@@ -77,56 +77,56 @@ elseif not os.getenv('DISPLAY') and not vim.fn.has('macunix') then
 end
 
 -- Enable break indent
-opt.breakindent = true
+o.breakindent = true
 
 -- Save undo history
-opt.undofile = true
+o.undofile = true
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-opt.ignorecase = true
-opt.smartcase = true
+o.ignorecase = true
+o.smartcase = true
 
 -- Keep signcolumn on by default
-opt.signcolumn = 'yes'
+o.signcolumn = 'yes'
 
 -- Decrease update time
-opt.updatetime = 250
+o.updatetime = 250
 
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
-opt.timeoutlen = 300
+o.timeoutlen = 300
 
 -- Configure how new splits should be opened
-opt.splitright = true
-opt.splitbelow = true
+o.splitright = true
+o.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
--- vim.opt.list = true
--- vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- vim.o.list = true
+-- vim.o.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
-opt.inccommand = 'split'
+o.inccommand = 'split'
 
 -- Show which line your cursor is on
-opt.cursorline = true
+o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-opt.scrolloff = 10
+o.scrolloff = 10
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
-opt.confirm = true
+o.confirm = true
 
-opt.foldmethod = 'expr'
-opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-opt.foldtext = ''
-opt.foldlevel = 99
-opt.foldlevelstart = 99
-opt.foldnestmax = 4
+o.foldmethod = 'expr'
+o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+o.foldtext = ''
+o.foldlevel = 99
+o.foldlevelstart = 99
+o.foldnestmax = 4
 
-opt.spell = true
-opt.spelllang = 'en_us'
-opt.spelloptions = 'camel'
+o.spell = true
+o.spelllang = 'en_us'
+o.spelloptions = 'camel'
