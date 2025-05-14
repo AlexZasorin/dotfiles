@@ -277,6 +277,7 @@ export GITHUB_TOKEN=$(cat ~/.github-token)
 
 {{ if eq .chezmoi.hostname "RSS-R19GQMPKX0" }}
 export BORAT_URL="http://172.16.4.100"
+export PATH=~/.npm-global/bin:$PATH
 {{ end }}
 
 {{ if eq .chezmoi.os "darwin" }}
