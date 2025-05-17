@@ -269,8 +269,6 @@ export PATH=~/.console-ninja/.bin:~/.cargo/bin:$PATH
 
 {{ if (and (hasKey .chezmoi.kernel "osrelease") (contains "WSL" .chezmoi.kernel.osrelease)) }}
 export BROWSER=wslview
-{{ else }}
-export BROWSER=firefox
 {{ end}}
 
 export GITHUB_TOKEN=$(cat ~/.github-token)
