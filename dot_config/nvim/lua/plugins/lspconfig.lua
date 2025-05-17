@@ -6,7 +6,7 @@ return {
     -- Mason must be loaded before its dependents so we need to set it up here.
     -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
     { 'mason-org/mason.nvim', opts = {} },
-    'mason-org/mason-lspconfig.nvim',
+    { 'mason-org/mason-lspconfig.nvim', opts = {} },
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     'b0o/schemastore.nvim',
 
@@ -15,7 +15,6 @@ return {
 
     -- Allows extra capabilities provides by nvim-cmp
     'hrsh7th/cmp-nvim-lsp',
-    'pmizio/typescript-tools.nvim',
   },
   config = function()
     -- Brief aside: **What is LSP?**
@@ -67,7 +66,6 @@ return {
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
-
         map('gra', vim.lsp.buf.code_action, '[g]oto Code [a]ction', { 'n', 'x' })
 
         -- Find references for the word under your cursor.
@@ -223,15 +221,17 @@ return {
       bashls = {},
       biome = {},
       cssls = {},
-      denols = {
-        root_dir = function(fname)
-          if string.find(fname, 'scaffold/src/templates') then
-            return nil
-          end
-          return util.root_pattern('deno.json', 'deno.jsonc')(fname)
-        end,
-        single_file_support = false,
-      },
+      -- denols = {
+      --   root_dir = function(fname)
+      --     if string.find(fname, 'scaffold/src/templates') then
+      --       print('Not setting up denols for scaffold templates')
+      --       return nil
+      --     end
+      --     print('Setting up denols for scaffold templates')
+      --     return util.root_pattern('deno.json', 'deno.jsonc')(fname)
+      --   end,
+      --   single_file_support = false,
+      -- },
       docker_compose_language_service = {},
       dockerls = {},
       eslint = {},
@@ -381,7 +381,6 @@ return {
       'biome',
       'css-lsp',
       'delve',
-      'deno',
       'docker_compose_language_service',
       'dockerfile-language-server',
       'eslint-lsp',
@@ -411,89 +410,13 @@ return {
     })
     require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
-    -- FIXME: Look into moving this into typescript-tools.lua, particularly the keymap config
-    require('mason-lspconfig').setup({
-      ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
-      automatic_installation = false,
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          -- This handles overriding only values explicitly passed
-          -- by the server configuration above. Useful when disabling
-          -- certain features of an LSP (for example, turning off formatting for ts_ls)
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
-        end,
-        ['ts_ls'] = function()
-          local is_deno = util.root_pattern('deno.json', 'deno.jsonc')(vim.fn.getcwd()) ~= nil
-          local in_templates = string.match(vim.fn.expand('%:p'), '/scaffold/src/templates/') ~= nil
+    -- Installed LSPs are configured and enabled automatically with mason-lspconfig
+    -- The loop below is for overriding the default configuration of LSPs with the ones in the servers table
+    for server_name, config in pairs(servers) do
+      vim.lsp.config(server_name, config)
+    end
 
-          if is_deno or in_templates then
-            return -- Don't setup typescript-tools in Deno projects or template files
-          end
-
-          require('typescript-tools').setup({
-            settings = {
-              tsserver_file_preferences = {
-                includeInlayParameterNameHints = 'all',
-                includeCompletionsForModuleExports = true,
-                quotePreference = 'auto',
-              },
-              tsserver_format_options = {
-                allowIncompleteCompletions = false,
-                allowRenameOfImportPath = false,
-              },
-              jsx_close_tag = {
-                enable = true,
-                filetypes = { 'javascriptreact', 'typescriptreact' },
-              },
-            },
-            root_dir = util.root_pattern('package.json', 'tsconfig.json'),
-            single_file_support = false,
-          })
-          local keymap_group = vim.api.nvim_create_augroup('TSToolsKeymaps', { clear = true })
-          local opts = { noremap = true, silent = true }
-
-          local function setup_keymaps()
-            vim.keymap.set('n', '<leader>rf', ':TSToolsRenameFile<CR>', opts)
-            vim.keymap.set('n', '<leader>oi', ':TSToolsOrganizeImports<CR>', opts)
-            vim.keymap.set('n', '<leader>ru', ':TSToolsRemoveUnused<CR>', opts)
-            vim.keymap.set('n', '<leader>ai', ':TSToolsAddMissingImports<CR>', opts)
-            vim.keymap.set('n', '<leader>cf', ':TSToolsFixAll<CR>', opts)
-            vim.keymap.set('n', '<leader>gfr', ':TSToolsFileReferences<CR>', opts)
-            vim.keymap.set('n', 'gd', ':TSToolsGoToSourceDefinition<CR>', opts)
-          end
-
-          local function clear_keymaps()
-            local keys = {
-              '<leader>rf',
-              '<leader>oi',
-              '<leader>ru',
-              '<leader>ai',
-              '<leader>cf',
-              '<leader>gfr',
-              'gd',
-            }
-
-            for _, key in ipairs(keys) do
-              local ok = pcall(vim.keymap.del, 'n', key)
-              if not ok then
-                vim.notify(string.format('Failed to delete keymap: %s', key), vim.log.levels.WARN)
-              end
-            end
-          end
-
-          vim.api.nvim_create_autocmd('LspAttach', {
-            group = keymap_group,
-            callback = function(args)
-              local client = vim.lsp.get_client_by_id(args.data.client_id)
-              if client and client.name == 'typescript-tools' then
-                setup_keymaps()
-              end
-            end,
-          })
-        end,
-      },
-    })
+    -- NOTE: Some servers may require an old setup until they are updated. For the full list refer here: https://github.com/neovim/nvim-lspconfig/issues/3705
+    -- These servers will have to be manually set up with require("lspconfig").server_name.setup{}
   end,
 }
