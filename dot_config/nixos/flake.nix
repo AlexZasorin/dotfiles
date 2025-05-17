@@ -3,14 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-neovim.url = "github:nixos/nixpkgs/21808d22b1cda1898b71cf1a1beb524a97add2c4";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
   };
 
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-neovim,
     nixos-wsl,
     ...
   } @ inputs: let
@@ -21,16 +19,10 @@
         allowUnfree = true;
       };
     };
-    pkgs-neovim = import nixpkgs-neovim {
-      inherit system;
-      config = {
-        allowUnfree = true;
-      };
-    };
   in {
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs pkgs-neovim;};
+        specialArgs = {inherit inputs;};
         modules = [
           ./packages/default.nix
           ./packages/system-packages/nixos.nix
@@ -43,7 +35,7 @@
       };
 
       laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs pkgs-neovim;};
+        specialArgs = {inherit inputs;};
         modules = [
           ./packages/default.nix
           ./packages/system-packages/nixos.nix
@@ -56,7 +48,7 @@
       };
 
       wsl = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs pkgs-neovim;};
+        specialArgs = {inherit inputs;};
         system = "x86_64-linux";
         modules = [
           nixos-wsl.nixosModules.default
@@ -69,7 +61,7 @@
       };
 
       server = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs pkgs-neovim;};
+        specialArgs = {inherit inputs;};
         system = "x86_64-linux";
         modules = [
           ./packages/base-packages.nix

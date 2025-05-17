@@ -1,8 +1,4 @@
-{
-  pkgs,
-  pkgs-neovim,
-  ...
-}: {
+{pkgs, ...}: {
   environment.systemPackages = let
     standardPackages = with pkgs; [
       # Development tools
@@ -15,6 +11,7 @@
       go
       luarocks
       prettierd
+      neovim
 
       # Shell utilities
       atuin
@@ -63,11 +60,8 @@
       ffmpeg
       slides
     ];
-    neovimPackages = with pkgs-neovim; [
-      neovim
-    ];
   in
-    standardPackages ++ neovimPackages;
+    standardPackages;
 
   # Font packages
   fonts.packages = with pkgs; [
