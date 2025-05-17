@@ -221,17 +221,15 @@ return {
       bashls = {},
       biome = {},
       cssls = {},
-      -- denols = {
-      --   root_dir = function(fname)
-      --     if string.find(fname, 'scaffold/src/templates') then
-      --       print('Not setting up denols for scaffold templates')
-      --       return nil
-      --     end
-      --     print('Setting up denols for scaffold templates')
-      --     return util.root_pattern('deno.json', 'deno.jsonc')(fname)
-      --   end,
-      --   single_file_support = false,
-      -- },
+      denols = {
+        root_dir = function(fname)
+          if string.find(fname, 'scaffold/src/templates') then
+            return nil
+          end
+          return util.root_pattern('deno.json', 'deno.jsonc')(fname)
+        end,
+        single_file_support = false,
+      },
       docker_compose_language_service = {},
       dockerls = {},
       eslint = {},
@@ -381,6 +379,7 @@ return {
       'biome',
       'css-lsp',
       'delve',
+      'deno',
       'docker_compose_language_service',
       'dockerfile-language-server',
       'eslint-lsp',
