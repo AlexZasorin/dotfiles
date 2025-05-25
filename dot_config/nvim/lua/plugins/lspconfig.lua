@@ -395,7 +395,6 @@ return {
       'markdownlint',
       'marksman',
       'prettier',
-      'prettierd',
       'ruff',
       'rust-analyzer',
       'sonarlint-language-server',

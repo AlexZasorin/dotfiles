@@ -24,7 +24,7 @@ return {
         return nil
       else
         return {
-          timeout_ms = 500,
+          timeout_ms = 1000,
           lsp_format = 'fallback',
         }
       end
@@ -33,24 +33,22 @@ return {
       prettier = {
         require_cwd = true,
       },
-      prettierd = {
-        require_cwd = true,
-      },
       biome = {
         require_cwd = true,
       },
     },
     formatters_by_ft = {
       lua = { 'stylua' },
+      html = { 'prettier' },
       jsonnet = { 'jsonnetfmt' },
       markdown = { 'markdownlint' },
       yaml = { 'prettier' },
       json = { 'prettier' },
       jsonc = { 'prettier' },
-      javascript = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
-      typescript = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
-      typescriptreact = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
-      javascriptreact = { 'prettierd', 'prettier', 'biome', stop_after_first = true },
+      javascript = { 'prettier', 'biome', stop_after_first = true },
+      typescript = { 'prettier', 'biome', stop_after_first = true },
+      typescriptreact = { 'prettier', 'biome', stop_after_first = true },
+      javascriptreact = { 'prettier', 'biome', stop_after_first = true },
       nix = { 'alejandra' },
       python = { 'ruff_format' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
