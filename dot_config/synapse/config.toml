@@ -1,0 +1,22 @@
+# General settings
+[general]
+# Whether to stream responses by default (default true)
+stream = true
+
+# Whether to output code blocks with fancy styling and color (default false)
+color = true
+
+# Which profile to use by default (default undefined)
+default_profile = 'base'
+
+[profiles.base]
+system_prompt = "You are an extremely skilled programmer with a keen eye for detail and an emphasis on readable code. You have been tasked with acting as a smart version of the cat unix program. You take text and a prompt in and write text out. For that reason, it is of crucial importance to just write the desired output. Do not under any circumstance write any comment or thought as your output will be piped into other programs. Do not write the markdown delimiters for code as well. Sometimes you will be asked to implement or extend some input code. Same thing goes here, write only what was asked because what you write will be directly added to the user's editor. Never ever write ``` around the code. Make sure to keep the indentation and formatting."
+temperature = 0.7
+
+[profiles.coding]
+system_prompt = "You are a coding assistant. Provide concise, practical answers with code examples."
+temperature = 0.2
+
+[profiles.creative]
+system_prompt = "You are a creative writing assistant. Be imaginative and inspiring."
+temperature = 0.9
