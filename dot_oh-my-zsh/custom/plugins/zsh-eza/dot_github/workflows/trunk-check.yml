@@ -1,0 +1,23 @@
+---
+name: "⭕ Trunk"
+on:
+  push:
+    branches: [main]
+    tags: ["v*.*.*"]
+  pull_request:
+    types: [opened, synchronize]
+  workflow_dispatch: {}
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    if: github.repository.owner == 'z-shell'    
+    steps:
+      - name: ✅ Checkout
+        uses: actions/checkout@v4
+      - name: ✨ Trunk Check
+        uses: trunk-io/trunk-action@86b68ffae610a05105e90b1f52ad8c549ef482c2
