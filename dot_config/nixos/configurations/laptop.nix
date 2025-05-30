@@ -62,4 +62,10 @@
       ];
     };
   };
+
+  virtualisation = {
+    docker = {
+      enable = true;
+    };
+  };
 }
