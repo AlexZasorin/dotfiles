@@ -9,6 +9,7 @@
     cargo-tarpaulin
     claude-code
     direnv
+    flyctl
     git-filter-repo
     helix
     zulu23
