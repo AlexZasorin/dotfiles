@@ -7,6 +7,7 @@
     google-chrome
     hydrus
     krita
+    libreoffice-qt6
     pavucontrol
     protonmail-desktop
     qbittorrent
