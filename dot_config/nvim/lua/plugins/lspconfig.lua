@@ -273,7 +273,6 @@ return {
       --     ignore = { '*' },
       --   },
       -- },
-      nil_ls = {},
       ruff = {
         on_attach = function(client, bufnr)
           if client.name == 'ruff' then
@@ -375,7 +374,6 @@ return {
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'actionlint',
-      'alejandra',
       'basedpyright',
       'bash-language-server',
       'biome',
@@ -396,7 +394,6 @@ return {
       'lua-language-server',
       'markdownlint',
       'marksman',
-      'nil_ls',
       'prettier',
       'ruff',
       'rust-analyzer',

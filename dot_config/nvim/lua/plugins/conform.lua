@@ -49,7 +49,6 @@ return {
       typescript = { 'prettier', 'biome', stop_after_first = true },
       typescriptreact = { 'prettier', 'biome', stop_after_first = true },
       javascriptreact = { 'prettier', 'biome', stop_after_first = true },
-      nix = { 'alejandra' },
       python = { 'ruff_format' },
       rust = { 'rustfmt', lsp_format = 'fallback' },
       -- Conform can also run multiple formatters sequentially
