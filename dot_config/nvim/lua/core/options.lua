@@ -35,14 +35,6 @@ o.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
 o.showmode = false
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  o.clipboard = 'unnamedplus'
-end)
-
 local function is_wsl2()
   local output = vim.fn.systemlist('uname -r')
   return output[1] and output[1]:lower():match('microsoft') and output[1]:match('WSL2') and true or false
@@ -64,20 +56,33 @@ if is_wsl2() then
 elseif not os.getenv('DISPLAY') and not vim.fn.has('macunix') then
   -- Running on headless server
   local function paste()
-    return { vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('') }
+    return {
+      vim.fn.split(vim.fn.getreg(''), '\n'),
+      vim.fn.getregtype(''),
+    }
   end
-  vim.o.clipboard = 'unnamedplus'
-  vim.g.clipboard = {
-    name = 'OSC 52',
-    copy = {
-      ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-      ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-    },
-    paste = {
-      ['+'] = paste,
-      ['*'] = paste,
-    },
-  }
+  vim.schedule(function()
+    vim.o.clipboard = 'unnamedplus'
+    vim.g.clipboard = {
+      name = 'OSC 52',
+      copy = {
+        ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+        ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+      },
+      paste = {
+        ['+'] = paste,
+        ['*'] = paste,
+      },
+    }
+  end)
+else
+  -- Sync clipboard between OS and Neovim.
+  --  Schedule the setting after `UiEnter` because it can increase startup-time.
+  --  Remove this option if you want your OS clipboard to remain independent.
+  --  See `:help 'clipboard'`
+  vim.schedule(function()
+    o.clipboard = 'unnamedplus'
+  end)
 end
 
 -- Enable break indent
