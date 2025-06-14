@@ -6,5 +6,6 @@
     os-prober
     pciutils
     usbutils
+    wl-clipboard
   ];
 }
