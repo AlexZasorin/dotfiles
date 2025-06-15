@@ -241,7 +241,6 @@
         libgbm
         libxkbcommon
         nspr
-        nss
         pango
         xorg.libX11
         xorg.libXcomposite
