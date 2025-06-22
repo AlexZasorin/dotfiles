@@ -35,6 +35,11 @@ o.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
 o.showmode = false
 
+o.wrap = true -- Wrap lines
+o.linebreak = true -- Wrap lines at word boundaries
+o.breakindent = true -- Indent wrapped lines
+o.showbreak = '↪ ' -- Show a symbol at the beginning of wrapped lines
+
 local function is_wsl2()
   local output = vim.fn.systemlist('uname -r')
   return output[1] and output[1]:lower():match('microsoft') and output[1]:match('WSL2') and true or false
