@@ -212,7 +212,7 @@ return {
       -- But for many setups, the LSP (`ts_ls`) will work just fine
       basedpyright = {
         analysis = {
-          diagnosticMode = 'workpsace',
+          diagnosticMode = 'workspace',
           autoSearchPaths = true,
           useLibraryCodeForTypes = true,
         },
@@ -396,7 +396,6 @@ return {
       'prettier',
       'ruff',
       'rust-analyzer',
-      'sonarlint-language-server',
       'stylua', -- Used to format Lua code
       'tailwindcss-language-server',
       'tflint',
