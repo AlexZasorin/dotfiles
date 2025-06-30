@@ -9,35 +9,57 @@ return {
     'AlexZasorin/neotest-playwright',
   },
   config = function()
-    require('neotest').setup({
-      adapters = {
-        require('neotest-jest')({
-          jestCommand = 'pnpm jest --coverage',
-          jestConfigFile = 'jest.config.js',
-          jest_test_discovery = false,
-          env = { CI = true },
-          cwd = function(path)
-            return vim.fn.getcwd()
-          end,
-        }),
+    local adapters = {
+      require('neotest-jest')({
+        jestCommand = 'pnpm jest',
+        jestConfigFile = 'jest.config.js',
+        jest_test_discovery = false,
+        env = { CI = true },
+        cwd = function(path)
+          return vim.fn.fnamemodify(path, ':p:h')
+        end,
+      }),
+    }
+
+    -- Only add playwright adapter if e2e directory exists
+    local function find_playwright_config()
+      local config_path = vim.fn.glob(vim.loop.cwd() .. '/**/playwright.config.ts', true, true)[1]
+      return config_path
+    end
+
+    local function get_e2e_dir()
+      local config_path = find_playwright_config()
+      if config_path then
+        return vim.fn.fnamemodify(config_path, ':h')
+      end
+      return nil
+    end
+
+    local e2e_dir = get_e2e_dir()
+    if e2e_dir and vim.fn.isdirectory(e2e_dir) == 1 then
+      table.insert(
+        adapters,
         require('neotest-playwright').adapter({
           options = {
             get_cwd = function()
-              return vim.loop.cwd() .. '/e2e'
+              return e2e_dir
             end,
             get_playwright_config = function()
-              return vim.loop.cwd() .. '/e2e/playwright.config.ts'
+              return e2e_dir .. '/playwright.config.ts'
             end,
             get_playwright_binary = function()
-              return vim.loop.cwd() .. '/e2e/node_modules/.bin/playwright'
+              return e2e_dir .. '/node_modules/.bin/playwright'
             end,
             is_test_file = function(file_path)
-              local result = file_path:find('%.e2e%.ts?$') ~= nil
-              return result
+              return file_path:find('%.e2e%.ts?$') ~= nil
             end,
           },
-        }),
-      },
+        })
+      )
+    end
+
+    require('neotest').setup({
+      adapters = adapters,
       output = { open_on_run = true },
     })
   end,
@@ -105,6 +127,13 @@ return {
         require('neotest').watch.toggle(vim.fn.expand('%'))
       end,
       desc = 'Toggle Watch',
+    },
+    {
+      '<leader>Td',
+      function()
+        require('neotest').run.run({ strategy = 'dap' })
+      end,
+      desc = 'Debug Nearest',
     },
   },
 }
