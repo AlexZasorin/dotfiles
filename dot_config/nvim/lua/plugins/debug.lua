@@ -14,7 +14,6 @@ return {
     'nvim-neotest/nvim-nio',
     'mason-org/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
-    'leoluz/nvim-dap-go',
   },
   keys = {
     -- Basic debugging keymaps, feel free to change to your liking!
@@ -86,10 +85,7 @@ return {
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
-        'delve',
         'js-debug-adapter',
-        'chrome-debug-adapter',
-        'firefox-debug-adapter',
       },
     })
 
@@ -132,13 +128,57 @@ return {
     dap.listeners.before.event_terminated['dapui_config'] = dapui.close
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
-    -- Install golang specific config
-    require('dap-go').setup({
-      delve = {
-        -- On Windows delve must be run attached or it crashes.
-        -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-        detached = vim.fn.has('win32') == 0,
+    require('dap').adapters['pwa-node'] = {
+      type = 'server',
+      host = 'localhost',
+      port = '${port}',
+      executable = {
+        command = 'node',
+        -- 💀 Make sure to update this path to point to your installation
+        args = {
+          vim.fn.expand('~/.local/share/nvim/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js'),
+          '${port}',
+        },
       },
-    })
+    }
+
+    require('dap').adapters['node'] = function(cb, config)
+      if config.type == 'node' then
+        config.type = 'pwa-node'
+      end
+      local nativeAdapter = dap.adapters['pwa-node']
+      if type(nativeAdapter) == 'function' then
+        nativeAdapter(cb, config)
+      else
+        cb(nativeAdapter)
+      end
+    end
+
+    local js_filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' }
+
+    local vscode = require('dap.ext.vscode')
+    vscode.type_to_filetypes['node'] = js_filetypes
+    vscode.type_to_filetypes['pwa-node'] = js_filetypes
+
+    for _, language in ipairs(js_filetypes) do
+      if not dap.configurations[language] then
+        dap.configurations[language] = {
+          {
+            type = 'pwa-node',
+            request = 'launch',
+            name = 'Launch file',
+            program = '${file}',
+            cwd = '${workspaceFolder}',
+          },
+          {
+            type = 'pwa-node',
+            request = 'attach',
+            name = 'Attach',
+            processId = require('dap.utils').pick_process,
+            cwd = '${workspaceFolder}',
+          },
+        }
+      end
+    end
   end,
 }

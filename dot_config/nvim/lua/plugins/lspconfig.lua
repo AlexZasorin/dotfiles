@@ -378,7 +378,6 @@ return {
       'bash-language-server',
       'biome',
       'css-lsp',
-      'delve',
       'deno',
       'docker_compose_language_service',
       'dockerfile-language-server',
@@ -403,8 +402,6 @@ return {
       'tflint',
       'yaml-language-server',
       'yamllint',
-      'js-debug-adapter',
-      'firefox-debug-adapter',
     })
     require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
