@@ -17,12 +17,11 @@ config.disable_default_key_bindings = true
 local act = wezterm.action
 config.keys = {
   -- paste from the clipboard
+{ key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
 {{ if ne .chezmoi.os "darwin" }}
-  { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
   { key = '-', mods = 'CTRL', action = act.DecreaseFontSize },
   { key = '=', mods = 'CTRL', action = act.IncreaseFontSize },
 {{ else }}
-  { key = 'v', mods = 'CMD', action = act.PasteFrom 'Clipboard' },
   { key = '-', mods = 'CMD', action = act.DecreaseFontSize },
   { key = '=', mods = 'CMD', action = act.IncreaseFontSize },
 {{ end }}
