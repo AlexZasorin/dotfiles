@@ -38,6 +38,7 @@ return {
       },
     },
     formatters_by_ft = {
+      handlebars = { 'prettier' },
       lua = { 'stylua' },
       html = { 'prettier' },
       jsonnet = { 'jsonnetfmt' },
