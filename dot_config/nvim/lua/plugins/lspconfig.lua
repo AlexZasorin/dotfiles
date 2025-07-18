@@ -383,6 +383,7 @@ return {
       'dockerfile-language-server',
       'eslint-lsp',
       'eslint',
+      'glint',
       'graphql-language-service-cli',
       'hadolint',
       'html-lsp',
