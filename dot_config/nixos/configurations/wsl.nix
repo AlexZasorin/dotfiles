@@ -52,6 +52,12 @@
 
   system.stateVersion = "24.05";
 
+  virtualisation = {
+    docker = {
+      enable = true;
+    };
+  };
+
   system.autoUpgrade = {
     enable = true;
     flake = inputs.self.outPath;
