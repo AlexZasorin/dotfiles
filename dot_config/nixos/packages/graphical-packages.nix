@@ -1,10 +1,10 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     # Applications
+    darktable
     discord
     kdePackages.filelight
     firefox
-    google-chrome
     hydrus
     krita
     libreoffice-qt6
