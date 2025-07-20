@@ -85,8 +85,6 @@
 
   services.ivpn.enable = true;
 
-  services.gnome.gnome-keyring.enable = true;
-
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
   time.hardwareClockInLocalTime = true;
