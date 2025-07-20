@@ -39,7 +39,6 @@
         modules = [
           ./packages/default.nix
           ./packages/system-packages/nixos.nix
-          ./graphics/radeon.nix
           ./configurations/configuration.nix
           ./configurations/laptop.nix
           ./secrets.nix
