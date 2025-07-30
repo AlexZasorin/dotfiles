@@ -287,9 +287,9 @@ export LDFLAGS="-L/opt/homebrew/opt/curl/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/curl/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/curl/lib/pkgconfig"
 
-export CLAUDE_CODE_USE_BEDROCK=1
-export AWS_REGION=us-west-2
-export ANTHROPIC_MODEL=us.anthropic.claude-sonnet-4-20250514-v1:0
+## export CLAUDE_CODE_USE_BEDROCK=1
+## export AWS_REGION=us-west-2
+## export ANTHROPIC_MODEL=us.anthropic.claude-sonnet-4-20250514-v1:0
 
 if type brew &>/dev/null; then
  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
