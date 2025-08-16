@@ -273,6 +273,7 @@ return {
       --     ignore = { '*' },
       --   },
       -- },
+      prismals = {},
       ruff = {
         on_attach = function(client, bufnr)
           if client.name == 'ruff' then
@@ -395,6 +396,7 @@ return {
       'markdownlint',
       'marksman',
       'prettier',
+      'prisma-language-server',
       'ruff',
       'rust-analyzer',
       'stylua', -- Used to format Lua code

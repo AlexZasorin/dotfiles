@@ -30,6 +30,7 @@ return {
         'markdown_inline',
         'mermaid',
         'nix',
+        'prisma',
         'python',
         'regex',
         'rust',
