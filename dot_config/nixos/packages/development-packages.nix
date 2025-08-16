@@ -5,28 +5,29 @@
     basedpyright
     cargo
     cargo-audit
-    cargo-watch
     cargo-tarpaulin
-    claude-code
+    cargo-watch
     chromium
+    claude-code
     direnv
     flyctl
     git-filter-repo
     helix
-    zulu23
     jsonnet
     just
-    nodejs_22
+    nodejs_24
     playwright-driver.browsers
     pnpm
+    prisma-engines
+    pyright
     python311
     python312
     python313
     python313Packages.pip
-    pyright
     rustup
     uv
     zig
+    zulu23
   ];
 
   environment.variables = {
@@ -34,5 +35,10 @@
     PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "true";
     PUPPETEER_SKIP_DOWNLOAD = "1"; # Skip downloading Chromium for Puppeteer
     PUPPETEER_EXECUTABLE_PATH = "${pkgs.chromium}/bin/chromium"; # Use system Chromium
+
+    PRISMA_SCHEMA_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/schema-engine";
+    PRISMA_QUERY_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/query-engine";
+    PRISMA_QUERY_ENGINE_LIBRARY = "${pkgs.prisma-engines}/lib/libquery_engine.node";
+    PRISMA_FMT_BINARY = "${pkgs.prisma-engines}/bin/prisma-fmt";
   };
 }
