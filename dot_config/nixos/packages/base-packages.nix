@@ -40,6 +40,7 @@
       dig
       ivpn
       ivpn-service
+      openssl
       traceroute
 
       # Version control
