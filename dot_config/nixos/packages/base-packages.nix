@@ -40,6 +40,8 @@
       dig
       ivpn
       ivpn-service
+      lsof
+      unixtools.netstat
       openssl
       traceroute
 
