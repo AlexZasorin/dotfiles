@@ -16,7 +16,7 @@
   wsl.defaultUser = "solyx";
   users.users.solyx = {
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = ["wheel", "docker"];
   };
 
   services.atuin.enable = true;
