@@ -62,6 +62,7 @@
       asciiquarium
       ffmpeg
       slides
+      spicetify-cli
     ];
   in
     standardPackages;
