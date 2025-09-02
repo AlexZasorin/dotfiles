@@ -1,6 +1,5 @@
 # pack-refs with: peeled fully-peeled sorted 
 4127f435a979de51632860d40808435690e4777f refs/remotes/origin/28-bug-adding-zsh-eza-without-eza-installed-prevents-zsh-startup
-cb3c9338ac0ea943743ed9c93649a92710d9f53e refs/remotes/origin/dependabot/github_actions/trunk-io/trunk-action-1.2.3
 79484190e314c0e5bdbcc3e610300589606c45f0 refs/remotes/origin/main
 f92b44334bfe08e16f075e80ec4ed61941fea064 refs/remotes/origin/next
 56ddb33cf371089b6debbe27c239f5b441d5cf11 refs/tags/v1.0.0

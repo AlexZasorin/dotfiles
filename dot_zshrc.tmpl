@@ -97,7 +97,7 @@ fi
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(evalcache git kubectl sudo docker-compose fzf-tab gh history kubectx vi-mode zoxide chezmoi)
+plugins=(evalcache git kubectl sudo docker-compose fzf-tab gh history kubectx vi-mode zoxide zsh-eza chezmoi)
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
@@ -261,12 +261,13 @@ _gen_fzf_default_opts
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=1
-alias ld="eza -lD"
-alias lf="eza -lF --color=always | grep -v /"
-alias ls="eza -la"
-alias lt="eza -la --sort=modified"
-# eval "$(zellij setup --generate-auto-start zsh)"
-#
+
+if type brew &>/dev/null; then
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    autoload -Uz compinit
+    compinit
+fi
+
 export PATH=~/.console-ninja/.bin:~/.cargo/bin:$PATH
 
 {{ if (and (hasKey .chezmoi.kernel "osrelease") (contains "WSL" .chezmoi.kernel.osrelease)) }}
