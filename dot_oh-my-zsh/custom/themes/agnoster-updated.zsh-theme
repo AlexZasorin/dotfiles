@@ -179,6 +179,8 @@ prompt_kubectx() {
     prompt_segment green black " ${CTX} "
   elif [[ $CTX == *"qa"* ]]; then
 	  prompt_segment yellow black " ${CTX} "
+  elif [[ $CTX == *"staging"* ]]; then
+	  prompt_segment yellow black " ${CTX} "
   elif [[ $CTX == *"prod"* || $CTX == *"hc"* ]]; then
 	  prompt_segment red yellow " ${CTX} "
   fi
