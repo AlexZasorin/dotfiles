@@ -65,3 +65,5 @@ end, { noremap = true, silent = true, desc = 'Reset diagnostics and restart LSP'
 
 keymap.set('n', '<C-x>', ':xall<CR>', opts)
 keymap.set('n', '<A-w>', ':w<CR>', opts)
+
+keymap.set('n', '<C-A-v>', '<C-v>', { desc = 'Visual block mode' })
