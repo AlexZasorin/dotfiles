@@ -1,5 +1,6 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
   environment.systemPackages = let
+    neovim-pinned = inputs.nixpkgs-neovim.legacyPackages.${pkgs.system}.neovim;
     standardPackages = with pkgs; [
       # Development tools
       alejandra
@@ -11,7 +12,7 @@
       go
       luarocks
       prettierd
-      neovim
+      neovim-pinned
 
       # Shell utilities
       atuin
