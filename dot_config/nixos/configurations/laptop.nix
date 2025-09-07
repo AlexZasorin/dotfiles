@@ -37,13 +37,14 @@
   };
 
   services.logind = {
-    lidSwitch = "suspend-then-hibernate";
-    extraConfig = ''
-      HandlePowerKey=suspend-then-hibernate
-      IdleAction=suspend-then-hibernate
-      IdleActionSec=10m
-    '';
+    settings.Login = {
+      HandleLidSwitch = "suspend-then-hibernate";
+      HandlePowerKey="suspend-then-hibernate";
+      IdleAction="suspend-then-hibernate";
+      IdleActionSec="10m";
+    };
   };
+
 
   services.fstrim.enable = lib.mkDefault true;
 
