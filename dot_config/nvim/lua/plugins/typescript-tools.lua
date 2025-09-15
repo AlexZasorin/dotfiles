@@ -1,5 +1,5 @@
 return {
-  'pmizio/typescript-tools.nvim',
+  'Yuki-bun/typescript-tools.nvim',
   dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
   opts = {},
   lazy = false,
