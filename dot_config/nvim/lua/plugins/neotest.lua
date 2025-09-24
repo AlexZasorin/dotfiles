@@ -12,7 +12,20 @@ return {
     local adapters = {
       require('neotest-jest')({
         jestCommand = 'pnpm jest',
-        jestConfigFile = 'jest.config.js',
+        jestConfigFile = function(path)
+          local dir = vim.fn.fnamemodify(path, ':p:h')
+          local config_files = vim.fs.find({ 'jest.config.js', 'jest.config.cjs' }, {
+            path = dir,
+            upward = true,
+            limit = 1,
+          })
+
+          if #config_files > 0 then
+            return config_files[1]
+          else
+            return 'jest.config.js' -- fallback to default
+          end
+        end,
         jest_test_discovery = false,
         env = { CI = true },
         cwd = function(path)
