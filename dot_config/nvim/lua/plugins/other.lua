@@ -2,7 +2,7 @@ return {
   'rgroli/other.nvim',
   keys = {
     { 'go', '<cmd>Other<CR>', desc = 'Open other file' },
-    { 'gs', '<cmd>OtherVSplit<CR>', desc = 'Open other file in vertical split' },
+    { 'gso', '<cmd>OtherVSplit<CR>', desc = 'Open other file in vertical split' },
   },
   dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
