@@ -61,6 +61,7 @@
 
       # Other CLI tools
       asciiquarium
+      dmidecode
       ffmpeg
       slides
       spicetify-cli
