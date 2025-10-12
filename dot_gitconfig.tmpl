@@ -1,7 +1,13 @@
 [credential "https://github.com"]
   helper = 
+{{- if (and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "nixos")) }}
+  helper = !/run/current-system/sw/bin/gh auth git-credential
+{{ end }}
 [credential "https://gist.github.com"]
   helper = 
+{{- if (and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "nixos")) }}
+  helper = !/run/current-system/sw/bin/gh auth git-credential
+{{ end }}
 
 [core]
   sshCommand = "ssh -i ~/.ssh/id_ed25519_personal"
