@@ -33,7 +33,7 @@
     libsForQt5.qt5.qtwayland
     nwg-bar
     kdePackages.polkit-kde-agent-1
-    rofi-wayland
+    rofi
     waybar
     wireplumber
     wofi
