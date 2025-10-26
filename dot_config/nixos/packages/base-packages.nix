@@ -52,7 +52,6 @@
       lazygit
 
       # Cloud & container tools
-      aws-sam-cli
       docker
       docker-compose
       kubectl
