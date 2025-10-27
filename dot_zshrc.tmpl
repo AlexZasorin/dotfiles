@@ -97,7 +97,7 @@ fi
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(evalcache git kubectl sudo docker-compose fzf-tab gh history kubectx vi-mode zoxide zsh-eza chezmoi)
+plugins=(evalcache git kubectl sudo docker-compose fzf-tab gh history kubectx vi-mode zoxide zsh-eza chezmoi zsh-syntax-highlighting)
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
@@ -138,7 +138,6 @@ alias kill-vpn="_kill_vpn"
 
 source $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source $HOME/.oh-my-zsh/custom/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-source $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export NVM_DIR="$HOME/.nvm"
 
