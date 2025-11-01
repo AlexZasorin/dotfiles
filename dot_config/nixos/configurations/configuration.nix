@@ -119,7 +119,15 @@
   services.atuin.enable = true;
 
   # Enable SDDM
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    setupScript = ''
+      #!/bin/sh
+      ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-A-1 --auto --left-of DP-2 --noprimary
+      ${pkgs.xorg.xrandr}/bin/xrandr --output DP-2 --auto --left-of HDMI-A-2 --primary
+    '';
+
+  };
   # services.displayManager.sddm.wayland.enable = true;
 
   # Enable XDG Portal?
