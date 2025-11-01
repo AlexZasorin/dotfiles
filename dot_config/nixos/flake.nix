@@ -28,6 +28,7 @@
         modules = [
           ./packages/default.nix
           ./packages/system-packages/nixos.nix
+          ./packages/gaming.nix
           ./graphics/nvidia.nix
           ./configurations/configuration.nix
           ./configurations/desktop.nix

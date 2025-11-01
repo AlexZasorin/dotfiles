@@ -19,6 +19,7 @@
 
     # KDE specific
     kdePackages.kdeconnect-kde
+    k4dirstat
 
     # Other graphical tools
     libnotify
