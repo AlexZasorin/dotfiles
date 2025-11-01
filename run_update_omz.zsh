@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if [ -d ~/.oh-my-zsh/ ]; then
+if [ -d ~/.oh-my-zsh/README.md ]; then
   source ~/.oh-my-zsh/oh-my-zsh.sh
   omz update
 else
