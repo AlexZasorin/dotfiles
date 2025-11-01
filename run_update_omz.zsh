@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
-if [ -d ~/.oh-my-zsh/README.md ]; then
+if [[ -f ~/.oh-my-zsh/README.md ]]; then
+  echo "Found omz README.md"
   source ~/.oh-my-zsh/oh-my-zsh.sh
   omz update
 else
