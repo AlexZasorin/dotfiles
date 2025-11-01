@@ -32,6 +32,7 @@
           ./graphics/nvidia.nix
           ./configurations/configuration.nix
           ./configurations/desktop.nix
+          ./configurations/graphical.nix
           ./secrets.nix
         ];
       };

@@ -20,6 +20,7 @@
     # KDE specific
     kdePackages.kdeconnect-kde
     k4dirstat
+    kdePackages.kwallet-pam
 
     # Other graphical tools
     libnotify
