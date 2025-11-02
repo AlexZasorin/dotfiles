@@ -125,14 +125,11 @@
   systemd.tmpfiles.rules = [
     "L+ /var/lib/sddm/.config/kwinoutputconfig.json - - - - /home/solyx/.config/kwinoutputconfig.json"
   ];
+
   # Enable XDG Portal?
   xdg.portal.enable = true;
 
   environment = {
-    loginShellInit = ''
-      dbus-update-activation-environment --systemd DISPLAY
-      eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh) 1> /dev/null
-    '';
     variables.EDITOR = "nvim";
     sessionVariables = {
       # hyprland
@@ -144,13 +141,6 @@
   # services.xserver = {
   #   xkb.layout = "us";
   #   xkb.variant = "";
-  #   # When moving to Wayland, make sure to port this configuration to run at the beginning of a Wayland session
-  #   displayManager = {
-  #     sessionCommands = ''
-  #       eval $(${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-  #       export SSH_AUTH_SOCK };
-  #     '';
-  #   };
   # };
 
   # Enable CUPS to print documents.
