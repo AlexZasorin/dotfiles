@@ -119,15 +119,12 @@
   # Enable SDDM
   services.displayManager.sddm = {
     enable = true;
-    setupScript = ''
-      #!/bin/sh
-      ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-A-1 --auto --left-of DP-2 --noprimary
-      ${pkgs.xorg.xrandr}/bin/xrandr --output DP-2 --auto --left-of HDMI-A-2 --primary
-    '';
-
+    wayland.enable = true;
   };
-  # services.displayManager.sddm.wayland.enable = true;
 
+  systemd.tmpfiles.rules = [
+    "L+ /var/lib/sddm/.config/kwinoutputconfig.json - - - - /home/solyx/.config/kwinoutputconfig.json"
+  ];
   # Enable XDG Portal?
   xdg.portal.enable = true;
 
