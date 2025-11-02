@@ -3,14 +3,15 @@
     # Applications
     darktable
     discord
-    kdePackages.filelight
     firefox
     hydrus
+    kdePackages.filelight
     krita
     libreoffice-qt6
     pavucontrol
     protonmail-desktop
     qbittorrent
+    rawtherapee
     spotify
     vesktop
     vlc

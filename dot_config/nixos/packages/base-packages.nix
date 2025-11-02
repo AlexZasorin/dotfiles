@@ -10,6 +10,7 @@
       gnumake
       gcc
       go
+      lua5_1
       luarocks
       prettierd
       neovim-pinned
