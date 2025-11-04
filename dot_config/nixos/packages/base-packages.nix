@@ -63,6 +63,7 @@
       asciiquarium
       dmidecode
       ffmpeg
+      restic
       slides
       spicetify-cli
     ];
