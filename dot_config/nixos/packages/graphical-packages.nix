@@ -5,6 +5,7 @@
     discord
     firefox
     hydrus
+    ivpn-ui
     kdePackages.filelight
     krita
     libreoffice-qt6
