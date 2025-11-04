@@ -22,6 +22,8 @@
     kdePackages.kdeconnect-kde
     k4dirstat
     kdePackages.kwallet-pam
+    kdePackages.partitionmanager
+    qdirstat
 
     # Other graphical tools
     libnotify
