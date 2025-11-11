@@ -20,8 +20,6 @@
     pnpm
     prisma-engines
     pyright
-    python311
-    python312
     python313
     python313Packages.pip
     rustup
