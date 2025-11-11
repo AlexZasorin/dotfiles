@@ -4,14 +4,12 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
-    nixpkgs-neovim.url = "github:nixos/nixpkgs/ff32164fa13f690f9bc4a5ec42e89fe05e68f509";
   };
 
   outputs = {
     self,
     nixpkgs,
     nixos-wsl,
-    nixpkgs-neovim,
     ...
   } @ inputs: let
     system = "x86_64-linux";
