@@ -13,6 +13,7 @@
     protonmail-desktop
     qbittorrent
     rawtherapee
+    shotcut
     spotify
     vesktop
     vlc
@@ -21,7 +22,7 @@
 
     # KDE specific
     kdePackages.kdeconnect-kde
-    k4dirstat
+    kdePackages.kdenlive
     kdePackages.kwallet-pam
     kdePackages.partitionmanager
     qdirstat
