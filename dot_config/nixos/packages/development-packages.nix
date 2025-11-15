@@ -25,7 +25,7 @@
     rustup
     uv
     zig
-    zulu23
+    zulu
   ];
 
   environment.variables = {
