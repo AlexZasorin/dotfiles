@@ -9,6 +9,7 @@
     kdePackages.filelight
     krita
     libreoffice-qt6
+    nheko
     pavucontrol
     protonmail-desktop
     qbittorrent

@@ -65,6 +65,7 @@
       restic
       slides
       spicetify-cli
+      vhs
     ];
   in
     standardPackages;
