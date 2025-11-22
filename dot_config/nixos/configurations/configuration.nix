@@ -16,6 +16,10 @@
     experimental-features = ["nix-command" "flakes"];
   };
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "olm-3.2.16"
+  ];
+
   nix.nixPath = [
     "nixpkgs=flake:nixpkgs:/nix/var/nix/profiles/per-user/root/channels"
     "nixos-config=$HOME/.config/nixos"
