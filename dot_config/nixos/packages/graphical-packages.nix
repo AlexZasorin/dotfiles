@@ -4,9 +4,7 @@
     darktable
     discord
     firefox
-    hydrus
     ivpn-ui
-    kdePackages.filelight
     krita
     libreoffice-qt6
     nheko
@@ -22,6 +20,13 @@
     wezterm
 
     # KDE specific
+    kdePackages.dolphin
+    kdePackages.dolphin-plugins
+    kdePackages.filelight
+    kdePackages.kio
+    kdePackages.kio-extras
+    kdePackages.kdegraphics-thumbnailers
+    kdePackages.kimageformats
     kdePackages.kdeconnect-kde
     kdePackages.kdenlive
     kdePackages.kwallet-pam
@@ -33,7 +38,6 @@
     todoist-electron
 
     # hyprland stuff
-    kdePackages.dolphin
     dunst
     hyprshot
     kdePackages.qt6ct
