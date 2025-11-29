@@ -8,6 +8,7 @@
     krita
     libreoffice-qt6
     nheko
+    obsidian
     pavucontrol
     protonmail-desktop
     qbittorrent
