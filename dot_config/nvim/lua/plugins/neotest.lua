@@ -6,6 +6,7 @@ return {
     'antoinemadec/FixCursorHold.nvim',
     'nvim-treesitter/nvim-treesitter',
     'nvim-neotest/neotest-jest',
+    'marilari88/neotest-vitest',
     'AlexZasorin/neotest-playwright',
   },
   config = function()
@@ -32,6 +33,7 @@ return {
           return vim.fn.fnamemodify(path, ':p:h')
         end,
       }),
+      require('neotest-vitest'),
     }
 
     -- Only add playwright adapter if e2e directory exists
