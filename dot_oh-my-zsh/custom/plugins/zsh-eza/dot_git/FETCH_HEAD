@@ -1,0 +1,6 @@
+fe7898e09e6d1f3c3c34570e0950803bf516e179		branch 'main' of github.com:z-shell/zsh-eza
+4127f435a979de51632860d40808435690e4777f	not-for-merge	branch '28-bug-adding-zsh-eza-without-eza-installed-prevents-zsh-startup' of github.com:z-shell/zsh-eza
+c5c5e1974f96eec67a04aaa4816b73079e7d1e7b	not-for-merge	branch 'dependabot/github_actions/actions/checkout-5' of github.com:z-shell/zsh-eza
+f92b44334bfe08e16f075e80ec4ed61941fea064	not-for-merge	branch 'next' of github.com:z-shell/zsh-eza
+56ddb33cf371089b6debbe27c239f5b441d5cf11	not-for-merge	tag 'v1.0.0' of github.com:z-shell/zsh-eza
+4866c6fc109423901075288b55e098ea6993819a	not-for-merge	tag 'v1.0.1' of github.com:z-shell/zsh-eza
