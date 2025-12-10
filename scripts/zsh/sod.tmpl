@@ -26,7 +26,8 @@ sod() {
   aws sso login
 {{ end }}
 
-  random_quote=${quotes[$((RANDOM % ${#quotes[@]} + 1))]}
+  random_index=$(( $(od -An -N4 -tu4 < /dev/urandom | tr -d ' ') % ${#quotes[@]} + 1 ))
+  random_quote=${quotes[$random_index]}
 
   log-msg yellow false "$random_quote"
 }
