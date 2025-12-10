@@ -27,9 +27,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Enables vim mode
-bindkey -v
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
@@ -102,7 +99,7 @@ DISABLE_MAGIC_FUNCTIONS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(evalcache git kubectl sudo docker-compose fzf-tab gh history kubectx zsh-vi-mode zoxide zsh-eza chezmoi zsh-syntax-highlighting)
+plugins=(evalcache git kubectl sudo docker-compose fzf-tab gh history kubectx zsh-vi-mode zoxide zsh-eza chezmoi zsh-autosuggestions zsh-syntax-highlighting)
 
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 
@@ -140,9 +137,6 @@ _kill_vpn() {
   sudo ps aux | grep -i ivanti | awk '{print $2}' | xargs sudo kill -KILL | tail -n+2
 }
 alias kill-vpn="_kill_vpn"
-
-source $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-#source $HOME/.oh-my-zsh/custom/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 export NVM_DIR="$HOME/.nvm"
 
