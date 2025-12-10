@@ -1,24 +1,13 @@
-# The following lines were added by compinstall
+export PROFILING_MODE=1
+if [ $PROFILING_MODE -ne 0 ]; then
+    zmodload zsh/zprof
+fi
 
 zstyle ':completion:*' list-colors ''
 zstyle :compinstall filename '/Users/azasorin/.zshrc'
 
-# Ultra-fast compinit optimization
-autoload -Uz compinit
-
 # Skip all completions setup if non-interactive
 # [[ -o interactive ]] || return
-
-# Only regenerate completion cache once per day
-# If .zcompdump is older than 24 hours, regenerate it
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
-  compinit
-  { zcompile ~/.zcompdump } &!
-else
-  compinit -C
-fi
-
-# End of lines added by compinstall
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -30,6 +19,7 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Path to your oh-my-zsh installation.
+ZSH_DISABLE_COMPFIX="true"
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -106,30 +96,14 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source $ZSH/oh-my-zsh.sh
 source $HOME/scripts/zsh/wezterm.sh
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 export EDITOR='nvim'
+export XDG_CONFIG_HOME=$HOME/.config
+export TERM="xterm-256color"
+export PROMPT_EOL_MARK=""
+export PATH=~/.console-ninja/.bin:~/.cargo/bin:$PATH
+export ANTHROPIC_API_KEY=$(cat ~/.anthropic-token)
+export GITHUB_TOKEN=$(cat ~/.github-token)
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 
@@ -140,7 +114,6 @@ alias kill-vpn="_kill_vpn"
 
 export NVM_DIR="$HOME/.nvm"
 
-# Lazy-load NVM for better performance
 nvm() {
   unset -f nvm
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -148,35 +121,29 @@ nvm() {
   nvm "$@"
 }
 
-# pnpm
-{{ if eq .chezmoi.os "darwin" }}
-  export PNPM_HOME="/Users/azasorin/Library/pnpm"
-{{ end }}
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+function direnv() {
+  unfunction direnv
+  eval "$(command direnv hook zsh)"
+  direnv "$@"
+}
 
-export XDG_CONFIG_HOME=$HOME/.config
+atuin_init_cmd() {
+  unfunction atuin_init_cmd
+  eval "$(command atuin init zsh)"
+}
 
-{{ if eq .chezmoi.os "linux" }}
-# unset SSH_ASKPASS
+atuin_delayed_init() {
+  atuin_init_cmd
+  add-zsh-hook -d precmd atuin_delayed_init
+}
 
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+add-zsh-hook precmd atuin_delayed_init
 
-alias nix-clean='sh ~/scripts/nix/cleanup.sh'
-alias rebuild='sh ~/scripts//nix/rebuild.sh '
-
-export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD ')
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$NIX_LD_LIBRARY_PATH"
-export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
-
-export PATH="$HOME/.npm-global/bin:$PATH"
-{{ end }}
-
-export ANTHROPIC_API_KEY=$(cat ~/.anthropic-token)
+function uv() {
+  unfunction uv
+  eval "$(command uv generate-shell-completion zsh)"
+  uv "$@"
+}
 
 # disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
@@ -192,15 +159,7 @@ zstyle ':fzf-tab:*' switch-group ',' '.'
 # Load zoxide (using evalcache for performance)
 _evalcache zoxide init zsh
 
-# Load direnv (when needed)
-function direnv() {
-  unfunction direnv
-  eval "$(command direnv hook zsh)"
-  direnv "$@"
-}
-
 export SOLARIZED="dark"
-export TERM="xterm-256color"
 
 _gen_fzf_default_opts() {
   local base03="234"
@@ -254,20 +213,22 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
-export PATH=~/.console-ninja/.bin:~/.cargo/bin:$PATH
+if [ -f ~/.devtools ]; then
+    . ~/.devtools
+fi
 
-{{ if (and (hasKey .chezmoi.kernel "osrelease") (contains "WSL" .chezmoi.kernel.osrelease)) }}
-export BROWSER=wslview
-{{ end}}
+fpath+=~/scripts/zsh/
+autoload -Uz ~/scripts/zsh/*
 
-export GITHUB_TOKEN=$(cat ~/.github-token)
-
-{{ if eq .chezmoi.hostname "RSS-R19GQMPKX0" }}
-export BORAT_URL="http://172.16.4.100"
-export PATH=~/.npm-global/bin:$PATH
-{{ end }}
+[ -f ~/.backblaze ] && source ~/.backblaze
 
 {{ if eq .chezmoi.os "darwin" }}
+export PNPM_HOME="/Users/azasorin/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
 source "$HOME/.atuin/bin/env"
 export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/curl/lib"
@@ -279,39 +240,32 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/curl/lib/pkgconfig"
 ## export ANTHROPIC_MODEL=us.anthropic.claude-sonnet-4-20250514-v1:0
 {{ end }}
 
-# Lazy load atuin
-atuin_init_cmd() {
-  unfunction atuin_init_cmd
-  eval "$(command atuin init zsh)"
-}
+{{ if eq .chezmoi.os "linux" }}
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
 
-# Defer atuin initialization until after prompt
-atuin_delayed_init() {
-  atuin_init_cmd
-  # Remove the hook
-  add-zsh-hook -d precmd atuin_delayed_init
-}
+alias nix-clean='sh ~/scripts/nix/cleanup.sh'
+alias rebuild='sh ~/scripts//nix/rebuild.sh '
 
-# Register the hook to run after first prompt
-add-zsh-hook precmd atuin_delayed_init
+export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD ')
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$NIX_LD_LIBRARY_PATH"
+export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 
-# Lazy load uv completion
-function uv() {
-  unfunction uv
-  eval "$(command uv generate-shell-completion zsh)"
-  uv "$@"
-}
+export PATH="$HOME/.npm-global/bin:$PATH"
+{{ end }}
 
-export PROMPT_EOL_MARK=""
+{{ if (and (hasKey .chezmoi.kernel "osrelease") (contains "WSL" .chezmoi.kernel.osrelease)) }}
+export BROWSER=wslview
+{{ end }}
 
-if [ -f ~/.devtools ]; then
-    . ~/.devtools
-fi
-
-fpath+=~/scripts/zsh/
-autoload -Uz ~/scripts/zsh/*
-
-[ -f ~/.backblaze ] && source ~/.backblaze
+{{ if eq .chezmoi.hostname "RSS-R19GQMPKX0" }}
+export BORAT_URL="http://172.16.4.100"
+export PATH=~/.npm-global/bin:$PATH
+{{ end }}
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+if [ $PROFILING_MODE -ne 0 ]; then
+    zprof
+fi
