@@ -10,15 +10,11 @@ autoload -Uz compinit
 # [[ -o interactive ]] || return
 
 # Only regenerate completion cache once per day
-# Use .zcompdump.zwc (compiled) for better performance
-for dump in ~/.zcompdump(N.mh+24); do
-  # Regenerate completion cache if older than 24 hours
+# If .zcompdump is older than 24 hours, regenerate it
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
   compinit
-  # Compile completion dump to speed up loading
   { zcompile ~/.zcompdump } &!
-done
-# Skip compdump file integrity check with -C if not regenerated
-if [[ $dump != ~/.zcompdump* ]]; then
+else
   compinit -C
 fi
 
@@ -264,12 +260,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_USE_ASYNC=1
 
-if type brew &>/dev/null; then
-    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-    autoload -Uz compinit
-    compinit
-fi
-
 export PATH=~/.console-ninja/.bin:~/.cargo/bin:$PATH
 
 {{ if (and (hasKey .chezmoi.kernel "osrelease") (contains "WSL" .chezmoi.kernel.osrelease)) }}
@@ -293,13 +283,6 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/curl/lib/pkgconfig"
 ## export CLAUDE_CODE_USE_BEDROCK=1
 ## export AWS_REGION=us-west-2
 ## export ANTHROPIC_MODEL=us.anthropic.claude-sonnet-4-20250514-v1:0
-
-if type brew &>/dev/null; then
- FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
- autoload -Uz compinit
- compinit
-fi
 {{ end }}
 
 # Lazy load atuin
