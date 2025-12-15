@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     # Applications
+    audacity
     darktable
     discord
     firefox
