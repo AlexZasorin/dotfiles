@@ -33,6 +33,7 @@
       vim
       wget
       which
+      yt-dlp
       zellij
       zoxide
       zsh
