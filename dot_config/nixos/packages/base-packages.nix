@@ -15,6 +15,7 @@
       neovim
 
       # Shell utilities
+      android-tools
       atuin
       bottom
       btop
