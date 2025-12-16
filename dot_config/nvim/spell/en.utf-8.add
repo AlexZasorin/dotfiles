@@ -152,3 +152,6 @@ unassign
 FGA
 keybinds
 Zellij
+idempotency
+Observability
+resolvers
