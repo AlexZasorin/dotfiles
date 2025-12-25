@@ -2,9 +2,11 @@
   environment.systemPackages = with pkgs; [
     # Applications
     audacity
+    bottles
     darktable
     discord
     firefox
+    hydrus
     ivpn-ui
     krita
     libreoffice-qt6
