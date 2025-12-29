@@ -10,6 +10,7 @@
     ivpn-ui
     krita
     libreoffice-qt6
+    megasync
     nheko
     obsidian
     pavucontrol
