@@ -24,6 +24,9 @@
     vscode
     wezterm
 
+    # Game Stuff
+    prismlauncher
+
     # KDE specific
     kdePackages.dolphin
     kdePackages.dolphin-plugins
