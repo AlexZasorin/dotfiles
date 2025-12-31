@@ -20,8 +20,6 @@
   sops.age.keyFile = "/home/solyx/.config/sops/age/keys.txt";
   sops.secrets.anthropic_token = { };
   sops.secrets.github_token = { };
-  sops.secrets."ssh_key/private" = { };
-  sops.secrets."ssh_key/public" = { };
 
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
