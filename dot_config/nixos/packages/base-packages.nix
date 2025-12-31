@@ -66,6 +66,7 @@
       ffmpeg
       rclone
       restic
+      sops
       slides
       spicetify-cli
       vhs
