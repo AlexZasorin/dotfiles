@@ -40,23 +40,7 @@ o.linebreak = true -- Wrap lines at word boundaries
 o.breakindent = true -- Indent wrapped lines
 o.showbreak = '↪ ' -- Show a symbol at the beginning of wrapped lines
 
-if vim.fn.has('wsl') == 1 then
-  vim.schedule(function()
-    o.clipboard = 'unnamedplus'
-    vim.g.clipboard = {
-      name = 'WslClipboard',
-      copy = {
-        ['+'] = 'clip.exe',
-        ['*'] = 'clip.exe',
-      },
-      paste = {
-        ['+'] = [[powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))]],
-        ['*'] = [[powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))]],
-      },
-      cache_enabled = 0,
-    }
-  end)
-elseif not os.getenv('DISPLAY') and not vim.fn.has('macunix') then
+if not os.getenv('DISPLAY') and not vim.fn.has('macunix') then
   -- Running on headless server
   local function paste()
     return {

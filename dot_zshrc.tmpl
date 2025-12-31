@@ -254,10 +254,6 @@ export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 export PATH="$HOME/.npm-global/bin:$PATH"
 {{ end }}
 
-{{ if (and (hasKey .chezmoi.kernel "osrelease") (contains "WSL" .chezmoi.kernel.osrelease)) }}
-export BROWSER=wslview
-{{ end }}
-
 {{ if eq .chezmoi.hostname "RSS-R19GQMPKX0" }}
 export BORAT_URL="http://172.16.4.100"
 export PATH=~/.npm-global/bin:$PATH

@@ -9,7 +9,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixos-wsl,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -46,16 +45,6 @@
         ];
       };
 
-      wsl = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        system = "x86_64-linux";
-        modules = [
-          nixos-wsl.nixosModules.default
-          ./packages/base-packages.nix
-          ./packages/development-packages.nix
-          ./packages/system-packages/wsl.nix
-          ./configurations/wsl.nix
-          ./secrets.nix
         ];
       };
 
