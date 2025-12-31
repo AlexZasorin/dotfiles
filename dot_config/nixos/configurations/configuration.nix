@@ -5,7 +5,6 @@
   config,
   pkgs,
   inputs,
-  secrets,
   ...
 }: {
   imports = [
@@ -146,7 +145,11 @@
   xdg.portal.enable = true;
 
   environment = {
-    variables.EDITOR = "nvim";
+    variables = {
+      EDITOR = "nvim";
+      GITHUB_TOKEN = "$(cat ${config.sops.secrets.github_token.path})";
+      ANTHROPIC_API_KEY = "$(cat ${config.sops.secrets.anthropic_token.path})";
+    };
     sessionVariables = {
       # hyprland
       NIXOS_OZONE_WL = "1";
