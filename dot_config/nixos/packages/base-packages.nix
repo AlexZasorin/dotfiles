@@ -17,6 +17,7 @@
       # Shell utilities
       android-tools
       atuin
+      bitwarden-cli
       bottom
       btop
       chezmoi
@@ -28,6 +29,7 @@
       killall
       neofetch
       ripgrep
+      sops
       smartcat
       tmux
       unzip
@@ -66,7 +68,6 @@
       ffmpeg
       rclone
       restic
-      sops
       slides
       spicetify-cli
       vhs

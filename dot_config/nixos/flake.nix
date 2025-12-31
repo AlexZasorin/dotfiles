@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = {
@@ -30,7 +30,6 @@
           ./configurations/configuration.nix
           ./configurations/desktop.nix
           ./configurations/graphical.nix
-          ./secrets.nix
         ];
       };
 
@@ -41,10 +40,6 @@
           ./packages/system-packages/nixos.nix
           ./configurations/configuration.nix
           ./configurations/laptop.nix
-          ./secrets.nix
-        ];
-      };
-
         ];
       };
 
@@ -55,7 +50,6 @@
           ./packages/base-packages.nix
           ./packages/development-packages.nix
           ./configurations/server.nix
-          ./secrets.nix
         ];
       };
 
@@ -65,7 +59,6 @@
           ./packages/default.nix
           ./packages/system-packages/nixos.nix
           ./configurations/configuration.nix
-          ./secrets.nix
           # inputs.home-manager.nixosModules.default
         ];
       };
