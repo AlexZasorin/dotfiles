@@ -135,10 +135,6 @@
     wayland.enable = true;
   };
 
-  systemd.tmpfiles.rules = [
-    "L+ /var/lib/sddm/.config/kwinoutputconfig.json - - - - /home/solyx/.config/kwinoutputconfig.json"
-  ];
-
   # Enable XDG Portal?
   xdg.portal.enable = true;
 
@@ -327,6 +323,11 @@
 
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+  services.devmon.enable = true;
+
+  systemd.user.services.devmon = {
+    unitConfig.ConditionUser = "solyx";  # Replace with your username
+  };
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
