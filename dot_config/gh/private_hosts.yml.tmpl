@@ -6,5 +6,8 @@ github.com:
     {{ end -}}
     git_protocol: ssh
     users:
+        {{- if eq .chezmoi.os "darwin" }}
         azasorin-rss:
+        {{ else }}
         AlexZasorin:
+        {{ end -}}
