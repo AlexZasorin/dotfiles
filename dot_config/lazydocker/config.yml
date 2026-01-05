@@ -1,2 +1,2 @@
 logs:
-  since: ""
+  tail: 100
