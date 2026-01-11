@@ -238,6 +238,10 @@ if [ -f ~/.github-token ]; then
     export GITHUB_TOKEN=$(cat ~/.github-token)
 fi
 
+if [ -f ~/.anthropic-token ]; then
+    export ANTHROPIC_API_KEY=$(cat ~/.anthropic-token)
+fi
+
 ## export CLAUDE_CODE_USE_BEDROCK=1
 ## export AWS_REGION=us-west-2
 ## export ANTHROPIC_MODEL=us.anthropic.claude-sonnet-4-20250514-v1:0
