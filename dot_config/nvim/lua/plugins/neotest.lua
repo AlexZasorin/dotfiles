@@ -7,6 +7,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     'nvim-neotest/neotest-jest',
     'marilari88/neotest-vitest',
+    'nvim-neotest/neotest-python',
     'AlexZasorin/neotest-playwright',
   },
   config = function()
@@ -34,6 +35,7 @@ return {
         end,
       }),
       require('neotest-vitest'),
+      require('neotest-python'),
     }
 
     -- Only add playwright adapter if e2e directory exists
