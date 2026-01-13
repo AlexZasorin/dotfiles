@@ -31,12 +31,13 @@
     kdePackages.dolphin
     kdePackages.dolphin-plugins
     kdePackages.filelight
+    kdePackages.kdeconnect-kde
+    kdePackages.kdegraphics-thumbnailers
+    kdePackages.kdenlive
+    kdePackages.kimageformats
     kdePackages.kio
     kdePackages.kio-extras
-    kdePackages.kdegraphics-thumbnailers
-    kdePackages.kimageformats
-    kdePackages.kdeconnect-kde
-    kdePackages.kdenlive
+    kronometer
     kdePackages.kwallet-pam
     kdePackages.partitionmanager
     qdirstat
