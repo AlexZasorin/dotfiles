@@ -28,6 +28,7 @@
     prismlauncher
 
     # KDE specific
+    kdePackages.kclock
     kdePackages.dolphin
     kdePackages.dolphin-plugins
     kdePackages.filelight
@@ -37,7 +38,6 @@
     kdePackages.kimageformats
     kdePackages.kio
     kdePackages.kio-extras
-    kronometer
     kdePackages.kwallet-pam
     kdePackages.partitionmanager
     qdirstat
