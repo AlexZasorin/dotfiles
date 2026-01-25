@@ -22,6 +22,7 @@
       btop
       chezmoi
       curl
+      efibootmgr
       eza
       fd
       fzf
