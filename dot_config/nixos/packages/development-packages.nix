@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     # Development tools
     android-studio
+    claude-code
     basedpyright
     cargo
     cargo-audit
