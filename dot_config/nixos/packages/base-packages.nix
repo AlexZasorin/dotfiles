@@ -9,6 +9,7 @@
       gnumake
       gcc
       go
+      jujutsu
       lua5_1
       luarocks
       prettierd
