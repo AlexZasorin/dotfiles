@@ -27,6 +27,7 @@
       fzf
       htop
       killall
+      miniupnpc
       neofetch
       ripgrep
       sops
