@@ -18,7 +18,9 @@
   sops.defaultSopsFormat = "yaml";
 
   sops.age.keyFile = "/home/solyx/.config/sops/age/keys.txt";
-  sops.secrets.anthropic_token = { };
+  sops.age.sshKeyPaths = [];
+  sops.gnupg.sshKeyPaths = [];
+  sops.secrets.anthropic_token = {};
   sops.secrets.github_token = { };
 
   nix.settings = {
