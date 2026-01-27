@@ -259,9 +259,6 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$NIX_LD_LIBRARY_PATH"
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 
 export PATH="$HOME/.npm-global/bin:$PATH"
-
-export GITHUB_TOKEN=$(cat /run/secrets/github_token)
-export ANTHROPIC_API_KEY=$(cat /run/secrets/anthropic_token)
 {{ end }}
 
 {{ if eq .chezmoi.hostname "RSS-R19GQMPKX0" }}

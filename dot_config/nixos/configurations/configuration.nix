@@ -18,10 +18,14 @@
   sops.defaultSopsFormat = "yaml";
 
   sops.age.keyFile = "/home/solyx/.config/sops/age/keys.txt";
-  sops.age.sshKeyPaths = [];
-  sops.gnupg.sshKeyPaths = [];
-  sops.secrets.anthropic_token = {};
-  sops.secrets.github_token = { };
+  sops.age.sshKeyPaths = [ ];
+  sops.gnupg.sshKeyPaths = [ ];
+  sops.secrets.anthropic_token = { 
+    owner = "solyx";
+  };
+  sops.secrets.github_token = {
+    owner = "solyx";
+  };
 
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
@@ -143,8 +147,6 @@
   environment = {
     variables = {
       EDITOR = "nvim";
-      GITHUB_TOKEN = "$(cat ${config.sops.secrets.github_token.path})";
-      ANTHROPIC_API_KEY = "$(cat ${config.sops.secrets.anthropic_token.path})";
     };
     sessionVariables = {
       # hyprland
@@ -225,6 +227,10 @@
   programs = {
     zsh = {
       enable = true;
+      shellInit = ''
+        export GITHUB_TOKEN="$(cat ${config.sops.secrets.github_token.path})";
+        export ANTHROPIC_API_KEY="$(cat ${config.sops.secrets.anthropic_token.path})";
+      '';
     };
     kdeconnect = {
       enable = true;
