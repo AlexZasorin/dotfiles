@@ -147,6 +147,7 @@
   environment = {
     variables = {
       EDITOR = "nvim";
+      NH_OS_FLAKE = "/home/solyx/.config/nixos";
     };
     sessionVariables = {
       # hyprland
@@ -225,6 +226,12 @@
   };
 
   programs = {
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/solyx/.config/nixos";
+    };
     zsh = {
       enable = true;
       shellInit = ''
