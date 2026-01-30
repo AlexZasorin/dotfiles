@@ -54,6 +54,7 @@
   "nvim-treesitter-context": { "branch": "master", "commit": "660861b1849256398f70450afdf93908d28dc945" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "5ca4aaa6efdcc59be46b95a3e876300cfead05ef" },
   "nvim-web-devicons": { "branch": "master", "commit": "8dcb311b0c92d460fac00eac706abd43d94d68af" },
+  "nvim-yarp": { "branch": "master", "commit": "bb5f5e038bfe119d3b777845a76b0b919b35ebc8" },
   "other.nvim": { "branch": "main", "commit": "1d48e090f6d1d53dda9fb5094af3f2006ebbb858" },
   "plenary.nvim": { "branch": "master", "commit": "b9fd5226c2f76c951fc8ed5923d85e4de065e509" },
   "schemastore.nvim": { "branch": "main", "commit": "976b31e094615b2c27009561b3c67a37c87c93c2" },
@@ -65,6 +66,7 @@
   "todo-comments.nvim": { "branch": "main", "commit": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668" },
   "typescript-tools.nvim": { "branch": "master", "commit": "d5076cb1952c128ce115a3e50c2a8d8e558ccbeb" },
   "venv-selector.nvim": { "branch": "regexp", "commit": "d2326e7433fdeb10f7d0d1237c18b91b353f9f8b" },
+  "vim-hug-neovim-rpc": { "branch": "master", "commit": "93ae38792bc197c3bdffa2716ae493c67a5e7957" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
   "wilder.nvim": { "branch": "master", "commit": "679f348dc90d80ff9ba0e7c470c40a4d038dcecf" },
   "zellij-nav.nvim": { "branch": "main", "commit": "b027e915ea50405fa07c1d2bdfb8369553ea996d" }
