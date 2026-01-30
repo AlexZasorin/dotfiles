@@ -72,6 +72,11 @@ return {
       -- },
       defaults = {
         file_ignore_patterns = { '^%.git/' },
+        layout_strategy = 'horizontal',
+        sorting_strategy = 'ascending',
+        layout_config = {
+          prompt_position = 'top',
+        },
       },
       pickers = {
         buffers = {
