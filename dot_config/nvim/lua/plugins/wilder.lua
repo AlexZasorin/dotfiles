@@ -1,10 +1,12 @@
 return {
   'gelguy/wilder.nvim',
   event = 'CmdlineEnter',
-  build = false,
+  build = ':UpdateRemotePlugins',
   dependencies = {
     { 'romgrk/fzy-lua-native', build = 'make' },
     { 'nixprime/cpsm', build = '~/.config/nvim/lua/plugins/install_cpsm.sh' },
+    'roxma/nvim-yarp',
+    'roxma/vim-hug-neovim-rpc',
     'lambdalisue/nerdfont.vim',
     'nvim-scrollbar',
   },
@@ -20,6 +22,12 @@ return {
 
     wilder.set_option('pipeline', {
       wilder.branch(
+        {
+          wilder.check(function(ctx, x)
+            return x == ''
+          end),
+          wilder.history(8),
+        },
         wilder.python_file_finder_pipeline({
           file_command = function(ctx, arg)
             if string.find(arg, '.') ~= nil then
@@ -44,12 +52,6 @@ return {
           fuzzy = 2,
           fuzzy_filter = wilder.lua_fzy_filter(),
         }),
-        {
-          wilder.check(function(ctx, x)
-            return x == ''
-          end),
-          wilder.history(),
-        },
         wilder.python_search_pipeline({
           pattern = wilder.python_fuzzy_pattern({
             start_at_boundary = 0,
