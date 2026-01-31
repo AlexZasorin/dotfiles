@@ -17,7 +17,9 @@ vim.diagnostic.config({
 
   -- Can switch between these as you prefer
   virtual_text = false, -- Text shows up at the end of the line
-  virtual_lines = true, -- Teest shows up underneath the line, with virtual lines
+  virtual_lines = {
+    current_line = true,
+  }, -- Text shows up underneath the line, with virtual lines
 
   signs = vim.g.have_nerd_font and {
     text = {
