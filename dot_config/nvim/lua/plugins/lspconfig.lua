@@ -156,8 +156,11 @@ return {
         filetypes = { 'handlebars' },
       },
       graphql = {
-        root_dir = util.root_pattern('*.graphql', '.git', '.graphqlrc*', '.graphql.config.*', 'graphql.config.*'),
-        filetypes = { 'graphql', 'typescript', 'typescriptreact' },
+        filetypes = { 'graphql', 'typescriptreact', 'javascriptreact' },
+        root_dir = function(bufnr, on_dir)
+          local fname = vim.api.nvim_buf_get_name(bufnr)
+          on_dir(util.root_pattern('.graphqlrc*', '.graphql.config.*', 'graphql.config.*')(fname))
+        end,
       },
       html = {},
       jsonnet_ls = {},
