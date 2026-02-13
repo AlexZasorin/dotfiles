@@ -318,6 +318,7 @@ return {
       'rust-analyzer',
       'stylua', -- Used to format Lua code
       'tailwindcss-language-server',
+      'typescript-language-server',
       'tflint',
       'yaml-language-server',
       'yamllint',
