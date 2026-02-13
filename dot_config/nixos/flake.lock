@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "dzgui-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1764972059,
+        "narHash": "sha256-MLdmXiPhouR4nSxIZwNEHWGYT2rR9UquaYGbZPEBgRk=",
+        "owner": "lelgenio",
+        "repo": "dzgui-nix",
+        "rev": "14bd77c58f4cc4864513f9d887ad387337c9411f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lelgenio",
+        "repo": "dzgui-nix",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1766902085,
@@ -34,6 +54,7 @@
     },
     "root": {
       "inputs": {
+        "dzgui-nix": "dzgui-nix",
         "nixpkgs": "nixpkgs",
         "sops-nix": "sops-nix"
       }
