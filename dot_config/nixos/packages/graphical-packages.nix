@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
   environment.systemPackages = with pkgs; [
     # Applications
     audacity
@@ -26,6 +26,7 @@
 
     # Game Stuff
     prismlauncher
+    inputs.dzgui-nix.packages.x86_64-linux.default
 
     # KDE specific
     kdePackages.kclock
@@ -43,22 +44,9 @@
     qdirstat
 
     # Other graphical tools
+    gtk3
     libnotify
     todoist-electron
-
-    # hyprland stuff
-    dunst
-    hyprshot
-    kdePackages.qt6ct
-    kitty
-    libsForQt5.qt5.qtwayland
-    nwg-bar
-    kdePackages.polkit-kde-agent-1
-    rofi
-    waybar
-    wireplumber
-    wofi
-    xclip
-    xdg-desktop-portal-hyprland
+    wmctrl
   ];
 }

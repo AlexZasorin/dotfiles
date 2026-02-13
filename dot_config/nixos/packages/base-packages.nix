@@ -9,11 +9,14 @@
       gnumake
       gcc
       go
+      jq
       jujutsu
       lua5_1
       luarocks
+      pkg-config
       prettierd
       neovim
+      zenity
 
       # Shell utilities
       android-tools

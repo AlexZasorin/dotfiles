@@ -67,6 +67,7 @@
     };
   };
 
+  # TODO: Can be removed? Just move shell to configuration.nix user setup
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.solyx = {
     isNormalUser = true;
