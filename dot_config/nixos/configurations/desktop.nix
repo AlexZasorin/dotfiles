@@ -26,4 +26,10 @@
   programs.gamemode.enable = true;
 
   services.flatpak.enable = true;
+
+  virtualisation = {
+    docker = {
+      enable = true;
+    };
+  };
 }
