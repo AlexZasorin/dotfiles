@@ -18,6 +18,7 @@
     just
     nodejs_24
     playwright-driver.browsers
+    prisma-engines_7
     pnpm
     prisma-engines
     pyright
