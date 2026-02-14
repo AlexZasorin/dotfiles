@@ -121,7 +121,7 @@ o.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 o.foldtext = ''
 o.foldlevel = 99
 o.foldlevelstart = 99
-o.foldnestmax = 4
+o.foldnestmax = 8
 
 o.spell = true
 o.spelllang = 'en_us'
