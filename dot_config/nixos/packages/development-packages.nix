@@ -4,10 +4,6 @@
     android-studio
     claude-code
     basedpyright
-    cargo
-    cargo-audit
-    cargo-tarpaulin
-    cargo-watch
     chromium
     claude-code
     direnv

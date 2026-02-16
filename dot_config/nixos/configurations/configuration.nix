@@ -105,8 +105,10 @@
 
   services.resolved = {
     enable = true;
-    domains = ["~."];
-    fallbackDns = ["8.8.8.8" "8.8.4.4"];
+    settings = {
+      Resolve.Domains = ["~."];
+      Resolve.FallbackDNS = ["8.8.8.8" "8.8.4.4"];
+    };
   };
 
   services.ivpn.enable = true;
@@ -266,20 +268,20 @@
         libxkbcommon
         nspr
         pango
-        xorg.libX11
-        xorg.libXcomposite
-        xorg.libXcursor
-        xorg.libXdamage
-        xorg.libXext
-        xorg.libXfixes
-        xorg.libXi
-        xorg.libXrandr
-        xorg.libXrender
-        xorg.libxcb
-        xorg.xcbutilwm
-        xorg.xcbutilimage
-        xorg.xcbutilkeysyms
-        xorg.xcbutilrenderutil
+        libX11
+        libXcomposite
+        libXcursor
+        libXdamage
+        libXext
+        libXfixes
+        libXi
+        libXrandr
+        libXrender
+        libxcb
+        xcbutilwm
+        xcbutilimage
+        xcbutilkeysyms
+        xcbutilrenderutil
         xcb-util-cursor
         harfbuzz
         icu
