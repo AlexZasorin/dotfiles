@@ -23,6 +23,7 @@
     vlc
     vscode
     wezterm
+    zoom-us
 
     # Game Stuff
     prismlauncher
