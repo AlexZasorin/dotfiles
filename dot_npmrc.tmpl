@@ -1,0 +1,6 @@
+{{- if eq .chezmoi.os "linux" -}}
+prefix=${HOME}/.npm-global
+{{- else if eq .chezmoi.os "darwin" -}}
+//npm.pkg.github.com/:_authToken={{ env "GITHUB_TOKEN" }}
+@risk-and-safety:registry=https://npm.pkg.github.com/
+{{- end }}
