@@ -48,5 +48,6 @@
     libnotify
     todoist-electron
     wmctrl
+    xclip
   ];
 }
