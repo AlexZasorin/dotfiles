@@ -1,9 +1,12 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{ pkgs, ... }: {
   networking.hostName = "phobos"; # Define your hostname.
+
+  # Desktop monitor layout (X11/SDDM greeter)
+  services.xserver.displayManager.setupCommands = ''
+    /run/current-system/sw/bin/xrandr --output HDMI-0 --auto
+    /run/current-system/sw/bin/xrandr --output DP-2 --primary --left-of HDMI-0
+    /run/current-system/sw/bin/xrandr --output HDMI-1 --left-of DP-2
+  '';
 
   fileSystems."/mnt/share" = {
     device = "//192.168.1.160/smb_alex";

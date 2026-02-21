@@ -44,6 +44,7 @@
           ./packages/system-packages/nixos.nix
           ./configurations/configuration.nix
           ./configurations/laptop.nix
+          ./configurations/graphical.nix
         ];
       };
 

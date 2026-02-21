@@ -132,32 +132,12 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.desktopManager.plasma6.enable = true;
-  # programs.hyprland = {
-  #   enable = true;
-  #   xwayland.enable = true;
-  # };
-
   services.atuin.enable = true;
-
-  # Enable SDDM
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
-
-  # Enable XDG Portal?
-  xdg.portal.enable = true;
 
   environment = {
     variables = {
       EDITOR = "nvim";
       NH_OS_FLAKE = "${config.users.users.solyx.home}/.config/nixos";
-    };
-    sessionVariables = {
-      # hyprland
-      NIXOS_OZONE_WL = "1";
     };
   };
 
