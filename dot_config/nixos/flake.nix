@@ -3,9 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    sops-nix.url = "github:Mic92/sops-nix";
-    dzgui-nix = {
-      url = "github:lelgenio/dzgui-nix";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -14,15 +13,7 @@
     self,
     nixpkgs,
     ...
-  } @ inputs: let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config = {
-        allowUnfree = true;
-      };
-    };
-  in {
+  } @ inputs: {
     nixosConfigurations = {
       desktop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
@@ -64,7 +55,6 @@
           ./packages/default.nix
           ./packages/system-packages/nixos.nix
           ./configurations/configuration.nix
-          # inputs.home-manager.nixosModules.default
         ];
       };
     };
