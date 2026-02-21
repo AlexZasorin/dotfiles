@@ -1,19 +1,3 @@
-local get_clients = function(opts)
-  local ret = {}
-  if vim.lsp.get_clients then
-    ret = vim.lsp.get_clients(opts)
-  else
-    ---@diagnostic disable-next-line: deprecated
-    ret = vim.lsp.get_active_clients(opts)
-    if opts and opts.method then
-      ret = vim.tbl_filter(function(client)
-        return client.supports_method(opts.method, { bufnr = opts.bufnr })
-      end, ret)
-    end
-  end
-  return opts and opts.filter and vim.tbl_filter(opts.filter, ret) or ret
-end
-
 return {
   'nvim-lualine/lualine.nvim',
   event = 'VeryLazy',
@@ -80,7 +64,7 @@ return {
               if not package.loaded['copilot'] then
                 return
               end
-              local ok, clients = pcall(get_clients, { name = 'copilot', bufnr = 0 })
+              local ok, clients = pcall(vim.lsp.get_clients, { name = 'copilot', bufnr = 0 })
               if not ok then
                 return false
               end
