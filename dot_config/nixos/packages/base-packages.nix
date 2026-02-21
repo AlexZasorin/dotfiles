@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}: {
+{pkgs, ...}: {
   environment.systemPackages = let
     standardPackages = with pkgs; [
       # Development tools

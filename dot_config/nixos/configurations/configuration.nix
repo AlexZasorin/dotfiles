@@ -201,7 +201,6 @@
     isNormalUser = true;
     description = "solyx";
     extraGroups = ["networkmanager" "wheel" "docker"];
-    packages = with pkgs; [];
   };
 
   programs = {
@@ -304,16 +303,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
 
   services.gvfs.enable = true;
   services.udisks2.enable = true;

@@ -1,4 +1,4 @@
-{pkgs, home, ...}: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     mangohud
     protonup-ng
