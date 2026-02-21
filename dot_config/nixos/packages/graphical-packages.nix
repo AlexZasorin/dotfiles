@@ -18,6 +18,7 @@
     qbittorrent
     rawtherapee
     shotcut
+    signal-desktop
     spotify
     vesktop
     vlc
@@ -29,10 +30,10 @@
     prismlauncher
 
     # KDE specific
-    kdePackages.kclock
     kdePackages.dolphin
     kdePackages.dolphin-plugins
     kdePackages.filelight
+    kdePackages.kclock
     kdePackages.kdeconnect-kde
     kdePackages.kdegraphics-thumbnailers
     kdePackages.kdenlive

@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     mangohud
-    protonup-ng
+    protonup-qt
   ];
 
   environment.sessionVariables = {

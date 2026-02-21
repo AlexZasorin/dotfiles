@@ -1,8 +1,6 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     # Development tools
-    android-studio
-    claude-code
     basedpyright
     chromium
     claude-code
@@ -14,10 +12,8 @@
     just
     nodejs_24
     playwright-driver.browsers
-    prisma-engines_7
     pnpm
-    prisma-engines
-    pyright
+    prisma-engines_7
     python313
     python313Packages.pip
     rustup

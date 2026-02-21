@@ -5,17 +5,17 @@
       alejandra
       cmake
       eslint_d
+      gcc
       git
       gnumake
-      gcc
       go
       jq
       jujutsu
       lua5_1
       luarocks
+      neovim
       pkg-config
       prettierd
-      neovim
       zenity
 
       # Shell utilities
@@ -28,33 +28,31 @@
       curl
       efibootmgr
       eza
+      fastfetch
       fd
       fzf
       htop
       killall
       miniupnpc
-      neofetch
       ripgrep
-      sops
       smartcat
+      sops
       tmux
       unzip
-      vim
       wget
       which
       yt-dlp
       zellij
       zoxide
-      zsh
 
       # Network tools
       dig
       ivpn
       ivpn-service
       lsof
-      unixtools.netstat
       openssl
       traceroute
+      unixtools.netstat
 
       # Version control
       gh
@@ -62,7 +60,6 @@
       lazygit
 
       # Cloud & container tools
-      docker
       docker-compose
       kubectl
       kubectx
@@ -83,8 +80,8 @@
 
   # Font packages
   fonts.packages = with pkgs; [
+    carlito
     nerd-fonts.jetbrains-mono
     noto-fonts-cjk-sans
-    carlito
   ];
 }
