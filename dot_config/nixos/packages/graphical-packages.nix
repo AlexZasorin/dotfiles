@@ -1,4 +1,4 @@
-{pkgs, inputs, ...}: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     # Applications
     audacity
@@ -27,7 +27,6 @@
 
     # Game Stuff
     prismlauncher
-    inputs.dzgui-nix.packages.x86_64-linux.default
 
     # KDE specific
     kdePackages.kclock
