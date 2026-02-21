@@ -47,25 +47,6 @@ return {
       vim.keymap.set('n', 'gsd', ':TSToolsGoToSourceDefinition<CR>', opts)
     end
 
-    local function clear_keymaps()
-      local keys = {
-        '<leader>rf',
-        '<leader>oi',
-        '<leader>ru',
-        '<leader>ai',
-        '<leader>cf',
-        '<leader>gfr',
-        'gsd',
-      }
-
-      for _, key in ipairs(keys) do
-        local ok = pcall(vim.keymap.del, 'n', key)
-        if not ok then
-          vim.notify(string.format('Failed to delete keymap: %s', key), vim.log.levels.WARN)
-        end
-      end
-    end
-
     vim.api.nvim_create_autocmd('LspAttach', {
       group = keymap_group,
       callback = function(args)
