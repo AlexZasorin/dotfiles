@@ -17,7 +17,7 @@
   sops.defaultSopsFile = ../secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
 
-  sops.age.keyFile = "/home/solyx/.config/sops/age/keys.txt";
+  sops.age.keyFile = "${config.users.users.solyx.home}/.config/sops/age/keys.txt";
   sops.age.sshKeyPaths = [ ];
   sops.gnupg.sshKeyPaths = [ ];
   sops.secrets.anthropic_token = { 
@@ -153,7 +153,7 @@
   environment = {
     variables = {
       EDITOR = "nvim";
-      NH_OS_FLAKE = "/home/solyx/.config/nixos";
+      NH_OS_FLAKE = "${config.users.users.solyx.home}/.config/nixos";
     };
     sessionVariables = {
       # hyprland
@@ -194,7 +194,7 @@
       type = "simple";
     };
     serviceConfig = {
-      ExecStart = "${pkgs.kanata}/bin/kanata -d -c /home/solyx/.config/kanata/kanata.kbd";
+      ExecStart = "${pkgs.kanata}/bin/kanata -d -c ${config.users.users.solyx.home}/.config/kanata/kanata.kbd";
       Restart = "always";
       RestartSec = 10;
       User = "root";
@@ -236,7 +236,7 @@
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 4d --keep 3";
-      flake = "/home/solyx/.config/nixos";
+      flake = "${config.users.users.solyx.home}/.config/nixos";
     };
     zsh = {
       enable = true;
