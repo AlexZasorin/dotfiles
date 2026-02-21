@@ -40,7 +40,7 @@ return {
 
     -- Only add playwright adapter if e2e directory exists
     local function find_playwright_config()
-      local config_path = vim.fn.glob(vim.loop.cwd() .. '/**/playwright.config.ts', true, true)[1]
+      local config_path = vim.fn.glob(vim.uv.cwd() .. '/**/playwright.config.ts', true, true)[1]
       return config_path
     end
 
