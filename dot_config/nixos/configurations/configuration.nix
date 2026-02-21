@@ -190,15 +190,13 @@
   systemd.services.kanata = {
     enable = true;
     description = "run kanata";
-    unitConfig = {
-      type = "simple";
-    };
     serviceConfig = {
       ExecStart = "${pkgs.kanata}/bin/kanata -d -c ${config.users.users.solyx.home}/.config/kanata/kanata.kbd";
       Restart = "always";
       RestartSec = 10;
       User = "root";
       Group = "root";
+      Type = "simple";
     };
     wantedBy = ["multi-user.target"];
   };
@@ -207,15 +205,10 @@
     enable = true;
     description = "Initialize NoiseTorch";
     after = ["pipewire.service"];
-    unitConfig = {
-      type = "oneshot";
-    };
     serviceConfig = {
       ExecStart = "${pkgs.noisetorch}/bin/noisetorch -i";
-      # ExecStop = "${pkgs.noisetorch}/bin/noisetorch -u";
-      Restart = "on-failure";
-      RestartSec = 3;
       User = "solyx";
+      Type = "oneshot";
     };
     wantedBy = ["default.target"];
   };
