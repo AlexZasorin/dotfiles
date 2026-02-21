@@ -1,22 +1,5 @@
-local js_linters = { 'eslint', 'biomejs' }
 -- only run linters if a configuration file is found for the below linters
-local linter_root_markers = {
-  biomejs = { 'biome.json', 'biome.jsonc' },
-  eslint = {
-    'eslint.config.js',
-    'eslint.config.mjs',
-    'eslint.config.cjs',
-    'eslint.config.ts',
-    'eslint.config.mts',
-    'eslint.config.cts',
-    -- deprecated
-    '.eslintrc.js',
-    '.eslintrc.cjs',
-    '.eslintrc.yaml',
-    '.eslintrc.yml',
-    '.eslintrc.json',
-  },
-}
+local linter_root_markers = {}
 
 return {
 
@@ -30,10 +13,6 @@ return {
         dockerfile = { 'hadolint' },
         json = { 'jsonlint' },
         terraform = { 'tflint' },
-        javascript = js_linters,
-        javascriptreact = js_linters,
-        typescript = js_linters,
-        typescriptreact = js_linters,
         rust = { 'clippy' },
       }
 
