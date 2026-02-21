@@ -23,6 +23,14 @@
     ];
   };
 
+  # Hytale friend join (dynamic UDP ports)
+  networking.firewall.allowedUDPPortRanges = [
+    {
+      from = 40000;
+      to = 50000;
+    }
+  ];
+
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
   
