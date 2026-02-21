@@ -17,6 +17,8 @@ return {
     '<leader>/',
     '<leader>s/',
     '<leader>sn',
+    '<leader>so',
+    '<leader>sm',
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -119,7 +121,7 @@ return {
     vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[s]earch [d]iagnostics' })
     vim.keymap.set('n', '<leader>sR', builtin.resume, { desc = '[s]earch [R]esume' })
     vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[s]earch Recent Files ("." for repeat)' })
-    vim.keymap.set('n', '<leader>sm', builtin.commands, { desc = '[s]earch [c]ommads' })
+    vim.keymap.set('n', '<leader>sm', builtin.commands, { desc = '[s]earch [c]ommands' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
     vim.keymap.set('n', '<leader>sc', telescope.extensions.chezmoi.find_files, { desc = '[s]earch [c]hezmoi Files' })
 
