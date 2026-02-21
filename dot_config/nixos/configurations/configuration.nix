@@ -213,7 +213,7 @@
     };
     zsh = {
       enable = true;
-      shellInit = ''
+      loginShellInit = ''
         export GITHUB_TOKEN="$(cat ${config.sops.secrets.github_token.path})";
         export ANTHROPIC_API_KEY="$(cat ${config.sops.secrets.anthropic_token.path})";
       '';
