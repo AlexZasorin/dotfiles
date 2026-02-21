@@ -19,20 +19,19 @@ return {
 
     -- require('mini.pairs').setup()
 
-    -- Simple and easy statusline.
-    --  You could remove this setup call if you don't like it,
-    --  and try some other statusline plugin
-    local statusline = require('mini.statusline')
-    -- set use_icons to true if you have a Nerd Font
-    statusline.setup({ use_icons = vim.g.have_nerd_font })
-
-    -- You can configure sections in the statusline by overriding their
-    -- default behavior. For example, here we set the section for
-    -- cursor location to LINE:COLUMN
-    ---@diagnostic disable-next-line: duplicate-set-field
-    statusline.section_location = function()
-      return '%2l:%-2v'
-    end
+    -- Move lines/selections with Alt+Shift+hjkl
+    require('mini.move').setup({
+      mappings = {
+        left = '<M-A-h>',
+        right = '<M-A-l>',
+        down = '<M-A-j>',
+        up = '<M-A-k>',
+        line_left = '<M-A-h>',
+        line_right = '<M-A-l>',
+        line_down = '<M-A-j>',
+        line_up = '<M-A-k>',
+      },
+    })
 
     -- ... and there is more!
     --  Check out: https://github.com/nvim-mini/mini.nvim

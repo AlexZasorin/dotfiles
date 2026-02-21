@@ -3,7 +3,7 @@ local keymap = vim.keymap
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Clear highlights ons earch when pressing <Esc> in normal mode
+-- Clear highlights on search when pressing <Esc> in normal mode
 -- See `:help hlsearch`
 keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
@@ -86,10 +86,6 @@ keymap.set('v', '>', '>gv', opts)
 keymap.set('n', '>', '>>', opts)
 keymap.set('n', '<', '<<', opts)
 
-keymap.set('n', '<M-A-j>', ':m .+1<CR>==', opts) -- move line up
-keymap.set('n', '<M-A-k>', ':m .-2<CR>==', opts) -- move line down
-keymap.set('v', '<M-A-j>', ":m '>+1<CR>gv=gv", opts) -- move line up(v)
-keymap.set('v', '<M-A-k>', ":m '<-2<CR>gv=gv", opts) -- move line down(v)
 
 keymap.set('n', 'gh', '0', opts)
 keymap.set('n', 'gl', '$', opts)
