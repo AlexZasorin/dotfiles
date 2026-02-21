@@ -130,22 +130,30 @@ return {
       --
       -- But for many setups, the LSP (`ts_ls`) will work just fine
       basedpyright = {
-        analysis = {
-          diagnosticMode = 'workspace',
-          autoSearchPaths = true,
-          useLibraryCodeForTypes = true,
+        settings = {
+          basedpyright = {
+            analysis = {
+              diagnosticMode = 'workspace',
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+            },
+            disableOrganizeImports = true,
+          },
         },
-        disableOrganzeImports = true,
       },
       bashls = {},
       biome = {},
       cssls = {},
       denols = {
-        root_dir = function(fname)
+        root_dir = function(bufnr, on_dir)
+          local fname = vim.api.nvim_buf_get_name(bufnr)
           if string.find(fname, 'scaffold/src/templates') then
-            return nil
+            return
           end
-          return util.root_pattern('deno.json', 'deno.jsonc')(fname)
+          local root = util.root_pattern('deno.json', 'deno.jsonc')(fname)
+          if root then
+            on_dir(root)
+          end
         end,
         single_file_support = false,
       },
