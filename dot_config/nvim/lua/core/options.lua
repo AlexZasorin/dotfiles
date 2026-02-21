@@ -27,7 +27,7 @@ o.autoindent = true -- copy indent from current line when starting new one
 o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
-o.relativenumber = true
+o.relativenumber = false
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 o.mouse = 'a'
@@ -40,7 +40,7 @@ o.linebreak = true -- Wrap lines at word boundaries
 o.breakindent = true -- Indent wrapped lines
 o.showbreak = '↪ ' -- Show a symbol at the beginning of wrapped lines
 
-if not os.getenv('DISPLAY') and not vim.fn.has('macunix') then
+if not os.getenv('DISPLAY') and vim.fn.has('macunix') == 0 then
   -- Running on headless server
   local function paste()
     return {
@@ -71,9 +71,6 @@ else
     o.clipboard = 'unnamedplus'
   end)
 end
-
--- Enable break indent
-o.breakindent = true
 
 -- Save undo history
 o.undofile = true
