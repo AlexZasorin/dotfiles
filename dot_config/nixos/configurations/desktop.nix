@@ -1,6 +1,9 @@
 { pkgs, ... }: {
   networking.hostName = "phobos"; # Define your hostname.
 
+  environment.systemPackages = with pkgs; [
+    kdePackages.krohnkite
+  ];
   # Desktop monitor layout (X11/SDDM greeter)
   services.xserver.displayManager.setupCommands = ''
     /run/current-system/sw/bin/xrandr --output HDMI-0 --auto
