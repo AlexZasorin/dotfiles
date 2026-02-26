@@ -25,4 +25,4 @@ temperature = 0.9
 
 [models.claude]
 provider = "anthropic"
-model = "claude-sonnet-4-5-20250929"
+model = "claude-sonnet-4-6"
