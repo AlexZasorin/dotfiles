@@ -4,6 +4,7 @@
     basedpyright
     chromium
     claude-code
+    dbeaver-bin
     direnv
     flyctl
     git-filter-repo
