@@ -6,7 +6,6 @@
     darktable
     discord
     firefox
-    hydrus
     ivpn-ui
     krita
     libreoffice-qt6
