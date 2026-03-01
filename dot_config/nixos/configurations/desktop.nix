@@ -1,6 +1,13 @@
 { pkgs, ... }: {
   networking.hostName = "phobos"; # Define your hostname.
 
+  nix = {
+    settings = {
+      cores = 8;
+      max-jobs = 16;
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     kdePackages.krohnkite
   ];
