@@ -13,6 +13,8 @@
     inputs.sops-nix.nixosModules.sops
   ];
 
+  zramSwap.enable = true;
+
   # Secrets
   sops.defaultSopsFile = ../secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";

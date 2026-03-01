@@ -6,6 +6,13 @@
 }: {
   networking.hostName = "deimos"; # Define your hostname.
 
+  nix = {
+    settings = {
+      cores = 4;
+      max-jobs = 8;
+    };
+  };
+
   swapDevices = [
     {device = "/dev/disk/by-uuid/00be8230-2406-4495-b77c-f14ca0ebae89";}
   ];
