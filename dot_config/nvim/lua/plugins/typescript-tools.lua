@@ -2,7 +2,7 @@ return {
   'Yuki-bun/typescript-tools.nvim',
   dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
   opts = {},
-  lazy = false,
+  ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
   config = function()
     -- Disable ts_ls since typescript-tools.nvim is used
     vim.lsp.enable('ts_ls', false)
