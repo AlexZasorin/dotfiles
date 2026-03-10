@@ -236,6 +236,7 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/curl/lib/pkgconfig"
 # Export GitHub token if file exists
 if [ -f ~/.github-token ]; then
     export GITHUB_TOKEN=$(cat ~/.github-token)
+    export GITHUB_PERSONAL_ACCESS_TOKEN=$(cat ~/.github-token)
 fi
 
 if [ -f ~/.anthropic-token ]; then
