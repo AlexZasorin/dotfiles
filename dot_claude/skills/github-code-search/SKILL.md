@@ -34,7 +34,23 @@ path:*.<ext> "specific keyword" "another keyword"
    - Function call: `"require('telescope').setup"`
    - Config pattern: `"programs.zsh.enable"`
 
-### Using `gh search code`
+### Search Methods (in priority order)
+
+Try each method in order. Move to the next if the current one is unavailable or returns insufficient results.
+
+#### 1. GitHub MCP Server (preferred)
+
+Use the `mcp__plugin_github_github__search_code` tool. This is the fastest and most integrated option — no shell auth issues, no glob quoting concerns.
+
+```
+query: "treesitter-context path:*.lua"
+```
+
+To read full file contents from a result, use `mcp__plugin_github_github__get_file_contents` with the owner, repo, and path from the search result.
+
+#### 2. `gh search code` (fallback)
+
+Use when the MCP server is unavailable or not connected.
 
 **IMPORTANT:** The `path:*` glob MUST be quoted to prevent shell expansion. Use single quotes around the entire query or escape the `*`.
 
@@ -52,13 +68,11 @@ gh search code '"programs.starship" "enableZshIntegration" path:*.nix'
 gh search code '"nvim-cmp" "formatting" "lspkind" path:*.lua'
 ```
 
-**Prerequisites:** `gh search code` requires GitHub authentication. Run `gh auth status` to check. If not authenticated, use GitHub web search as a fallback (same query syntax works in the search box).
+**Prerequisites:** Requires GitHub authentication. Run `gh auth status` to check.
 
-### Using GitHub Web Search
+#### 3. GitHub Web Search (last resort)
 
-Navigate to `github.com/search` → select "Code" tab → use same query syntax.
-
-Useful when you want to browse surrounding context or explore the full repository.
+Use when neither MCP nor `gh` CLI is available. Use WebFetch on GitHub's search URL, or navigate to `github.com/search` → select "Code" tab → same query syntax works in the search box.
 
 ## Evaluating Results
 
@@ -78,21 +92,24 @@ Not all results are equal. Prioritize by:
 
 1. **Identify keywords**: What plugin/tool/option are you configuring? What terms uniquely identify it in code?
 2. **Pick the file extension**: `.lua` for neovim, `.nix` for nixos, `.toml` for cargo, etc.
-3. **Search**: `gh search code '"keyword" path:*.<ext>'` (single-quote the whole query to prevent shell glob expansion)
+3. **Search**: Use `mcp__plugin_github_github__search_code` first. Fall back to `gh search code` if MCP is unavailable, then GitHub web search as a last resort.
 4. **Scan results**: Look at 3-5 results, prioritize quality signals above
-5. **Read full context**: Use `gh api` or WebFetch to read the full file, not just the match
+5. **Read full context**: Use `mcp__plugin_github_github__get_file_contents`, `gh api`, or WebFetch to read the full file, not just the match
 6. **Synthesize**: Combine patterns from multiple good examples into a solution
 
 ## Reading Full File Context
 
 When you find a promising match, read the full file:
 
-```bash
-# View the full file from a search result
-gh api repos/{owner}/{repo}/contents/{path} --jq '.content' | base64 -d
 ```
+# Preferred: use the MCP tool
+mcp__plugin_github_github__get_file_contents(owner, repo, path)
 
-Or use WebFetch on the raw file URL.
+# Fallback: gh CLI
+gh api repos/{owner}/{repo}/contents/{path} --jq '.content' | base64 -d
+
+# Last resort: WebFetch on the raw file URL
+```
 
 ## Common Mistakes
 
@@ -101,5 +118,6 @@ Or use WebFetch on the raw file URL.
 - **Ignoring context**: A matching line without understanding the full config leads to broken setups.
 - **Skipping this entirely**: Defaulting to web search and getting SEO-optimized articles instead of working code.
 - **Only using one result**: Cross-reference 3-5 examples to identify the common, reliable pattern.
-- **Shell glob expansion**: `path:*.lua` without quotes causes the shell to expand `*` before `gh` sees it. Always single-quote the entire query.
+- **Skipping MCP**: The GitHub MCP server avoids shell quoting and auth issues entirely. Always try it first.
+- **Shell glob expansion**: When using `gh` CLI, `path:*.lua` without quotes causes the shell to expand `*`. Always single-quote the entire query.
 - **Missing auth**: `gh search code` returns 401 if `gh` isn't authenticated. Check `gh auth status` first, or fall back to GitHub web search.
