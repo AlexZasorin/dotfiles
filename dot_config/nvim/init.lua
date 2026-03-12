@@ -111,7 +111,7 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   { import = 'plugins.lualine' },
-  { import = 'plugins.cmp' },
+  { import = 'plugins.blink-cmp' },
   { import = 'plugins' },
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
