@@ -22,14 +22,6 @@ return {
 
     vim.o.laststatus = vim.g.lualine_laststatus
 
-    local colorscheme = require('neosolarized').colors
-    local colors = {
-      [''] = { fg = colorscheme.blue:to_vim() },
-      ['Normal'] = { fg = colorscheme.blue:to_vim() },
-      ['Warning'] = { fg = colorscheme.orange:to_vim() },
-      ['InProgress'] = { fg = colorscheme.yellow:to_vim() },
-    }
-
     local opts = {
       options = {
         icons_enabled = true,
@@ -54,30 +46,6 @@ return {
         lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = { { 'filename', path = 1, shorting_target = 40 } },
         lualine_x = {
-          {
-            function()
-              local icon = ' '
-              local status = require('copilot.status').data
-              return icon .. (status.message or '')
-            end,
-            cond = function()
-              if not package.loaded['copilot'] then
-                return
-              end
-              local ok, clients = pcall(vim.lsp.get_clients, { name = 'copilot', bufnr = 0 })
-              if not ok then
-                return false
-              end
-              return ok and #clients > 0
-            end,
-            color = function()
-              if not package.loaded['copilot'] then
-                return
-              end
-              local status = require('copilot.status').data.status
-              return colors[status] or colors['']
-            end,
-          },
           { 'encoding' },
           { 'fileformat' },
           { 'filetype' },
