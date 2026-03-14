@@ -24,6 +24,7 @@
     vscode
     wezterm
     zoom-us
+    zulip
 
     # Game Stuff
     prismlauncher
