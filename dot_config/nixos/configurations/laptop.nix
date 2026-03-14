@@ -75,7 +75,10 @@
 
   services.fstrim.enable = lib.mkDefault true;
 
-  systemd.sleep.extraConfig = "HibernateDelaySec=10m";
+  systemd.sleep.settings.Sleep = {
+    HibernateDelaySec = "10m";
+  };
+
   networking.networkmanager.wifi.powersave = false;
 
   systemd.services.ath11k-resume = {
