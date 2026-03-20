@@ -44,7 +44,14 @@ return {
       sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = { { 'filename', path = 1, shorting_target = 40 } },
+        lualine_c = {
+          {
+            function()
+              return require('auto-session.lib').current_session_name(true)
+            end,
+          },
+          { 'filename', path = 1, shorting_target = 40 },
+        },
         lualine_x = {
           { 'encoding' },
           { 'fileformat' },
