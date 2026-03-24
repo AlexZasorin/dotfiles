@@ -49,7 +49,7 @@ eod() {
     git add "**/CLAUDE.md"
     git commit -m "chore(claude): update CLAUDE.md"
 
-{{ if (and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "nixos")) }}
+{{- if (and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "nixos")) }}
     log-msg blue false "Saving flake.lock..."
     chezmoi add "~/.config/nixos/flake.lock"
     git add "**/flake.lock"
