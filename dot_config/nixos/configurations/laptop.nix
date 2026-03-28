@@ -13,11 +13,8 @@
     };
   };
 
-  swapDevices = [
-    {device = "/dev/disk/by-uuid/00be8230-2406-4495-b77c-f14ca0ebae89";}
-  ];
   boot.resumeDevice = "/dev/disk/by-uuid/00be8230-2406-4495-b77c-f14ca0ebae89";
-  boot.kernelParams = ["mem_sleep_default=deep"];
+  boot.kernelParams = ["mem_sleep_default=s2idle"];
   boot.kernelPackages = lib.mkIf (lib.versionOlder pkgs.linux.version "5.16") pkgs.linuxPackages_latest;
 
   hardware.bluetooth = {
@@ -81,19 +78,20 @@
 
   networking.networkmanager.wifi.powersave = false;
 
-  systemd.services.ath11k-resume = {
-    enable = true;
-    description = "Resume";
-    after = ["suspend-then-hibernate.target"];
-    wantedBy = ["suspend-then-hibernate.target"];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = [
-        "${pkgs.kmod}/bin/modprobe -rv ath11k_pci"
-        "${pkgs.kmod}/bin/modprobe -v ath11k_pci"
-      ];
-    };
-  };
+  # Uncomment if WiFi stops working after wake from sleep.
+  # The sleep state change (s2idle) may fix this without needing a driver reload.
+  # systemd.services.ath11k-resume = {
+  #   enable = true;
+  #   description = "Reload ath11k WiFi driver after wake from sleep";
+  #   after = ["suspend-then-hibernate.target" "hibernate.target" "suspend.target"];
+  #   wantedBy = ["suspend-then-hibernate.target" "hibernate.target" "suspend.target"];
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     RemainAfterExit = true;
+  #     ExecStart = "${pkgs.kmod}/bin/modprobe -rv ath11k_pci";
+  #     ExecStop = "${pkgs.kmod}/bin/modprobe -v ath11k_pci";
+  #   };
+  # };
 
   virtualisation = {
     docker = {
