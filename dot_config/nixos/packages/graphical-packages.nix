@@ -5,6 +5,7 @@
     bottles
     darktable
     discord
+    ente-desktop
     firefox
     ivpn-ui
     krita
