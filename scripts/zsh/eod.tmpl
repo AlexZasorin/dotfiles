@@ -44,10 +44,15 @@ eod() {
     git add "**/en.utf-8.add*"
     git commit -m "chore(nvim): update spelling dictionary"
 
-    log-msg blue false "Saving global CLAUDE.md"
+    log-msg blue false "Saving global CLAUDE.md..."
     chezmoi add "~/.claude/CLAUDE.md"
     git add "**/CLAUDE.md"
     git commit -m "chore(claude): update CLAUDE.md"
+
+    log-msg blue false "Saving party db..."
+    chezmoi add "~/.local/share/post-push-party/party.db"
+    git add "**/party.db"
+    git commit -m "chore(party): update party db"
 
 {{- if (and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "nixos")) }}
     log-msg blue false "Saving flake.lock..."
