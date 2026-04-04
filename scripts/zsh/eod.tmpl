@@ -49,11 +49,6 @@ eod() {
     git add "**/CLAUDE.md"
     git commit -m "chore(claude): update CLAUDE.md"
 
-    log-msg blue false "Saving party db..."
-    chezmoi add "~/.local/share/post-push-party/party.db"
-    git add "**/party.db"
-    git commit -m "chore(party): update party db"
-
 {{- if (and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "nixos")) }}
     log-msg blue false "Saving flake.lock..."
     chezmoi add "~/.config/nixos/flake.lock"
