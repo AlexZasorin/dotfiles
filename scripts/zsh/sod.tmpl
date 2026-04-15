@@ -1,4 +1,9 @@
 sod() {
+  local enable_summary=false
+  if [[ "$1" == "--summary" || "$1" == "-s" ]]; then
+    enable_summary=true
+  fi
+
   quotes=(
     "Étoile, et toi\nEt toi, et moi\nLe monde est vous, vous êtes le monde"
     "Hello, friend."
@@ -13,7 +18,7 @@ sod() {
     "Greetings Fred,\nI, too, am filled with dread at the ominous possibility of an Obama presidency."
     "Nigh is the Time of the Sword and Axe\nNone will fight this war in our stead\nNigh is the Time of Madness and Disdain"
     "She crests the horizon\nDistant but approaching\nNo longer drawn away with the tide\nNo longer rudderless in the storm\nShe rises from the depths\nTempest tossed yet untoppled\nBillows of song in her breast\nClosing on course\n\t-Jane Ottomaris Hedge"
-    "The pen is meant to slow you down. The words shouldn’t land on paper at the speed of thinking or even talking.\nThe writing must hurt your wrist or hand. It must turn into a burden. That pain is a signal telling you that you have written long enough. Maybe you wrote only five lines. Perhaps one thousand.\nIt doesn’t matter.\nYou take a break."
+    "The pen is meant to slow you down. The words shouldn’t land on paper at the speed of thinking or even talking.\nThe writing must hurt your wrist or hand. It must turn into a burden.\nThat pain is a signal telling you that you have written long enough.\nMaybe you wrote only five lines. Perhaps one thousand.\nIt doesn’t matter.\nYou take a break."
     "Fury born alight, days deep\nCrazy visions in a stirred up kind of waking dream"
   )
   log-msg magenta true "Start of Day"
@@ -27,6 +32,65 @@ sod() {
 {{ if eq .chezmoi.hostname "RSS-R19GQMPKX0" }}
   log-msg blue false "Logging into aws..."
   aws sso login
+
+  # context:namespace:deployment
+  local -a summary_deployments=(
+    "aws-prod:apps:assignment"
+  )
+
+  if $enable_summary; then
+    local state_file="$HOME/.local/state/sod-last-run"
+    local since_time
+
+    if [[ -f "$state_file" ]]; then
+      since_time=$(cat "$state_file")
+    else
+      since_time=$(date -u -v-24H +%Y-%m-%dT%H:%M:%SZ)
+    fi
+
+    local all_logs=""
+    for entry in "${summary_deployments[@]}"; do
+      local ctx="${entry%%:*}"
+      local rest="${entry#*:}"
+      local ns="${rest%%:*}"
+      local deploy="${rest#*:}"
+
+      log-msg blue false "Fetching $deploy logs ($ctx/$ns) since $since_time..."
+
+      local logs
+      logs=$(kubectl --context "$ctx" -n "$ns" logs "deployment/$deploy" --since-time="$since_time" --all-containers 2>&1)
+      all_logs+="
+=== DEPLOYMENT: $deploy (context: $ctx, namespace: $ns) ===
+$logs
+"
+    done
+
+    if [[ -n "$all_logs" ]]; then
+      log-msg blue false "Summarizing logs with Claude..."
+      local prompt
+      prompt=$(cat <<'PROMPT'
+Summarize the following Kubernetes logs. For each deployment, fill out this template:
+
+## [Deployment Name]
+- **Status**: Normal / Degraded / Errors Detected
+- **Errors**: List any errors or exceptions, with counts if repeated. "None" if clean.
+- **Warnings**: List any warnings. "None" if clean.
+- **Restarts**: Note any pod restarts or CrashLoopBackOff events. "None" if stable.
+- **Notable**: Any unusual patterns, latency spikes, or resource issues. "Nothing notable" if unremarkable.
+
+Be concise. Only include details that are actionable or worth investigating.
+
+Logs:
+PROMPT
+)
+      echo "$all_logs" | claude -p "$prompt"
+    else
+      log-msg yellow false "No logs found since $since_time"
+    fi
+  fi
+
+  mkdir -p "$HOME/.local/state"
+  date -u +%Y-%m-%dT%H:%M:%SZ > "$HOME/.local/state/sod-last-run"
 {{ end }}
 
   random_index=$(( $(od -An -N4 -tu4 < /dev/urandom | tr -d ' ') % ${#quotes[@]} + 1 ))
