@@ -68,6 +68,10 @@ $logs
     if [[ -n "$all_logs" ]]; then
       log-msg blue false "Summarizing logs with Claude..."
       local prompt
+      
+      # Unset API key so claude -p doesn't use my API tokens
+      unset ANTHROPIC_API_KEY
+
       prompt=$(cat <<'PROMPT'
 Summarize the following Kubernetes logs. For each deployment, fill out this template:
 
