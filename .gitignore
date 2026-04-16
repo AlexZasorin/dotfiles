@@ -1,3 +1,4 @@
 nixos-switch.log
 dot_config/smartcat/dot_api_configs.toml
 .claude/settings.local.json
+.worktrees/
