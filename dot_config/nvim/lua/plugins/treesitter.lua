@@ -68,10 +68,10 @@ return {
         swap = {
           enable = true,
           swap_next = {
-            ['<leader>an'] = '@parameter.inner',
+            ['<M-l>'] = '@parameter.inner',
           },
           swap_previous = {
-            ['<leader>ap'] = '@parameter.inner',
+            ['<M-h>'] = '@parameter.inner',
           },
         },
         select = {
@@ -83,6 +83,8 @@ return {
             -- You can use the capture groups defined in textobjects.scm
             ['af'] = '@function.outer',
             ['if'] = '@function.inner',
+            ['ip'] = '@parameter.inner',
+            ['ap'] = '@parameter.outer',
             ['ac'] = '@class.outer',
             -- You can optionally set descriptions to the mappings (used in the desc parameter of
             -- nvim_buf_set_keymap) which plugins like which-key display
