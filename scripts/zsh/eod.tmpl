@@ -55,6 +55,13 @@ eod() {
     git add "**/flake.lock"
     git commit -m "chore(nixos): update flake.lock"
 {{ end }}
+{{- if eq .chezmoi.os "darwin" }}
+    log-msg blue false "Saving Brewfile..."
+    brew bundle dump --file ~/.config/brew/Brewfile --force
+    chezmoi add "~/.config/brew/Brewfile"
+    git add "**/Brewfile"
+    git commit -m "chore(brew): update Brewfile"
+{{ end }}
 
     log-msg blue false "Pushing chezmoi..."
     git -C ~/.local/share/chezmoi push
