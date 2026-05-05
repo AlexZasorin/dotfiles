@@ -8,8 +8,9 @@ local terminal_app_exclusions = [
 
 local letter_exceptions = ['e', 'h', 'l', 'i', 'o'];
 local lowercase_letters = [
-  if !std.member(letter_exceptions, std.char(i)) then std.char(i)
+  std.char(i)
   for i in std.range(97, 122)  // 'a' to 'z' in ASCII
+  if !std.member(letter_exceptions, std.char(i))
 ];
 
 local numbers = [
@@ -43,30 +44,20 @@ local makeSimpleRule(key_code_from, key_code_to, except_apps=[]) = [
       {
         type: 'device_if',
         identifiers: [
-          {
-            vendor_id: 1452,
-          },
-          {
-            vendor_id: 12851,
-          },
-          {
-            vendor_id: 1133,
-          },
+          { is_built_in_keyboard: true },
+          { vendor_id: 1452 },
+          { vendor_id: 12851 },
+          { vendor_id: 1133 },
         ],
       },
     ] else [
       {
         type: 'device_if',
         identifiers: [
-          {
-            vendor_id: 1452,
-          },
-          {
-            vendor_id: 12851,
-          },
-          {
-            vendor_id: 1133,
-          },
+          { is_built_in_keyboard: true },
+          { vendor_id: 1452 },
+          { vendor_id: 12851 },
+          { vendor_id: 1133 },
         ],
       },
     ],
@@ -83,8 +74,7 @@ local makeManipulator(from_key, to_key, variable_name, device_ids) = {
     },
     {
       type: 'device_if',
-      // Iterate over the device_ids and create a vendor_id object for each
-      identifiers: [
+      identifiers: [{ is_built_in_keyboard: true }] + [
         { vendor_id: id }
         for id in device_ids
       ],
@@ -204,15 +194,10 @@ local commandShiftRules = [
             {
               type: 'device_if',
               identifiers: [
-                {
-                  vendor_id: 1452,
-                },
-                {
-                  vendor_id: 12851,
-                },
-                {
-                  vendor_id: 1133,
-                },
+                { is_built_in_keyboard: true },
+                { vendor_id: 1452 },
+                { vendor_id: 12851 },
+                { vendor_id: 1133 },
               ],
             },
           ],
