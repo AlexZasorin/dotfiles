@@ -1,4 +1,3 @@
 export EDITOR="nvim"
 
-. "$HOME/.cargo/env"
 . "/Users/azasorin/.local/share/bob/env/env.sh"
