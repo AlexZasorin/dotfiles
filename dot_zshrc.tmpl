@@ -125,17 +125,7 @@ function direnv() {
   direnv "$@"
 }
 
-atuin_init_cmd() {
-  unfunction atuin_init_cmd
-  eval "$(command atuin init zsh)"
-}
-
-atuin_delayed_init() {
-  atuin_init_cmd
-  add-zsh-hook -d precmd atuin_delayed_init
-}
-
-add-zsh-hook precmd atuin_delayed_init
+eval "$(command atuin init zsh)"
 
 function uv() {
   unfunction uv
