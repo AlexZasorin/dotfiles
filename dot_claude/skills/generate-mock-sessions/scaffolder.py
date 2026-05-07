@@ -28,8 +28,8 @@ _SKILL_DIR = Path(__file__).parent
 if str(_SKILL_DIR) not in sys.path:
     sys.path.insert(0, str(_SKILL_DIR))
 
-import records
-from validate import _is_slot_marker, validate
+import records  # type: ignore[import-not-found]
+from validate import _is_slot_marker, validate  # type: ignore[import-not-found]
 
 # ---------------------------------------------------------------------------
 # Constants / defaults
