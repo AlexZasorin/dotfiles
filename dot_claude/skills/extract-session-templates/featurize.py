@@ -94,7 +94,7 @@ def session_duration_seconds(records: list[dict]) -> float:
     Checks top-level `timestamp` field first, then `snapshot.timestamp`
     for file-history-snapshot records. Returns 0.0 if fewer than 2 timestamps found.
     """
-    from datetime import datetime, timezone
+    from datetime import datetime
 
     timestamps: list[datetime] = []
 
