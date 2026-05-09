@@ -183,18 +183,6 @@
     wantedBy = ["multi-user.target"];
   };
 
-  systemd.services.noisetorch-init = {
-    enable = true;
-    description = "Initialize NoiseTorch";
-    after = ["pipewire.service"];
-    serviceConfig = {
-      ExecStart = "${pkgs.noisetorch}/bin/noisetorch -i";
-      User = "solyx";
-      Type = "oneshot";
-    };
-    wantedBy = ["default.target"];
-  };
-
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
