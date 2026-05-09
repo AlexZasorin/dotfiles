@@ -113,8 +113,6 @@ return {
       end,
     })
 
-    local util = require('lspconfig').util
-
     -- Enable the following language servers
     --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
     --  See `:help lsp-config` for information about keys and how to configure
@@ -147,7 +145,7 @@ return {
           if string.find(fname, 'scaffold/src/templates') then
             return
           end
-          local root = util.root_pattern('deno.json', 'deno.jsonc')(fname)
+          local root = vim.fs.root(fname, { 'deno.json', 'deno.jsonc' })
           if root then
             on_dir(root)
           end
@@ -163,8 +161,11 @@ return {
       graphql = {
         filetypes = { 'graphql', 'typescriptreact', 'javascriptreact' },
         root_dir = function(bufnr, on_dir)
-          local fname = vim.api.nvim_buf_get_name(bufnr)
-          on_dir(util.root_pattern('.graphqlrc*', '.graphql.config.*', 'graphql.config.*')(fname))
+          on_dir(vim.fs.root(bufnr, function(name)
+            return name:find('^%.graphqlrc')
+              or name:find('^%.graphql%.config%.')
+              or name:find('^graphql%.config%.')
+          end))
         end,
       },
       html = {},
