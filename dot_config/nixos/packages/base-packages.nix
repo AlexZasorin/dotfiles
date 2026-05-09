@@ -13,6 +13,7 @@
       jujutsu
       lua5_1
       luarocks
+      lua51Packages.tree-sitter-cli
       neovim
       pkg-config
       prettierd
