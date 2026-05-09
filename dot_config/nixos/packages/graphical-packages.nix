@@ -2,7 +2,6 @@
   environment.systemPackages = with pkgs; [
     # Applications
     audacity
-    bottles
     darktable
     discord
     ente-desktop
@@ -10,7 +9,6 @@
     ivpn-ui
     krita
     libreoffice-qt6
-    megasync
     nheko
     obsidian
     pavucontrol
