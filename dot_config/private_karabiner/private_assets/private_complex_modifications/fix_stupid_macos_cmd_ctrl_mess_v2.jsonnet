@@ -1,26 +1,43 @@
-local terminal_app_exclusions = [
+// Exclude these applications from having keys rebound
+// These are often terminal programs that already accept the standard Ctrl modifier key mappings
+local APP_EXCLUSIONS = [
   '^com\\.apple\\.Terminal$',
   '^com\\.googlecode\\.iterm2$',
   '^com\\.microsoft\\.VSCode$',
   '^com\\.github\\.wez\\.wezterm$',
-  // Add any additional applications you wish to exclude
 ];
 
-local letter_exceptions = ['e', 'h', 'l', 'i', 'o'];
-local lowercase_letters = [
+// Exclude these letters from being remapped (in any modifier + key combo?)
+local LETTER_EXCEPTIONS = ['e', 'h', 'l', 'i', 'o'];
+
+// Array of all lowercase letters for iteration, excluding exceptions
+// TODO: Is there a more idiomatic way to get these?
+local LOWERCASE_LETTERS = [
   std.char(i)
   for i in std.range(97, 122)  // 'a' to 'z' in ASCII
-  if !std.member(letter_exceptions, std.char(i))
+  if !std.member(LETTER_EXCEPTIONS, std.char(i))
 ];
 
-local numbers = [
+// The NUMBERS 0-9
+// TODO: Is there a more idiomatic way to get these?
+local NUMBERS = [
   std.toString(i)
   for i in std.range(1, 9)
 ];
 
-local punctuation = ['comma', 'slash', 'open_bracket', 'close_bracket', 'semicolon', 'grave_accent_and_tilde', 'equal_sign', 'hyphen'];
-local all_characters = numbers + lowercase_letters + punctuation;
-local bash_shortcut_letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+// Punctuation key codes recognized by Karabiner Elements
+local PUNCTUATION = ['comma', 'slash', 'open_bracket', 'close_bracket', 'semicolon', 'grave_accent_and_tilde', 'equal_sign', 'hyphen'];
+
+// Union of all characters
+local ALL_CHARACTERS = NUMBERS + LOWERCASE_LETTERS + PUNCTUATION;
+
+// Array of all characters used by bash in Ctrl + key combos, or at least the ones I care about. It's most of the alphabet.
+local BASH_SHORTCUT_LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+// TODO: Add vendor_id array
+// TODO: Document functions
+// TODO: Make functions make more sense
+
 
 local makeSimpleRule(key_code_from, key_code_to, except_apps=[]) = [
   {
@@ -139,8 +156,8 @@ local makeDualRule(mandatory_modifiers, key='', optional_modifiers=[], except_ap
 local commandRules = [
   rules
   for subarray in [
-    if std.member(bash_shortcut_letters, i) then makeDualRule(['command'], i, [], terminal_app_exclusions) else makeDualRule(['command'], i)
-    for i in all_characters
+    if std.member(BASH_SHORTCUT_LETTERS, i) then makeDualRule(['command'], i, [], APP_EXCLUSIONS) else makeDualRule(['command'], i)
+    for i in ALL_CHARACTERS
   ]
   for rules in subarray
 ];
@@ -148,8 +165,8 @@ local commandRules = [
 local commandShiftRules = [
   rules
   for subarray in [
-    if std.member(bash_shortcut_letters, i) then makeDualRule(['command', 'shift'], i, [], terminal_app_exclusions) else makeDualRule(['command', 'shift'], i)
-    for i in all_characters
+    if std.member(BASH_SHORTCUT_LETTERS, i) then makeDualRule(['command', 'shift'], i, [], APP_EXCLUSIONS) else makeDualRule(['command', 'shift'], i)
+    for i in ALL_CHARACTERS
   ]
   for rules in subarray
 ];
@@ -161,11 +178,11 @@ local commandShiftRules = [
       description: 'Swap Command and Control for specified shortcuts, with exceptions for certain applications',
       manipulators:
         commandRules +
-        makeDualRule(['command'], 'e', [], terminal_app_exclusions + ['^com\\.microsoft\\.Outlook$']) +
-        makeDualRule(['command'], 'h', [], terminal_app_exclusions + ['^org\\.mozilla\\.firefox']) +
-        makeDualRule(['command'], 'l', [], terminal_app_exclusions + ['^org\\.mozilla\\.firefox']) +
-        makeDualRule(['command'], 'i', [], terminal_app_exclusions + ['^org\\.mozilla\\.firefox']) +
-        makeDualRule(['command'], 'o', [], terminal_app_exclusions + ['^org\\.mozilla\\.firefox']) +
+        makeDualRule(['command'], 'e', [], APP_EXCLUSIONS + ['^com\\.microsoft\\.Outlook$']) +
+        makeDualRule(['command'], 'h', [], APP_EXCLUSIONS + ['^org\\.mozilla\\.firefox']) +
+        makeDualRule(['command'], 'l', [], APP_EXCLUSIONS + ['^org\\.mozilla\\.firefox']) +
+        makeDualRule(['command'], 'i', [], APP_EXCLUSIONS + ['^org\\.mozilla\\.firefox']) +
+        makeDualRule(['command'], 'o', [], APP_EXCLUSIONS + ['^org\\.mozilla\\.firefox']) +
         makeDualRule(['command'], '', [], [], 'button1') +
         commandShiftRules +
         makeDualRule(['command', 'option'], 'f'),
