@@ -5,6 +5,7 @@
     chromium
     claude-code
     dbeaver-bin
+    deno
     direnv
     flyctl
     git-filter-repo
