@@ -23,12 +23,14 @@ This is a chezmoi-managed dotfiles repository that includes NixOS system configu
 The NixOS configuration is located in `dot_config/nixos/` and uses a flake-based modular structure:
 
 **Flake outputs** (`dot_config/nixos/flake.nix`):
+
 - `desktop` - Full desktop configuration (hostname: phobos)
 - `laptop` - Laptop configuration (hostname: deimos)
 - `server` - Minimal server configuration (hostname: ceres)
 - `default` - Fallback configuration
 
 **Module organization**:
+
 - `configurations/` - Host-specific and base system configuration
   - `configuration.nix` - Base configuration with bootloader, networking, users, services, sops-nix secrets
   - `desktop.nix` - Desktop-specific settings (Steam, SMB mounts)
@@ -51,6 +53,7 @@ The NixOS configuration is located in `dot_config/nixos/` and uses a flake-based
 ### Key Configuration Details
 
 **Secrets Management**:
+
 - Uses sops-nix for encrypted secrets
 - Age key location: `/home/solyx/.config/sops/age/keys.txt`
 - Secrets are exposed as environment variables in `configuration.nix`:
@@ -58,15 +61,16 @@ The NixOS configuration is located in `dot_config/nixos/` and uses a flake-based
   - `ANTHROPIC_API_KEY` - from `sops.secrets.anthropic_token`
 
 **User Configuration**:
+
 - Primary user: `solyx`
 - Default shell: `zsh`
 - User groups: `networkmanager`, `wheel`, `docker`
 
 **System Services**:
+
 - Desktop environment: KDE Plasma 6 with SDDM (Wayland)
 - Custom systemd services:
   - `kanata` - Keyboard remapping daemon
-  - `noisetorch-init` - Noise suppression initialization
 
 ## Common Commands
 
@@ -92,6 +96,7 @@ chezmoi cd
 ### NixOS Rebuild Workflow
 
 The repository includes a custom rebuild script at `scripts/nix/rebuild.sh.tmpl` that:
+
 1. Edits the configuration file with chezmoi
 2. Auto-formats with alejandra
 3. Rebuilds the system
