@@ -123,3 +123,6 @@ o.foldnestmax = 8
 o.spell = true
 o.spelllang = 'en_us'
 o.spelloptions = 'camel'
+
+-- Asserts on stale client_id after `:lsp restart` (nvim 0.12 document_color.lua:225).
+vim.lsp.document_color.enable(false)
