@@ -86,7 +86,6 @@ keymap.set('v', '>', '>gv', opts)
 keymap.set('n', '>', '>>', opts)
 keymap.set('n', '<', '<<', opts)
 
-
 keymap.set('n', 'gh', '0', opts)
 keymap.set('n', 'gl', '$', opts)
 
@@ -95,7 +94,7 @@ keymap.set('o', 'l', '$', opts)
 
 keymap.set('n', '<leader>lr', function()
   vim.diagnostic.reset()
-  vim.cmd('LspRestart')
+  vim.cmd('lsp restart')
 end, { noremap = true, silent = true, desc = 'Reset diagnostics and restart LSP' })
 
 keymap.set('n', '<C-x>', ':xall<CR>', opts)
