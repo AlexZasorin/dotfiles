@@ -140,6 +140,7 @@
     variables = {
       EDITOR = "nvim";
       NH_OS_FLAKE = "${config.users.users.solyx.home}/.config/nixos";
+      NIXOS_INSTALL_BOOTLOADER = "true";
     };
   };
 
