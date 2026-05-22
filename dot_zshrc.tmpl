@@ -229,6 +229,14 @@ if [ -f ~/.github-token ]; then
     export GITHUB_PERSONAL_ACCESS_TOKEN=$(cat ~/.github-token)
 fi
 
+if [ -f ~/.todoist-token ]; then
+    export TODOIST_API_KEY=$(cat ~/.todoist-token)
+fi
+
+if [ -f ~/.google-token ]; then
+    export GOOGLE_MASTER_TOKEN=$(cat ~/.google-token)
+fi
+
 if [ -f ~/.anthropic-token ]; then
     export ANTHROPIC_API_KEY=$(cat ~/.anthropic-token)
 fi
