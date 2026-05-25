@@ -48,6 +48,7 @@
 
       # Network tools
       dig
+      inetutils
       ivpn
       ivpn-service
       lsof
@@ -70,9 +71,12 @@
       asciiquarium
       dmidecode
       ffmpeg
+      hdparm
+      parted
       rclone
       restic
       slides
+      smartmontools
       spicetify-cli
       vhs
     ];
