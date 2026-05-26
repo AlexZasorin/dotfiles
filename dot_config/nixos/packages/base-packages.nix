@@ -73,9 +73,9 @@
       ffmpeg
       hdparm
       parted
+      presenterm
       rclone
       restic
-      slides
       smartmontools
       spicetify-cli
       vhs
