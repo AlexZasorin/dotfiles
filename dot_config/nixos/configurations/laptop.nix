@@ -46,7 +46,7 @@
   };
   hardware.amdgpu.initrd.enable = lib.mkDefault true;
 
-  services.xserver.videoDrivers = lib.mkDefault [ "modesetting" ];
+  services.xserver.videoDrivers = lib.mkDefault ["modesetting"];
   services.power-profiles-daemon.enable = false;
 
   services.tlp = {
@@ -63,12 +63,11 @@
   services.logind = {
     settings.Login = {
       HandleLidSwitch = "suspend-then-hibernate";
-      HandlePowerKey="suspend-then-hibernate";
-      IdleAction="suspend-then-hibernate";
-      IdleActionSec="10m";
+      HandlePowerKey = "suspend-then-hibernate";
+      IdleAction = "suspend-then-hibernate";
+      IdleActionSec = "10m";
     };
   };
-
 
   services.fstrim.enable = lib.mkDefault true;
 

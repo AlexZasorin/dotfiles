@@ -20,9 +20,9 @@
   sops.defaultSopsFormat = "yaml";
 
   sops.age.keyFile = "${config.users.users.solyx.home}/.config/sops/age/keys.txt";
-  sops.age.sshKeyPaths = [ ];
-  sops.gnupg.sshKeyPaths = [ ];
-  sops.secrets.anthropic_token = { 
+  sops.age.sshKeyPaths = [];
+  sops.gnupg.sshKeyPaths = [];
+  sops.secrets.anthropic_token = {
     owner = "solyx";
   };
   sops.secrets.github_token = {
@@ -300,7 +300,7 @@
   services.devmon.enable = true;
 
   systemd.user.services.devmon = {
-    unitConfig.ConditionUser = "solyx";  # Replace with your username
+    unitConfig.ConditionUser = "solyx"; # Replace with your username
   };
 
   # Enable the OpenSSH daemon.

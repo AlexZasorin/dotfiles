@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   networking.hostName = "phobos"; # Define your hostname.
 
   nix = {
@@ -44,7 +44,7 @@
 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
-  
+
   programs.gamemode.enable = true;
 
   services.flatpak.enable = true;
