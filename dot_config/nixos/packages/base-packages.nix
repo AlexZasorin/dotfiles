@@ -15,6 +15,7 @@
       luarocks
       lua51Packages.tree-sitter-cli
       neovim
+      nixd
       pkg-config
       prettierd
       zenity

@@ -162,9 +162,7 @@ return {
         filetypes = { 'graphql', 'typescriptreact', 'javascriptreact' },
         root_dir = function(bufnr, on_dir)
           on_dir(vim.fs.root(bufnr, function(name)
-            return name:find('^%.graphqlrc')
-              or name:find('^%.graphql%.config%.')
-              or name:find('^graphql%.config%.')
+            return name:find('^%.graphqlrc') or name:find('^%.graphql%.config%.') or name:find('^graphql%.config%.')
           end))
         end,
       },
@@ -201,6 +199,7 @@ return {
       --     ignore = { '*' },
       --   },
       -- },
+      nixd = {},
       prismals = {},
       ruff = {
         on_attach = function(client, bufnr)
