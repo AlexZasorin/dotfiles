@@ -38,6 +38,7 @@ return {
       },
     },
     formatters_by_ft = {
+      nix = { 'alejandra' },
       handlebars = { 'prettier' },
       lua = { 'stylua' },
       html = { 'prettier' },
