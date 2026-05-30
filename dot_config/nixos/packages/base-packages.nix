@@ -90,4 +90,8 @@
     nerd-fonts.jetbrains-mono
     noto-fonts-cjk-sans
   ];
+
+  environment.variables = {
+    PKG_CONFIG_PATH = "${pkgs.openssl}/lib/pkgconfig";
+  };
 }
