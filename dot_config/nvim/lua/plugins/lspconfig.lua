@@ -294,8 +294,13 @@ return {
     --    :Mason
     --
     -- You can press `g?` for help in this menu.
-    local ensure_installed = vim.tbl_keys(servers or {})
+    local skip_servers = { 'nixd' }
+
+    local ensure_installed = vim.tbl_filter(function(name)
+      return not vim.tbl_contains(skip_servers, name)
+    end, vim.tbl_keys(servers or {}))
     vim.list_extend(ensure_installed, {
+
       'actionlint',
       'basedpyright',
       'bash-language-server',
@@ -335,6 +340,9 @@ return {
     for server_name, config in pairs(servers) do
       vim.lsp.config(server_name, config)
     end
+
+    -- Non-mason lsp requires manual enabling
+    vim.lsp.enable('nixd', true)
 
     -- NOTE: Some servers may require an old setup until they are updated. For the full list refer here: https://github.com/neovim/nvim-lspconfig/issues/3705
     -- These servers will have to be manually set up with require("lspconfig").server_name.setup{}
