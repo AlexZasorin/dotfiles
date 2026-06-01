@@ -46,7 +46,7 @@ eod() {
 
     log-msg blue false "Saving global CLAUDE.md..."
     chezmoi add "~/.claude/CLAUDE.md"
-    git add "**/CLAUDE.md"
+    git add "**/private_CLAUDE.md"
     git commit -m "chore(claude): update CLAUDE.md"
 
 {{- if (and (hasKey .chezmoi.osRelease "id") (eq .chezmoi.osRelease.id "nixos")) }}
