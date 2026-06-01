@@ -73,14 +73,33 @@ Effects ARE appropriate for: synchronizing with external systems, data fetching 
 
 ## Testing Philosophy
 
-Write mostly integration tests, sometimes unit tests. Start with integration tests because they:
-- Provide the most value
-- Are tied closer to business cases/user stories
-- Cover more ground per test
+**Static safety is the first line of defense — before any test runs.** TypeScript's type system and Zod schema validation at boundaries (API inputs, external service responses, message payloads) catch a large class of bugs before code ever executes. A well-placed `z.parse()` at a boundary turns silent data corruption into a loud, localized error, often eliminating the need for a unit test that would have caught the same thing. Reach for stricter types and boundary validation before reaching for tests.
 
-Unit tests tend to be detached from overarching use cases.
+Above that static base, this follows Kent C. Dodds' [Testing Trophy](https://kentcdodds.com/blog/write-tests): integration tests are the sweet spot between confidence and cost. E2E tests are heavy but valuable; unit tests are cheap but tied to implementation details. Integration tests at the service/API level give the best return on investment.
 
-**When to add unit tests**: When refactoring a module A into submodules B and C (A ← B, A ← C), the existing tests for A become integration tests. There's no benefit to writing unit tests for B and C **unless** they are used elsewhere. If C is later used in module D, then it makes sense to add a specific unit test for C because it now implements a shared interface between multiple modules.
+**Start high, then fill in below:**
+
+1. **Start with a high-level test** — either an E2E test (a vertical feature slice for backend work, or a browser interaction for frontend) or an integration test at the service level. Pick based on what the feature touches.
+2. **E2E tests cover user flows** — generally one happy path and one unhappy path. Don't try to cover every branch at this level.
+3. **Most coverage lives in integration tests** — the level below E2E. This is where branches, edge cases, and contract details get exercised.
+4. **Unit tests are the exception, not the rule.** Write one only when one of the two triggers below applies.
+
+**Why this ordering:** E2E tests give the most confidence but are slow and brittle. Unit tests are fast and free but easily drift into testing implementation rather than behavior. Integration tests sit in the middle — tied to business cases, cover a lot of ground per test, and survive refactors of internal structure.
+
+**API/contract tests:** For backend-only work, API tests aren't expensive in this codebase. Lean into them — write more contract-level tests than you might in a heavier stack. **Playwright is being deprecated** for this project; don't reach for new Playwright tests, prefer API/integration tests instead.
+
+**When to add a unit test — two triggers:**
+
+1. **Reuse.** Module B has 2+ consumers (e.g., modules A and C both depend on it). At that point B sits at a shared interface, and its unit tests document the contract every caller relies on. Until that second consumer exists, B is covered transitively by A's tests; a unit test on B would be documentation for an audience of one.
+2. **Internal complexity that's hard to localize from above.** A unit has internal complexity that an integration test can't cheaply diagnose when it breaks. Signals: 3+ internal branches producing categorically different outputs, pure transformations where wrong output doesn't throw (silent failure), or N fixtures needed to exercise N branches from a level above. In these cases an integration failure tells you "something is wrong" without telling you which branch — the unit test pays for itself in diagnostic speed.
+
+Treat tests as documentation of a module's API. The reuse trigger says "wait for a second reader before writing documentation"; the complexity trigger says "write documentation when the code is hard enough that future-you will struggle to read it without help."
+
+**Disciplines when you do write a unit test:**
+
+- **Scope it to the gnarly part, not the whole module.** If a service has one complex method and ten boring ones, only the complex one gets a unit test. The rest stays covered by integration.
+- **Prefer loud failures over unit tests.** A typed error, a Zod `.parse()` at a boundary, or an exhaustive switch will often pin down the source of an integration failure better than a unit test does — and won't ossify the module's internal shape. Reach for these first.
+- **Delete the unit test when its trigger goes away.** If a second consumer is removed, or the complexity that justified the test was refactored away, the test is no longer documentation of anything — it's overhead.
 
 ### Test Structure
 - Fixtures should be in separate `*.fixtures.ts` files, co-located with the test file
@@ -194,3 +213,4 @@ project = PLATFORM AND cf[10355] = "Team Mango" AND status != Done
 - 2026-05-06: Rebuilt records.py (Phase 2 of generate-mock-sessions skill). Pure record-building primitives with all schema-realism fixes (F1–F10, R1–R5): base62 IDs, v4 UUID fix, thinking signatures, full usage shape, event-driven hooks, sidechain-aware fields, agent_progress stripping, delegation ID consistency, None-safe parentUuid, tool-result cleanup. 52 tests, all passing. User provides exhaustive specs with exact API surfaces and named fixes — no design decisions needed from Claude on these rebuild tasks.
 - 2026-05-06: Built validate.py (Phase 3 of generate-mock-sessions skill). Structural validator enforcing V1–V5 rules. Key real-file discoveries that required spec deviations: (1) ~40% of real files have non-monotonic timestamps — dropped strict ordering check, validate parsability only; (2) file-history-snapshot.messageId anchors to both user AND assistant uuids, not just user; (3) 2/632 non-sidechain files have orphan tool_result records (session resumption from previous file) — these are valid. T1 real-file roundtrip passed after these adjustments. 25 validate tests + 52 records tests = 77 total.
 - 2026-05-06: Built scaffolder.py (Phase 4 of generate-mock-sessions skill). CLI + skeleton/assemble/checkpoint orchestration. 35 new tests, 112 total. Key bugs fixed: F2 two-pass UUID pre-allocation for file_snapshot anchors; F3 FIFO tool-use queue (not single last_id); F4 recursive usage recompute into agent_progress inner records; F6 stable delegation_msg_id across all agent_progress wrappers; F11 first-user parentUuid=None even after hook; F12 path-traversal guards at all 3 sinks; F13 atomic checkpoint via os.replace + corrupt-file recovery. Implementation note: _expand_subagent_event must PEEK (not pop) the parent pending_tool_use_ids — the subsequent tool_result in the parent template must consume it. Note: secrets._b62 IDs bypass random.seed(), so exact hash reproducibility is impossible; T3 golden snapshot tests seeded fields (UUIDs, timestamps, types) instead.
+- 2026-05-22 → 2026-05-27: Multi-session test-rename pass across Assignment project. Renamed ~500 test cases across 30+ files (integration, services, adapters, kafka, gateway, utils, components, demo) to a consistent "given X, Y" / "Xs Y" spec voice. Workflow and migrations layers intentionally skipped. Convention established: no `should X` prefix, full word `acknowledgement` (never `ack`), users are "members of" folders (never "owners"), Assigned/Unassigned/Completed in TitleCase. Established workflow: detail-then-approve per-block with markdown tables (Current | Proposed | Change columns). User pushed back when names were stale/inaccurate vs body assertions — added several feedback memories (research-before-renaming, full-cycle-test-names, table-format-for-renames). Bonus: deleted 5 trivial pass-through tests from NotificationGateway.spec.ts per "tests above adapter" philosophy. Resolved one merge conflict in TaskService.spec.ts where upstream restructured the Review-manual-assignment tests.
