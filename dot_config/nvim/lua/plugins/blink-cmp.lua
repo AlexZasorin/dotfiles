@@ -26,7 +26,7 @@ return {
       'saghen/blink.compat',
       version = '2.*',
       lazy = true,
-      opts = {},
+      opts = { impersonate_nvim_cmp = true },
     },
     {
       'AlexZasorin/cmp-npm',
