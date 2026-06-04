@@ -274,6 +274,7 @@
         pcre2
         json-glib
         gnutls
+        openssl
       ];
     };
     ssh = {
