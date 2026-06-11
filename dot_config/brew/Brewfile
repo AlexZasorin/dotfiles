@@ -6,109 +6,201 @@ tap "nikitabobko/tap"
 tap "openfga/tap"
 tap "oven-sh/bun"
 tap "redpanda-data/tap"
+# Run your GitHub Actions locally
 brew "act"
+# Aquarium animation in ASCII art
 brew "asciiquarium"
+# Improved shell history for zsh, bash, fish and nushell
 brew "atuin"
+# Official Amazon AWS command-line interface
 brew "awscli"
+# Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Collection of portable C++ source libraries
 brew "boost"
+# Yet another cross-platform graphical process/system monitor
 brew "bottom"
+# Perl compatible regular expressions library with a new API
 brew "pcre2"
+# Draw boxes around text
 brew "boxes"
+# Fish completion for brew-cask
 brew "brew-cask-completion"
+# New way to see and navigate directory trees
 brew "broot"
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
+# CLI tool for analyzing Claude Code usage from local JSONL files
 brew "ccusage"
+# Versatile and fast Unicode/ASCII/ANSI graphics renderer
 brew "chafa"
+# Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
+# Cross-platform make
 brew "cmake"
+# GNU File, Shell, and Text utilities
 brew "coreutils"
+# Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# Secure runtime for JavaScript and TypeScript
 brew "deno"
+# Load/unload environment variables based on $PWD
 brew "direnv"
+# Modern, maintained replacement for ls
 brew "eza"
+# Simple, fast and user-friendly alternative to find
 brew "fd"
+# Command-line tools for fly.io services
 brew "flyctl"
+# Command-line fuzzy finder written in Go
 brew "fzf"
+# GitHub command-line tool
 brew "gh"
+# Distributed revision control system
 brew "git"
+# Small git utilities
 brew "git-extras"
+# Quickly rewrite git repository history
 brew "git-filter-repo"
+# Tcl/Tk UI for the git revision control system
 brew "git-gui"
+# Blazing fast terminal-ui for git written in rust
 brew "gitui"
+# GNU Transport Layer Security (TLS) Library
 brew "gnutls"
+# GNU Privacy Guard (OpenPGP)
 brew "gnupg"
+# Open source programming language to build simple/reliable/efficient software
 brew "go"
+# World's fastest and most advanced password recovery utility
 brew "hashcat"
+# Post-modern modal text editor
 brew "helix"
+# Improved top (interactive process viewer)
 brew "htop"
+# Istio configuration command-line utility
 brew "istioctl"
+# Lightweight and flexible command-line JSON processor
 brew "jq"
+# Domain specific configuration language for defining JSON data
 brew "jsonnet"
+# Kubernetes CLI To Manage Your Clusters In Style!
 brew "k9s"
+# Kubernetes command-line interface
 brew "kubernetes-cli"
+# Kubernetes prompt info for bash and zsh
 brew "kube-ps1"
+# Tool that can switch between kubectl contexts easily and create aliases
 brew "kubectx"
+# Lazier way to manage everything docker
 brew "lazydocker"
+# Simple terminal UI for git commands
 brew "lazygit"
+# Package manager for the Lua programming language
 brew "luarocks"
+# Language Server Protocol for Markdown
 brew "marksman"
+# MongoDB Shell to connect, configure, query, and work with your MongoDB database
 brew "mongosh"
+# Atlas CLI enables you to manage your MongoDB Atlas
 brew "mongodb-atlas-cli"
+# Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Execute binaries from Python packages in isolated environments
 brew "pipx"
+# Fast, disk space efficient package manager
 brew "pnpm"
+# Tool for managing OCI containers and pods
 brew "podman"
+# Terminal slideshow tool
 brew "presenterm"
+# Python version management
 brew "pyenv"
+# Static type checker for Python
 brew "pyright"
+# Interpreted, interactive, object-oriented programming language
 brew "python@3.11"
+# Generic machine emulator and virtualizer
 brew "qemu"
+# Perl-powered file rename script with many helpful built-ins
 brew "rename"
+# Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Safe, concurrent, practical language
 brew "rust"
+# Rust toolchain installer
 brew "rustup"
+# Terminal based presentation tool
 brew "slides"
+# Tail multiple Kubernetes pods & their containers
 brew "stern"
+# Feature-rich console based todo list manager
 brew "task"
+# Very fast implementation of tldr in Rust
 brew "tealdeer"
+# Send macOS User Notifications from the command-line
 brew "terminal-notifier"
+# Parser generator tool
 brew "tree-sitter-cli"
+# Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Next generation frontend tooling. It's fast!
 brew "vite"
+# Internet file retriever
 brew "wget"
+# Blazing fast terminal file manager written in Rust, based on async I/O
 brew "yazi"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
 brew "yq"
+# Pluggable terminal workspace, with terminal multiplexer as the base feature
 brew "zellij"
+# Shell extension to navigate your filesystem faster
 brew "zoxide"
+# Real-time type-ahead completion for Zsh
 brew "zsh-autocomplete"
+# Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
+# Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
-brew "ankitpokhrel/jira-cli/jira-cli"
-brew "drewzemke/tap/post-push-party"
-brew "openfga/tap/fga"
-brew "oven-sh/bun/bun"
-brew "redpanda-data/tap/redpanda"
+# AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace"
+# Client for the Box cloud storage service
 cask "box-drive"
+# Missing menulet for Homebrew
 cask "brewlet"
+# Terminal-based AI coding assistant
 cask "claude-code"
+# Utilities designed to make common development tasks easier
 cask "devtoys"
+# App to build and share containerised applications and microservices
 cask "docker-desktop"
 cask "font-hack-nerd-font"
 cask "font-jetbrains-mono-nerd-font"
+# Keyboard customiser
 cask "karabiner-elements"
+# Clipboard manager
 cask "maccy"
+# Provides updates to various Microsoft products
 cask "microsoft-auto-update"
+# Meet, chat, call, and collaborate in just one place
 cask "microsoft-teams"
+# Interactive tool for analyzing MongoDB data
 cask "mongodb-compass"
+# Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
+# Instant messaging application focusing on security
 cask "signal"
+# Team communication and collaboration software
 cask "slack"
+# Music streaming service
 cask "spotify"
+# To-do list
 cask "todoist-app"
+# GPU-accelerated cross-platform terminal emulator and multiplexer
 cask "wezterm@nightly"
+# Connect to Windows
 cask "windows-app"
+# REST, GraphQL and gRPC client
 cask "yaak"
 go "github.com/grafana/jsonnet-language-server"
 cargo "climer"
