@@ -1,8 +1,8 @@
 tap "ankitpokhrel/jira-cli"
-tap "derailed/k9s"
-tap "drewzemke/tap"
+tap "derailed/k9s", trusted: true
+tap "drewzemke/tap", trusted: true
 tap "matsuyoshi30/gitsu"
-tap "nikitabobko/tap"
+tap "nikitabobko/tap", trusted: true
 tap "openfga/tap"
 tap "oven-sh/bun"
 tap "redpanda-data/tap"
@@ -162,6 +162,8 @@ brew "zsh-autocomplete"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# Celebrate your git pushes!
+brew "drewzemke/tap/post-push-party"
 # AeroSpace is an i3-like tiling window manager for macOS
 cask "nikitabobko/tap/aerospace"
 # Client for the Box cloud storage service
