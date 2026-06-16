@@ -231,6 +231,17 @@ fi
 
 if [ -f ~/.todoist-token ]; then
     export TODOIST_API_KEY=$(cat ~/.todoist-token)
+    launchctl setenv TODOIST_API_KEY $(cat ~/.todoist-token)
+fi
+
+if [ -f ~/.slack-app-token ]; then
+    export MACHINE_SLACK_APP_TOKEN=$(cat ~/.slack-app-token)
+    launchctl setenv MACHINE_SLACK_APP_TOKEN $(cat ~/.slack-app-token)
+fi
+
+if [ -f ~/.slack-bot-token ]; then
+    export MACHINE_SLACK_BOT_TOKEN=$(cat ~/.slack-bot-token)
+    launchctl setenv MACHINE_SLACK_BOT_TOKEN $(cat ~/.slack-bot-token)
 fi
 
 if [ -f ~/.google-token ]; then
