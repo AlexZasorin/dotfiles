@@ -10,7 +10,6 @@
     krita
     libreoffice-qt6
     nheko
-    obsidian
     pavucontrol
     protonmail-desktop
     qbittorrent
@@ -23,7 +22,6 @@
     vscode
     wezterm
     zoom-us
-    zulip
 
     # Game Stuff
     prismlauncher
