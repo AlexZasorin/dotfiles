@@ -42,6 +42,7 @@
 ## TypeScript
 - Strict typing: avoid `any`, prefer `unknown`, use proper typing
 - Never use dynamic imports (`await import()`) - always use static imports at top of file
+- Avoid user-defined type-predicate guards (`(x): x is T`) — a predicate is an unchecked assertion TS trusts without verifying the body, so a wrong one silently lies. Prefer a plain inline `if` (truthiness/discriminant) check; it gives the same control-flow narrowing AND TS actually verifies it. Reach for a predicate only when it's genuinely reused across many sites, or when the check is complex enough that naming it meaningfully improves readability.
 
 ## Package Managers
 - In pnpm projects (identified by `pnpm-lock.yaml`), always use `pnpm` instead of `npm` and `pnpx` instead of `npx`
