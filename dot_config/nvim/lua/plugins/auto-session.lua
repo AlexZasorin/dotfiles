@@ -20,7 +20,7 @@ return {
       -- When no session exists for a directory, ensure a clean empty buffer
       function()
         local bufname = vim.api.nvim_buf_get_name(0)
-        if not bufname:match('COMMIT_EDITMSG$') then
+        if not bufname:match('COMMIT_EDITMSG$') and not bufname:match('') then
           vim.cmd('enew')
         end
       end,
