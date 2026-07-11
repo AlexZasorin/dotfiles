@@ -6,6 +6,7 @@
     discord
     ente-desktop
     firefox
+    hydrus
     ivpn-ui
     krita
     libreoffice-qt6
