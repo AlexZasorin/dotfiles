@@ -74,6 +74,11 @@ Effects ARE appropriate for: synchronizing with external systems, data fetching 
 
 ### Other React Preferences
 - Prefer arrow functions over named function expressions in `memo()` calls
+- Avoid inline arrow functions and `.bind()` as JSX prop values — extract the
+  handler or wrap it in `useCallback` so children get stable references. This is
+  enforced by Biome's `performance/noJsxPropsBind` (kept on in the assignment
+  project); prefer fixing the call site over disabling the rule. (Distinct from
+  the `memo()` point above, which is about the component definition, not props.)
 
 ## File Naming
 - kebab-case for directories (e.g., `flow-builder/` not `FlowBuilder/`)
