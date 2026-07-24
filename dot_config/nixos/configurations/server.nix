@@ -34,8 +34,10 @@
 
   services.resolved = {
     enable = true;
-    domains = ["~."];
-    fallbackDns = ["8.8.8.8" "8.8.4.4"];
+    settings.Resolve = {
+      Domains = ["~."];
+      FallbackDNS = ["8.8.8.8" "8.8.4.4"];
+    };
   };
 
   # Set your time zone.
