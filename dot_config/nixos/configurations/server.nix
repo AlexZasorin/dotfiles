@@ -126,6 +126,14 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  services = {
+    zwave-js = {
+      enable = true;
+      serialPort = "/dev/serial/by-id/usb-Zooz_800_Z-Wave_Stick_533D004242-if00";
+      secretsConfigFile = "${config.users.users.solyx.home}/zwave-js.json";
+    };
+  };
+
   services.cron = {
     enable = true;
     systemCronJobs = [
