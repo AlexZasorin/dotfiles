@@ -31,6 +31,7 @@
     kdePackages.dolphin
     kdePackages.dolphin-plugins
     kdePackages.filelight
+    kdePackages.isoimagewriter
     kdePackages.kclock
     kdePackages.kdeconnect-kde
     kdePackages.kdegraphics-thumbnailers

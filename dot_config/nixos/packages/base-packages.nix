@@ -72,6 +72,9 @@
       asciiquarium
       dmidecode
       ffmpeg
+      ddrescue
+      exfatprogs
+      gptfdisk
       hdparm
       parted
       presenterm
