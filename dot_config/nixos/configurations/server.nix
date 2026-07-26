@@ -16,52 +16,50 @@
   };
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.kernelModules = [ "xhci_pci" "usb_storage" "uas" "sd_mod" ];
-
-  networking.hostName = "ceres"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  networking.nameservers = ["8.8.8.8" "8.8.4.4"];
-
-  services.resolved = {
-    enable = true;
-    settings.Resolve = {
-      Domains = ["~."];
-      FallbackDNS = ["8.8.8.8" "8.8.4.4"];
+  boot = {
+    initrd.kernelModules = ["xhci_pci" "usb_storage" "uas" "sd_mod"];
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
     };
+  };
+
+  networking = {
+    hostName = "ceres";
+    # Enable networking
+    networkmanager.enable = true;
+    nameservers = ["8.8.8.8" "8.8.4.4"];
+    wireless.enable = true; # Enables wireless support via wpa_supplicant.
+
+    # Configure network proxy if necessary
+    # proxy.default = "http://user:password@proxy:port/";
+    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+    # Open ports in the firewall.
+    # firewall.allowedTCPPorts = [ ... ];
+    # firewall.allowedUDPPorts = [ ... ];
+    # Or disable the firewall altogether.
+    # firewall.enable = false;
   };
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n = {
+    # Select internationalisation properties.
+    defaultLocale = "en_US.UTF-8";
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+    };
   };
 
   virtualisation = {
@@ -72,12 +70,15 @@
 
   # TODO: Can be removed? Just move shell to configuration.nix user setup
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.solyx = {
-    isNormalUser = true;
-    description = "solyx";
-    extraGroups = ["networkmanager" "wheel" "docker"];
-    packages = with pkgs; [];
-    shell = pkgs.zsh;
+  users = {
+    defaultUserShell = pkgs.zsh;
+    users.solyx = {
+      isNormalUser = true;
+      description = "solyx";
+      extraGroups = ["networkmanager" "wheel" "docker"];
+      packages = with pkgs; [];
+      shell = pkgs.zsh;
+    };
   };
 
   # Allow unfree packages
@@ -104,29 +105,45 @@
       startAgent = true;
       extraConfig = "AddressFamily inet";
     };
-  };
 
-  users.defaultUserShell = pkgs.zsh;
+    # Some programs need SUID wrappers, can be configured further or are
+    # started in user sessions.
+    # mtr.enable = true;
+    # gnupg.agent = {
+    #   enable = true;
+    #   enableSSHSupport = true;
+    # };
+  };
 
   environment = {
     variables.EDITOR = "nvim";
     variables.TERM = "xterm-256color";
   };
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
   services = {
+    cron = {
+      enable = true;
+      systemCronJobs = [
+        "*/5 * * * *  solyx  ${config.users.users.solyx.home}/Repos/postpwn/deployment/deploy.sh >> /home/solyx/Repos/postpwn/deployment/deploy.log 2>&1"
+      ];
+    };
+    # Enable the OpenSSH daemon.
+    openssh = {
+      enable = true;
+    };
+    resolved = {
+      enable = true;
+      settings.Resolve = {
+        Domains = ["~."];
+        FallbackDNS = ["8.8.8.8" "8.8.4.4"];
+      };
+    };
+    # Configure keymap in X11
+    xserver.xkb = {
+      layout = "us";
+      variant = "";
+    };
     zwave-js = {
       enable = true;
       serialPort = "/dev/serial/by-id/usb-Zooz_800_Z-Wave_Stick_533D004242-if00";
@@ -134,17 +151,27 @@
     };
   };
 
-  services.cron = {
+  hardware.bluetooth = {
     enable = true;
-    systemCronJobs = [
-      "*/5 * * * *  solyx  ${config.users.users.solyx.home}/Repos/postpwn/deployment/deploy.sh >> /home/solyx/Repos/postpwn/deployment/deploy.log 2>&1"
-    ];
+    powerOnBoot = true;
+    settings = {
+      General = {
+        # Shows battery charge of connected devices on supported
+        # Bluetooth adapters. Defaults to 'false'.
+        Experimental = true;
+        # When enabled other devices can connect faster to us, however
+        # the tradeoff is increased power consumption. Defaults to
+        # 'false'.
+        FastConnectable = true;
+      };
+      Policy = {
+        # Enable all controllers when they are found. This includes
+        # adapters present on start as well as adapters that are plugged
+        # in later on. Defaults to 'true'.
+        AutoEnable = true;
+      };
+    };
   };
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
