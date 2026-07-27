@@ -23,7 +23,9 @@
           ./packages/gaming.nix
           ./graphics/nvidia.nix
           ./configurations/configuration.nix
+          ./configurations/grub.nix
           ./configurations/desktop.nix
+          ./configurations/restic.nix
           ./configurations/graphical.nix
         ];
       };
@@ -34,7 +36,10 @@
           ./packages/default.nix
           ./packages/system-packages/nixos.nix
           ./configurations/configuration.nix
+          ./configurations/grub.nix
+          ./configurations/bluetooth.nix
           ./configurations/laptop.nix
+          ./configurations/restic.nix
           ./configurations/graphical.nix
         ];
       };
@@ -45,6 +50,8 @@
         modules = [
           ./packages/base-packages.nix
           ./packages/development-packages.nix
+          ./configurations/configuration.nix
+          ./configurations/bluetooth.nix
           ./configurations/server.nix
         ];
       };
@@ -54,7 +61,9 @@
         modules = [
           ./packages/default.nix
           ./packages/system-packages/nixos.nix
+          ./configurations/grub.nix
           ./configurations/configuration.nix
+          {system.stateVersion = "23.11";}
         ];
       };
     };

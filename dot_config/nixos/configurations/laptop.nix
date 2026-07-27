@@ -17,28 +17,6 @@
   boot.kernelParams = ["mem_sleep_default=s2idle"];
   boot.kernelPackages = lib.mkIf (lib.versionOlder pkgs.linux.version "5.16") pkgs.linuxPackages_latest;
 
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        # Shows battery charge of connected devices on supported
-        # Bluetooth adapters. Defaults to 'false'.
-        Experimental = true;
-        # When enabled other devices can connect faster to us, however
-        # the tradeoff is increased power consumption. Defaults to
-        # 'false'.
-        FastConnectable = true;
-      };
-      Policy = {
-        # Enable all controllers when they are found. This includes
-        # adapters present on start as well as adapters that are plugged
-        # in later on. Defaults to 'true'.
-        AutoEnable = true;
-      };
-    };
-  };
-
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   hardware.graphics = {
     enable = lib.mkDefault true;
@@ -48,6 +26,9 @@
 
   services.xserver.videoDrivers = lib.mkDefault ["modesetting"];
   services.power-profiles-daemon.enable = false;
+
+  # Touchpad support.
+  services.libinput.enable = true;
 
   services.tlp = {
     enable = true;
@@ -92,9 +73,11 @@
   #   };
   # };
 
-  virtualisation = {
-    docker = {
-      enable = true;
-    };
-  };
+  # TODO: set the paths you actually want backed up on deimos.
+  services.restic.backups.b2.paths = [
+    "/home/solyx"
+  ];
+
+  # Release this host was first installed on. Do not change (see NixOS manual).
+  system.stateVersion = "23.11";
 }

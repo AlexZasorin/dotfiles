@@ -42,6 +42,11 @@
     }
   ];
 
+  # TODO: set the paths you actually want backed up on phobos.
+  services.restic.backups.b2.paths = [
+    "/home/solyx"
+  ];
+
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
 
@@ -56,9 +61,6 @@
     };
   };
 
-  virtualisation = {
-    docker = {
-      enable = true;
-    };
-  };
+  # Release this host was first installed on. Do not change (see NixOS manual).
+  system.stateVersion = "23.11";
 }
