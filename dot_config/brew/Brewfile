@@ -84,6 +84,8 @@ brew "istioctl"
 brew "jq"
 # Domain specific configuration language for defining JSON data
 brew "jsonnet"
+# Handy way to save and run project-specific commands
+brew "just"
 # Kubernetes CLI To Manage Your Clusters In Style!
 brew "k9s"
 # Kubernetes command-line interface
@@ -124,6 +126,8 @@ brew "python@3.11"
 brew "qemu"
 # Perl-powered file rename script with many helpful built-ins
 brew "rename"
+# Fast, efficient and secure backup program
+brew "restic"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Safe, concurrent, practical language
