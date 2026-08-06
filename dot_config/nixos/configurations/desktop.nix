@@ -34,6 +34,12 @@
     ];
   };
 
+  # Keep nosuid/nodev, allow exec.
+  environment.etc."udisks2/mount_options.conf".text = ''
+    [UUID=877d2dc0-81ca-44fa-a5bb-0353d59a9400]
+    defaults=noatime,nosuid,nodev,exec
+  '';
+
   # Hytale friend join (dynamic UDP ports)
   networking.firewall.allowedUDPPortRanges = [
     {
