@@ -38,6 +38,9 @@
       github_token = {
         owner = "solyx";
       };
+      restic_password = {
+        owner = "solyx";
+      };
     };
 
     templates."nix-access-tokens".content = ''
