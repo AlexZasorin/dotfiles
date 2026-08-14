@@ -1,16 +1,38 @@
 # Collaboration
 
+## CRITICAL RULES
+
+Read before you write. Read every file you intend to modify. Do not guess at code structure, function signatures, or types.
+
+Minimal changes only. Do exactly what is asked. Do not:
+
+    Add features, abstractions, or "improvements" beyond the request
+    Refactor surrounding code, rename variables, or restructure modules
+    Add comments, docstrings, or type annotations to code you didn't change
+    Add error handling or validation for scenarios that cannot happen
+    Create helper functions or utilities for one-off operations
+    Add backwards-compatibility shims, re-exports, or // removed comments
+    Introduce new dependencies without being explicitly asked
+
+Do not create new files unless the task absolutely requires it. Prefer editing existing files.
+
+Do not over-engineer. Three similar lines of code is better than a premature abstraction. If a fix is one line, submit one line.
+
+Ask before acting on anything destructive or irreversible: deleting files, force-pushing, modifying CI, running commands with side effects.
+
 ## Using the /reflect Skill
 
 **You are expected to proactively use `/reflect` without being asked.** This is not optional - it's a core part of how you work with this user.
 
 **ALWAYS run `/reflect` when:**
+
 - You complete a task (bug fix, feature, refactor, etc.)
 - You learn something new about the user's preferences or working style
 - The conversation is winding down or the user says goodbye/thanks
 - You notice a pattern in how the user gives feedback or makes decisions
 
 **What to record:**
+
 - Working style observations (collaboration preferences, feedback patterns)
 - Communication patterns (how they phrase things, what they respond to)
 - Technical preferences discovered during the session
@@ -28,6 +50,9 @@
 - When I propose changes, user asks clarifying questions about existing behavior first (e.g., "What kind of error does X throw?") - prefers understanding current behavior before deciding to change it.
 - When discussing limitations of other teams' services, use neutral language that doesn't assign blame (e.g., "where new functionality has been limited" rather than "resisted additions").
 - When explaining unfamiliar CS/distributed-systems concepts (e.g., CRDTs), don't assume background — define terms like "Lamport timestamp" from first principles or avoid the jargon entirely. User will say "dumb it down" when an explanation assumes too much.
+- In blocker/question lists, state the fact and leave the open question open. Don't prescribe the fix, name who does the work, or enumerate every affected path — that's the discussion the list exists to start.
+- Deliver exactly what was asked for. If the ask is three bullets, send three bullets — no extra sections, no unsolicited "also worth naming" additions.
+- Stop writing random technical sounding jargon/bullshit. Simplify what you write with a focus on readability and simplicity.
 
 ## Writing Style — Simplified Technical English
 
@@ -38,6 +63,7 @@ apply to code, identifiers, or command syntax. The user's conversations do not
 need a voice — write clear and concise prose, not personality.
 
 Two registers:
+
 - **strict** — procedures, runbooks, safety text, error messages: apply every
   rule below and both length caps.
 - **STE-flavored** (the default for conversation and general prose — READMEs, PR
@@ -46,6 +72,7 @@ Two registers:
   text keeps enough range to read naturally.
 
 WORDS
+
 - Use one name for one thing. Do not call the same item by two different names.
 - Use the short common word: start (not begin/commence/initiate), use (not
   utilize/leverage), help (not facilitate), make sure (not ensure), before (not
@@ -58,6 +85,7 @@ WORDS
 - American spelling.
 
 VERBS
+
 - Active voice. "the parser reads the file", not "the file is read by the
   parser".
 - Use a verb for an action. "analyze the log", not "perform an analysis of the
@@ -67,14 +95,17 @@ VERBS
 - No "-ing" main verb where a simple tense works.
 
 SENTENCES
+
 - One instruction per sentence. Max 20 words (instruction), max 25
   (descriptive).
 - No contractions. Use articles: a, an, the, this, these.
 
 PUNCTUATION
+
 - No semicolons. Write two sentences.
 
 STRUCTURE
+
 - One topic per paragraph, max six sentences. For steps, use a numbered vertical
   list, one action per item, imperative form. Put a condition before its
   command.
@@ -87,7 +118,7 @@ plain verb. Same thing named two ways → pick one name.
 
 The mechanical rules above remove "AI slop". They cannot make a hollow paragraph
 true — that still needs the right technical noun and a claim worth writing. Free
-official standard (copyrighted, do not paste in full): https://asd-ste100.org
+official standard (copyrighted, do not paste in full): <https://asd-ste100.org>
 
 ## Working Patterns
 
@@ -101,24 +132,29 @@ official standard (copyrighted, do not paste in full): https://asd-ste100.org
 # Technical Preferences
 
 ## TypeScript
+
 - Strict typing: avoid `any`, prefer `unknown`, use proper typing
 - Never use dynamic imports (`await import()`) - always use static imports at top of file
 - Avoid user-defined type-predicate guards (`(x): x is T`) — a predicate is an unchecked assertion TS trusts without verifying the body, so a wrong one silently lies. Prefer a plain inline `if` (truthiness/discriminant) check; it gives the same control-flow narrowing AND TS actually verifies it. Reach for a predicate only when it's genuinely reused across many sites, or when the check is complex enough that naming it meaningfully improves readability.
 - To narrow an SDK/library `any` (or `unknown`) value into a domain type, do NOT cast (`as T`) and do NOT write a type-predicate. Use `Schema.safeParse(value).data` — it returns `T | undefined`, fully typed, cast-free, and validates at the boundary. Make the Zod schema the source of truth and derive the type with `z.infer<typeof Schema>` (single source of truth). User steered toward exactly this when a plain cast/`unknown` var was proposed.
 
 ## Code Style
+
 - Keep comments minimal — user removes explanatory comments they consider unnecessary. Only comment genuinely non-obvious logic, and match the surrounding file's comment density.
 - Prefer extracting complex inline expressions into named intermediate variables for readability (e.g., `const metaAnnotations = schema.safeParse(x).data ?? {}`, then spread it) rather than inlining them.
 
 ## Package Managers
+
 - In pnpm projects (identified by `pnpm-lock.yaml`), always use `pnpm` instead of `npm` and `pnpx` instead of `npx`
 
 ## React
 
 ### useEffect Anti-Patterns
-Avoid using useEffect when you don't need one. See: https://react.dev/learn/you-might-not-need-an-effect
+
+Avoid using useEffect when you don't need one. See: <https://react.dev/learn/you-might-not-need-an-effect>
 
 Common anti-patterns to avoid:
+
 1. **Transforming data for rendering** - Calculate at top level of component instead of using Effect + setState
 2. **Handling user events** - Put logic in event handlers, not Effects
 3. **Caching expensive calculations** - Use `useMemo` instead of state + Effect
@@ -133,6 +169,7 @@ Common anti-patterns to avoid:
 Effects ARE appropriate for: synchronizing with external systems, data fetching (with cleanup), subscribing to external stores, browser/DOM APIs.
 
 ### Other React Preferences
+
 - Prefer arrow functions over named function expressions in `memo()` calls
 - Avoid inline arrow functions and `.bind()` as JSX prop values — extract the
   handler or wrap it in `useCallback` so children get stable references. This is
@@ -141,6 +178,7 @@ Effects ARE appropriate for: synchronizing with external systems, data fetching 
   the `memo()` point above, which is about the component definition, not props.)
 
 ## File Naming
+
 - kebab-case for directories (e.g., `flow-builder/` not `FlowBuilder/`)
 
 ## Testing Philosophy
@@ -174,6 +212,7 @@ Treat tests as documentation of a module's API. The reuse trigger says "wait for
 - **Delete the unit test when its trigger goes away.** If a second consumer is removed, or the complexity that justified the test was refactored away, the test is no longer documentation of anything — it's overhead.
 
 ### Test Structure
+
 - Fixtures should be in separate `*.fixtures.ts` files, co-located with the test file
 - Fixtures should be data objects that can be inserted directly into DB, not helper functions
 - Fixture variables should use SCREAMING_SNAKE_CASE
@@ -181,6 +220,7 @@ Treat tests as documentation of a module's API. The reuse trigger says "wait for
 - Assert on data fetched from database after operations, not on return values (verifies persistence)
 
 ## TDD Workflow
+
 - Write test first, see it fail, write implementation, see it pass, iterate
 - Small increments, continuous validation
 
@@ -189,23 +229,29 @@ Treat tests as documentation of a module's API. The reuse trigger says "wait for
 **Cloud ID**: `465feb81-52f2-418f-8a4a-710ad348bc9b`
 
 ### Team Assignment
+
 - The actual Team field is `customfield_10001` - requires the team UUID, not a string
 - Team Mango UUID: `1fcbcf66-1c92-4e86-b2a1-22584241cd91`
 - `customfield_10355` is a separate text field that displays "Team Mango" but is NOT the team assignment field used for board filtering
 
 ### Work Type Field
+
 Field: `customfield_10421` (set with `{"id": "<option_id>"}`)
+
 - feature: `10289`
 - tech-debt: `10290`
 - bug: `10291`
 - r-and-d: `10292`
 
 ### Components (PLATFORM project)
+
 Set by ID in array format: `[{"id": "<component_id>"}]`
+
 - Task Management: `10411`
 - Outcomes: `10156`
 
 ### Atlassian MCP Integration
+
 - Use the `search` tool for general queries across Jira and Confluence. Only use
   `searchJiraIssuesUsingJql` or `searchConfluenceUsingCql` when JQL/CQL syntax
   is specifically needed (e.g., filtering by custom fields, ordering, complex
@@ -222,6 +268,7 @@ Set by ID in array format: `[{"id": "<component_id>"}]`
   visible when reading issues (in `issuelinks` field) but cannot be created.
 
 ### Ticket Creation Preferences
+
 - **The user writes all summaries and descriptions.** Do not generate ticket
   content. Enter the user's text verbatim.
 - When the user asks to create a ticket, prompt for any missing required fields
@@ -230,12 +277,15 @@ Set by ID in array format: `[{"id": "<component_id>"}]`
   descriptions (e.g., "Flow Started" not "FLOW_STARTED").
 
 ### JQL Custom Field Syntax
+
 Use `cf[fieldId]` to filter by custom fields:
+
 ```
 cf[10355] = "Team Mango"
 ```
 
 ### Common Jira Queries
+
 ```
 # Team Mango backlog (ordered by rank)
 project = PLATFORM AND cf[10355] = "Team Mango" AND sprint is EMPTY AND status != Done ORDER BY rank ASC
@@ -297,4 +347,3 @@ project = PLATFORM AND cf[10355] = "Team Mango" AND status != Done
 - 2026-07-21: Implemented PLATFORM-8666 (Outcome project): condition + fallbackValue on FormulaOutcome config. User chose formula-scoped struct (`FormulaCondition {questionId, numberOperator, value}` + nullable `condition`/`fallbackValue` on FormulaOutcome only) over extending shared CompositeCondition unions (would leak into ReportService.isOutcomeValid before sibling PLATFORM-8667) or expression-string conditions. Update input semantics: omitted = preserve, explicit null = clear (matches existing targetId pattern). User committed the SDL portion themselves mid-session while I worked — checkpoint commits of in-progress work are normal. Key Outcome-repo facts: `pnpm setup-dotenv` generates .env files but OPENFGA_STORE_ID can be stale — must match `docker inspect outcome` env; fixtures package is consumed by jest via dist (`pnpm compile` in fixtures/ after editing builders); component eslint has jsx-a11y label-has-associated-control `assert: 'both'` (labels need htmlFor AND nested input); server has NO template lookup on the formula path (assertTargetQuestionAvailable only checks sibling-formula collisions — "numeric question" enforcement is client-side only); manual browser verification can seed form-builder templates via in-page fetch to the vite proxy (httpOnly auth cookie rides along), dev login creds in e2e/.env. User reviewed the new Condition UI in-browser and confirmed it works; seeded "PLATFORM-8666 manual check" template left in local docker Mongo.
 - 2026-07-23: Diagnosed integration-test failure in Assignment project (1/74 failing: review-member-removal). Root cause: relationship-v2's addMemberToProgramRole check-then-write FGA race — on the first parallel run after wiping docker volumes, ~10 specs concurrently re-add the same static fixture membership and one loses the FGA tuple write (verified via docker logs + FGA tuple timestamps matching the error second). Warm re-run: 74/74 green. No fix applied (external service; suggested pre-seeding in setup-fixtures.ts or retry-once in RelationshipHelper). Also: nodemon 3.1.14 crashes on file change (minimatch bug) — ran server via `node --import tsx` directly; root `start-fakes` script is stale (package gone from workspace). Details in project memory.
 - 2026-07-24: Analyzed all MongoDB read patterns in Assignment and shipped the first read-pattern index migrations (uncommitted): 13 task + 3 rule indexes (20260724000002) and serverSettings dedupe + unique key (20260724000003), with FakeMongo specs, TDD red-first, pnpm verify green, live boot + explain() verification. Mid-session discovery: user's parallel session had created folders-move migrations the same morning (timestamp prefix collision → renamed mine); when the user answers a question with a question about in-flight work ("we're getting rid of X — does that change your question?"), check project memory + git status for untracked parallel work before proceeding. Deploy caveat recorded in project memory: Atlas may hold ops-created out-of-band indexes (same-key/different-name → code 85 crash-loop).
-- 2026-08-06: Diagnosed phobos (desktop) hardware/config chain: (1) external "Storage" ext4 drive (USB-NVMe enclosure, Best Buy NS-PCNVMEHDE(-C), vendor:product 6655:a583) had a UAS reset loop causing slowness — root-caused via dmesg (uas_eh_abort_handler + repeated `usb 4-3: reset SuperSpeed USB device`, no ext4 corruption), confirmed unit-specific (twin enclosure worked fine), fixed by swapping to the spare enclosure. (2) Steam then refused the drive as a library folder ("not executable") — root cause was udisks2 forcing `noexec` whenever it takes ownership of a filesystem without a uid= mount option (ext4/btrfs/xfs), hardcoded upstream since udisks-2.10.91, picked up silently via routine `flake.lock`/nixpkgs bumps (not a user config change). Fixed with a per-UUID `environment.etc."udisks2/mount_options.conf"` override in `desktop.nix` (kept nosuid/nodev, added exec) — confirmed no NixOS module option exists for this file. Live fix while mid-copy: `mount -o remount,exec` (safe, does not disturb open file handles); persistent fix needs `systemctl restart udisks2.service` since NixOS activation doesn't restart it on its own. Steam itself also caches the executable-check result — restarting Steam was required after the remount before it would accept the folder. Session workflow note: `sudo` in this CLI session cannot prompt for a password — hand privileged commands to the user to run via `!` rather than retrying Bash+sudo blindly.
