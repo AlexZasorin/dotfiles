@@ -1,0 +1,10 @@
+Host *
+    IgnoreUnknown UseKeychain
+    AddKeysToAgent yes
+    UseKeychain yes
+    IdentitiesOnly yes
+{{ if eq .chezmoi.os "darwin" }}
+IdentityFile /Users/azasorin/.ssh/id_ed25519_personal
+{{ else }}
+IdentityFile /Users/azasorin/.ssh/id_ed25519
+{{ end }}
