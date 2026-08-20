@@ -6,7 +6,7 @@
     discord
     ente-desktop
     firefox
-    godot
+    godot-mono
     hydrus
     ivpn-ui
     krita
