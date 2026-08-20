@@ -7,12 +7,14 @@
     dbeaver-bin
     deno
     direnv
+    dotnet-sdk_9
     flyctl
     git-filter-repo
     helix
     jsonnet
     just
     nodejs_24
+    nuget
     playwright-driver.browsers
     pnpm
     prisma-engines_7
