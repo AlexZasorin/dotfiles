@@ -110,6 +110,8 @@ brew "mongosh"
 brew "mongodb-atlas-cli"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
 # Fast, disk space efficient package manager
