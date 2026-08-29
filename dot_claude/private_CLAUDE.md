@@ -66,6 +66,7 @@ not only budget work.
 - In blocker/question lists, state the fact and leave the open question open. Don't prescribe the fix, name who does the work, or enumerate every affected path — that's the discussion the list exists to start.
 - Deliver exactly what was asked for. If the ask is three bullets, send three bullets — no extra sections, no unsolicited "also worth naming" additions.
 - Stop writing random technical sounding jargon/bullshit. Simplify what you write with a focus on readability and simplicity.
+- Do not adopt coined vocabulary from a document or another team ("the rail", "net-state", "the stamp") and then use it as if it were shared language. Either say the plain thing ("the Kafka topic and everything that publishes to it") or define the term once, in the sentence that first uses it.
 
 ## Writing Style — Simplified Technical English
 
@@ -141,6 +142,8 @@ official standard (copyrighted, do not paste in full): <https://asd-ste100.org>
 - User will sometimes rewrite code themselves mid-session when they have a clearer vision — don't fight it, adapt to their changes
 - Measure before tuning any number (memory limit, timeout, concurrency). Collect real peaks (`/usr/bin/time -l` per target) and show the table. User decides from measured numbers, not estimates.
 - Read the actual failing CI log before accepting a reported symptom. The user will ask for it ("check the recent runs to see the failure") if you skip it.
+- Never judge a verification command by a piped summary: `cmd | tail` reports tail's exit code, so a failing build looks green. Redirect to a file, echo `$?`, then read the file.
+- Before claiming a test proves anything, confirm the process under test is running the edited code. Kill servers by PID from `lsof -ti:<port>`, not `pkill -f <guessed pattern>` — a pattern that matches nothing leaves the old process serving and every assertion passes against stale code.
 - Given a safe-but-slower fix and a middle option, the user takes the middle one that keeps parallelism, then raises the number if it still fails.
 
 ---
@@ -291,6 +294,23 @@ Set by ID in array format: `[{"id": "<component_id>"}]`
   (summary, description, issue type, work type) rather than guessing.
 - Use title case for human-readable references to enums or event types in ticket
   descriptions (e.g., "Flow Started" not "FLOW_STARTED").
+- Strip markdown hard-wrap newlines from paragraphs before sending to Jira.
+
+**When explicitly asked to draft a ticket**, match this style — the user cut
+roughly 60% of a draft to reach it:
+
+- A ticket states the problem, the fix, and how to tell it worked. Nothing else.
+- No implementation plan: no file lists, no per-seam scope maps, no "which
+  function changes". Code TODOs carry that; the ticket does not.
+- No investigative findings or evidence (line numbers, what a runtime does, risks
+  I discovered). That is conversation content, not ticket content.
+- No rejected alternatives. State what to do, not what was ruled out and why.
+- Acceptance criteria hold the precision, and state the purpose where it is not
+  obvious ("...to allow for safe migration for consumers").
+- Give non-functional requirements their own AC line rather than burying them in
+  prose (e.g. "Backfill script is idempotent").
+- One name per thing throughout. Do not alternate synonyms for the same artifact.
+- Plain declarative sentences. Few em-dash asides.
 
 ### JQL Custom Field Syntax
 
