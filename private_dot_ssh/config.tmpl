@@ -4,7 +4,6 @@ Host *
     UseKeychain yes
     IdentitiesOnly yes
 {{ if eq .chezmoi.os "darwin" }}
-IdentityFile /Users/azasorin/.ssh/id_ed25519_personal
 IdentityFile /Users/azasorin/.ssh/id_ed25519_work
 {{ else }}
 IdentityFile /home/solyx/.ssh/id_ed25519
