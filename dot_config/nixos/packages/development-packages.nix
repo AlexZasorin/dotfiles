@@ -3,6 +3,7 @@
     # Development tools
     basedpyright
     chromium
+    cargo
     claude-code
     dbeaver-bin
     deno
