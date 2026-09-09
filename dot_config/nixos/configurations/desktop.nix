@@ -35,8 +35,9 @@
   };
 
   # Keep nosuid/nodev, allow exec.
+  # udisks2 matches this section by the device's udev symlink path, not a bare UUID.
   environment.etc."udisks2/mount_options.conf".text = ''
-    [UUID=877d2dc0-81ca-44fa-a5bb-0353d59a9400]
+    [/dev/disk/by-uuid/877d2dc0-81ca-44fa-a5bb-0353d59a9400]
     defaults=noatime,nosuid,nodev,exec
   '';
 
