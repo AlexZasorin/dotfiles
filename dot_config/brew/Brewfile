@@ -196,6 +196,8 @@ cask "microsoft-auto-update"
 cask "microsoft-teams"
 # Interactive tool for analyzing MongoDB data
 cask "mongodb-compass"
+# Administration and development platform for PostgreSQL
+cask "pgadmin4"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
 # Instant messaging application focusing on security
