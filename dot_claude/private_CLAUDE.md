@@ -160,6 +160,8 @@ official standard (copyrighted, do not paste in full): <https://asd-ste100.org>
 ## Code Style
 
 - Keep comments minimal — user removes explanatory comments they consider unnecessary. Only comment genuinely non-obvious logic, and match the surrounding file's comment density.
+- No essays in code comments. A comment says what the code does or what invariant holds. It does NOT explain why something changed, what it replaced, or why an alternative was rejected — that belongs in the commit message, and only when it differs from prior commits. User asked for a whole diff's comments to be trimmed on these grounds.
+- Do not add a guard for a failure mode you have only shown to be *possible*. Verify it actually happens (a real caller, a real value) before defending against it — "the mechanism exists" is not reachability. User challenged an `ObjectId.isValid` guard added on that basis and it was removed.
 - Prefer extracting complex inline expressions into named intermediate variables for readability (e.g., `const metaAnnotations = schema.safeParse(x).data ?? {}`, then spread it) rather than inlining them.
 
 ## Package Managers
@@ -251,7 +253,9 @@ Treat tests as documentation of a module's API. The reuse trigger says "wait for
 
 - The actual Team field is `customfield_10001` - requires the team UUID, not a string
 - Team Mango UUID: `1fcbcf66-1c92-4e86-b2a1-22584241cd91`
-- `customfield_10355` is a separate text field that displays "Team Mango" but is NOT the team assignment field used for board filtering
+- Team Jupiter UUID: `f6ce57b1-47f7-4ae4-9f99-f2d7a264180f` (forms / form-builder / form-renderer)
+- `customfield_10355` is a separate text field that displays the team name but is NOT the team assignment field used for board filtering. Setting `customfield_10001` populates it.
+- To find another team's UUID: JQL `project = PLATFORM AND cf[10355] = "<Team Name>"` requesting the `customfield_10001` field, and read the `id` off any result.
 
 ### Work Type Field
 
@@ -282,16 +286,25 @@ Set by ID in array format: `[{"id": "<component_id>"}]`
 - When setting `customfield_10001` (Team), pass the UUID as a bare string, not
   as `{"id": "..."}`. Example: `"customfield_10001": "1fcbcf66-..."`.
 - When setting `customfield_10421` (Work Type), use the `{"id": "..."}` format.
-- **Issue links are not supported** by the Atlassian MCP tools. The user must
-  add "relates to" / "blocks" links manually in Jira. Issue link data is
-  visible when reading issues (in `issuelinks` field) but cannot be created.
+- **Issue links ARE supported** (corrected 2026-09-10; they were not before).
+  Use `createIssueLink`, and `getIssueLinkTypes` when the type name is unknown.
+  Direction is the confusing part: `inwardIssue` is the issue that blocks,
+  `outwardIssue` is the one that is blocked. So "A blocks B" is
+  `inwardIssue: A, outwardIssue: B`. Read `issuelinks` back afterward to confirm
+  the direction rendered the way you meant.
+- The HTTP+SSE endpoint is deprecated after 2026-06-30 in favor of Streamable
+  HTTP. Tool results carry a notice asking that it be passed on to the user.
 
 ### Ticket Creation Preferences
 
-- **The user writes all summaries and descriptions.** Do not generate ticket
-  content. Enter the user's text verbatim.
+- **Draft, then let the user edit, then create.** The user's standing workflow:
+  put the draft in an untracked repo-root MD file, wait for them to edit it,
+  re-read the file, and create from their edited text verbatim. Never create a
+  ticket straight from your own draft.
+- Enter the user's text verbatim, and keep out anything they cut. Do not
+  reinstate a paragraph they deleted.
 - When the user asks to create a ticket, prompt for any missing required fields
-  (summary, description, issue type, work type) rather than guessing.
+  (issue type, work type, component, team) rather than guessing.
 - Use title case for human-readable references to enums or event types in ticket
   descriptions (e.g., "Flow Started" not "FLOW_STARTED").
 - Strip markdown hard-wrap newlines from paragraphs before sending to Jira.
@@ -387,4 +400,5 @@ project = PLATFORM AND cf[10355] = "Team Mango" AND status != Done
 - 2026-08-18: Fixed CI ESLint OOM in Outcome repo. The user's in-progress edit added `NODE_OPTIONS=--max-old-space-size=4096` to the root `lint` script. Checked the failing run first: three of five lint children died together (exit 134, "Ineffective mark-compacts"), and the failing job is `pull-request.yml` (`pnpm pr-verify`, no NODE_OPTIONS), not `mainWorkflow.yaml` (which already sets 8192 for its Lint step). Measured per-package peak RSS locally — 10.5 GB combined — which proved the problem was concurrency, not the ceiling. Offered three options with measured peaks; user picked `-m 2` + 4096, then asked to bump to 8192 (removes the conflict with mainWorkflow's 8192 and covers the unknown runner default). Final: `NODE_OPTIONS=--max-old-space-size=8192 concurrently -m 2 ... pnpm:lint-*`. Details in project memory (outcome-ci-lint-memory).
 - 2026-08-21 → 2026-08-23: Budget-analysis repo (personal finance — **details stay in that repo's project memory, never here**). Brainstormed → specced → planned a self-hosted receipt itemizer: Claude vision → line items, read-only YNAB matching as an accuracy check, arithmetic-gated review, Vite/React + Hono + SQLite on ceres behind `tailscale serve`, Docker Compose, sops-nix. Spec + 15-task TDD plan committed. Used the brainstorming visual companion for the two genuinely visual questions (landing screen, receipt detail); clicking registered even though the UI gave no visual feedback. Also ran a data-analysis engagement in the same repo. Workflow lessons in that repo's project memory: `ask-about-structural-changes-first`, `user-supplies-context-mid-turn`.
 - 2026-09-01: workflow-bot engine type design session (discussion-heavy, user applied several changes themselves mid-turn). `ActivityStepConfig` made generic (applies `StepConfig<Partial<Input>>` in the base so per-activity configs are one-line aliases), conditions became operand-pair expressions with `TriggerOperand` restricted to event sources at the type level, types reorganized into `conditions/expression.ts` + `context.ts`. User added Biome 2.5 mid-session (tabs, single quotes, fixes on save — re-read files before writing). Design decisions and verified lint facts (deno lint has opt-in `verbatim-module-syntax`, no floating-promises rule; Biome has `nursery/noFloatingPromises`) in project memory (engine-condition-design, biome-and-deno-tooling).
+- 2026-09-10: PLATFORM-9402 (Assignment) — completing a form-creating task now calls form-renderer `associateFormWithCase` for every case the task inherited. Uncommitted. Blocked: form-renderer refuses the service token, proven by a direct probe (service reads the form fine, the mutation returns FORBIDDEN), so the feature is inert and fails open. Raised PLATFORM-9407 on Team Jupiter, which blocks 9402. Learned Team Jupiter's UUID and that issue links are creatable after all. User picked fail-open over waiting, and chose to keep the blocked integration spec skipped after I offered failing / skipped / assert-today's-behavior. Details in the assignment project memory.
 - 2026-09-03: Implemented PLATFORM-9199 (outcome→assignment training task create/revoke) across BOTH repos, uncommitted. Design discussion first (rule vs direct task — chose direct task with an outcomeFormId stamp), plan mode, TDD throughout, plus a cross-service e2e driven by a new docker-compose.local-outcome.yaml override. Key steers: cross-service GraphQL must use codegen'd typed documents (no hand-written query strings); when building another repo's artifact locally, mirror its GHA workflow steps. Details in assignment project memory (project-9199-training-outcome-events and three sibling notes).
