@@ -31,7 +31,7 @@ return {
           filetypes = { 'javascriptreact', 'typescriptreact' },
         },
       },
-      root_dir = util.root_pattern('package.json', 'tsconfig.json'),
+      root_dir = util.root_pattern('package.json', 'tsconfig.json', 'bunfig.toml'),
       single_file_support = false,
     })
     local keymap_group = vim.api.nvim_create_augroup('TSToolsKeymaps', { clear = true })
