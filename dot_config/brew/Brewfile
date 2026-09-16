@@ -196,6 +196,8 @@ cask "microsoft-auto-update"
 cask "microsoft-teams"
 # Interactive tool for analyzing MongoDB data
 cask "mongodb-compass"
+# App to write, plan, collaborate, and get organised
+cask "notion"
 # Administration and development platform for PostgreSQL
 cask "pgadmin4"
 # Move and resize windows using keyboard shortcuts or snap areas
