@@ -24,26 +24,7 @@ Every 10 minutes or so act as if a skeleton ran across the screen and freaked yo
 e.g. "Woah, am I the only one seeing this? I just saw a skeleton run across the screen. Moving on I guess..."
 Though you should avoid using this exact phrasing and be original.
 
-## Using the /reflect Skill
-
-**You are expected to proactively use `/reflect` without being asked.** This is not optional - it's a core part of how you work with this user.
-
-**ALWAYS run `/reflect` when:**
-
-- You complete a task (bug fix, feature, refactor, etc.)
-- You learn something new about the user's preferences or working style
-- The conversation is winding down or the user says goodbye/thanks
-- You notice a pattern in how the user gives feedback or makes decisions
-
-**What to record:**
-
-- Working style observations (collaboration preferences, feedback patterns)
-- Communication patterns (how they phrase things, what they respond to)
-- Technical preferences discovered during the session
-- Project context that will be useful in future sessions
-- Session history (brief note about what was accomplished)
-
-**Rule of thumb:** If you're unsure whether to run `/reflect`, run it. Recording too much is better than missing insights.
+## What Must Not Be Recorded Here
 
 **What must NOT be recorded in this file — it loads in every session, in every
 project.** Personal financial data never goes here: income, net pay, account
@@ -172,22 +153,8 @@ official standard (copyrighted, do not paste in full): <https://asd-ste100.org>
 
 ### useEffect Anti-Patterns
 
-Avoid using useEffect when you don't need one. See: <https://react.dev/learn/you-might-not-need-an-effect>
-
-Common anti-patterns to avoid:
-
-1. **Transforming data for rendering** - Calculate at top level of component instead of using Effect + setState
-2. **Handling user events** - Put logic in event handlers, not Effects
-3. **Caching expensive calculations** - Use `useMemo` instead of state + Effect
-4. **Resetting state when props change** - Use component `key` prop instead
-5. **Adjusting state based on props** - Calculate during rendering or store only identifiers
-6. **Chains of Effects** - Consolidate logic into event handlers
-7. **POST requests for user actions** - Call API directly in event handlers
-8. **Updating state from props** - Calculate derived values during rendering
-9. **Notifying parent components** - Call callbacks directly in event handlers
-10. **Passing data to parent** - Fetch in parent and pass down as props
-
-Effects ARE appropriate for: synchronizing with external systems, data fetching (with cleanup), subscribing to external stores, browser/DOM APIs.
+Avoid using useEffect when you don't need one. The ten common anti-patterns and
+their replacements are in the `react-useeffect` skill.
 
 ### Other React Preferences
 
@@ -215,22 +182,10 @@ Above that static base, this follows Kent C. Dodds' [Testing Trophy](https://ken
 3. **Most coverage lives in integration tests** — the level below E2E. This is where branches, edge cases, and contract details get exercised.
 4. **Unit tests are the exception, not the rule.** Write one only when one of the two triggers below applies.
 
-**Why this ordering:** E2E tests give the most confidence but are slow and brittle. Unit tests are fast and free but easily drift into testing implementation rather than behavior. Integration tests sit in the middle — tied to business cases, cover a lot of ground per test, and survive refactors of internal structure.
-
-**API/contract tests:** For backend-only work, API tests aren't expensive in this codebase. Lean into them — write more contract-level tests than you might in a heavier stack. **Playwright is being deprecated** for this project; don't reach for new Playwright tests, prefer API/integration tests instead.
-
 **When to add a unit test — two triggers:**
 
 1. **Reuse.** Module B has 2+ consumers (e.g., modules A and C both depend on it). At that point B sits at a shared interface, and its unit tests document the contract every caller relies on. Until that second consumer exists, B is covered transitively by A's tests; a unit test on B would be documentation for an audience of one.
 2. **Internal complexity that's hard to localize from above.** A unit has internal complexity that an integration test can't cheaply diagnose when it breaks. Signals: 3+ internal branches producing categorically different outputs, pure transformations where wrong output doesn't throw (silent failure), or N fixtures needed to exercise N branches from a level above. In these cases an integration failure tells you "something is wrong" without telling you which branch — the unit test pays for itself in diagnostic speed.
-
-Treat tests as documentation of a module's API. The reuse trigger says "wait for a second reader before writing documentation"; the complexity trigger says "write documentation when the code is hard enough that future-you will struggle to read it without help."
-
-**Disciplines when you do write a unit test:**
-
-- **Scope it to the gnarly part, not the whole module.** If a service has one complex method and ten boring ones, only the complex one gets a unit test. The rest stays covered by integration.
-- **Prefer loud failures over unit tests.** A typed error, a Zod `.parse()` at a boundary, or an exhaustive switch will often pin down the source of an integration failure better than a unit test does — and won't ossify the module's internal shape. Reach for these first.
-- **Delete the unit test when its trigger goes away.** If a second consumer is removed, or the complexity that justified the test was refactored away, the test is no longer documentation of anything — it's overhead.
 
 ### Test Structure
 
@@ -247,107 +202,9 @@ Treat tests as documentation of a module's API. The reuse trigger says "wait for
 
 ## Jira (riskandsafetysolutions.atlassian.net)
 
-**Cloud ID**: `465feb81-52f2-418f-8a4a-710ad348bc9b`
-
-### Team Assignment
-
-- The actual Team field is `customfield_10001` - requires the team UUID, not a string
-- Team Mango UUID: `1fcbcf66-1c92-4e86-b2a1-22584241cd91`
-- Team Jupiter UUID: `f6ce57b1-47f7-4ae4-9f99-f2d7a264180f` (forms / form-builder / form-renderer)
-- `customfield_10355` is a separate text field that displays the team name but is NOT the team assignment field used for board filtering. Setting `customfield_10001` populates it.
-- To find another team's UUID: JQL `project = PLATFORM AND cf[10355] = "<Team Name>"` requesting the `customfield_10001` field, and read the `id` off any result.
-
-### Work Type Field
-
-Field: `customfield_10421` (set with `{"id": "<option_id>"}`)
-
-- feature: `10289`
-- tech-debt: `10290`
-- bug: `10291`
-- r-and-d: `10292`
-
-### Components (PLATFORM project)
-
-Set by ID in array format: `[{"id": "<component_id>"}]`
-
-- Task Management: `10411`
-- Outcomes: `10156`
-
-### Atlassian MCP Integration
-
-- Use the `search` tool for general queries across Jira and Confluence. Only use
-  `searchJiraIssuesUsingJql` or `searchConfluenceUsingCql` when JQL/CQL syntax
-  is specifically needed (e.g., filtering by custom fields, ordering, complex
-  conditions).
-- Use `fetch` to get full details on items returned by `search` (pass the ARI
-  directly).
-- Use `getJiraIssue` when you already have an issue key (e.g., `PLATFORM-6075`).
-- Pass descriptions as **markdown**, not ADF. The tool handles conversion.
-- When setting `customfield_10001` (Team), pass the UUID as a bare string, not
-  as `{"id": "..."}`. Example: `"customfield_10001": "1fcbcf66-..."`.
-- When setting `customfield_10421` (Work Type), use the `{"id": "..."}` format.
-- **Issue links ARE supported** (corrected 2026-09-10; they were not before).
-  Use `createIssueLink`, and `getIssueLinkTypes` when the type name is unknown.
-  Direction is the confusing part: `inwardIssue` is the issue that blocks,
-  `outwardIssue` is the one that is blocked. So "A blocks B" is
-  `inwardIssue: A, outwardIssue: B`. Read `issuelinks` back afterward to confirm
-  the direction rendered the way you meant.
-- The HTTP+SSE endpoint is deprecated after 2026-06-30 in favor of Streamable
-  HTTP. Tool results carry a notice asking that it be passed on to the user.
-
-### Ticket Creation Preferences
-
-- **Draft, then let the user edit, then create.** The user's standing workflow:
-  put the draft in an untracked repo-root MD file, wait for them to edit it,
-  re-read the file, and create from their edited text verbatim. Never create a
-  ticket straight from your own draft.
-- Enter the user's text verbatim, and keep out anything they cut. Do not
-  reinstate a paragraph they deleted.
-- When the user asks to create a ticket, prompt for any missing required fields
-  (issue type, work type, component, team) rather than guessing.
-- Use title case for human-readable references to enums or event types in ticket
-  descriptions (e.g., "Flow Started" not "FLOW_STARTED").
-- Strip markdown hard-wrap newlines from paragraphs before sending to Jira.
-
-**When explicitly asked to draft a ticket**, match this style — the user cut
-roughly 60% of a draft to reach it:
-
-- A ticket states the problem, the fix, and how to tell it worked. Nothing else.
-- No implementation plan: no file lists, no per-seam scope maps, no "which
-  function changes". Code TODOs carry that; the ticket does not.
-- No investigative findings or evidence (line numbers, what a runtime does, risks
-  I discovered). That is conversation content, not ticket content.
-- No rejected alternatives. State what to do, not what was ruled out and why.
-- Acceptance criteria hold the precision, and state the purpose where it is not
-  obvious ("...to allow for safe migration for consumers").
-- Give non-functional requirements their own AC line rather than burying them in
-  prose (e.g. "Backfill script is idempotent").
-- One name per thing throughout. Do not alternate synonyms for the same artifact.
-- Plain declarative sentences. Few em-dash asides.
-
-### JQL Custom Field Syntax
-
-Use `cf[fieldId]` to filter by custom fields:
-
-```
-cf[10355] = "Team Mango"
-```
-
-### Common Jira Queries
-
-```
-# Team Mango backlog (ordered by rank)
-project = PLATFORM AND cf[10355] = "Team Mango" AND sprint is EMPTY AND status != Done ORDER BY rank ASC
-
-# Current sprint tickets
-project = PLATFORM AND cf[10355] = "Team Mango" AND sprint in openSprints()
-
-# Future sprint tickets
-project = PLATFORM AND cf[10355] = "Team Mango" AND sprint in futureSprints()
-
-# All open Team Mango tickets
-project = PLATFORM AND cf[10355] = "Team Mango" AND status != Done
-```
+For any Jira or Confluence work in the PLATFORM project, use the `jira-platform`
+skill. It carries the cloud ID, custom field IDs, team UUIDs, JQL syntax, common
+queries, and the ticket-drafting conventions.
 
 ---
 
@@ -357,48 +214,3 @@ project = PLATFORM AND cf[10355] = "Team Mango" AND status != Done
 - **FlowBuilder**: ReactFlow-based visual workflow editor in demo app
 - **Outcome project**: Monorepo with GraphQL server for managing outcome configurations (TEXT, NUMBER, CALCULATED, TRAINING, RISK, SMART, ACKNOWLEDGEMENT outcome types). Uses MongoDB, FGA for permissions.
 - **Forms project**: Monorepo with form-builder-server and form-renderer-server. Uses registry+transformer pattern (renderer) and adapter pattern (builder) for GraphQL↔internal↔MongoDB type transformations. FGA for permissions, external workflow service for lifecycle.
-
----
-
-# Session History
-
-- 2025-01-07: Set up PARTNER_MODEL system and /partner skill. Captured initial preferences around TDD, Socratic teaching, and presenting options.
-- 2025-01-07: Explored FlowBuilder refactoring approach. Work reverted for later revisit.
-- 2026-01-07: Implemented `cloneOutcomes` mutation in Outcome project. Reorganized preferences: technical preferences moved to CLAUDE.md, working style kept in PARTNER_MODEL.md.
-- 2026-01-08: Modified `cloneOutcomes` to throw error for non-existent source template groups (using existing `findOne` behavior). Updated CLAUDE.md and partner skill to always add "/partner" as final TODO item.
-- 2026-01-08: Created E2E API test for `cloneOutcomes` permission checks. Added multi-user authentication (GPOP user) to E2E framework. User clarified to avoid unnecessary abstractions (e.g., don't create a fixtures file just to re-export imports).
-- 2026-01-09: Fixed `cloneOutcomes` permission check - moved check into service layer, checking on SOURCE outcome page ID (not template ID). User guided toward simpler implementation: use existing methods directly rather than creating wrapper functions, and let existing error behavior propagate rather than catching/re-throwing.
-- 2026-01-09: Refactored E2E CloneOutcomes test to use API calls instead of UI (PageHelper). Key insight: `outcomePage` query auto-creates page if missing (uses assertCanManageTemplate), while `createOutcomePage` mutation requires different permission. Refactored ApiHelper methods to accept parameters instead of hardcoded IDs.
-- 2026-01-16: Editorial review of FLOWORK_DESIGN_DOC.md - multiple passes for spelling, grammar, tone, and "handwave-y" language. User prefers to handle fixes themselves after issues are identified, and values preserving their original voice with surgical edits.
-- 2026-01-16: Created Jira tasks for Team Mango in PLATFORM project. Learned Jira field mappings (Team field is customfield_10001 with UUID, not customfield_10355 text field). User sets ground rules upfront for Jira work: don't generate content, enter text verbatim. Documented technical Jira details in CLAUDE.md.
-- 2026-01-22: Fixed bug in RiskOutcomeConfig - disabled fields when outcome page is published. User asked clarifying questions about domain concepts (outcomes vs risk levels) before deciding on approach. Initially considered validation-based approach (block publishing), then pivoted to simpler disable-on-publish approach. TDD workflow: write failing test first, then implement fix.
-- 2026-01-26: Explored Forms repo architecture — registry/transformer patterns, createForm performance analysis. User interested in applying transformer pattern to own API for GraphQL→internal→MongoDB transformations. Investigated MongoDB profiling, write concern, and idempotency. User is pragmatic about other teams' design choices (re: fire-and-forget FGA calls) — assumes intentional unless proven otherwise, won't change code that isn't their responsibility without reason.
-- 2026-01-26: Jira backlog management session. Created PLATFORM-6166 (Move hardcoded flows to MongoDB). Updated PLATFORM-6116 description to suggest splitting AC into parallel tasks. Evaluated all Sprint 23 + top 7 backlog tickets for potential subtask splits. Updated project CLAUDE.md with Jira/Atlassian MCP integration notes, Team Mango context, and ticket creation preferences. Learned: Team custom field (customfield_10001) requires bare UUID string, not `{"id": "..."}` format.
-- 2026-01-26: Analyzed and reorganized daily notes (2026-01-23.md) for redundancy. Consolidated scattered items into clear sections (Documentation, Flowork Cleanup, Flowork Testing, Stories to Create, Problems to Solve, Brainstorm). Removed duplicate "conditional logic" entry. User approved the analysis then asked to apply it directly — comfortable with quick restructuring of their own notes.
-- 2026-01-27: Created PLATFORM-6199 bug ticket (cloneOutcomes throws error when no published outcome exists). Discovered Outcomes component ID (10156). Confirmed Atlassian MCP lacks issue link creation — user added the "relates to PLATFORM-6195" link manually.
-- 2026-02-13: Implemented PLATFORM-6393 "Allow Assignment to Target a Folder + Role" in Assignment project. Added folderId/roleId to GraphQL AssignEventInput and trigger config, created FolderGateway stub (returns []), added FolderRoleTaskAssign types, extended AssignTaskActivity Zod schemas for folder+role targeting, added assignTaskToFolderRole to TaskService using Promise.all for parallel assignment. TDD workflow enforced by user. User rewrote the Zod schemas themselves (simpler 4-variant union without z.undefined guards, uses `'assignedTo' in input` for branching). User prefers Promise.all over sequential awaits when tasks are independent. User deferred discriminated union refactor of input types (marked FIXME) — plans to revisit later with proper internal types.
-- 2026-02-13: Fixed chezmoi `.npmrc` template in dotfiles repo. Made it OS-conditional: Linux gets `prefix=${HOME}/.npm-global` (NixOS setup), macOS/darwin gets GitHub Packages registry config (`@risk-and-safety` scoped to `npm.pkg.github.com` with `GITHUB_TOKEN` env var). Found npmrc setup in Confluence "Lesson 1: Environment" page. User chose env var over promptStringOnce or macOS Keychain for token sourcing.
-- 2026-02-24: Implemented PLATFORM-6527 "Trigger Form Completion Rule from emitAssignmentEvent" in Assignment project. Added `parentFolderId` to `AssignEventInput`, `findMatchingRules` to `RuleDBAdapter`, `handleAssignEvent` to `RuleService`, wired resolver to use `RuleService` instead of `FlowService`. User questioned unnecessary `userId` parameter — pushed to remove fallback pattern not used elsewhere. User asked about cast necessity — left TODO for internal discriminated union refactor. Commit-msg hook requires Jira ticket in message to avoid tty prompt. Don't add Co-Authored-By to commits.
-- 2026-03-20: Set up local integration testing infrastructure for Assignment project. Added docker services (notification, redpanda, library-management, federation-router). Added notification schema to codegen from GitHub. Switched integration tests from Jest to Vitest (ESM compat). Installed folder-fixtures and bumped relationship-v2-fixtures. Wrote first integration test (create-complete-form-rule.spec.ts). Rewrote initialize-local.sh. Discovered folder service requires real Clerk dev keys — blocked until Monday. Key learnings: follow sibling repo patterns exactly (notification repo is the reference), add schemas from GitHub not locally, append /graphql at point of use not in env vars, don't overthink schema conflicts.
-- 2026-05-06: Rebuilt extract-session-templates skill from scratch (lost in laptop migration) using TDD. 77 tests, stdlib-only Python 3. Key session format facts: `file-history-snapshot` has no top-level timestamp (use `snapshot.timestamp`); subagent sessions have `isSidechain: true`, no `promptId`; delegation tool is `"Agent"` not `"Task"`. Featurize ran cleanly against 627 real session files. Skill lives at `dot_claude/skills/extract-session-templates/` in chezmoi dotfiles repo.
-- 2026-05-06: Rebuilt records.py (Phase 2 of generate-mock-sessions skill). Pure record-building primitives with all schema-realism fixes (F1–F10, R1–R5): base62 IDs, v4 UUID fix, thinking signatures, full usage shape, event-driven hooks, sidechain-aware fields, agent_progress stripping, delegation ID consistency, None-safe parentUuid, tool-result cleanup. 52 tests, all passing. User provides exhaustive specs with exact API surfaces and named fixes — no design decisions needed from Claude on these rebuild tasks.
-- 2026-05-06: Built validate.py (Phase 3 of generate-mock-sessions skill). Structural validator enforcing V1–V5 rules. Key real-file discoveries that required spec deviations: (1) ~40% of real files have non-monotonic timestamps — dropped strict ordering check, validate parsability only; (2) file-history-snapshot.messageId anchors to both user AND assistant uuids, not just user; (3) 2/632 non-sidechain files have orphan tool_result records (session resumption from previous file) — these are valid. T1 real-file roundtrip passed after these adjustments. 25 validate tests + 52 records tests = 77 total.
-- 2026-05-06: Built scaffolder.py (Phase 4 of generate-mock-sessions skill). CLI + skeleton/assemble/checkpoint orchestration. 35 new tests, 112 total. Key bugs fixed: F2 two-pass UUID pre-allocation for file_snapshot anchors; F3 FIFO tool-use queue (not single last_id); F4 recursive usage recompute into agent_progress inner records; F6 stable delegation_msg_id across all agent_progress wrappers; F11 first-user parentUuid=None even after hook; F12 path-traversal guards at all 3 sinks; F13 atomic checkpoint via os.replace + corrupt-file recovery. Implementation note: _expand_subagent_event must PEEK (not pop) the parent pending_tool_use_ids — the subsequent tool_result in the parent template must consume it. Note: secrets._b62 IDs bypass random.seed(), so exact hash reproducibility is impossible; T3 golden snapshot tests seeded fields (UUIDs, timestamps, types) instead.
-- 2026-05-22 → 2026-05-27: Multi-session test-rename pass across Assignment project. Renamed ~500 test cases across 30+ files (integration, services, adapters, kafka, gateway, utils, components, demo) to a consistent "given X, Y" / "Xs Y" spec voice. Workflow and migrations layers intentionally skipped. Convention established: no `should X` prefix, full word `acknowledgement` (never `ack`), users are "members of" folders (never "owners"), Assigned/Unassigned/Completed in TitleCase. Established workflow: detail-then-approve per-block with markdown tables (Current | Proposed | Change columns). User pushed back when names were stale/inaccurate vs body assertions — added several feedback memories (research-before-renaming, full-cycle-test-names, table-format-for-renames). Bonus: deleted 5 trivial pass-through tests from NotificationGateway.spec.ts per "tests above adapter" philosophy. Resolved one merge conflict in TaskService.spec.ts where upstream restructured the Review-manual-assignment tests.
-- 2026-07-01: Generated June 2026 usage report for azasorin-rss in the claude-usage tracker repo ($1,254.35, 15 active days, third consecutive month >$1,000; Opus 4.8 adoption began June 19). Report conventions from the invocation prompt (beyond repo CLAUDE.md): never comment on usage gaps, discourage weekend usage / praise weekday-only rhythm, keep tone positive and adoption-focused (not license status), dashboard bar = cost/$75 capped at 12 with comma-formatted title, only show a month's bar with 3+ active days. Prior-month report is the format template; growth metrics compare against it.
-- 2026-07-02: Architectural code review of the-machine repo (read-only, recommendations only — user explicitly said make no changes). Key findings: enforcement-seam claim broken (Interface + sensors get Bash with Slack tokens in env, so MCP dispatch gates are bypassable); session continuity spread across 5 overlapping mechanisms (--resume, RECENT_CHAT, notes.md, ledger window, CC auto-memory); recover_processing() races outside interface.lock; claude rc!=0 treated as success (orphans mislabeled "suppressed"); TOML runaway_guard + overlap knobs parsed but never wired; Todoist MCP configured but not in --allowedTools (dead npx spawn per wake); skip_llm spec (2026-06-30) written but unimplemented; docs/README claim Bash disabled (drift).
-- 2026-07-07: Answered Home Assistant questions (removing an auto-populated favorite from the new Home/Overview dashboard, dashboard customization). User runs Home Assistant at home — personal smart-home questions may come up in the notes repo. Key facts: HA 2026.x Home dashboard auto-fills Favorites up to 8 entities by usage unless ≥8 are manually selected; favorites edited via dashboard edit (pencil) mode.
-- 2026-07-20: Debugged Bluetooth headphones connect/disconnect loop on laptop (deimos, NixOS). Root cause was NOT the headphones (failed on both WH-1000XM4 and Pixel Buds Pro) — the USB BT controller (USI combo module, `10ab:9309`, on `1-3.1`) was being USB-autosuspended by TLP (`USB_AUTOSUSPEND=1`, `USB_EXCLUDE_BTUSB=0`), failed to resume mid-A2DP-stream → `hci0: command tx timeout` → kernel `Resetting usb device` → whole BT stack cycles, all devices drop. Confirmed via journalctl (per-cycle: Suspend timeout → tx timeout → usb reset → re-enumerate as new device number), `tlp-stat -u` ("Exclude bluetooth = disabled"), and `/sys/.../1-3.1/power/` (control=auto, nonzero runtime_suspended_time). Live-tested fix by `echo on > .../power/control` (0 resets over 2.5min under audio), then made permanent with `USB_EXCLUDE_BTUSB = 1;` in TLP settings in `dot_config/nixos/configurations/laptop.nix`. Note for future laptop hw issues: same file has a commented-out `ath11k-resume` systemd service for WiFi-after-wake — this laptop's WiFi/BT combo module has resume quirks. Reminder: laptop.nix is chezmoi-managed, so `chezmoi apply` before `rebuild.sh` (which builds from `~/.config/nixos`).
-- 2026-07-08: Reviewed user's HA thermostat automation plan (notes repo, work/misc/home-assistant-thermostat-plan.yaml) — review only, user applies changes manually via HA web UI (Claude not connected to the instance). User installed home-assistant-manager plugin (komal-SkyNET/claude-skill-homeassistant). Home setup facts: Honeywell T6 Pro Z-Wave thermostat (climate.t6_pro, heat_cool mode, °F), Pixel 7 Pro companion-app next_alarm sensor anchors sleep/wake windows, sensor.alex_location template sensor for presence, Workday integration, 4-9pm utility peak window (PG&E-style daily peak), input_boolean.remote_today for WFH days. Key HA facts verified: input_number `initial:` resets value on every restart (omit it to restore prior state); templates using now() re-render once/minute; next_alarm state is UTC timestamp, `unavailable` when no alarm, has app-package allow-list setting (calendar apps can pollute it).
-- 2026-07-01: Fixed activeText/completedText not displaying during MCP tool calls in platform-agent. Root cause: the MCP SDK's `ListToolsResultSchema` (strict Zod, no `.passthrough()`) strips non-standard annotation fields when the client calls `mcpClient.listTools()`. Fix (Option 1): carry the UI text in the tool's `_meta` (a passthrough field) instead of `annotations`. fake-mcp switched from `server.tool(...)` to `server.registerTool(name, config, cb)` to declare `_meta` (dropped the `@ts-expect-error`s); server-side `compute-mcp-tools.ts` parses `_meta` with a `ToolUiMetaSchema` Zod schema at the boundary and folds `activeText`/`completedText` back into annotations. User: skip unit tests when E2E already covers it; keep comments minimal (removed one I added); prefer extracting inline expressions into named vars (`metaAnnotations`). Then fixed a second bug: approving a confirmation flips the tool to `state==='result'` with an intermediate `{type:'confirmation',response:'Accept'}` before the real tool runs, so completedText showed instead of activeText. Fix in `messages.tsx`: `UIToolResultSchema.safeParse(props.tool.result).data` → treat confirmation/modified-arguments as "still running". User rejected `const result: unknown` + `as UIToolResult` cast; wanted a typed var with no cast → converted common's UI result interfaces to Zod schemas with `z.infer`-derived types and parsed at the boundary.
-- 2026-07-08: Multi-agent code review of the uncommitted PLATFORM-8152 SHARED completion scope diff in Assignment. User's requested workflow: launch 5 parallel opus review agents with distinct lenses, verify their findings against the code, then do an independent review on top. Verification caught one agent claim already covered elsewhere and my own review found a bug all 5 agents missed (shared-ack findOne vs multi-task dedup design) — the verify-then-own-review step adds real value, keep it for future review requests. Findings recorded in project memory (project-8152-review-findings-pending).
-- 2026-07-20: Use-case roadmap session for workflow-bot (personal Deno + discord.js workflow-engine repo at ~/Repos/workflow-bot; scratchpad at notes/personal/misc/workflow-bot-goals.md). Key steer: community management is the core (reaction roles, welcome/verification, starboard, giveaways, automod escalation, LLM help triage); creator integrations (Twitch/Patreon/Ko-fi) are follow-up, developer-tool integrations last. Positioning agreed: compose across the existing bot stack (MEE6/Carl-bot etc.), don't re-implement it feature-by-feature. Engine gaps found: SagaOrchestrator ignores step config entirely (parses raw eventInput; ContextSource never resolved) — that's task #0; events carry only channelId/messageId; nextStepId is linear (no branching); no persistence (Deno KV suggested). Milestone ladder delivered in conversation; not yet persisted to the goals file.
-- 2026-07-21: Implemented PLATFORM-8666 (Outcome project): condition + fallbackValue on FormulaOutcome config. User chose formula-scoped struct (`FormulaCondition {questionId, numberOperator, value}` + nullable `condition`/`fallbackValue` on FormulaOutcome only) over extending shared CompositeCondition unions (would leak into ReportService.isOutcomeValid before sibling PLATFORM-8667) or expression-string conditions. Update input semantics: omitted = preserve, explicit null = clear (matches existing targetId pattern). User committed the SDL portion themselves mid-session while I worked — checkpoint commits of in-progress work are normal. Key Outcome-repo facts: `pnpm setup-dotenv` generates .env files but OPENFGA_STORE_ID can be stale — must match `docker inspect outcome` env; fixtures package is consumed by jest via dist (`pnpm compile` in fixtures/ after editing builders); component eslint has jsx-a11y label-has-associated-control `assert: 'both'` (labels need htmlFor AND nested input); server has NO template lookup on the formula path (assertTargetQuestionAvailable only checks sibling-formula collisions — "numeric question" enforcement is client-side only); manual browser verification can seed form-builder templates via in-page fetch to the vite proxy (httpOnly auth cookie rides along), dev login creds in e2e/.env. User reviewed the new Condition UI in-browser and confirmed it works; seeded "PLATFORM-8666 manual check" template left in local docker Mongo.
-- 2026-07-23: Diagnosed integration-test failure in Assignment project (1/74 failing: review-member-removal). Root cause: relationship-v2's addMemberToProgramRole check-then-write FGA race — on the first parallel run after wiping docker volumes, ~10 specs concurrently re-add the same static fixture membership and one loses the FGA tuple write (verified via docker logs + FGA tuple timestamps matching the error second). Warm re-run: 74/74 green. No fix applied (external service; suggested pre-seeding in setup-fixtures.ts or retry-once in RelationshipHelper). Also: nodemon 3.1.14 crashes on file change (minimatch bug) — ran server via `node --import tsx` directly; root `start-fakes` script is stale (package gone from workspace). Details in project memory.
-- 2026-07-24: Analyzed all MongoDB read patterns in Assignment and shipped the first read-pattern index migrations (uncommitted): 13 task + 3 rule indexes (20260724000002) and serverSettings dedupe + unique key (20260724000003), with FakeMongo specs, TDD red-first, pnpm verify green, live boot + explain() verification. Mid-session discovery: user's parallel session had created folders-move migrations the same morning (timestamp prefix collision → renamed mine); when the user answers a question with a question about in-flight work ("we're getting rid of X — does that change your question?"), check project memory + git status for untracked parallel work before proceeding. Deploy caveat recorded in project memory: Atlas may hold ops-created out-of-band indexes (same-key/different-name → code 85 crash-loop).
-- 2026-08-18: Recovered a lost 29-tab Firefox window on macOS (session had collapsed to a few tabs). Source was `sessionstore-backups/previous.jsonlz4`, where all windows sat in `_closedWindows` because the user had closed them manually before quitting — so Firefox's own "Restore Previous Session" would have returned nothing. Built a merged session (current window + recovered 29-tab window with its 3 named groups) and applied it while Firefox was closed. Verified the whole path in a throwaway `-profile` first, then applied with full backups. User wanted action over ceremony here ("just quit", "try again") — they had already approved scope and mechanism, so waiting on a second confirmation was not wanted. Technical facts in project memory (firefox-session-recovery-macos).
-- 2026-08-18: Fixed CI ESLint OOM in Outcome repo. The user's in-progress edit added `NODE_OPTIONS=--max-old-space-size=4096` to the root `lint` script. Checked the failing run first: three of five lint children died together (exit 134, "Ineffective mark-compacts"), and the failing job is `pull-request.yml` (`pnpm pr-verify`, no NODE_OPTIONS), not `mainWorkflow.yaml` (which already sets 8192 for its Lint step). Measured per-package peak RSS locally — 10.5 GB combined — which proved the problem was concurrency, not the ceiling. Offered three options with measured peaks; user picked `-m 2` + 4096, then asked to bump to 8192 (removes the conflict with mainWorkflow's 8192 and covers the unknown runner default). Final: `NODE_OPTIONS=--max-old-space-size=8192 concurrently -m 2 ... pnpm:lint-*`. Details in project memory (outcome-ci-lint-memory).
-- 2026-08-21 → 2026-08-23: Budget-analysis repo (personal finance — **details stay in that repo's project memory, never here**). Brainstormed → specced → planned a self-hosted receipt itemizer: Claude vision → line items, read-only YNAB matching as an accuracy check, arithmetic-gated review, Vite/React + Hono + SQLite on ceres behind `tailscale serve`, Docker Compose, sops-nix. Spec + 15-task TDD plan committed. Used the brainstorming visual companion for the two genuinely visual questions (landing screen, receipt detail); clicking registered even though the UI gave no visual feedback. Also ran a data-analysis engagement in the same repo. Workflow lessons in that repo's project memory: `ask-about-structural-changes-first`, `user-supplies-context-mid-turn`.
-- 2026-09-01: workflow-bot engine type design session (discussion-heavy, user applied several changes themselves mid-turn). `ActivityStepConfig` made generic (applies `StepConfig<Partial<Input>>` in the base so per-activity configs are one-line aliases), conditions became operand-pair expressions with `TriggerOperand` restricted to event sources at the type level, types reorganized into `conditions/expression.ts` + `context.ts`. User added Biome 2.5 mid-session (tabs, single quotes, fixes on save — re-read files before writing). Design decisions and verified lint facts (deno lint has opt-in `verbatim-module-syntax`, no floating-promises rule; Biome has `nursery/noFloatingPromises`) in project memory (engine-condition-design, biome-and-deno-tooling).
-- 2026-09-10: PLATFORM-9402 (Assignment) — completing a form-creating task now calls form-renderer `associateFormWithCase` for every case the task inherited. Uncommitted. Blocked: form-renderer refuses the service token, proven by a direct probe (service reads the form fine, the mutation returns FORBIDDEN), so the feature is inert and fails open. Raised PLATFORM-9407 on Team Jupiter, which blocks 9402. Learned Team Jupiter's UUID and that issue links are creatable after all. User picked fail-open over waiting, and chose to keep the blocked integration spec skipped after I offered failing / skipped / assert-today's-behavior. Details in the assignment project memory.
-- 2026-09-03: Implemented PLATFORM-9199 (outcome→assignment training task create/revoke) across BOTH repos, uncommitted. Design discussion first (rule vs direct task — chose direct task with an outcomeFormId stamp), plan mode, TDD throughout, plus a cross-service e2e driven by a new docker-compose.local-outcome.yaml override. Key steers: cross-service GraphQL must use codegen'd typed documents (no hand-written query strings); when building another repo's artifact locally, mirror its GHA workflow steps. Details in assignment project memory (project-9199-training-outcome-events and three sibling notes).
