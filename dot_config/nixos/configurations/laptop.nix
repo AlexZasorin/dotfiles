@@ -30,6 +30,9 @@
   # Touchpad support.
   services.libinput.enable = true;
 
+
+  services.flatpak.enable = true;
+
   services.tlp = {
     enable = true;
     settings = {
