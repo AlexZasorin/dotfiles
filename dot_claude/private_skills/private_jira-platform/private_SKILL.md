@@ -46,10 +46,13 @@ Set by ID in array format: `[{"id": "<component_id>"}]`
 - When setting `customfield_10421` (Work Type), use the `{"id": "..."}` format.
 - **Issue links ARE supported** (corrected 2026-09-10; they were not before).
   Use `createIssueLink`, and `getIssueLinkTypes` when the type name is unknown.
-  Direction is the confusing part: `inwardIssue` is the issue that blocks,
-  `outwardIssue` is the one that is blocked. So "A blocks B" is
-  `inwardIssue: A, outwardIssue: B`. Read `issuelinks` back afterward to confirm
-  the direction rendered the way you meant.
+  Direction is the confusing part: "A blocks B" is
+  `inwardIssue: B, outwardIssue: A` — the blocked issue goes in `inwardIssue`
+  (re-corrected 2026-09-21; the tool descriptions on both connectors claim the
+  opposite and are wrong on this site). Verified against the known-good
+  PLATFORM-9390/9392 pair: the blocked ticket 9392 sits at the link's inward
+  slot. Read `issuelinks` back afterward and compare the shape against 9392's
+  links to confirm the direction rendered the way you meant.
 - The HTTP+SSE endpoint is deprecated after 2026-06-30 in favor of Streamable
   HTTP. Tool results carry a notice asking that it be passed on to the user.
 
