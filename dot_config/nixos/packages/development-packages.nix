@@ -3,7 +3,7 @@
     # Development tools
     basedpyright
     chromium
-    cargo
+    clang
     claude-code
     dbeaver-bin
     deno
@@ -14,6 +14,7 @@
     helix
     jsonnet
     just
+    libclang
     nodejs_24
     nuget
     playwright-driver.browsers
@@ -37,5 +38,13 @@
     PRISMA_QUERY_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/query-engine";
     PRISMA_QUERY_ENGINE_LIBRARY = "${pkgs.prisma-engines}/lib/libquery_engine.node";
     PRISMA_FMT_BINARY = "${pkgs.prisma-engines}/bin/prisma-fmt";
+
+    LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
+
+    BINDGEN_EXTRA_CLANG_ARGS = builtins.concatStringsSep " " [
+      (builtins.readFile "${pkgs.clang}/nix-support/cc-cflags")
+      (builtins.readFile "${pkgs.clang}/nix-support/libc-cflags")
+      (builtins.readFile "${pkgs.clang}/nix-support/libcxx-cxxflags")
+    ];
   };
 }
