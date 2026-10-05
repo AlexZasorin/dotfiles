@@ -67,6 +67,11 @@ return {
       ghost_text = { enabled = true },
     },
 
+    cmdline = {
+      keymap = { preset = 'inherit' },
+      completion = { menu = { auto_show = false } },
+    },
+
     -- Built-in signature help replaces cmp-nvim-lsp-signature-help
     signature = { enabled = true },
 
