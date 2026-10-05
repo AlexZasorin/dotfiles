@@ -1,0 +1,37 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "cleanupPeriodDays": 365,
+  "model": "opus[1m]",
+  "hooks": {},
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "atlassian@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "home-assistant-manager@claude-skill-homeassistant": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-skill-homeassistant": {
+      "source": {
+        "source": "github",
+        "repo": "komal-SkyNET/claude-skill-homeassistant"
+      }
+    }
+  },
+  "outputStyle": "Concise",
+  "effortLevel": "xhigh",
+  "promptSuggestionEnabled": false,
+  "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true,
+  "skipAutoPermissionPrompt": true,
+  "feedbackSurveyState": {
+    "lastShownTime": 1753987264415
+  }
+}
