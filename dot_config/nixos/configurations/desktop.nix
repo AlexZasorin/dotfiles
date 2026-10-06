@@ -56,6 +56,10 @@
 
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
+  programs.gamescope = {
+    enable = true;
+    capSysNice = false;
+  };
 
   programs.gamemode.enable = true;
 

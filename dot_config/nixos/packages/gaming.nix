@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     mangohud
     protonup-qt
+    steam-run
   ];
 
   environment.sessionVariables = {

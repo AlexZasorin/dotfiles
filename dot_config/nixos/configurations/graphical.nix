@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: {
   # Config shared by hosts with a graphical session (desktop, laptop).
@@ -140,6 +141,7 @@
       json-glib
       gnutls
       openssl
+      (pkgs.runCommand "steamrun-lib" {} "mkdir $out; ln -s ${pkgs.steam-run.fhsenv}/usr/lib64 $out/lib")
     ]);
 
   # Keyboard remapping daemon.
