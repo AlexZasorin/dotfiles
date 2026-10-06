@@ -32,6 +32,9 @@
   services.udisks2.enable = true;
   services.devmon.enable = true;
   systemd.user.services.devmon.unitConfig.ConditionUser = "solyx";
+  # devmon hardcodes noexec, which stops Proton mapping DLLs on the game library drive.
+  systemd.user.services.devmon.serviceConfig.ExecStart =
+    lib.mkForce "${pkgs.udevil}/bin/devmon --mount-options nosuid,nodev,noatime,exec";
 
   # Sound with pipewire.
   services.pulseaudio.enable = false;
