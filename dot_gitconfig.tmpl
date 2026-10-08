@@ -10,7 +10,11 @@
 {{ end }}
 
 [core]
+{{ if eq .chezmoi.os "darwin" }}
   sshCommand = "ssh -i ~/.ssh/id_ed25519_personal"
+{{ else }}
+  sshCommand = "ssh -i ~/.ssh/id_ed25519"
+{{ end }}
   editor = nvim	
   fsmonitor = true
   untrackedCache = true
