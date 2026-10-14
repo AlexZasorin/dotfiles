@@ -126,6 +126,7 @@ official standard (copyrighted, do not paste in full): <https://asd-ste100.org>
 - Never judge a verification command by a piped summary: `cmd | tail` reports tail's exit code, so a failing build looks green. Redirect to a file, echo `$?`, then read the file.
 - Before claiming a test proves anything, confirm the process under test is running the edited code. Kill servers by PID from `lsof -ti:<port>`, not `pkill -f <guessed pattern>` — a pattern that matches nothing leaves the old process serving and every assertion passes against stale code.
 - Given a safe-but-slower fix and a middle option, the user takes the middle one that keeps parallelism, then raises the number if it still fails.
+- Create git worktrees in a `.worktrees/` directory inside the repo you are modifying (e.g. `git worktree add .worktrees/<branch> -b <branch>`), not as sibling directories. Make sure `.worktrees/` is git-ignored first.
 
 ---
 
