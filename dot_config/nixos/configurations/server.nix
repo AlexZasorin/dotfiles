@@ -13,6 +13,7 @@
   networking = {
     hostName = "ceres";
     wireless.enable = true; # Enables wireless support via wpa_supplicant.
+    firewall.allowedTCPPorts = [8123];
   };
 
   # Headless console.
