@@ -202,6 +202,8 @@ cask "mongodb-compass"
 cask "notion"
 # Administration and development platform for PostgreSQL
 cask "pgadmin4"
+# Client for Proton Drive
+cask "proton-drive"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
 # Instant messaging application focusing on security
