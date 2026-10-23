@@ -104,11 +104,6 @@ export PATH=~/.console-ninja/.bin:~/.cargo/bin:$PATH
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 
-_kill_vpn() {
-  sudo ps aux | grep -i ivanti | awk '{print $2}' | xargs sudo kill -KILL | tail -n+2
-}
-alias kill-vpn="_kill_vpn"
-
 export NVM_DIR="$HOME/.nvm"
 
 nvm() {
