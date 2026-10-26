@@ -21,6 +21,7 @@
   "gitsigns.nvim": { "branch": "main", "commit": "5be654f2232c10ddcad19c1607a67b6b4b78fc29" },
   "grug-far.nvim": { "branch": "main", "commit": "6e05398cf6cad05b3fb46569db96b1ccfcbbd402" },
   "guess-indent.nvim": { "branch": "main", "commit": "84a4987ff36798c2fc1169cbaff67960aed9776f" },
+  "img-clip.nvim": { "branch": "main", "commit": "99848daf801789dbebe2192b475eb887d375002c" },
   "indent-blankline.nvim": { "branch": "master", "commit": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03" },
   "kitehost.nvim": { "branch": "main", "commit": "4cb5c94a84cc653e0b32e0c9aed95465a36fc94d" },
   "lazy.nvim": { "branch": "main", "commit": "306a05526ada86a7b30af95c5cc81ffba93fef97" },
