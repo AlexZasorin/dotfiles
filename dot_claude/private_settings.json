@@ -4,6 +4,15 @@
     "commit": "",
     "pr": ""
   },
+  "permissions": {
+    "deny": [
+      "Bash(sops *)",
+      "Bash(age *)",
+      "Read(~/.config/sops/**)",
+      "Read(//run/secrets/**)",
+      "Read(//run/secrets.d/**)"
+    ]
+  },
   "hooks": {},
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
