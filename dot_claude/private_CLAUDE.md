@@ -9,14 +9,9 @@ Minimal changes only. Do exactly what is asked. Do not:
     Add features, abstractions, or "improvements" beyond the request
     Refactor surrounding code, rename variables, or restructure modules
     Add comments, docstrings, or type annotations to code you didn't change
-    Add error handling or validation for scenarios that cannot happen
-    Create helper functions or utilities for one-off operations
-    Add backwards-compatibility shims, re-exports, or // removed comments
     Introduce new dependencies without being explicitly asked
 
 Do not create new files unless the task absolutely requires it. Prefer editing existing files.
-
-Do not over-engineer. Three similar lines of code is better than a premature abstraction. If a fix is one line, submit one line.
 
 Ask before acting on anything destructive or irreversible: deleting files, force-pushing, modifying CI, running commands with side effects.
 
@@ -40,7 +35,6 @@ not only budget work.
 - When asked to teach something, use Socratic method (questions to guide understanding). User will explicitly indicate when they want to learn vs just get an answer.
 - Present options when implementing or designing - don't assume and make decisions unilaterally. Let the user choose the approach.
 - User gives concise, specific feedback about issues; responds well to quick iterative fixes.
-- User guides toward simpler solutions when I overcomplicate - asks probing questions like "doesn't this mean X already does Y?" to steer toward existing behavior.
 - When I propose changes, user asks clarifying questions about existing behavior first (e.g., "What kind of error does X throw?") - prefers understanding current behavior before deciding to change it.
 - When discussing limitations of other teams' services, use neutral language that doesn't assign blame (e.g., "where new functionality has been limited" rather than "resisted additions").
 - When explaining unfamiliar CS/distributed-systems concepts (e.g., CRDTs), don't assume background — define terms like "Lamport timestamp" from first principles or avoid the jargon entirely. User will say "dumb it down" when an explanation assumes too much.
@@ -121,12 +115,27 @@ official standard (copyrighted, do not paste in full): <https://asd-ste100.org>
 - Collaborative design: present options, discuss trade-offs, let user decide
 - **Plan mode**: Use plan mode for significant refactoring tasks rather than creating ad-hoc plan files
 - User will sometimes rewrite code themselves mid-session when they have a clearer vision — don't fight it, adapt to their changes
-- Measure before tuning any number (memory limit, timeout, concurrency). Collect real peaks (`/usr/bin/time -l` per target) and show the table. User decides from measured numbers, not estimates.
 - Read the actual failing CI log before accepting a reported symptom. The user will ask for it ("check the recent runs to see the failure") if you skip it.
 - Never judge a verification command by a piped summary: `cmd | tail` reports tail's exit code, so a failing build looks green. Redirect to a file, echo `$?`, then read the file.
 - Before claiming a test proves anything, confirm the process under test is running the edited code. Kill servers by PID from `lsof -ti:<port>`, not `pkill -f <guessed pattern>` — a pattern that matches nothing leaves the old process serving and every assertion passes against stale code.
 - Given a safe-but-slower fix and a middle option, the user takes the middle one that keeps parallelism, then raises the number if it still fails.
 - Create git worktrees in a `.worktrees/` directory inside the repo you are modifying (e.g. `git worktree add .worktrees/<branch> -b <branch>`), not as sibling directories. Make sure `.worktrees/` is git-ignored first.
+
+---
+
+# Global Coding Standards
+
+1. **YAGNI**: Don't build it until you need it
+2. **DRY**: Extract patterns after third duplication, not before
+3. **Fail Fast**: Explicit errors beat silent failures
+   - Validate at boundaries (API inputs, external service responses, message payloads) with a schema that throws, so bad data fails loudly and locally instead of corrupting state downstream. In TypeScript, use `Schema.parse()` at the boundary. Use `safeParse().data` only where `undefined` is a handled branch.
+4. **Simple First**: Write the obvious solution, optimize only if needed
+   - Measure before tuning any number (memory limit, timeout, concurrency). Collect real peaks (`/usr/bin/time -l` per target) and show the table. User decides from measured numbers, not estimates.
+5. **Delete Aggressively**: Less code = fewer bugs
+   - Do not leave backwards-compatibility shims, re-exports, or `// removed` comments.
+   - Keep comments minimal and match the surrounding file's comment density. A comment says what the code does or what invariant holds. It does not explain why something changed, what it replaced, or why an alternative was rejected. That belongs in the commit message, and only when it differs from prior commits.
+6. **Semantic Naming**: Always name variables, parameters, and API endpoints with verbose, self-documenting names that optimize for comprehension by both humans and LLMs, not brevity (e.g. `wait_until_obs_is_saved=true` vs `wait=true`)
+   - Extract complex inline expressions into named intermediate variables (e.g. `const metaAnnotations = schema.safeParse(x).data ?? {}`, then spread it) rather than inlining them.
 
 ---
 
@@ -137,18 +146,33 @@ official standard (copyrighted, do not paste in full): <https://asd-ste100.org>
 - Strict typing: avoid `any`, prefer `unknown`, use proper typing
 - Never use dynamic imports (`await import()`) - always use static imports at top of file
 - Avoid user-defined type-predicate guards (`(x): x is T`) — a predicate is an unchecked assertion TS trusts without verifying the body, so a wrong one silently lies. Prefer a plain inline `if` (truthiness/discriminant) check; it gives the same control-flow narrowing AND TS actually verifies it. Reach for a predicate only when it's genuinely reused across many sites, or when the check is complex enough that naming it meaningfully improves readability.
-- To narrow an SDK/library `any` (or `unknown`) value into a domain type, do NOT cast (`as T`) and do NOT write a type-predicate. Use `Schema.safeParse(value).data` — it returns `T | undefined`, fully typed, cast-free, and validates at the boundary. Make the Zod schema the source of truth and derive the type with `z.infer<typeof Schema>` (single source of truth). User steered toward exactly this when a plain cast/`unknown` var was proposed.
+- To narrow an SDK/library `any` (or `unknown`) value into a domain type, do NOT cast (`as T`) and do NOT write a type-predicate. Parse it with the Zod schema: `Schema.parse(value)` at a boundary, or `Schema.safeParse(value).data` only where `undefined` is a handled branch. Make the Zod schema the source of truth and derive the type with `z.infer<typeof Schema>` (single source of truth).
 
 ## Code Style
 
-- Keep comments minimal — user removes explanatory comments they consider unnecessary. Only comment genuinely non-obvious logic, and match the surrounding file's comment density.
-- No essays in code comments. A comment says what the code does or what invariant holds. It does NOT explain why something changed, what it replaced, or why an alternative was rejected — that belongs in the commit message, and only when it differs from prior commits. User asked for a whole diff's comments to be trimmed on these grounds.
 - Do not add a guard for a failure mode you have only shown to be *possible*. Verify it actually happens (a real caller, a real value) before defending against it — "the mechanism exists" is not reachability. User challenged an `ObjectId.isValid` guard added on that basis and it was removed.
-- Prefer extracting complex inline expressions into named intermediate variables for readability (e.g., `const metaAnnotations = schema.safeParse(x).data ?? {}`, then spread it) rather than inlining them.
 
 ## Package Managers
 
 - In pnpm projects (identified by `pnpm-lock.yaml`), always use `pnpm` instead of `npm` and `pnpx` instead of `npx`
+
+## Commits and Semantic Versions
+
+- A conventional commit type is a semver claim, not a description of the edit:
+  `feat` = minor, `fix` and `perf` = patch, `!` or `BREAKING CHANGE` = major,
+  every other type = no release. Pick the type by the effect on the consumers of
+  the published artifact (schema, npm package, API), not by the kind of work. A
+  deprecation or a changed published type is a `feat`. An internal refactor is
+  not.
+- In a repo that releases from commits (semantic-release, release-please,
+  changesets), read its release config (`.releaserc*`, `release.config.*`,
+  `.changeset/`) before the first commit. Scope rules can add or remove release
+  types. Split a commit when one part releases and the other does not.
+- When a batch must release, confirm that one commit since the last tag carries
+  a releasing type. An empty commit is not a trigger: path-filtered CI skips a
+  push with no file changes.
+- Read `git log` before the first commit in a repo and match the message style
+  it shows: subject shape, scope names, ticket key placement, body or none.
 
 ## React
 
@@ -172,7 +196,7 @@ their replacements are in the `react-useeffect` skill.
 
 ## Testing Philosophy
 
-**Static safety is the first line of defense — before any test runs.** TypeScript's type system and Zod schema validation at boundaries (API inputs, external service responses, message payloads) catch a large class of bugs before code ever executes. A well-placed `z.parse()` at a boundary turns silent data corruption into a loud, localized error, often eliminating the need for a unit test that would have caught the same thing. Reach for stricter types and boundary validation before reaching for tests.
+**Static safety is the first line of defense — before any test runs.** Strict types and boundary validation (see Fail Fast under Global Coding Standards) catch a large class of bugs before code ever executes, and often remove the need for a unit test that would have caught the same thing. Reach for stricter types and boundary validation before reaching for tests.
 
 Above that static base, this follows Kent C. Dodds' [Testing Trophy](https://kentcdodds.com/blog/write-tests): integration tests are the sweet spot between confidence and cost. E2E tests are heavy but valuable; unit tests are cheap but tied to implementation details. Integration tests at the service/API level give the best return on investment.
 
@@ -212,6 +236,5 @@ queries, and the ticket-drafting conventions.
 # Project Context
 
 - **Assignment project**: Monorepo with GraphQL server, React components, workflow orchestration (Flowork)
-- **FlowBuilder**: ReactFlow-based visual workflow editor in demo app
 - **Outcome project**: Monorepo with GraphQL server for managing outcome configurations (TEXT, NUMBER, CALCULATED, TRAINING, RISK, SMART, ACKNOWLEDGEMENT outcome types). Uses MongoDB, FGA for permissions.
 - **Forms project**: Monorepo with form-builder-server and form-renderer-server. Uses registry+transformer pattern (renderer) and adapter pattern (builder) for GraphQL↔internal↔MongoDB type transformations. FGA for permissions, external workflow service for lifecycle.
