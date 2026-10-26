@@ -41,7 +41,7 @@
 
 [user]
   name = "Alex Zasorin"
-  email = "zasorin.alek@gmail.com"
+  email = {{ .email | quote }}
 
 [init]
   defaultBranch = trunk
