@@ -23,7 +23,8 @@
     "code-simplifier@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
-    "home-assistant-manager@claude-skill-homeassistant": true
+    "home-assistant-manager@claude-skill-homeassistant": true,
+    "ste@ctotheameron": true
   },
   "extraKnownMarketplaces": {
     "claude-skill-homeassistant": {
@@ -31,9 +32,15 @@
         "source": "github",
         "repo": "komal-SkyNET/claude-skill-homeassistant"
       }
+    },
+    "ctotheameron": {
+      "source": {
+        "source": "github",
+        "repo": "ctotheameron/agent-ste"
+      }
     }
   },
-  "outputStyle": "Concise",
+  "outputStyle": "simple-english",
   "effortLevel": "xhigh",
   "promptSuggestionEnabled": false,
   "tui": "fullscreen",
