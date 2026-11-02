@@ -8,7 +8,7 @@
   "chezmoi.nvim": { "branch": "main", "commit": "4167bbec76f693f481a5243f1be521ff0ccf1a6d" },
   "chezmoi.vim": { "branch": "main", "commit": "7a498ea65f658993237fb0469001bdf71f68cf94" },
   "cmp-npm": { "branch": "main", "commit": "8e57bb506dcfb4387a45299db52be069f3d7c87f" },
-  "codecompanion.nvim": { "branch": "main", "commit": "6794c8bcbe9e8614588749cafb5de29d7fa57c3b" },
+  "codecompanion.nvim": { "branch": "main", "commit": "142eadffdaa8dd06060646b6f8ef74e99c42ab06" },
   "colorbuddy.nvim": { "branch": "master", "commit": "8b968581e5c19d22a861d5f3fe5dbd83394fa681" },
   "conform.nvim": { "branch": "master", "commit": "016802de402556da54c36bd7359b441266b01cdd" },
   "cpsm": { "branch": "master", "commit": "c32a9b7dc9d5b516505bc8ab58ceb15f64735830" },
