@@ -1,0 +1,71 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "claude-agent/opus",
+
+  // OpenCode V2 reads AGENTS.md only and never falls back to CLAUDE.md.
+  // Point at the existing Claude Code files so one source serves both tools
+  // while they overlap. The relative "CLAUDE.md" entry is searched from the
+  // workspace up to the project root, so it covers every repo without edits.
+  "instructions": [
+    "~/.claude/CLAUDE.md",
+    "~/.claude/rules/context7.md",
+    "~/.claude/output-styles/simple-english.md",
+    "CLAUDE.md"
+  ],
+
+  // Migrated from ~/.claude/settings.json permissions.deny, plus the new
+  // secrets directory. OpenCode's base policy allows everything else; add
+  // { "action": "shell", "resource": "*", "effect": "ask" } at the top of
+  // this list if you want Claude Code's ask-before-running behavior back.
+  "permissions": [
+    { "action": "shell", "resource": "sops *", "effect": "deny" },
+    { "action": "shell", "resource": "age *", "effect": "deny" },
+    { "action": "read", "resource": "~/.config/sops/*", "effect": "deny" },
+    { "action": "read", "resource": "~/.secrets/*", "effect": "deny" },
+    { "action": "read", "resource": "/run/secrets/*", "effect": "deny" },
+    { "action": "read", "resource": "/run/secrets.d/*", "effect": "deny" },
+    // claude.ai desktop-only skills that synced into ~/.claude/skills.
+    // They depend on tools OpenCode does not have, so hide them.
+    { "action": "skill", "resource": "chrome-browser", "effect": "deny" },
+    { "action": "skill", "resource": "built-in-browser", "effect": "deny" },
+    { "action": "skill", "resource": "computer-use", "effect": "deny" },
+    { "action": "skill", "resource": "import-memory", "effect": "deny" }
+  ],
+
+  "mcp": {
+    "servers": {
+      // Migrated from ~/.claude.json. Credentials live in ~/.secrets (mode 600).
+      "context7": {
+        "type": "remote",
+        "url": "https://mcp.context7.com/mcp",
+        "oauth": false,
+        "headers": { "CONTEXT7_API_KEY": "{file:~/.secrets/context7-api-key}" }
+      },
+      "todoist": {
+        "type": "local",
+        "command": ["npx", "-y", "@doist/todoist-mcp"],
+        "environment": { "TODOIST_API_KEY": "{file:~/.secrets/todoist-api-key}" }
+      },
+      "keep-mcp": {
+        "type": "local",
+        "command": ["/Users/azasorin/.local/pipx/venvs/keep-mcp/bin/python", "-m", "server"],
+        "environment": {
+          "GOOGLE_EMAIL": "{file:~/.secrets/keep-google-email}",
+          "GOOGLE_MASTER_TOKEN": "{file:~/.secrets/keep-google-master-token}",
+          "UNSAFE_MODE": "{file:~/.secrets/keep-unsafe-mode}"
+        }
+      },
+      // Previously bundled inside the atlassian, github, and playwright
+      // Claude Code plugins. atlassian and github use OAuth: run /mcps to sign in.
+      "atlassian": { "type": "remote", "url": "https://mcp.atlassian.com/v2/mcp" },
+      "github": { "type": "remote", "url": "https://api.githubcopilot.com/mcp/" },
+      "playwright": { "type": "local", "command": ["npx", "@playwright/mcp@latest"] }
+    }
+  },
+
+  // Replaces the superpowers Claude Code plugin with its native OpenCode plugin.
+  "plugins": ["superpowers@git+https://github.com/obra/superpowers.git"],
+
+  // Relative to each project's checkout, so worktrees land in <repo>/.worktree/<name>.
+  "worktree": { "directory": ".worktree" }
+}
