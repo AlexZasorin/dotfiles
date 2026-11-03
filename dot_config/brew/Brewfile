@@ -1,4 +1,5 @@
 tap "ankitpokhrel/jira-cli"
+tap "anomalyco/tap"
 tap "derailed/k9s", trusted: true
 tap "drewzemke/tap", trusted: true
 tap "matsuyoshi30/gitsu"
@@ -172,6 +173,8 @@ brew "zsh-autocomplete"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# OpenCode V2 - the AI coding agent for the terminal
+brew "anomalyco/tap/opencode-v2", trusted: true
 # Celebrate your git pushes!
 brew "drewzemke/tap/post-push-party"
 # AeroSpace is an i3-like tiling window manager for macOS
