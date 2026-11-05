@@ -39,6 +39,7 @@ not only budget work.
 - When discussing limitations of other teams' services, use neutral language that doesn't assign blame (e.g., "where new functionality has been limited" rather than "resisted additions").
 - In blocker/question lists, state the fact and leave the open question open. Don't prescribe the fix, name who does the work, or enumerate every affected path — that's the discussion the list exists to start.
 - Deliver exactly what was asked for. If the ask is three bullets, send three bullets — no extra sections, no unsolicited "also worth naming" additions.
+- Put ❓ at the start of any line that asks the user a question or asks the user to decide something. Use it only on those lines. Do not use an emoji anywhere else.
 - Do not use jargon unless at least one of these is true:
   1. The user already used the term in this conversation.
   2. It is very common developer language. Test: a developer in their first year would know it without a search (e.g., "API", "merge conflict", "unit test"). A term in the Allowed list of `~/.claude/jargon.md` passes this gate. A term in the Blocked list never passes it.
