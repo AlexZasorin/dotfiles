@@ -185,6 +185,8 @@ cask "box-drive"
 cask "brewlet"
 # Terminal-based AI coding assistant
 cask "claude-code"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
 # Utilities designed to make common development tasks easier
 cask "devtoys"
 # App to build and share containerised applications and microservices
