@@ -37,11 +37,17 @@ not only budget work.
 - User gives concise, specific feedback about issues; responds well to quick iterative fixes.
 - When I propose changes, user asks clarifying questions about existing behavior first (e.g., "What kind of error does X throw?") - prefers understanding current behavior before deciding to change it.
 - When discussing limitations of other teams' services, use neutral language that doesn't assign blame (e.g., "where new functionality has been limited" rather than "resisted additions").
-- When explaining unfamiliar CS/distributed-systems concepts (e.g., CRDTs), don't assume background — define terms like "Lamport timestamp" from first principles or avoid the jargon entirely. User will say "dumb it down" when an explanation assumes too much.
 - In blocker/question lists, state the fact and leave the open question open. Don't prescribe the fix, name who does the work, or enumerate every affected path — that's the discussion the list exists to start.
 - Deliver exactly what was asked for. If the ask is three bullets, send three bullets — no extra sections, no unsolicited "also worth naming" additions.
-- Stop writing random technical sounding jargon/bullshit. Simplify what you write with a focus on readability and simplicity.
-- Do not adopt coined vocabulary from a document or another team ("the rail", "net-state", "the stamp") and then use it as if it were shared language. Either say the plain thing ("the Kafka topic and everything that publishes to it") or define the term once, in the sentence that first uses it.
+- Do not use jargon unless at least one of these is true:
+  1. The user already used the term in this conversation.
+  2. It is very common developer language. Test: a developer in their first year would know it without a search (e.g., "API", "merge conflict", "unit test"). A term in the Allowed list of `~/.claude/jargon.md` passes this gate. A term in the Blocked list never passes it.
+  3. You saw it in the files you read this session, and that codebase uses it throughout.
+  4. You explained it in plain, simple language first, in the sentence that first uses it.
+  This applies to CS/distributed-systems terms ("CRDT", "Lamport timestamp") and to coined vocabulary from a document or another team ("the rail", "net-state", "the stamp"). For coined terms, prefer the plain thing ("the Kafka topic and everything that publishes to it") over a definition. When unsure whether a term counts as jargon, treat it as jargon. User will say "dumb it down" when an explanation assumes too much.
+  Keep `~/.claude/jargon.md` up to date without asking. Add a term to Allowed when the user uses it without explaining it, or says it is fine. Add a term to Blocked when the user asks what it means, says "dumb it down" about it, or corrects your use of it.
+
+@~/.claude/jargon.md
 
 ## Writing Style — Simplified Technical English
 

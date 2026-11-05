@@ -45,8 +45,8 @@
   "promptSuggestionEnabled": false,
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
-  "skipAutoPermissionPrompt": true,
   "idleCompaction": false,
+  "skipAutoPermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1753987264415
   },
