@@ -24,6 +24,6 @@ return {
     },
   },
   keys = {
-    { '<leader>jc', '<cmd>Coverage<cr>', desc = '[j]est [c]overage' },
+    { '<leader>jc', '<cmd>Coverage<cr>', desc = '[T]est [c]overage' },
   },
 }
