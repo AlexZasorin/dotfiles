@@ -44,8 +44,12 @@ eod() {
     git add "**/en.utf-8.add*"
     git commit -m "chore(nvim): update spelling dictionary"
 
-    log-msg blue false "Saving global CLAUDE.md..."
+    log-msg blue false "Saving global claude config..."
     chezmoi add "~/.claude/CLAUDE.md"
+    chezmoi add "~/.claude/jargon.md"
+    chezmoi add "~/.claude/settings.json"
+    chezmoi add "~/.config/opencode/cli.json"
+    chezmoi add "~/.config/opencode/opencode.jsonc"
     git add "**/private_CLAUDE.md"
     git commit -m "chore(claude): update CLAUDE.md"
 
