@@ -17,6 +17,7 @@
     libclang
     nodejs_24
     nuget
+    opencode
     playwright-driver.browsers
     pnpm
     prisma-engines_7
