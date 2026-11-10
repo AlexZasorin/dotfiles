@@ -245,3 +245,7 @@ queries, and the ticket-drafting conventions.
 - **Assignment project**: Monorepo with GraphQL server, React components, workflow orchestration (Flowork)
 - **Outcome project**: Monorepo with GraphQL server for managing outcome configurations (TEXT, NUMBER, CALCULATED, TRAINING, RISK, SMART, ACKNOWLEDGEMENT outcome types). Uses MongoDB, FGA for permissions.
 - **Forms project**: Monorepo with form-builder-server and form-renderer-server. Uses registry+transformer pattern (renderer) and adapter pattern (builder) for GraphQL↔internal↔MongoDB type transformations. FGA for permissions, external workflow service for lifecycle.
+
+# graphify
+- **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
+When the user types `/graphify`, use the installed graphify skill or instructions before doing anything else.
