@@ -5,6 +5,11 @@
     "pr": ""
   },
   "permissions": {
+    "allow": [
+      "WebFetch",
+      "WebSearch",
+      "Skill"
+    ],
     "deny": [
       "Bash(sops *)",
       "Bash(age *)",
@@ -13,11 +18,11 @@
       "Read(//run/secrets.d/**)"
     ]
   },
+  "model": "claude-fable-5-2",
   "hooks": {},
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,
     "context7@claude-plugins-official": true,
-    "github@claude-plugins-official": true,
     "playwright@claude-plugins-official": true,
     "atlassian@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
@@ -49,6 +54,5 @@
   "skipAutoPermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1753987264415
-  },
-  "model": "claude-fable-5-1[1m]"
+  }
 }
