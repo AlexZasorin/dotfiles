@@ -77,7 +77,7 @@
       gptfdisk
       hdparm
       parted
-      presenterm
+      # presenterm
       rclone
       restic
       smartmontools
