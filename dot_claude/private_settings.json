@@ -8,7 +8,25 @@
     "allow": [
       "WebFetch",
       "WebSearch",
-      "Skill"
+      "Skill",
+      "Read",
+      "Bash(gh api *)",
+      "mcp__claude_ai_Atlassian__getJiraIssue",
+      "Bash(pnpm audit *)",
+      "Bash(pnpm codegen *)",
+      "Bash(pnpm compile *)",
+      "Bash(pnpm lint-server *)",
+      "Bash(pnpm prettier *)",
+      "Bash(pnpm test-server *)",
+      "Bash(kubectl get pod *)",
+      "Bash(pnpm test *)",
+      "mcp__context7__resolve-library-id",
+      "Bash(pnpm jest *)",
+      "Bash(pnpm update *)",
+      "Bash(find *)",
+      "Bash(git *)",
+      "Bash(gh run *)",
+      "mcp__context7__query-docs"
     ],
     "deny": [
       "Bash(sops *)",
