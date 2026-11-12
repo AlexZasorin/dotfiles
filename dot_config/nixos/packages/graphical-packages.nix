@@ -21,7 +21,6 @@
     spotify
     vesktop
     vlc
-    vscode
     wezterm
     zoom-us
 
