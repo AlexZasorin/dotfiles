@@ -5,6 +5,7 @@
     "pr": ""
   },
   "permissions": {
+    "defaultMode": "default",
     "allow": [
       "WebFetch",
       "WebSearch",
@@ -47,7 +48,7 @@
     "superpowers@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
     "home-assistant-manager@claude-skill-homeassistant": true,
-    "ste@ctotheameron": true
+    "ste@ctotheameron": false
   },
   "extraKnownMarketplaces": {
     "claude-skill-homeassistant": {
