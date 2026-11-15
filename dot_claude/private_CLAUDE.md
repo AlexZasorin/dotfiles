@@ -205,6 +205,8 @@ their replacements are in the `react-useeffect` skill.
 
 **Static safety is the first line of defense — before any test runs.** Strict types and boundary validation (see Fail Fast under Global Coding Standards) catch a large class of bugs before code ever executes, and often remove the need for a unit test that would have caught the same thing. Reach for stricter types and boundary validation before reaching for tests.
 
+Every time a test or a strict type catches a mistake you made, append one entry to `~/.claude/caught-mistakes.md`: the date, the project, the mistake, and the test or type that caught it.
+
 Above that static base, this follows Kent C. Dodds' [Testing Trophy](https://kentcdodds.com/blog/write-tests): integration tests are the sweet spot between confidence and cost. E2E tests are heavy but valuable; unit tests are cheap but tied to implementation details. Integration tests at the service/API level give the best return on investment.
 
 **Start high, then fill in below:**
