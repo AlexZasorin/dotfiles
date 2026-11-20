@@ -8,7 +8,7 @@ return {
     'nvim-neotest/neotest-jest',
     'marilari88/neotest-vitest',
     'nvim-neotest/neotest-python',
-    'AlexZasorin/neotest-playwright',
+    'thenbe/neotest-playwright',
   },
   config = function()
     local adapters = {
@@ -54,25 +54,26 @@ return {
 
     local e2e_dir = get_e2e_dir()
     if e2e_dir and vim.fn.isdirectory(e2e_dir) == 1 then
-      table.insert(
-        adapters,
-        require('neotest-playwright').adapter({
-          options = {
-            get_cwd = function()
-              return e2e_dir
-            end,
-            get_playwright_config = function()
-              return e2e_dir .. '/playwright.config.ts'
-            end,
-            get_playwright_binary = function()
-              return e2e_dir .. '/node_modules/.bin/playwright'
-            end,
-            is_test_file = function(file_path)
-              return file_path:find('%.e2e%.ts?$') ~= nil
-            end,
-          },
-        })
-      )
+      local playwright_adapter = require('neotest-playwright').adapter({
+        options = {
+          get_cwd = function()
+            return e2e_dir
+          end,
+          get_playwright_config = function()
+            return e2e_dir .. '/playwright.config.ts'
+          end,
+          get_playwright_binary = function()
+            return e2e_dir .. '/node_modules/.bin/playwright'
+          end,
+          is_test_file = function(file_path)
+            return file_path:find('%.e2e%.ts?$') ~= nil
+          end,
+        },
+      })
+      playwright_adapter.root = function()
+        return e2e_dir
+      end
+      table.insert(adapters, playwright_adapter)
     end
 
     require('neotest').setup({
