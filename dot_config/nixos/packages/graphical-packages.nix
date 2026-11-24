@@ -39,6 +39,7 @@
     kdePackages.kimageformats
     kdePackages.kio
     kdePackages.kio-extras
+    kdePackages.krdp
     kdePackages.kwallet-pam
     kdePackages.partitionmanager
     qdirstat
