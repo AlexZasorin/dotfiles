@@ -6,10 +6,12 @@ Claude keeps this file. The jargon rule in CLAUDE.md says when to add a term.
 
 Terms the user accepts without a definition.
 
+- ALPR
 - API
 - CI
 - dedup
 - merge conflict
+- opsec
 - unit test
 
 ## Blocked
