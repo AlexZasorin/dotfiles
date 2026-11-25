@@ -1,5 +1,5 @@
 {
-  "cleanupPeriodDays": 365,
+  "cleanupPeriodDays": 30,
   "attribution": {
     "commit": "",
     "pr": ""
